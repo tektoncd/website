@@ -2,6 +2,9 @@ title        = "Tekton Pipelines"
 baseURL      = "https://tekton-dev.netlify.com"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+[params]
+favicon = "favicon.png"
+
 [params.logos]
 navbar = "horizontal-color"
 
