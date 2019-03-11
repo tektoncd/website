@@ -4,7 +4,8 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]
 favicon = "favicon.png"
-subtitle = "Foo"
+subtitle = "A Kubernetes-native pipeline resource"
+github   = "https://github.com/tektoncd/pipeline"
 
 [params.logos]
 navbar = "horizontal-color"

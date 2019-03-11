@@ -1,5 +1,6 @@
-{{ $home := site.BaseURL }}
-{{ $logo := printf "img/logos/tekton-%s.png" site.Params.logos.navbar | relURL }}
+{{ $home      := site.BaseURL }}
+{{ $logo      := printf "img/logos/tekton-%s.png" site.Params.logos.navbar | relURL }}
+{{ $githubUrl := site.Params.github }}
 <nav class="navbar is-fixed-top has-shadow">
   <div class="container">
     <div class="navbar-brand">
@@ -15,7 +16,20 @@
     </div>
 
     <div class="navbar-menu" id="navbarMenu">
-      
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <a class="button is-medium is-borderless has-background-black has-text-white" href="{{ $githubUrl }}" target="_blank">
+              <span class="icon">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </span>
+              <span>
+                GitHub
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
