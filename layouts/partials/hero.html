@@ -1,5 +1,19 @@
+{{ $title    := site.Title }}
+{{ $subtitle := site.Params.subtitle | markdownify }}
 <section class="hero is-fullheight-with-navbar">
   <div class="hero-head">
     {{ partial "navbar.html" . }}
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <p class="title is-size-1">
+        {{ $title }}
+      </p>
+
+      <p class="subtitle is-size-2 is-size-3-mobile">
+        {{ $subtitle }}
+      </p>
+    </div>
   </div>
 </section>

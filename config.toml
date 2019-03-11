@@ -4,9 +4,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]
 favicon = "favicon.png"
+subtitle = "Foo"
 
 [params.logos]
 navbar = "horizontal-color"
 
 [params.fonts]
-sansserif = "Franklin Gothic Heavy"
+sansserif = "Franklin Gothic Heavy Regular"
