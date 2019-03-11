@@ -14,3 +14,6 @@ build:
 
 deploy: build
 	$(FIREBASE) deploy --project $(PROJECT)
+
+open:
+	open https://$(PROJECT).firebaseapp.com
