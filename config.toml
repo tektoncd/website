@@ -2,13 +2,19 @@ title        = "Tekton Pipelines"
 baseURL      = "https://tekton-dev.netlify.com"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+[blackfriday]
+hrefTargetBlank = true
+
 [params]
 favicon = "favicon.png"
 subtitle = "A Kubernetes-native pipeline resource"
-github   = "https://github.com/tektoncd/pipeline"
+github = "https://github.com/tektoncd/pipeline"
+info = """
+The **Tekton Pipelines** project provides [Kubernetes](https://kubernetes.io)-style resources for declaring CI/CD-style pipelines.
+"""
 
 [params.logos]
-navbar = "horizontal-color"
+hero = "horizontal-color"
 
 [params.fonts]
 sansserif = "Franklin Gothic Heavy Regular"

@@ -1,15 +1,3 @@
-{{ $favicon := site.Params.favicon | relURL }}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ site.Title }}</title>
-    {{ partial "css.html" . }}
-    <link rel="shortcut icon" href="{{ $favicon }}">
-  </head>
-  <body class="has-navbar-fixed-top">
-    {{ partial "navbar.html" . }}
-    {{ partial "hero.html" . }}
-
-    {{ partial "javascript.html" . }}
-  </body>
-</html>
+{{ define "main" }}
+{{ partial "home/hero.html" . }}
+{{ end }}
