@@ -1,0 +1,3 @@
+title        = "Tekton Pipelines"
+baseURL      = "https://tekton-dev.netlify.com"
+disableKinds = ["taxonomy", "taxonomyTerm"]
