@@ -2,5 +2,8 @@
   "private": true,
   "devDependencies": {
     "bulma": "^0.7.2"
+  },
+  "dependencies": {
+    "firebase-tools": "^6.5.0"
   }
 }

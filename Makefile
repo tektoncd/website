@@ -1,3 +1,7 @@
+NODE_BIN = node_modules/.bin
+FIREBASE = $(NODE_BIN)/firebase
+PROJECT  = tekton
+
 serve:
 	hugo server \
 	--buildDrafts \
@@ -5,11 +9,8 @@ serve:
 	--disableFastRender \
 	--ignoreCache
 
-production-build:
+build:
 	hugo
 
-preview-build:
-	hugo \
-	--baseURL $(DEPLOY_PRIME_URL) \
-	--buildDrafts \
-	--buildFuture
+deploy: build
+	$(FIREBASE) deploy --project $(PROJECT)
