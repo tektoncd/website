@@ -1,0 +1,10 @@
+{{ $comingSoon := site.Params.comingsoon | markdownify }}
+<section class="section has-text-centered">
+  <div class="container">
+    <div class="notification is-danger">
+      <p class="is-size-4 is-size-5-mobile">
+        {{ $comingSoon }}
+      </p>
+    </div>
+  </div>
+</section>

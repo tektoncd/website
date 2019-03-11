@@ -2,7 +2,7 @@
 {{ $subtitle := site.Params.subtitle | markdownify }}
 {{ $logo     := printf "img/logos/tekton-%s.png" site.Params.logos.hero | relURL }}
 {{ $info     := site.Params.info | markdownify }}
-<section class="hero is-medium">
+<section class="hero">
   <div class="hero-body has-text-centered has-background-white-bis">
     <div class="container">
       <img class="hero-logo" src="{{ $logo }}">
