@@ -1,0 +1,11 @@
+{{ $home := site.BaseURL }}
+{{ $logo := printf "img/logos/tekton-%s.png" site.Params.logos.navbar | relURL }}
+<nav class="navbar is-fixed-top">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{ $home }}">
+        <img src="{{ $logo }}">
+      </a>
+    </div>
+  </div>
+</nav>

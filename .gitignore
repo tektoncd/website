@@ -3,6 +3,7 @@
 
 # Hugo-generated assets
 public/
+resources/
 
 # Asset pipeline
 node_modules/
