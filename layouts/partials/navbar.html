@@ -1,11 +1,21 @@
 {{ $home := site.BaseURL }}
 {{ $logo := printf "img/logos/tekton-%s.png" site.Params.logos.navbar | relURL }}
-<nav class="navbar is-fixed-top">
+<nav class="navbar is-fixed-top has-shadow">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item" href="{{ $home }}">
         <img src="{{ $logo }}">
       </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu" id="navbarMenu">
+      
     </div>
   </div>
 </nav>
