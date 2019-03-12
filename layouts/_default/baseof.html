@@ -1,10 +1,8 @@
-{{ $favicon := site.Params.favicon | absURL }}
 <!DOCTYPE html>
 <html>
   <head>
     <title>{{ site.Title }}</title>
     {{ partial "css.html" . }}
-    <link rel="shortcut icon" href="{{ $favicon }}">
   </head>
   <body class="page has-navbar-fixed-top">
     <main class="main">
