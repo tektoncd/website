@@ -5,5 +5,8 @@ serve:
 	--disableFastRender \
 	--ignoreCache
 
-build:
+production-build:
 	hugo
+
+preview-build:
+	hugo --baseURL $(DEPLOY_PRIME_URL)
