@@ -1,6 +1,3 @@
-# Firebase artifacts
-.firebase/
-
 # Hugo-generated assets
 public/
 resources/

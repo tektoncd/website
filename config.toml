@@ -1,5 +1,5 @@
 title        = "Tekton Pipelines"
-baseURL      = "https://tekton.firebaseapp.com"
+baseURL      = "https://tekton-dev.netlify.com"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [blackfriday]
