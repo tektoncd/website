@@ -16,13 +16,11 @@ spec:
       args:
         - cd /workspace/tekton-website && pip install -r helper/requirements.txt && python helper/helper.py
     - name: build-static-site
-      image: "klakegg/hugo:0.57.2"
+      image: "jguyomard/hugo-builder"
       command:
         - hugo
       args:
         - -s
-        - /workspace/tekton-website
-        - -c
         - /workspace/tekton-website
     - name: deploy-firebase
       image: devillex/docker-firebase
