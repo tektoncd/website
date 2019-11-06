@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: build-deploy-website-pipeline
+spec:
+  tasks:
+    - name: build-deploy-website-task
+      taskRef:
+        name: build-deploy-website-task

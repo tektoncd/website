@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" class="no-js">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      {{ hugo.Generator }}
+      {{ if eq (getenv "HUGO_ENV") "production" }}
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      {{ else }}
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+      {{ end }}
+      {{ range .AlternativeOutputFormats -}}
+      <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+      {{ end -}}
+      {{ partialCached "favicons.html" . }}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+      <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      {{ $js := resources.Get "js/try.js" }}
+      {{ $js := $js | minify | fingerprint }}
+      <script src="{{ $js.RelPermalink }}"></script>
+  </head>
+  <body class="td-{{ .Kind }}">
+    <div id="modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content" style="width: 1000px;">
+        <article id="message" class="message is-link">
+          <div class="message-header">
+            <p>Before you begin</p>
+            <button class="delete" onclick="closeNote();"></button>
+          </div>
+          <div class="message-body">
+            You can run this interactive tutorial in a number of ways.
+            If you are familiar with <a href="https://cloud.google.com">Google Cloud Platform</a>
+            or would like to try tekton with Google Cloud Platform, consider running this tutorial
+            with Qwiklabs. Alternatively, view the source code of this tutorial on GitHub,
+            or start with the embedded Katacoda environment below.
+            <br>
+            <br>
+            <a id="qwiklabs-button" class="button is-link"><span class="icon"><i class="fas fa-vial"></i></span><span>Open with Qwiklabs</span></a>
+            <a id="katacoda-button" class="button is-light"><span class="icon"><i class="fas fa-paw"></i></span><span>Open with Katacoda</span></a>
+            <a id="github-button" class="button is-light"><span class="icon"><i class="fab fa-github"></i></span><span>Open in GitHub</span></a>
+          </div>
+        </article>
+        <div id="embedded-katacoda-scenario"></div>
+      </div>
+      <button class="modal-close is-large" onclick="closeModal();"></button>
+    </div>
+    <nav class="navbar" >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+        </a>
+      </div>
+    </nav>
+    <section class="hero is-medium">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title has-text-grey-darker">see tekton in action</h1>
+            <h2 class="subtitle has-text-grey">tekton provides a number of interactive tutorials
+              that helps you learn how to use tekton step by step for free.</h2>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-8 is-variable">
+          <div class="column is-3">
+            <p class="title is-inline">getting started</p>
+            <p class="title is-inline has-text-grey-light">on tekton and learn all the basics.</p>
+          </div>
+          <div class="column is-9">
+            <div class="columns is-2 is-variable">
+              <div class="column is-4">
+                <article class="card has-background-link"
+                         style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;"
+                         onclick="openModal(this);"
+                         data-katacoda-src="ratrosyu/getting-started"
+                         data-github-lnk="michaelawyu/tekton-examples/tree/master/getting-started"
+                         data-qwiklabs-lnk="">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/getting-started.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Your first CI/CD workflow with tekton</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-8 is-variable">
+          <div class="column is-3">
+            <p class="title is-inline">build a great CI/CD workflow</p>
+            <p class="title is-inline has-text-grey-light">using tekton tasks and pipelines.</p>
+          </div>
+          <div class="column is-9">
+            <div class="columns is-2 is-variable">
+              <div class="column is-4">
+                <article class="card has-background-info" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/task.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Basic building block: tekton tasks</p>
+                  </div>
+                </article>
+                <br>
+                <article class="card has-background-info" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/advanced.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Advanced CI/CD patterns with tekton</p>
+                  </div>
+                </article>
+              </div>
+              <div class="column is-4">
+                <article class="card has-background-info" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/organize.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">One block at a time: tekton pipelines</p>
+                  </div>
+                </article>
+              </div>
+              <div class="column is-4">
+                <article class="card has-background-info" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/run.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Running tekton tasks and pipelines</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+     <section class="section">
+      <div class="container">
+        <div class="columns is-8 is-variable">
+          <div class="column is-3">
+            <p class="title is-inline">control and visualize</p>
+            <p class="title is-inline has-text-grey-light">every aspect of tekton.</p>
+          </div>
+          <div class="column is-9">
+            <div class="columns is-2 is-variable">
+              <div class="column is-4">
+                <article class="card has-background-primary" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/dashboard.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Monitor with tekton dashboard</p>
+                  </div>
+                </article>
+              </div>
+              <div class="column is-4">
+                <article class="card has-background-primary" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/control.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Control with tekton CLI tools</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-8 is-variable">
+          <div class="column is-3">
+            <p class="title is-inline">connect to services</p>
+            <p class="title is-inline has-text-grey-light">you love and use every day.</p>
+          </div>
+          <div class="column is-9">
+            <div class="columns is-2 is-variable">
+              <div class="column is-4">
+                <article class="card has-background-success" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/github.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Connect to GitHub repositories</p>
+                  </div>
+                </article>
+                <br>
+                <article class="card has-background-success" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/helm.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Connect to KNative platform</p>
+                  </div>
+                </article>
+              </div>
+              <div class="column is-4">
+                <article class="card has-background-success" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/jenkins.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Connect to Jenkins/Jenkins X</p>
+                  </div>
+                </article>
+                <br>
+                <article class="card has-background-success" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/custom.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Connect to any app with events</p>
+                  </div>
+                </article>
+              </div>
+              <div class="column is-4">
+                <article class="card has-background-success" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/helm.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">Connect to Anthos platform</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-8 is-variable">
+          <div class="column is-3">
+            <p class="title is-inline">read about concepts and principles</p>
+            <p class="title is-inline has-text-grey-light">of CI/CD systems.</p>
+          </div>
+          <div class="column is-9">
+            <div class="columns is-2 is-variable">
+              <div class="column is-4">
+                <article class="card has-background-dark" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 0.5rem;">
+                  <div class="card-image">
+                    <figure class="image is-4by3"><img src="/try/icons/concept.png"></figure>
+                  </div>
+                  <div class="card-content" style="padding: 16px;">
+                    <p class="title has-text-white has-text-weight-semibold is-size-5">CI/CD system best practices</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

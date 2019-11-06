@@ -1,0 +1,18 @@
+# sync.yaml configures how helper/helper.py synchronizes contents from
+# their sources of truth (usually GitHub repositories of each Tekton
+# components, such as tektoncd/pipelines) to tektoncd/website.
+
+# The git repository where documentation resides
+repository: https://github.com/michaelawyu/triggers
+# TO-DO: Version control
+# The directory where documentation resides
+docDirectory: docs
+# Key-value pairs of files to synchronize, where the key is the original
+# filename and the value is the new filename.
+files:
+  - README.md: _index.md
+  - eventlisteners.md: eventlisteners.md
+  - exposing-eventlisteners.md: exposing-eventlisteners.md
+  - install.md: install.md
+  - triggerbindings.md: triggerbindings.md
+  - triggertemplates.md: triggertemplates.md
