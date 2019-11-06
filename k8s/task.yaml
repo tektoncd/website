@@ -12,23 +12,23 @@ spec:
       image: "python:3.7.5"
       command:
         - /bin/bash
-        - /c
+        - -c
       args:
         - cd /workspace/tekton-website && pip install -r helper/requirements.txt && python helper/helper.py
     - name: build-static-site
-      image: jguyomard/hugo-builder
+      image: "klakegg/hugo:0.57.2"
       command:
         - hugo
       args:
-        - /s
+        - -s
         - /workspace/tekton-website
-        - /c
+        - -c
         - /workspace/tekton-website
     - name: deploy-firebase
       image: devillex/docker-firebase
       command:
         - /bin/bash
-        - /c
+        - -c
       args:
         - cd /workspace/tekton-website && firebase deploy --project $(cat /etc/secrets/project) --token $(cat /etc/secrets/token)
       volumeMounts:

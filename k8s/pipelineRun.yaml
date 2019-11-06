@@ -6,6 +6,6 @@ spec:
   pipelineRef:
     name: build-deploy-website-pipeline
   resources:
-  - name: git
+  - name: tekton-website
     resourceRef:
-      name: tekton-website-git
+      name: tekton-website

@@ -3,7 +3,14 @@ kind: Pipeline
 metadata:
   name: build-deploy-website-pipeline
 spec:
+  resources:
+    - name: tekton-website
+      type: git
   tasks:
     - name: build-deploy-website-task
       taskRef:
         name: build-deploy-website-task
+      resources:
+        inputs:
+          - name: tekton-website
+            resource: tekton-website

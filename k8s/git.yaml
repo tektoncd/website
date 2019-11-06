@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   # The name of the pipeline resource
-  name: tekton-website-src
+  name: tekton-website
 spec:
   type: git
   params:
@@ -11,5 +11,5 @@ spec:
     value: master
   # The URL of the repository
   - name: url
-    value: https://github.com/michaelawyu/tekton-website
+    value: https://github.com/michaelawyu/website
 
