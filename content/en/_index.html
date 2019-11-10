@@ -4,26 +4,18 @@ linkTitle = "Tekton.dev Homepage"
 
 +++
 
-{{< blocks/cover title="Kubernetes-native CI/CD" image_anchor="top" color="orange" >}}
+{{< blocks/cover title="Kubernetes-native CI/CD" subtitle="" image_anchor="smart" color="orange" height="med">}}
 <div class="mx-auto">
-	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
+	<a class="btn btn-lg btn-dark mr-3 mb-4" href="{{< relref "/docs" >}}">
 		Documentation <i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
-	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/tektoncd">
+	<a class="btn btn-lg btn-light mr-3 mb-4" href="https://github.com/tektoncd">
 		GitHub <i class="fab fa-github ml-2 "></i>
 	</a>
-	<div class="mx-auto mt-5">
-		{{< blocks/link-down color="info" >}}
-	</div>
 </div>
 {{< /blocks/cover >}}
 
-
-{{% blocks/lead color="primary" %}}
-Tekton is a powerful and flexible open-source framework for creating CI/CD
-systems, allowing developers to build, test, and deploy across cloud providers
-and on-premise systems.
-{{% /blocks/lead %}}
+{{% blocks/showcase color="link" %}}
 
 {{< blocks/section color="dark" >}}
 {{% blocks/feature icon="fas fa-globe-asia" title="Standardization" %}}
@@ -49,18 +41,12 @@ test, and deploy workflow based on your team's requirements.
 {{< /blocks/section >}}
 
 
-{{< blocks/section >}}
-<div class="col">
-<h1 class="text-center">To-Do: Partner Logos Placeholder</h1>
-</div>
-
-{{< /blocks/section >}}
-
+{{< blocks/partners color="danger" >}}
 
 
 {{< blocks/section >}}
 {{% blocks/feature icon="fas fa-code" title="Install Tekton" %}}
-Get Tekton here.
+<a href="/docs/getting-started/">Get Tekton here</a>.
 {{% /blocks/feature %}}
 
 
@@ -69,8 +55,8 @@ Contribute to Tekton on GitHub.
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fas fa-chalkboard" title="Learn Tekton" %}}
-Learn Tekton with interactive tutorials.
+{{% blocks/feature icon="fas fa-chalkboard" title="Try Tekton" %}}
+Learn, explore, and experiment with Tekton using [Tekton Playground](https://www.katacoda.com/ratrosyu/scenarios/playground).
 {{% /blocks/feature %}}
 
 

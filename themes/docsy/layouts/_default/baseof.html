@@ -2,6 +2,11 @@
 <html lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
     {{ partial "head.html" . }}
+    {{ if eq .Kind "home" }}
+    {{ $cssAsciinema := "css/asciinema-player.css" }}
+    {{ $cssAsciinema := resources.Get $cssAsciinema | toCSS (dict "enableSourceMap" false) | postCSS | minify | fingerprint }}
+    <link href="{{ $cssAsciinema.RelPermalink }}" rel="stylesheet" integrity="{{ $cssAsciinema.Data.integrity }}">
+    {{ end }}
   </head>
   <body class="td-{{ .Kind }}">
     <header>
