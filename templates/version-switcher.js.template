@@ -1,0 +1,146 @@
+const componentVersions = JSON.parse('{{ component_versions_json }}');
+
+function expandOrCollapseSubMenu (node) {
+  const ref = node.getAttributeNode('data-ref');
+  const childRef = `${ref}-child`;
+  const childNodes = document.querySelectorAll(`[data-ref="${childRef}"]`);
+  if (node.getAttributeNode('data-expanded') === 'true') {
+    childNodes.forEach(function (childNode) {
+      childNode.className = childNode.classList.push('d-none');
+    });
+    node.setAttribute('data-expanded', 'false');
+  }
+
+  if (node.getAttributeNode('data-expanded') === 'false') {
+    childNodes.forEach(function (childNode) {
+      childNode.className = childNode.className.replace('d-none', '');
+    });
+    node.setAttribute('data-expanded', 'true');
+  }
+}
+
+function createLatestVersionNode (anchorNode, componentName, version, disabled) {
+  const latestVersionNode = document.createElement('a');
+  if (disabled) {
+    latestVersionNode.className = 'dropdown-item disabled';
+    latestVersionNode.innerHTML = `${componentName}: ${version}`;
+  } else {
+    latestVersionNode.className = 'dropdown-item';
+    latestVersionNode.setAttribute('href', `/docs/${componentName.toLowerCase()}`);
+    latestVersionNode.innerHTML = `Latest (${version})`;
+  }
+  latestVersionNode.style.paddingLeft = '3em';
+  latestVersionNode.style.color = 'rgb(55, 114, 255)';
+}
+
+function createArchivedVersionsNode (anchorNode, href) {
+  const archiveNode = document.createElement('a');
+  archiveNode.className = 'dropdown-item';
+  archiveNode.style.paddingLeft = '3em';
+  archiveNode.style.color = 'rgb(55, 114, 255)';
+  archiveNode.innerHTML = 'Archived Versions';
+  archiveNode.setAttribute('href', href);
+  anchorNode.after(archiveNode);
+}
+
+function createPreviousVersionsNodes (anchorNode, componentName, previousVersions, excludedVersion) {
+  previousVersions.slice().reverse().forEach(function (bundle) {
+    const previousVersion = bundle.displayName;
+    if (excludedVersion !== null && excludedVersion === previousVersion) {
+      return;
+    }
+
+    const previousVersionNode = document.createElement('a');
+    previousVersionNode.className = 'dropdown-item d-none';
+    previousVersionNode.style.paddingLeft = '3em';
+    previousVersionNode.style.color = 'rgb(55, 114, 255)';
+    previousVersionNode.setAttribute('href', `/vault/${componentName.toLowerCase()}-${previousVersion.toLowerCase()}`);
+    previousVersionNode.setAttribute('data-ref', `${componentName}-child`.toLowerCase());
+    previousVersionNode.innerHTML = `${previousVersion}`;
+    anchorNode.after(previousVersionNode);
+  });
+}
+
+function createComponentNameNode (anchorNode, componentName) {
+  const componentNameNode = document.createElement('a');
+  componentNameNode.className = 'dropdown-item';
+  componentNameNode.setAttribute('data-ref', `${componentName}`.toLowerCase());
+  componentNameNode.setAttribute('data-expanded', 'false');
+  componentNameNode.innerHTML = componentName;
+  componentNameNode.addEventListener('click', function () { expandOrCollapseSubMenu(componentNameNode); });
+  anchorNode.after(componentNameNode);
+}
+
+function setMainVersionSwitcher () {
+  const versionAnnouncerNode = document.getElementById('version-announcer');
+  Object.keys(componentVersions).slice().reverse().forEach(function (componentVersion) {
+    const componentName = componentVersion.name;
+    const versions = componentVersion.tags;
+    const latestVersion = versions[0].displayName;
+    createLatestVersionNode(versionAnnouncerNode, componentName, latestVersion, true);
+  });
+  const previousReleasesDivider = document.getElementById('previous-releases-divider');
+  Object.keys(componentVersions).slice().reverse().forEach(function (componentVersion) {
+    const componentName = componentVersion.name;
+    const archiveHref = componentVersion.archive;
+    createArchivedVersionsNode(previousReleasesDivider, archiveHref);
+
+    const versions = componentVersion.tags;
+    const previousVersions = versions.slice(1);
+    createPreviousVersionsNodes(previousReleasesDivider, componentName, previousVersions, null);
+
+    createComponentNameNode(previousReleasesDivider, componentName);
+  });
+}
+
+function setVaultVersionSwitcher () {
+  const pathName = window.location.pathname;
+  const componentVersionStr = pathName.split('/')[2];
+  const componentRawName = componentVersionStr.split('-')[0];
+  const versionRawName = componentVersionStr.split('-')[1];
+  let componentName;
+  let versionName;
+
+  Object.keys(componentVersions).forEach(function (componentVersion) {
+    if (componentVersion.name.toLowerCase() === componentRawName) {
+      componentName = componentVersion.name;
+      componentVersion.tags.forEach(function (bundle) {
+        if (bundle.displayName.toLowerCase() === versionRawName) {
+          versionName = bundle.displayName;
+        }
+      });
+    }
+  });
+
+  const currentLocationAnnouncerNode = document.getElementById('current-location-announcer');
+  currentLocationAnnouncerNode.innerHTML = `${componentName} ${versionName}`;
+
+  const currentLocationAnnouncerTextNode = document.createElement('current-location-announcer-text');
+  currentLocationAnnouncerTextNode.innerHTML = `Tekton ${componentName} ${versionName}`;
+
+  const otherVersionsDivider = document.getElementById('other-versions-divider');
+  const otherComponentsDivider = document.getElementById('other-components-divider');
+  Object.keys(componentVersions).forEach(function (componentVersion) {
+    if (componentVersion.name === componentName) {
+      const archiveHref = componentVersion.archive;
+      createArchivedVersionsNode(otherVersionsDivider, archiveHref);
+
+      const previousVersions = componentVersion.tags.slice(1);
+      createPreviousVersionsNodes(otherVersionsDivider, componentName, previousVersions, versionName);
+
+      const latestVersion = componentVersion.tags[0];
+      createLatestVersionNode(otherVersionsDivider, componentName, latestVersion);
+    } else {
+      const archiveHref = componentVersions[componentVersion.name].archive;
+      createArchivedVersionsNode(otherComponentsDivider, archiveHref);
+
+      const previousVersions = componentVersions[componentVersion.name].tags.slice(1);
+      createPreviousVersionsNodes(otherComponentsDivider, componentVersion.name, previousVersions, null);
+
+      const latestVersion = componentVersions[componentVersion.name].tags[0];
+      createLatestVersionNode(otherComponentsDivider, componentVersion.name, latestVersion, false);
+
+      createComponentNameNode(otherComponentsDivider, componentVersion.name);
+    }
+  });
+}

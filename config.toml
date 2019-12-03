@@ -3,6 +3,8 @@ title = "Tekton"
 
 enableRobotsTXT = true
 
+ignoreFiles = ["helper/", "k8s/"]
+
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
 theme = ["docsy"]
 
