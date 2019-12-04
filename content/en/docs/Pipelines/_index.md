@@ -1,6 +1,6 @@
 ---
-title: "Pipelines"
-linkTitle: "Pipelines"
+title: "Tasks and Pipelines"
+linkTitle: "Tasks and Pipelines"
 weight: 3
 description: >
   Building Blocks of Tekton CI/CD Workflow

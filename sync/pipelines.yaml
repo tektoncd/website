@@ -18,10 +18,10 @@ docDirectory: docs
 # latest version of contents.
 tags:
   # The name of the tag in the GitHub repository.
-- name: v0.7.x
+- name: v0.9.1
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
-  displayName: v0.7.x
+  displayName: v0.9.x
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
@@ -36,8 +36,8 @@ tags:
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
-- name: v0.6.x
-  displayName: v0.6.x
+- name: v0.9.1
+  displayName: v0.8.x
   files:
   - README.md: _index.md
   - auth.md: auth.md
@@ -50,8 +50,8 @@ tags:
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
-- name: v0.5.x
-  displayName: v0.5.x
+- name: v0.9.1
+  displayName: v0.7.x
   files:
   - README.md: _index.md
   - auth.md: auth.md

@@ -1,4 +1,4 @@
-const componentVersions = JSON.parse('{{ component_versions_json }}');
+const componentVersions = JSON.parse('[{"name": "Pipelines", "tags": [{"name": "v0.9.1", "displayName": "v0.9.x"}, {"name": "v0.9.1", "displayName": "v0.8.x"}, {"name": "v0.9.1", "displayName": "v0.7.x"}], "archive": "https://github.com/michaelawyu/pipeline/tags"}, {"name": "Triggers", "tags": [{"name": "v0.1.1", "displayName": "v0.1.x"}], "archive": "https://github.com/michaelawyu/triggers/tags"}]');
 
 function expandOrCollapseSubMenu (componentName) {
   const childRef = `${componentName}-child`;

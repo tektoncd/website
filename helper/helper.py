@@ -15,7 +15,7 @@ CONTENT_DIR = './content/en/docs'
 JS_ASSET_DIR = './assets/js'
 SYNC_DIR = './sync'
 TEMPLATE_DIR = './templates'
-VAULT_DIR = './vault'
+VAULT_DIR = './content/en/vault'
 
 
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
@@ -29,7 +29,9 @@ def retrieve_files(url_prefix, dest_prefix, files):
         for k in f:
             src_url = f'{url_prefix}/{k}'
             dest_path = f'{dest_prefix}/{f[k]}'
+            print(f'Downloading file (from {src_url} to {dest_path}).\n')
             wget.download(src_url, out=dest_path)
+            print('\n')
 
 
 def verify_name_format(word):
@@ -47,16 +49,18 @@ def sync(sync_config):
     tags = sync_config['tags']
 
     # Get the latest version of contents
-    url_prefix = f'{repository}/raw/{tags[0]}/{doc_directory}'
+    url_prefix = f'{repository}/raw/{tags[0]["name"]}/{doc_directory}'
     dest_prefix = f'{CONTENT_DIR}/{component}'
     files = tags[0]['files']
+    print(f'Retrieving the latest version ({tags[0]["displayName"]}) of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
     retrieve_files(url_prefix, dest_prefix, files)
 
     # Get the previous versions of contents
     for tag in tags[1:]:
-        url_prefix = f'{repository}/raw/{tag}/{doc_directory}'
+        url_prefix = f'{repository}/raw/{tag["name"]}/{doc_directory}'
         dest_prefix = f'{VAULT_DIR}/{component}-{tag["displayName"]}'
         files = tag['files']
+        print(f'Retrieving version {tag["displayName"]} of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
         retrieve_files(url_prefix, dest_prefix, files)
 
 
@@ -74,7 +78,7 @@ def get_component_versions(sync_configs):
 def prepare_version_switcher_script(component_versions):
     script_template = jinja_env.get_template('version-switcher.js.template')
     script = script_template.render(component_versions_json=json.dumps(component_versions))
-    with open(f'JS_ASSET_DIR/version-swicher.js', 'w') as f:
+    with open(f'{JS_ASSET_DIR}/version-switcher.js', 'w') as f:
         f.write(script)
 
 
