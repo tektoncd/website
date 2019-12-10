@@ -67,3 +67,4 @@ node_modules/
 public/
 secret.yaml
 content/en/vault/*
+resources/

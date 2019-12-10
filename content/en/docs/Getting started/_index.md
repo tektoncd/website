@@ -6,6 +6,10 @@ description: >
   Prerequisites, Installation, and Basic Usage
 ---
 
+{{% pageinfo %}}
+WIP
+{{% /pageinfo %}}
+
 {{% tutorial name="Getting started with Tekton"
              katacoda-src="ratrosyu/getting-started"
              github-lnk="michaelawyu/tekton-examples/tree/master/getting-started"
