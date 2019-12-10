@@ -6,6 +6,7 @@ import json
 import os
 import shutil
 
+from google.cloud import storage
 from jinja2 import Environment, FileSystemLoader
 import wget
 from yaml import load, Loader
@@ -16,8 +17,11 @@ JS_ASSET_DIR = './assets/js'
 SYNC_DIR = './sync'
 TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
+BUCKET_NAME = 'tekton-website-assets'
 
 
+gcs_client = storage.Client()
+gcs_bucket = gcs_client.get_bucket(BUCKET_NAME)
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 
@@ -89,6 +93,11 @@ def prepare_vault_landing_page(component_versions):
         f.write(md)
 
 
+def download_background_image():
+    blob = gcs_bucket.blob('featured-background.jpeg')
+    blob.download_to_filename('./content/en/featured-background.jpeg')
+
+
 def scan(dir_path):
     entries = os.scandir(dir_path)
     sync_config_paths = []
@@ -112,3 +121,4 @@ if __name__ == '__main__':
     component_versions = get_component_versions(sync_configs)
     prepare_version_switcher_script(component_versions)
     prepare_vault_landing_page(component_versions)
+    download_background_image()
