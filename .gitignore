@@ -67,4 +67,6 @@ node_modules/
 public/
 secret.yaml
 content/en/vault/*
+content/en/vault/_index.md
 resources/
+assets/js/version-switcher.js

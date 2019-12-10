@@ -9,7 +9,7 @@ component: Pipelines
 # The order of the component.
 displayOrder: 0
 # The GitHub repository where documentation resides.
-repository: https://github.com/michaelawyu/pipeline
+repository: https://github.com/tektoncd/pipeline
 # The directory in the GitHub repository where contents reside.
 docDirectory: docs
 # The tags (versions) of contents to sync.
@@ -65,4 +65,4 @@ tags:
 #  - taskruns.md: taskruns.md
 #  - tasks.md: tasks.md
 # The link to the GitHub tag page.
-archive: https://github.com/michaelawyu/pipeline/tags
+archive: https://github.com/tektoncd/pipeline/tags

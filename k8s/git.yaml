@@ -11,5 +11,5 @@ spec:
     value: master
   # The URL of the repository
   - name: url
-    value: https://github.com/michaelawyu/website
+    value: https://github.com/tektoncd/website
 

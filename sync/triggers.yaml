@@ -9,7 +9,7 @@ component: Triggers
 # The order of the component.
 displayOrder: 1
 # The GitHub repository where documentation resides.
-repository: https://github.com/michaelawyu/triggers
+repository: https://github.com/tektoncd/triggers
 # The directory in the GitHub repository where contents reside.
 docDirectory: docs
 # The tags (versions) of contents to sync.
@@ -32,4 +32,4 @@ tags:
   - triggerbindings.md: triggerbindings.md
   - triggertemplates.md: triggertemplates.md
 # The link to the GitHub tag page.
-archive: https://github.com/michaelawyu/triggers/tags
+archive: https://github.com/tektoncd/triggers/tags
