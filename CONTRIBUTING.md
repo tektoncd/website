@@ -1,28 +1,25 @@
-# How to Contribute
+# Contributing to the Tekton website
 
-We'd love to accept your patches and contributions to this project. There are
-just a few small guidelines you need to follow.
+Thanks for considering contributing to our project!
 
-## Contributor License Agreement
+**All contributors must comply with
+[the code of conduct](./CODE-OF-CONDUCT.md).**
 
-Contributions to this project must be accompanied by a Contributor License
-Agreement. You (or your employer) retain the copyright to your contribution;
-this simply gives us permission to use and redistribute your contributions as
-part of the project. Head over to <https://cla.developers.google.com/> to see
-your current agreements on file or to sign a new one.
+To get started developing, see our [DEVELOPMENT.md](./DEVELOPMENT.md).
 
-You generally only need to submit a CLA once, so if you've already submitted one
-(even if it was for a different project), you probably don't need to do it
-again.
+- The [OWNERS](OWNERS) of this repo are the
+  [members of the Tekton governing board](https://github.com/tektoncd/community/blob/master/governance.md)
+  as well as folks from the Linux Foundation who contribute to this project.
 
-## Code reviews
+In [the community repo](https://github.com/tektoncd/community) you'll find info
+on:
 
-All submissions, including submissions by project members, require review. We
-use GitHub pull requests for this purpose. Consult
-[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-information on using pull requests.
+- [Contacting other contributors](https://github.com/tektoncd/community/blob/master/contact.md)
+- [Development standards](https://github.com/tektoncd/community/blob/master/standards.md)
+  including standards for 
+  [commit messages](https://github.com/tektoncd/community/blob/master/standards.md#commit-messages)
+- [Processes](https://github.com/tektoncd/community/blob/master/process.md) like
+  [reviews](https://github.com/tektoncd/community/blob/master/process.md#reviews)
 
-## Community Guidelines
-
-This project follows
-[Google's Open Source Community Guidelines](https://opensource.google.com/conduct/).
+You can find details on our automation infrastructure in
+[the plumbing repo](https://github.com/tektoncd/plumbing).
