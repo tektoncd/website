@@ -1,0 +1,34 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Note</h4>
+    <p>See also the <b>{{ .Get "name" | safeHTML }}</b> interactive tutorial.</p>
+    <button type="button" class="btn btn-success" onclick="openModal();">Launch Interactive Tutorial</button>
+    <div class="modal fade"
+         id="tutorialModal"
+         tabindex="-1"
+         style="display: none;"
+         data-katacoda-src='{{ .Get "katacoda-src" | safeHTML }}'
+         data-github-lnk='{{ .Get "github-lnk" | safeHTML }}'
+         data-qwiklabs-lnk='{{ .Get "qwiklabs-lnk" | safeHTML }}'>
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Getting started with Tekton</h5>
+                <button type="button" class="close" onclick="closeModal();"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>You can run this interactive tutorial in a number of ways.
+                    If you are familiar with <a href="https://cloud.google.com">Google Cloud Platform</a>,
+                    consider running this tutorial with Qwiklabs. Alternatively,
+                    view the source code of this tutorial on GitHub, or start
+                    with the embedded Katacoda environment below.
+                </p>
+                <a id="qwiklabs-button" class="btn btn-success" href="">Open with Qwiklabs</a>
+                <a id="katacoda-button" class="btn btn-light" href="">Open with Katacoda</a>
+                <a id="github-button" class="btn btn-light" href="">Open in GitHub</a>
+                <div id="embedded-katacoda-scenario"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

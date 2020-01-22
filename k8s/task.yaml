@@ -1,0 +1,39 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: build-deploy-website-task
+spec:
+  inputs:
+    resources:
+      - name: tekton-website
+        type: git
+  steps:
+    - name: run-helper-script
+      image: "python:3.7.5"
+      command:
+        - /bin/bash
+        - -c
+      args:
+        - cd /workspace/tekton-website && pip install -r helper/requirements.txt && python helper/helper.py
+    - name: build-static-site
+      image: "jguyomard/hugo-builder"
+      command:
+        - hugo
+      args:
+        - -s
+        - /workspace/tekton-website
+    - name: deploy-firebase
+      image: devillex/docker-firebase
+      command:
+        - /bin/bash
+        - -c
+      args:
+        - cd /workspace/tekton-website && firebase deploy --project $(cat /etc/secrets/project) --token $(cat /etc/secrets/token)
+      volumeMounts:
+        - name: secret
+          mountPath: "/etc/secrets"
+  volumes:
+    - name: secret
+      secret:
+        secretName: firebase-secrets
+
