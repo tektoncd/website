@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: build-deploy-website-run
+spec:
+  pipelineRef:
+    name: build-deploy-website-pipeline
+  resources:
+  - name: tekton-website
+    resourceRef:
+      name: tekton-website
