@@ -3,7 +3,7 @@
 Thanks for considering contributing to our project!
 
 **All contributors must comply with
-[the code of conduct](./code-of-conduct.md).**
+[the code of conduct](./CODE-OF-CONDUCT.md).**
 
 To get started developing, see our [DEVELOPMENT.md](./DEVELOPMENT.md).
 
