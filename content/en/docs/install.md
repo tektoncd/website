@@ -97,22 +97,6 @@ The versions of Tekton Pipelines available are:
   [the development
   guide](https://github.com/tektoncd/pipeline/blob/master/DEVELOPMENT.md)
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config-defaults
-data:
-  default-service-account: "tekton"
-  default-timeout-minutes: "20"
-  default-pod-template: |
-    annotations:
-      cluster-autoscaler.kubernetes.io/safe-to-evict: 'false'
-```
-
-*NOTE:* The `_example` key in the provided [config-defaults.yaml](./../config/config-defaults.yaml)
-file contains the keys that can be overriden and their default values.
-
 ## Custom Releases
 
 The [release Task](./../tekton/README.md) can be used for creating a custom
