@@ -49,43 +49,39 @@ You are now ready to create and run Tekton Pipelines:
 - Look at the
   [examples](https://github.com/tektoncd/pipeline/tree/master/examples)
 
-### Installing Tekton Pipelines on OpenShift/MiniShift
+### Installing Tekton Pipelines on OpenShift 4/CRC
 
-The `tekton-pipelines-controller` service account needs the `anyuid` security
-context constraint in order to run the webhook pod.
+1. Install Tektoncd-Pipeline by accessing the console
+2. Select `Catalog/Operator > Operator Hub`
+3. Search for `OpenShift Pipelines Operator`
+4. Click on `Subscribe` tektoncd will be installed
 
-_See
-[Security Context Constraints](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_scc.html)
-for more information_
+**NOTE:** This will install Openshift Pipeline resources in `Tekton-Pipelines` Namespace
+    Verify that the pipeline is installed
 
-1. First, login as a user with `cluster-admin` privileges. The following example
-   uses the default `system:admin` user (`admin:admin` for MiniShift):
+      1. Login into your cluster
+          `oc login`
 
-   ```bash
-   # For MiniShift: oc login -u admin:admin
-   oc login -u system:admin
-   ```
+      2. Ensure pipeline pods are running
 
-1. Run the following commands to set up the project/namespace, and to install
-   Tekton Pipelines:
+          `kubectl get all -n tekton-pipelines`
 
-   ```bash
-   oc new-project tekton-pipelines
-   oc adm policy add-scc-to-user anyuid -z tekton-pipelines-controller
-   oc apply --filename https://storage.googleapis.com/tekton-releases/latest/release.yaml
-   ```
+      3. Ensure pipeline crds exist
 
-   _See
-   [here](https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html)
-   for an overview of the `oc` command-line tool for OpenShift._
+          `kubectl get crds | grep tekton`
 
-1. Run the `oc get` command to monitor the Tekton Pipelines components until all
-   of the components show a `STATUS` of `Running`:
+          should show
 
-   ```bash
-   oc get pods --namespace tekton-pipelines --watch
-   ```
-   
+          ```shell
+          clustertasks.tekton.dev
+          installs.tekton.dev
+          pipelineresources.tekton.dev
+          pipelineruns.tekton.dev
+          pipelines.tekton.dev
+          taskruns.tekton.dev
+          tasks.tekton.dev
+          ```
+
 ## Versions
 
 The versions of Tekton Pipelines available are:
@@ -109,4 +105,3 @@ Except as otherwise noted, the content of this page is licensed under the
 [Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/),
 and code samples are licensed under the
 [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
-s
