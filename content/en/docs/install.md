@@ -13,8 +13,7 @@ To add Teketon to the Kubernetes Cluster on version 1.11 or later grant cluster-
 * [Installing Tekton Pipelines on OpenShift/MiniShift](#installing-tekton-pipelines-on-openshiftminishift)
 * [Versions](#versions)
 
-
-## Installing Tekton Pipelines
+### Installing Tekton Pipelines
 
 To add the Tekton Pipelines component to an existing cluster:
 
@@ -27,9 +26,6 @@ To add the Tekton Pipelines component to an existing cluster:
    kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
    ```
 
-   _(Previous versions will be available at `previous/$VERSION_NUMBER`, e.g.
-   https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.2.0/release.yaml.)_
-
 1. Run the
    [`kubectl get`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get)
    command to monitor the Tekton Pipelines components until all of the
@@ -39,28 +35,25 @@ To add the Tekton Pipelines component to an existing cluster:
    kubectl get pods --namespace tekton-pipelines
    ```
 
-   Tip: Instead of running the `kubectl get` command multiple times, you can
-   append the `--watch` flag to view the component's status updates in real
-   time. Use CTRL + C to exit watch mode.
 
-You are now ready to create and run Tekton Pipelines:
+You are now ready to create and run Tekton Pipelines 🙌
 
 - See [Tekton Pipeline tutorial](./tutorial.md) to get started.
 - Look at the
   [examples](https://github.com/tektoncd/pipeline/tree/master/examples)
 
-### Installing Tekton Pipelines on OpenShift 4/CRC
+### Installing Tekton-Pipeline on OpenShift 4/CRC
 
-1. Install Tektoncd-Pipeline by accessing the console
+1. Install Tekton-Pipeline by accessing the console
 2. Select `Catalog/Operator > Operator Hub`
 3. Search for `OpenShift Pipelines Operator`
-4. Click on `Subscribe` tektoncd will be installed
+4. Click on `Subscribe` 
 
-**NOTE:** This will install Openshift Pipeline resources in `Tekton-Pipelines` Namespace
-    Verify that the pipeline is installed
+**Note**: Tekton-Pipeline will automatically begin installation 😊
+
+#### **NOTE:** To verify your installation
 
       1. Login into your cluster
-          `oc login`
 
       2. Ensure pipeline pods are running
 
