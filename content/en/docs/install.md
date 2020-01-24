@@ -10,7 +10,7 @@ menu:
 To add Teketon to the Kubernetes Cluster on version 1.11 or later grant cluster-admin permissions to the current user.
 
 * [Installing Tekton Pipelines](#installing-tekton-pipelines)
-* [Installing Tekton PIpelines on OpenShift/MiniShift](#installing-tekton-pipelines-on-openshiftminishift)
+* [Installing Tekton Pipelines on OpenShift/MiniShift](#installing-tekton-pipelines-on-openshiftminishift)
 * [Versions](#versions)
 
 
