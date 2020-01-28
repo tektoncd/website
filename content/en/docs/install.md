@@ -63,7 +63,7 @@ You are now ready to create and run Tekton Pipelines 🙌
 
           `kubectl get crds | grep tekton`
 
-          should show
+          Expect:
 
           ```shell
           clustertasks.tekton.dev
