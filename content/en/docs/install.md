@@ -51,30 +51,6 @@ You are now ready to create and run Tekton Pipelines 🙌
 
 **Note**: Tekton-Pipeline will automatically begin installation 😊
 
-#### **NOTE:** To verify your installation
-
-      1. Login into your cluster
-
-      2. Ensure pipeline pods are running
-
-          `kubectl get all -n tekton-pipelines`
-
-      3. Ensure pipeline crds exist
-
-          `kubectl get crds | grep tekton`
-
-          Expect:
-
-          ```shell
-          clustertasks.tekton.dev
-          installs.tekton.dev
-          pipelineresources.tekton.dev
-          pipelineruns.tekton.dev
-          pipelines.tekton.dev
-          taskruns.tekton.dev
-          tasks.tekton.dev
-          ```
-
 ## Versions
 
 The versions of Tekton Pipelines available are:
