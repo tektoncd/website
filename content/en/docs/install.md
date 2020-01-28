@@ -49,7 +49,7 @@ You are now ready to create and run Tekton Pipelines 🙌
 3. Search for `OpenShift Pipelines Operator`
 4. Click on `Subscribe` 
 
-**Note**: OpenShift Pipelines Operator will automatically begin installation of Tekton-Pipline 😊
+**Note**: OpenShift Pipelines Operator will automatically begin installation of Tekton 😊
 
 ## Versions
 
