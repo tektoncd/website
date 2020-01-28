@@ -1,16 +1,22 @@
 ---
-title: "Installing Tekton Pipelines"
-linkTitle: "Install"
+title: "Getting Started"
+linkTitle: "Getting Started"
 weight: 20
 menu:
   main:
     weight: 20
 ---
 
-To add Teketon to the Kubernetes Cluster on version 1.11 or later grant cluster-admin permissions to the current user.
+This is a quick guide to get started with tekton
+
+* [Install Tekton](#install-tekton)
+
+## Install Tekton
+
+To add Teketon to the Kubernetes on version 1.11 or later grant cluster-admin permissions to the current user.
 
 * [Installing Tekton Pipelines](#installing-tekton-pipelines)
-* [Installing Tekton Pipelines on OpenShift/MiniShift](#installing-tekton-pipelines-on-openshiftminishift)
+* [Installing Tekton Pipelines on OpenShift/MiniShift](#installing-tekton-pipelines-on-openshift-4crc)
 * [Versions](#versions)
 
 ### Installing Tekton Pipelines
@@ -42,7 +48,7 @@ You are now ready to create and run Tekton Pipelines 🙌
 - Look at the
   [examples](https://github.com/tektoncd/pipeline/tree/master/examples)
 
-### Installing Tekton-Pipeline on OpenShift 4/CRC
+### Installing Tekton Pipelines on OpenShift 4/CRC
 
 1. Install Tekton-Pipeline by accessing the console
 2. Select `Catalog/Operator > Operator Hub`
@@ -56,7 +62,7 @@ You are now ready to create and run Tekton Pipelines 🙌
 The versions of Tekton Pipelines available are:
 
 * [Officially released versions](https://github.com/tektoncd/pipeline/releases), e.g. `v0.6.0`
-* [Nightly releases](../tekton/README.md#nightly-releases) are
+* [Nightly releases](https://gcr.io/tekton-nightly) are
   published every night to `gcr.io/tekton-nightly`
 * `HEAD` - To install the most recent, unreleased code in the repo see
   [the development
