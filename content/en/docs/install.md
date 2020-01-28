@@ -61,13 +61,7 @@ The versions of Tekton Pipelines available are:
 * `HEAD` - To install the most recent, unreleased code in the repo see
   [the development
   guide](https://github.com/tektoncd/pipeline/blob/master/DEVELOPMENT.md)
-
-## Custom Releases
-
-The [release Task](./../tekton/README.md) can be used for creating a custom
-release of Tekton Pipelines. This can be useful for advanced users that need to
-configure the container images built and used by the Pipelines components.
-
+  
 ---
 
 Except as otherwise noted, the content of this page is licensed under the
