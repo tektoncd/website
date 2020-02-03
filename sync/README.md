@@ -1,8 +1,11 @@
-This directory includes the configuration for syncing/curating contents from
-specific Tekton repositories.
+This directory includes a helper script for synchronizing contents
+from specified Tekton repositories to this repository.
 
-See `pipelines.yaml` and `triggers.yaml` for more instructions. These two
-YAML files control the synchronization/curation from the `tektoncd/pipeline`
-and `tektoncd/triggers` repositories respectively.
+To run this script locally, set up a Python 3 environment with appropriate
+Google Cloud Platform credentials, and execute the following command:
 
-The YAML files here are used by the scripts in `../helper`.
+```bash
+cd ..
+pip install -r helper/requirements.txt
+python helper/helper.py
+```
