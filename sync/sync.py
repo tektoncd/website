@@ -14,7 +14,7 @@ from yaml import load, Loader
 
 CONTENT_DIR = './content/en/docs'
 JS_ASSET_DIR = './assets/js'
-SYNC_DIR = './sync'
+SYNC_DIR = './sync/config'
 TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
