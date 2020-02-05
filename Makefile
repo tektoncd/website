@@ -15,6 +15,9 @@ serve:
 build:
 	hugo
 
+production-build:
+	hugo
+
 deploy: clean build
 	$(FIREBASE) deploy --project $(PROJECT)
 
