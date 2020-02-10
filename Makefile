@@ -1,4 +1,5 @@
 serve:
+	python sync/sync.py && \
 	hugo server \
 	--buildDrafts \
 	--buildFuture \
@@ -6,7 +7,7 @@ serve:
 	--ignoreCache
 
 production-build:
-	hugo
+	python sync/sync.py && hugo
 
 preview-build:
-	hugo --baseURL $(DEPLOY_PRIME_URL)
+	python sync/sync.py && hugo --baseURL $(DEPLOY_PRIME_URL)
