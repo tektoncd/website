@@ -6,6 +6,7 @@ import json
 import os
 import shutil
 
+from google.oauth2 import service_account
 from google.cloud import storage
 from jinja2 import Environment, FileSystemLoader
 import wget
@@ -19,8 +20,14 @@ TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
 
+GCP_NETLIFY_ENV_CRED = os.environ.get('GCP_CREDENTIAL_JSON')
 
-gcs_client = storage.Client()
+if GCP_NETLIFY_ENV_CRED:
+    credentials = service_account.Credentials.from_service_account_info(GCP_NETLIFY_ENV_CRED)
+    gcs_client = storage.Client(credentials=credentials)
+else:
+    gcs_client = storage.Client()
+
 gcs_bucket = gcs_client.get_bucket(BUCKET_NAME)
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
