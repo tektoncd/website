@@ -9,7 +9,7 @@ component: Pipelines
 # The order of the component.
 displayOrder: 0
 # The GitHub repository where documentation resides.
-repository: https://github.com/tektoncd/pipeline
+repository: https://github.com/michaelawyu/pipeline
 # The directory in the GitHub repository where contents reside.
 docDirectory: docs
 # The tags (versions) of contents to sync.
@@ -18,10 +18,10 @@ docDirectory: docs
 # latest version of contents.
 tags:
   # The name of the tag in the GitHub repository.
-- name: v0.9.1
+- name: v10.0.2
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
-  displayName: v0.9.x
+  displayName: v10.0.x
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
@@ -31,15 +31,40 @@ tags:
   - container-contract.md: container-contract.md
   - labels.md: labels.md
   - logs.md: logs.md
+  - migrating-from-knative-build.md: migrating-from-knative-build.md
   - pipelineruns.md: pipelineruns.md
   - pipelines.md: pipelines.md
+  - podtemplates.md: podtemplates.md
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
-# To add a new version, append to the list as below
-#- name: v0.8.2
+#- name: v0.9.1
 #  displayName: v0.8.x
 #  files:
-#  - myfiles.md: myfiles.md
+#  - README.md: _index.md
+#  - auth.md: auth.md
+#  - conditions.md: conditions.md
+#  - container-contract.md: container-contract.md
+#  - labels.md: labels.md
+#  - logs.md: logs.md
+#  - pipelineruns.md: pipelineruns.md
+#  - pipelines.md: pipelines.md
+#  - resources.md: resources.md
+#  - taskruns.md: taskruns.md
+#  - tasks.md: tasks.md
+#- name: v0.9.1
+#  displayName: v0.7.x
+#  files:
+#  - README.md: _index.md
+#  - auth.md: auth.md
+#  - conditions.md: conditions.md
+#  - container-contract.md: container-contract.md
+#  - labels.md: labels.md
+#  - logs.md: logs.md
+#  - pipelineruns.md: pipelineruns.md
+#  - pipelines.md: pipelines.md
+#  - resources.md: resources.md
+#  - taskruns.md: taskruns.md
+#  - tasks.md: tasks.md
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/pipeline/tags
