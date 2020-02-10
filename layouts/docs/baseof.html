@@ -21,10 +21,15 @@
             {{ block "main" . }}{{ end }}
           </main>
         </div>
-      </div>
-      {{ partial "footer.html" . }}
+      </div>  
     </div>
     {{ partial "privacy-notice.html" }}
     {{ partial "scripts.html" . }}
+    {{ $launchTutorialJs := resources.Get "js/launch-tutorial.js" }}
+    {{ $launchTutorialJs := $launchTutorialJs | minify }}
+    <script src="{{ $launchTutorialJs.RelPermalink }}"></script>
+    {{ $tabsJs := resources.Get "js/tabs.js" }}
+    {{ $tabsJs := $tabsJs | minify }}
+    <script src="{{ $tabsJs.RelPermalink }}"></script>
   </body>
 </html>
