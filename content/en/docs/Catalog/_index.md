@@ -7,8 +7,12 @@ description: >
 ---
 
 {{% pageinfo %}}
-This is a placeholder page for Tekton Catalog documentation.
-
-Contents will be retrieved from the tektoncd/catalog repository at
-the time of deployment.
+This document is a work in progress.
 {{% /pageinfo %}}
+
+## Overview
+
+Tekton provides a number of **tasks**, **pipelines**, and **resources**
+that you can reuse in your own workflow.
+
+[The catalog is available on GitHub](https://github.com/tektoncd/catalog).
