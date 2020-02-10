@@ -21,10 +21,12 @@ VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
 
 GCP_NETLIFY_ENV_CRED = os.environ.get('GCP_CREDENTIAL_JSON')
+GCP_PROJECT = os.environ.get('GCP_PROJECT')
 
 if GCP_NETLIFY_ENV_CRED:
-    credentials = service_account.Credentials.from_service_account_info(GCP_NETLIFY_ENV_CRED)
-    gcs_client = storage.Client(credentials=credentials)
+    credentials = service_account.Credentials.from_service_account_info(json.loads(GCP_NETLIFY_ENV_CRED))
+    gcs_client = storage.Client(project=GCP_PROJECT,
+                                credentials=credentials)
 else:
     gcs_client = storage.Client()
 
