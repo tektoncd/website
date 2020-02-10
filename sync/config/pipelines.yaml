@@ -18,7 +18,7 @@ docDirectory: docs
 # latest version of contents.
 tags:
   # The name of the tag in the GitHub repository.
-- name: v10.0.2
+- name: v10.0.3
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
   displayName: v10.0.x
@@ -38,33 +38,10 @@ tags:
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
-#- name: v0.9.1
+# To add a new version, append to the list as below
+#- name: v0.8.2
 #  displayName: v0.8.x
 #  files:
-#  - README.md: _index.md
-#  - auth.md: auth.md
-#  - conditions.md: conditions.md
-#  - container-contract.md: container-contract.md
-#  - labels.md: labels.md
-#  - logs.md: logs.md
-#  - pipelineruns.md: pipelineruns.md
-#  - pipelines.md: pipelines.md
-#  - resources.md: resources.md
-#  - taskruns.md: taskruns.md
-#  - tasks.md: tasks.md
-#- name: v0.9.1
-#  displayName: v0.7.x
-#  files:
-#  - README.md: _index.md
-#  - auth.md: auth.md
-#  - conditions.md: conditions.md
-#  - container-contract.md: container-contract.md
-#  - labels.md: labels.md
-#  - logs.md: logs.md
-#  - pipelineruns.md: pipelineruns.md
-#  - pipelines.md: pipelines.md
-#  - resources.md: resources.md
-#  - taskruns.md: taskruns.md
-#  - tasks.md: tasks.md
+#  - myfiles.md: myfiles.md
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/pipeline/tags
