@@ -9,7 +9,7 @@ component: Triggers
 # The order of the component.
 displayOrder: 1
 # The GitHub repository where documentation resides.
-repository: https://github.com/tektoncd/triggers
+repository: https://github.com/michaelawyu/triggers
 # The directory in the GitHub repository where contents reside.
 docDirectory: docs
 # The tags (versions) of contents to sync.
@@ -18,10 +18,10 @@ docDirectory: docs
 # latest version of contents.
 tags:
   # The name of the tag in the GitHub repository.
-- name: v0.1.1
+- name: v0.2.2
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
-  displayName: v0.1.x
+  displayName: v0.2.x
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
@@ -31,5 +31,7 @@ tags:
   - install.md: install.md
   - triggerbindings.md: triggerbindings.md
   - triggertemplates.md: triggertemplates.md
+  - clustertriggerbindings.md: clustertriggerbindings.md
+  - cel_expressions.md: cel_expressions.md
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/triggers/tags
