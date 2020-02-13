@@ -62,7 +62,7 @@ proceeding.
 **Tasks** and **pipelines** are specified as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 in a Kubernetes cluster.
 
-[Image]
+![Tasks and Pipelines](concept-tasks-pipelines.png)
 
 ### Input and output resources
 
@@ -84,8 +84,7 @@ Tekton supports many different types of resources, including:
 **Resources** are specified as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 in a Kubernetes cluster.
 
-
-[Image]
+![Resources](concept-resources.png)
 
 ### TaskRuns and PipelineRuns
 
@@ -110,19 +109,10 @@ Tekton component, such as Tekton Triggers, to create a run automatically on
 demand; for example, you may want to run a pipeline every time a new pull
 request is checked into your git repository.
 
-[Image]
+![Runs](concept-runs.png)
 
 **TaskRuns** and **pipelineRuns** are specified as [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 in a Kubernetes cluster.
-
-### A typical CI/CD workflow in Tekton
-
-Below is a diagram of a typical CI/CD workflow supported by Tekton, where
-Tekton retrieves the source code from a GitHub repository, runs the
-tests in the source code, builds the artifact (a container image), and deploys
-it to another Kubernetes cluster.
-
-[Image]
 
 ## How Tekton works
 
