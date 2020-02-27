@@ -37,16 +37,16 @@ documentation for more information.
 {{% /tab %}}
 
 {{% tab "OpenShift" %}}
-* An OpenShift cluster with 3.11 or later releases installed.
-* Install the [OpenShift Container Platform CLI tool](https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html#installing-the-cli).
-* Sign in as a user with `cluster-admin` privileges.
+* Installing Tekton Pipelines on OpenShift 4/CRC
 
-    ```sh
-    # Example #1: sign in using the default `system:admin` user with an OpenShift cluster
-    oc login -u system:admin
-    # Example #2: sign in using the default `admin:admin` user with a MiniShift cluster
-    oc login -u admin:admin
-    ```
+* Install the [CRC](https://cloud.redhat.com/openshift/install/crc/installer-provisioned).
+
+1. Install Tekton-Pipeline by accessing the console
+2. Select `Catalog/Operator > Operator Hub`
+3. Search for `OpenShift Pipelines Operator`
+4. Click on `Subscribe` 
+
+**Note**: OpenShift Pipelines Operator will automatically begin installation of Tekton 😊
 
 {{% /tab %}}
 {{% /tabs %}}
