@@ -1,17 +1,66 @@
 +++
 title = "Tekton"
-linkTitle = "Tekton"
+linkTitle = "Tekton.dev Homepage"
 
 +++
 
-{{< blocks/cover title="Kubernetes-native CI/CD" image_anchor="top" height="med" color="orange" >}}
+{{< blocks/cover title="Kubernetes-native CI/CD" subtitle="" image_anchor="smart" color="orange" height="med">}}
 <div class="mx-auto">
-    
+	<a class="btn btn-lg btn-dark mr-3 mb-4" href="{{< relref "/docs" >}}">
+		Documentation <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
+	<a class="btn btn-lg btn-light mr-3 mb-4" href="https://github.com/tektoncd">
+		GitHub <i class="fab fa-github ml-2 "></i>
+	</a>
 </div>
 {{< /blocks/cover >}}
 
+{{% blocks/showcase color="link" %}}
 
-{{% blocks/lead color="primary" %}}
-This site is currently under construction. [You can find more information
-about Tekton here](https://github.com/tektoncd/).
-{{% /blocks/lead %}}
+{{< blocks/section color="danger" >}}
+{{% blocks/feature icon="fas fa-globe-asia" title="Standardization" %}}
+Tekton standardizes CI/CD tooling and processes across vendors, languages,
+and deployment environments. It works well with Jenkins, Jenkins X, Skaffold,
+Knative, and many other popular CI/CD tools.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fas fa-medal" title="Built-in best practices" %}}
+Tekton lets you create CI/CD systems quickly,
+giving you scalable, serverless, cloud native execution out of the box.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fas fa-feather" title="Maximum flexibility" %}}
+Tekton abstracts underlying implmententation so that you can choose the build,
+test, and deploy workflow based on your team's requirements.
+{{% /blocks/feature %}}
+
+
+{{< /blocks/section >}}
+
+<!--
+{{< blocks/partners color="danger" >}}
+-->
+
+{{< blocks/partners-alternate color="dark" >}}
+
+{{< blocks/section color="white" >}}
+{{% blocks/feature icon="fas fa-code" title="Install Tekton" %}}
+<a href="/docs/getting-started/">Get Tekton here</a>.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fab fa-github" title="Contributions welcome" url="https://github.com/tektoncd/" %}}
+Contribute to Tekton on GitHub.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fas fa-chalkboard" title="Try Tekton" %}}
+Learn, explore, and experiment with Tekton using [Tekton Playground](https://www.katacoda.com/ratrosyu/scenarios/playground).
+{{% /blocks/feature %}}
+
+
+{{< /blocks/section >}}
+
+{{% blocks/manifesto color="dark" %}}

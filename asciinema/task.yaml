@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: build-go-app-task
+spec:
+  inputs:
+    # Some inputs, such as your GitHub repository
+    ...
+  steps:
+  - name: build
+    image: golang
+    command:
+    - go
+    - build
+    args:
+    - /workspace/myapp

@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: build-go-app-pipeline
+spec:
+  ...
+  tasks:
+    - name: build-go-app-task
+      taskRef:
+        name: build-go-app-task
+      ...
