@@ -43,7 +43,6 @@ To add the Tekton Pipelines component to an existing cluster:
 
 You are now ready to create and run Tekton Pipelines 🙌
 
-- See [Tekton Pipeline tutorial](./tutorial.md) to get started.
 - Look at the
   [examples](https://github.com/tektoncd/pipeline/tree/master/examples)
 
