@@ -41,7 +41,6 @@ To add the Tekton Pipelines component to an existing cluster:
    kubectl get pods --namespace tekton-pipelines
    ```
 
-
 You are now ready to create and run Tekton Pipelines 🙌
 
 - See [Tekton Pipeline tutorial](./tutorial.md) to get started.
@@ -61,12 +60,8 @@ You are now ready to create and run Tekton Pipelines 🙌
 
 The versions of Tekton Pipelines available are:
 
-* [Officially released versions](https://github.com/tektoncd/pipeline/releases), e.g. `v0.6.0`
-* [Nightly releases](https://gcr.io/tekton-nightly) are
-  published every night to `gcr.io/tekton-nightly`
-* `HEAD` - To install the most recent, unreleased code in the repo see
-  [the development
-  guide](https://github.com/tektoncd/pipeline/blob/master/DEVELOPMENT.md)
+* [Officially released versions](https://github.com/tektoncd/pipeline/releases)
+* [Nightly releases](https://gcr.io/tekton-nightly)
   
 ---
 
