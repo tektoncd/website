@@ -51,7 +51,7 @@ documentation for more information.
 {{% /tab %}}
 {{% /tabs %}}
 
-## Installation
+### Installation
 
 To install the core component of Tekton, Tekton Pipelines, run the command below:
 
@@ -108,7 +108,7 @@ kubectl get storageclasses
 ```
 {{% /alert %}}
 
-These storage options can be configured using [`ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)s:
+These storage options can be configured using [`ConfigMaps`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/):
 
 {{% tabs %}}
 {{% tab "Persistent Volumes" %}}
@@ -295,11 +295,15 @@ in your cluster. If you would like to, you can further organize **tasks**
 into **pipelines**.
 
 To create a **task**, create a Kubernetes object using the Tekton API with
-the kind `Task`. The following YAML file specifies a task with one simple
+the kind `Task`. The following YAML file contains a task with one simple
 step, printing a `Hello World!` message using
-[the official Ubuntu image](https://hub.docker.com/_/ubuntu/):
+[the official Ubuntu image](https://hub.docker.com/_/ubuntu/)
+
+To run this task with Tekton, you need to create a **taskRun**, which is
+another Kubernetes object using the Tekton API:
 
 ```yaml
+cat <<EOF | kubectl create -f -
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
@@ -312,18 +316,7 @@ spec:
         - echo
       args:
         - "Hello World!"
-```
-
-Write this file to `task.yaml`, and apply it to your Kubernetes cluster:
-
-```
-kubectl apply -f task.yaml
-```
-
-To run this task with Tekton, you need to create a **taskRun**, which is
-another Kubernetes object using the Tekton API:
-
-```yaml
+---
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
@@ -331,16 +324,8 @@ metadata:
 spec:
   taskRef:
     name: echo
+EOF
 ```
-
-Write this file to `taskRun.yaml`, and apply it to your Kubernetes cluster:
-
-```bash
-kubectl apply -f taskRun.yaml
-```
-
-Tekton will now start running your task. To check out the output, run the
-command below:
 
 ```bash
 tkn taskrun logs getting-started
