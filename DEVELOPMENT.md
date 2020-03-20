@@ -1,8 +1,8 @@
 # Developing the Tekton website
 
-- [Setting up your dev environment](#setup)
-- [Running locally](#running-locally)
-- [tekton.dev](#tekton.dev)
+- [Developing the Tekton website](#developing-the-tekton-website)
+  - [Running Locally](#running-locally)
+  - [tekton.dev](#tektondev)
 
 ## Running Locally
 
@@ -36,13 +36,12 @@ To run the [Makefile](Makefile) you will need more dependencies and flags:
 
 To run the makefile locally, you'll have to set the env var:
 
-* `SKIP_BACKGROUND` (see [#38](https://github.com/tektoncd/website/issues/38)) to avoid having to supply GCP credentials
 * [`DEPLOY_PRIME_URL`](https://docs.netlify.com/configure-builds/environment-variables/) to the path to your website files
 
 For example:
 
 ```bash
-SKIP_BACKGROUND=1 DEPLOY_PRIME_URL=localhost make preview-build
+DEPLOY_PRIME_URL=localhost make preview-build
 ```
 
 ## tekton.dev
