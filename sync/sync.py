@@ -20,18 +20,9 @@ TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
 
-SKIP_BACKGROUND = os.environ.get('SKIP_BACKGROUND')
 GCP_NETLIFY_ENV_CRED = os.environ.get('GCP_CREDENTIAL_JSON')
 GCP_PROJECT = os.environ.get('GCP_PROJECT')
 
-if not SKIP_BACKGROUND:
-    if GCP_NETLIFY_ENV_CRED:
-        credentials = service_account.Credentials.from_service_account_info(json.loads(GCP_NETLIFY_ENV_CRED))
-        gcs_client = storage.Client(project=GCP_PROJECT,
-                                    credentials=credentials)
-    else:
-        gcs_client = storage.Client()
-    gcs_bucket = gcs_client.get_bucket(BUCKET_NAME)
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 
@@ -103,12 +94,6 @@ def prepare_vault_landing_page(component_versions):
         f.write(md)
 
 
-def download_background_image():
-    if not SKIP_BACKGROUND:
-        blob = gcs_bucket.blob('featured-background.jpeg')
-        blob.download_to_filename('./content/en/featured-background.jpeg')
-
-
 def scan(dir_path):
     entries = os.scandir(dir_path)
     sync_config_paths = []
@@ -132,4 +117,3 @@ if __name__ == '__main__':
     component_versions = get_component_versions(sync_configs)
     prepare_version_switcher_script(component_versions)
     prepare_vault_landing_page(component_versions)
-    download_background_image()
