@@ -3,7 +3,9 @@
 # components, such as tektoncd/pipelines) to tektoncd/website.
 
 import json
+import fileinput
 import os
+import re
 import shutil
 
 from google.oauth2 import service_account
@@ -23,7 +25,17 @@ BUCKET_NAME = 'tekton-website-assets'
 GCP_NETLIFY_ENV_CRED = os.environ.get('GCP_CREDENTIAL_JSON')
 GCP_PROJECT = os.environ.get('GCP_PROJECT')
 
+RELATIVE_LINKS_RE = r'\[([^\]]*)\]\((?!.*://|/)([^)]*).md(#[^)]*)?\)'
+
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
+
+def transform_links(link_prefix, dest_prefix, files):
+    for f in files:
+        for k in f:
+            dest_path = f'{dest_prefix}/{f[k]}'
+            for line in fileinput.input(dest_path, inplace=1):
+                line = re.sub(RELATIVE_LINKS_RE, r'[\1](' + link_prefix + r'\2\3)', line.rstrip())
+                print(line)
 
 
 def retrieve_files(url_prefix, dest_prefix, files):
@@ -59,6 +71,8 @@ def sync(sync_config):
     files = tags[0]['files']
     print(f'Retrieving the latest version ({tags[0]["displayName"]}) of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
     retrieve_files(url_prefix, dest_prefix, files)
+    transform_links(f'/docs/{component.lower()}/', dest_prefix, files)
+    
 
     # Get the previous versions of contents
     for tag in tags[1:]:
@@ -67,6 +81,7 @@ def sync(sync_config):
         files = tag['files']
         print(f'Retrieving version {tag["displayName"]} of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
         retrieve_files(url_prefix, dest_prefix, files)
+        transform_links(f'/vault/{component.lower()}-{tag["displayName"]}/', dest_prefix, files)
 
 
 def get_component_versions(sync_configs):
