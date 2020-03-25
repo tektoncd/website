@@ -44,3 +44,9 @@ div.tab-pane.active {
 code {
     word-break: keep-all;
 }
+
+.hero-logo {
+    margin-bottom: -2rem;
+    width: 60%;
+}
+
