@@ -1,0 +1,43 @@
+
+
+# UI strings. Buttons and similar.
+
+[ui_pager_prev]
+other = "Previous"
+
+[ui_pager_next]
+other = "Next"
+
+[ui_read_more]
+other = "Read more"
+
+[ui_search]
+other = "Search this site…"
+
+# Used in sentences such as "Posted in News"
+[ui_in]
+other = "in"
+
+# Footer text
+[footer_all_rights_reserved]
+other = """
+The Linux Foundation®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. 
+For a list of trademarks of The Linux Foundation, please see our [Trademark Usage page](https://www.linuxfoundation.org/trademark-usage). 
+Linux is a registered trademark of Linus Torvalds. [Privacy Policy](https://www.linuxfoundation.org/privacy/) and [Terms of Use](https://www.linuxfoundation.org/terms/).
+"""
+
+# Post (blog, articles etc.)
+[post_byline_by]
+other = "By"
+[post_created]
+other = "Created"
+[post_last_mod]
+other = "Last modified"
+[post_edit_this]
+other = "Edit this page"
+[post_create_issue]
+other = "Create documentation issue"
+[post_create_project_issue]
+other = "Create project issue"
+[post_posts_in]
+other = "Posts in"
