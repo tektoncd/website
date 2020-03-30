@@ -50,3 +50,6 @@ code {
     width: 60%;
 }
 
+footer.auto-height {
+    min-height: auto;
+}
