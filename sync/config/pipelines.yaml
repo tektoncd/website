@@ -9,7 +9,7 @@ component: Pipelines
 # The order of the component.
 displayOrder: 0
 # The GitHub repository where documentation resides.
-repository: https://github.com/michaelawyu/pipeline
+repository: https://github.com/tektoncd/pipeline
 # The directory in the GitHub repository where contents reside.
 docDirectory: docs
 # The tags (versions) of contents to sync.
@@ -18,10 +18,10 @@ docDirectory: docs
 # latest version of contents.
 tags:
   # The name of the tag in the GitHub repository.
-- name: v10.0.4
+- name: master
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
-  displayName: v10.0.x
+  displayName: master
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
