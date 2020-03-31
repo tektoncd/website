@@ -4,7 +4,8 @@ serve:
 	--buildDrafts \
 	--buildFuture \
 	--disableFastRender \
-	--ignoreCache
+	--ignoreCache \
+	--watch
 
 production-build:
 	python sync/sync.py && hugo
