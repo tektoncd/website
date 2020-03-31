@@ -1,13 +1,19 @@
+.PHONY: sync
+sync:
+	python sync/sync.py
+
+.PHONY: serve
 serve:
-	python sync/sync.py && \
 	hugo server \
 	--buildDrafts \
 	--buildFuture \
 	--disableFastRender \
 	--ignoreCache
 
-production-build:
-	python sync/sync.py && hugo
+.PHONY: production-build
+production-build: sync
+	hugo
 
-preview-build:
-	python sync/sync.py && hugo --baseURL $(DEPLOY_PRIME_URL)
+.PHONY: preview-build
+preview-build: sync
+	hugo --baseURL $(DEPLOY_PRIME_URL)
