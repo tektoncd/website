@@ -8,7 +8,8 @@ serve:
 	--buildDrafts \
 	--buildFuture \
 	--disableFastRender \
-	--ignoreCache
+	--ignoreCache \
+	--watch
 
 .PHONY: production-build
 production-build: sync
