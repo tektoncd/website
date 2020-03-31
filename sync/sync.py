@@ -45,6 +45,7 @@ def retrieve_files(url_prefix, dest_prefix, files):
             src_url = f'{url_prefix}/{k}'
             dest_path = f'{dest_prefix}/{f[k]}'
             print(f'Downloading file (from {src_url} to {dest_path}).\n')
+            os.makedirs(os.path.dirname(dest_path), exist_ok=True)
             wget.download(src_url, out=dest_path)
             print('\n')
 
@@ -70,7 +71,6 @@ def sync(sync_config):
     print(f'Retrieving the latest version ({tags[0]["displayName"]}) of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
     retrieve_files(url_prefix, dest_prefix, files)
     transform_links(f'/docs/{component.lower()}/', dest_prefix, files)
-
 
     # Get the previous versions of contents
     for tag in tags[1:]:
