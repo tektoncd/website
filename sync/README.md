@@ -6,6 +6,6 @@ Google Cloud Platform credentials, and execute the following command:
 
 ```bash
 cd ..
-pip install -r helper/requirements.txt
-python helper/helper.py
+pip install -r requirements.txt
+python sync/sync.py
 ```
