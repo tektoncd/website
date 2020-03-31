@@ -8,8 +8,6 @@ import os
 import re
 import shutil
 
-from google.oauth2 import service_account
-from google.cloud import storage
 from jinja2 import Environment, FileSystemLoader
 import wget
 from yaml import load, Loader
@@ -72,7 +70,7 @@ def sync(sync_config):
     print(f'Retrieving the latest version ({tags[0]["displayName"]}) of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
     retrieve_files(url_prefix, dest_prefix, files)
     transform_links(f'/docs/{component.lower()}/', dest_prefix, files)
-    
+
 
     # Get the previous versions of contents
     for tag in tags[1:]:
@@ -117,7 +115,7 @@ def scan(dir_path):
             sync_config_paths.append(entry.path)
         elif entry.is_dir():
             scan(entry.path)
-    
+
     return sync_config_paths
 
 if __name__ == '__main__':
