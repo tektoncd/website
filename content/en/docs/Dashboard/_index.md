@@ -21,6 +21,8 @@ in their creation, execution, and completion
 
 ## Installation
 
+This installation is available through [Katacoda](https://katacoda.com/ncskier/scenarios/tekton-dashboard).
+
 {{% tabs %}}
 
 {{% tab "Kubernetes" %}}
