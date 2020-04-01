@@ -18,7 +18,7 @@ To get started, read the contents below.
 
 {{% alert title="Note" color="success" %}}
 
-Tekton provides a nunmber of interactive tutorials at [try.tekton.dev](/try)
+Tekton provides a number of interactive tutorials at [try.tekton.dev](/try)
 for developers to get hands-on experience with the project.
 
 {{% /alert %}}
