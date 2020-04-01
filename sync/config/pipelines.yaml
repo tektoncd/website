@@ -38,6 +38,7 @@ tags:
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
+  - workspaces.md: workspaces.md
 # To add a new version, append to the list as below
 #- name: v0.8.2
 #  displayName: v0.8.x
