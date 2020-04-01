@@ -55,9 +55,22 @@ documentation for more information.
 
 To install the core component of Tekton, Tekton Pipelines, run the command below:
 
+{{% tabs %}}
+{{% tab "Kubernetes" %}}
+
 ```sh
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 ```
+{{% /tab %}}
+{{% tab "OpenShift" %}}
+
+If your container runtime does not support image-reference:tag@digest (for example, like cri-o used in OpenShift 4.x), use release.notags.yaml instead:
+
+```sh
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml
+```
+{{% /tab %}}
+{{% /tabs %}}
 
 {{% alert title="Note" color="success" %}}
 This command automatically installs the latest official release of the
