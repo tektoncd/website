@@ -314,7 +314,7 @@ step, printing a `Hello World!` message using
 [the official Ubuntu image](https://hub.docker.com/_/ubuntu/):
 
 ```yaml
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: echo
@@ -338,7 +338,7 @@ To run this task with Tekton, you need to create a **taskRun**, which is
 another Kubernetes object using the Tekton API:
 
 ```yaml
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   name: getting-started
