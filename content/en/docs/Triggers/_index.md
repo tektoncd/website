@@ -1,14 +1,32 @@
+<!--
 ---
-title: "Triggers"
+title: "Triggers and EventListeners"
 linkTitle: "Triggers"
-weight: 4
+weight: 3
 description: >
   Event Triggers
 ---
+-->
+# Tekton Triggers
 
-{{% pageinfo %}}
-This is a placeholder page for Tekton Triggers documentation.
+Triggers enables users to map fields from an event payload into resource
+templates. Put another way, this allows events to both model and instantiate
+themselves as Kubernetes resources. In the case of `tektoncd/pipeline`, this
+makes it easy to encapsulate configuration into `PipelineRun`s and
+`PipelineResource`s.
 
-Contents will be retrieved from the tektoncd/triggers repository at
-the time of deployment.
-{{% /pageinfo %}}
+![TriggerFlow](https://github.com/tektoncd/triggers/blob/master/images/TriggerFlow.png?raw=true)
+
+## Learn More
+
+See the following links for more on each of the resources involved:
+
+- [`TriggerTemplate`](/docs/triggers/triggertemplates)
+- [`TriggerBinding`](/docs/triggers/triggerbindings)
+- [`EventListener`](/docs/triggers/eventlisteners)
+- [`ClusterTriggerBinding`](/docs/triggers/clustertriggerbindings)
+
+## Getting Started Tasks
+
+- [Create an Ingress on the EventListener Service](create-ingress.yaml)
+- [Create a GitHub webhook](create-webhook.yaml)
