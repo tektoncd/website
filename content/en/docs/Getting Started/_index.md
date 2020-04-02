@@ -15,8 +15,9 @@ description: >
 
 {{% tabs %}}
 {{% tab "Kubernetes" %}}
-* A Kubernetes cluster with 1.11 or later releases installed.
-* Enable [Role-Based Access Control(RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+* A Kubernetes cluster version 1.15 or higher for Tekton Pipelines v0.11.0 or higher, or a Kubernetes 
+cluster version 1.11 or higher for Tekton releases before v0.11.0.
+* Enable [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 in the cluster.
 * Grant current user `cluster-admin` privileges.
 
