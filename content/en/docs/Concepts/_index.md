@@ -88,11 +88,11 @@ in a Kubernetes cluster.
 
 ### TaskRuns and PipelineRuns
 
-A **pipelineRun**, as its name implies, is a specific exection of a **pipeline**.
+A **pipelineRun**, as its name implies, is a specific execution of a **pipeline**.
 For example, you may ask Tekton to run your CI/CD workflow twice a day, and
-each exection will become a **pipelineRun** resource trackable in your
+each execution will become a **pipelineRun** resource trackable in your
 Kubernetes cluster. You can view the status of your CI/CD workflow, including
-the specifics of each task exection with **pipelineRuns**.
+the specifics of each task execution with **pipelineRuns**.
 
 Similarly, a **taskRun** is a specific execution of a **task**. **TaskRuns**
 are also available when you choose to run a task outside a pipeline, with
