@@ -15,8 +15,8 @@ function getKatacodaLnk (katacodaSrc) {
 function openModal (article) {
   const katacodaSrc = article.attr('data-katacoda-src');
   const katacodaLnk = getKatacodaLnk(katacodaSrc);
-  const githubLnk = article.attr('data-github-src');
-  const qwiklabsLnk = article.attr('data-qwiklabs-src');
+  const githubLnk = article.attr('data-github-lnk');
+  const qwiklabsLnk = article.attr('data-qwiklabs-lnk');
 
   $('#katacoda-button').attr('href', `https://katacoda.com/${katacodaLnk}`);
   $('#github-button').attr('href', `https://github.com/${githubLnk}`);
