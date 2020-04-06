@@ -20,7 +20,7 @@ echo '# And apply it to your Kubernetes cluster as well:' | pv -qL 12
 echo 'kubectl apply -f pipeline.yaml' | pv -qL 12
 echo '# And it is done :)' | pv -qL 12
 echo '# You can run your pipeline manually, or trigger it every time an ' | pv -qL 12
-echo '# event arrives, such as one from a GitHub wekbook' | pv -qL 12
+echo '# event arrives, such as one from a GitHub webhook' | pv -qL 12
 echo '# Tekton has a dashboard and a CLI as well' | pv -qL 12
 echo '# Learn more about Tekton at ' | pv -qL 12
 echo '# tekton.dev/docs' | cat | pv -qL 12 | lolcat
