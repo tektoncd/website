@@ -1,0 +1,39 @@
+# Each YAML file under sync/ configures how helper/helper.py synchronizes
+# contents of various versions from its source of truth (usually a GitHub
+# repository of a Tekton component, such as tektoncd/pipelines) to
+# content/ (for the lastest version) and vault/ (for earlier versions).
+
+# The name of the component.
+# helper.py will use this value to build directories in content/ and vault/.
+component: Dashboard
+# The order of the component.
+displayOrder: 3
+# The GitHub repository where documentation resides.
+repository: https://github.com/tektoncd/dashboard
+# The directory in the GitHub repository where contents reside.
+docDirectory: docs
+# The tags (versions) of contents to sync.
+# Note that helper.py and related script reads tags in the order specified in
+# the following list; the first entry in tags will automatically become the
+# latest version of contents.
+tags:
+  # The name of the tag in the GitHub repository.
+- name: v0.6.1.4
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.6.1.4
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+  - README.md: _index.md
+- name: master
+  displayName: master
+  files:
+  - README.md: _index.md
+# To add a new version, append to the list as below
+#- name: v0.8.2
+#  displayName: v0.8.x
+#  files:
+#  - myfiles.md: myfiles.md
+# The link to the GitHub tag page.
+archive: https://github.com/tektoncd/dashboard/tags
