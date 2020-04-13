@@ -67,7 +67,7 @@ in a Kubernetes cluster.
 ### Input and output resources
 
 Each **task** and **pipeline** may have its own inputs and outputs, known as
-input and output **resources** in Tekton. A compliation task, for example, may
+input and output **resources** in Tekton. A compilation task, for example, may
 have a git repository as input and a container image as output: the task
 clones the source code from the repository, runs some tests, and at last
 builds the source code into an executable container image.
