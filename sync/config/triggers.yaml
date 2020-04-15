@@ -33,5 +33,7 @@ tags:
   - triggertemplates.md: triggertemplates.md
   - clustertriggerbindings.md: clustertriggerbindings.md
   - cel_expressions.md: cel_expressions.md
+  - create-ingress.yaml: create-ingress.yaml
+  - create-webhook.yaml: create-webhook.yaml
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/triggers/tags
