@@ -1,5 +1,7 @@
 # TektonCD Website
 
+TEST EASYCLA
+
 This repo contains the code behind [the Tekton org's](https://github.com/tektoncd)
 website at [tekton.dev](https://tekton.dev).
 
