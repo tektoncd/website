@@ -32,9 +32,14 @@ def transform_links(link_prefix, dest_prefix, files):
         for k in f:
             dest_path = f'{dest_prefix}/{f[k]}'
             for line in fileinput.input(dest_path, inplace=1):
-                line = re.sub(RELATIVE_LINKS_RE, r'[\1](' + link_prefix + r'\2\3)', line.rstrip())
+                if not is_http(line):
+                    line = re.sub(RELATIVE_LINKS_RE, r'[\1](' + link_prefix + r'\2\3)', line.rstrip())
                 print(line)
 
+def is_http(str):
+    if "http://" or "https://":
+        return True
+    return False
 
 def retrieve_files(url_prefix, dest_prefix, files):
     if os.path.isdir(dest_prefix):
