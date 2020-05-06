@@ -8,9 +8,11 @@ $td-fonts-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxyge
 $td-enable-google-fonts: false;
 $light: #929292 !default;
 $dark: #333 !default;
+$mobile-width: 767px;
 
 /*
     Styling for privacy notice watermark
+    in privacy-notice.html
 */
 #privacy-notice {
     background-color: rgba(84, 73, 75, 0.9); 
@@ -25,8 +27,20 @@ $dark: #333 !default;
 }
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: $mobile-width) {
     #privacy-notice {
         width: 100vw;
     }
+    
+}
+
+/* 
+    Styling for banner at banner-hero-logo:
+    Logo is not responsive and breaks the flow of the website.
+*/
+@media only screen and (max-width: $mobile-width) {
+    #banner-hero-logo {
+        display: none
+    }
+    
 }
