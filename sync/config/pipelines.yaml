@@ -26,6 +26,7 @@ tags:
   # and the value is the new filename.
   files:
   - README.md: _index.md
+    commit: 0d9818d2686a9acad126e332d6317eec18a06bc4
   - auth.md: auth.md
   - conditions.md: conditions.md
   - container-contract.md: container-contract.md
@@ -38,7 +39,7 @@ tags:
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
-  - workspaces.md: workspaces.md
+  - workspaces.md: workspaces.md    
 # To add a new version, append to the list as below
 #- name: v0.8.2
 #  displayName: v0.8.x

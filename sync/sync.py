@@ -42,7 +42,14 @@ def retrieve_files(url_prefix, dest_prefix, files):
     os.mkdir(dest_prefix)
     for f in files:
         for k in f:
-            src_url = f'{url_prefix}/{k}'
+            if "commit" == k:
+                continue;
+
+            if "commit" in f:
+                url = url_prefix.replace('master', f["commit"])
+                src_url = f'{url}/{k}'
+            else:
+                src_url = f'{url_prefix}/{k}'
             dest_path = f'{dest_prefix}/{f[k]}'
             print(f'Downloading file (from {src_url} to {dest_path}).\n')
             os.makedirs(os.path.dirname(dest_path), exist_ok=True)
@@ -70,6 +77,7 @@ def sync(sync_config):
     files = tags[0]['files']
     print(f'Retrieving the latest version ({tags[0]["displayName"]}) of Tekton {component} documentation (from {url_prefix} to {dest_prefix}).\n')
     retrieve_files(url_prefix, dest_prefix, files)
+    entries_to_remove("commit", files)
     transform_links(f'/docs/{component.lower()}/', dest_prefix, files)
 
     # Get the previous versions of contents
@@ -81,6 +89,10 @@ def sync(sync_config):
         retrieve_files(url_prefix, dest_prefix, files)
         transform_links(f'/vault/{component.lower()}-{tag["displayName"]}/', dest_prefix, files)
 
+def entries_to_remove(entry, files):
+    for f in files:
+        if entry in f:
+            del f[entry]
 
 def get_component_versions(sync_configs):
     component_versions = []
