@@ -74,7 +74,7 @@ weight = 1
 version_menu = "Releases"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/tektoncd/website/"
+github_repo = "https://github.com/tektoncd/website"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
