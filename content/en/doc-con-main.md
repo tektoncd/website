@@ -29,7 +29,7 @@ Before you begin contributing, you should also read the following:
 
 You can request an improvement by filing an issue or update the documentation yourself by
 filing a pull request against the relevant [Tekton repository](https://github.com/tektoncd).
-Assign your issue or pull request to sergetron@, Tekton's technical writer, for triage.
+Assign your issue or pull request to @sergetron, Tekton's technical writer, for triage.
 
 Here's how we handle different types of documentation work:
 
@@ -51,7 +51,7 @@ content and link the pull request to it.
 **Note:** If you're creating a new page, make sure to include its proposed location within the
 Tekton documentation set. 
 
-Assign the pull request and if applicable, the accompanying issue to sergetron@, Tekton's
+Assign the pull request and if applicable, the accompanying issue to @sergetron, Tekton's
 technical writer. The pull request then goes through technical and editorial review, and is
 published on the Tekton documentation website. Depending on our current workload, the review
 may take some time. Once the review is complete, the pull request is published to the Tekton
@@ -66,7 +66,7 @@ of this guide to learn how to produce clear, concise, and informative documentat
 
 If you found a problem with Tekton documentation but can't fix it yourself, you can request a
 documentation improvement by creating an issue against the relevant [Tekton repository](https://github.com/tektoncd)
-and assigning it to sergetron@, Tekton's technical writer. 
+and assigning it to @sergetron, Tekton's technical writer. 
 
 We evaluate the need to determine the scope of the requested content and an estimated delivery
 time based on our current workload. We then place the issue in the documentation queue.
