@@ -98,4 +98,4 @@ the document.
 ## How can I learn more?
 
 Take a look at the [Google Developer Style Guide](https://developers.google.com/style/). It covers
-style, tone, grammar, and punctuation. Also, ask sergetron@ for reading recommendations!
+style, tone, grammar, and punctuation. Also, ask @sergetron for reading recommendations!
