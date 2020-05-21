@@ -369,8 +369,8 @@ Start with `kubectl`:
 ```shell
 # use tkn's --dry-run option to save the TaskRun to a file
 tkn task start echo --dry-run > taskRun.yaml
-# apply the TaskRun
-kubectl apply -f taskRun.yaml
+# create the TaskRun
+kubectl create -f taskRun.yaml
 ```
 
 Tekton will now start running your `Task`. To see the logs of the `TaskRun`, run 
