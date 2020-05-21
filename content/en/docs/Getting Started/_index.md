@@ -349,7 +349,7 @@ After running the command above, the following `TaskRun` definition should be sh
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: getting-started
+  generateName: echo-run-
 spec:
   taskRef:
     name: echo
@@ -373,11 +373,11 @@ tkn task start echo --dry-run > taskRun.yaml
 kubectl apply -f taskRun.yaml
 ```
 
-Tekton will now start running your `Task`. To see the logs of the `TaskRun`, run 
+Tekton will now start running your `Task`. To see the logs of the last `TaskRun`, run 
 the following `tkn` command:
 
 ```shell
-tkn taskrun logs getting-started -f
+tkn taskrun logs --last -f
 ```
 
 It may take a few moments before your `Task` completes. When it executes, it should 
