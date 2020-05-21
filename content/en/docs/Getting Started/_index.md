@@ -140,7 +140,8 @@ the `manual` storage class when running a workflow:
 kubectl create configmap config-artifact-pvc \
                          --from-literal=size=10Gi \
                          --from-literal=storageClassName=manual \
-                         -o yaml -n tekton-pipelines | kubectl replace -f -
+                         -o yaml -n tekton-pipelines \
+                         --dry-run=client | kubectl replace -f -
 ```
 {{% /tab %}}
 
@@ -168,7 +169,8 @@ kubectl create configmap config-artifact-pvc \
                          --from-literal=location=gs://MY-GCS-BUCKET \
                          --from-literal=bucket.service.account.secret.name=my-secret \
                          --from-literal=bucket.service.account.secret.key=my-key \
-                         -o yaml -n tekton-pipelines | kubectl replace -f -
+                         -o yaml -n tekton-pipelines \
+                         --dry-run=client | kubectl replace -f -
 ```
 
 And the `my-secret` Kubernetes secret is configured as follows:
@@ -193,7 +195,8 @@ update the `default-service-account` attribute of the `ConfigMap`
 ```
 kubectl create configmap config-defaults \
                          --from-literal=default-service-account=YOUR-SERVICE-ACCOUNT \
-                         -o yaml -n tekton-pipelines | kubectl replace -f -
+                         -o yaml -n tekton-pipelines \
+                         --dry-run=client  | kubectl replace -f -
 ```
 
 ### Set up the CLI
