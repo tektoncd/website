@@ -35,5 +35,6 @@ tags:
   - cel_expressions.md: cel_expressions.md
   - create-ingress.yaml: create-ingress.yaml
   - create-webhook.yaml: create-webhook.yaml
+  - getting-started/README.md: getting-started/_index.md
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/triggers/tags
