@@ -31,13 +31,16 @@ tags:
   - container-contract.md: container-contract.md
   - labels.md: labels.md
   - logs.md: logs.md
+  - metrics.md: metrics.md
   - migrating-from-knative-build.md: migrating-from-knative-build.md
+  - migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
   - pipelineruns.md: pipelineruns.md
   - pipelines.md: pipelines.md
   - podtemplates.md: podtemplates.md
   - resources.md: resources.md
   - taskruns.md: taskruns.md
   - tasks.md: tasks.md
+  - variables.md: variables.md
   - workspaces.md: workspaces.md
 # To add a new version, append to the list as below
 #- name: v0.8.2
