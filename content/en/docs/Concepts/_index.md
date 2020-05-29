@@ -53,7 +53,7 @@ in a task, which will be accessible inside each step of the task.
 A **pipeline** is a collection of **tasks** in order. Tekton collects all the
 tasks, connects them in a directed acyclic graph (DAG), and executes the graph
 in sequence. In other words, it creates a number of Kubernetes pods and
-ensures that each pods complete running successfully as desired. Tekton grants
+ensures that each pod completes running successfully as desired. Tekton grants
 developers full control of the process: one may set up a fan-in/fan-out
 scenario of task completion, ask Tekton to retry automatically should
 a flaky test exists, or specify a condition that a task must meet before
@@ -130,8 +130,8 @@ The `entrypoint` binary watches the projected files closely, and will only
 start the provided command if a specific annotation appears as files. For
 example, when you ask Tekton to run two steps consecutively in a task,
 the `entrypoint` binary injected into the second step container will
-wait idly until the the annotations report that the first step container
-has successfully completes.
+wait idly until the annotations report that the first step container
+has successfully completed.
 
 In addition, Tekton Pipelines schedules some containers to run automatically
 before and after your step containers, so as to support specific built-in
