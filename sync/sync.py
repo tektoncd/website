@@ -8,14 +8,23 @@ import os
 import re
 import shutil
 
-from jinja2 import Environment, FileSystemLoader
+from absl import app
+from absl import flags
+from jinja2 import Environment
+from jinja2 import FileSystemLoader
 import wget
-from yaml import load, Loader
+from yaml import load
+from yaml import Loader
 
+FLAGS = flags.FLAGS
+
+# Flag names are globally defined!  So in general, we need to be
+# careful to pick names that are unlikely to be used by other libraries.
+# If there is a conflict, we'll get an error at import time.
+flags.DEFINE_string('config', os.path.dirname(os.path.abspath(__file__)) + '/config', 'Config directory', short_name='c')
 
 CONTENT_DIR = './content/en/docs'
 JS_ASSET_DIR = './assets/js'
-SYNC_DIR = './sync/config'
 TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
@@ -118,8 +127,8 @@ def scan(dir_path):
 
     return sync_config_paths
 
-if __name__ == '__main__':
-    sync_config_paths = scan(f'./{SYNC_DIR}')
+def main(argv):
+    sync_config_paths = scan(f'{FLAGS.config}')
     sync_configs = []
     for sync_config_path in sync_config_paths:
         with open(sync_config_path) as f:
@@ -130,3 +139,6 @@ if __name__ == '__main__':
     component_versions = get_component_versions(sync_configs)
     prepare_version_switcher_script(component_versions)
     prepare_vault_landing_page(component_versions)
+
+if __name__ == '__main__':
+  app.run(main)
