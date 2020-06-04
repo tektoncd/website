@@ -5,7 +5,7 @@ Thanks for considering contributing to our project!
 **All contributors must comply with
 [the code of conduct](./CODE-OF-CONDUCT.md).**
 
-To get started developing, see our [DEVELOPMENT.md](./DEVELOPMENT.md).
+To get started developing, see our [DEVELOPMENT.md](./DEVELOPMENT.md) and [DOC-CON-MAIN.md](./content/en/doc-con-main.md).
 
 - The [OWNERS](OWNERS) of this repo are the
   [members of the Tekton governing board](https://github.com/tektoncd/community/blob/master/governance.md)
