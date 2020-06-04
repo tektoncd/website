@@ -9,6 +9,28 @@ weight: 2
 Tekton documentation uses Markdown to format the content. See the[Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 to gain a basic understanding of Markdown conventions.
 
+## Lists
+
+The key point of lists is that they present information in quickly scannable form,
+and to accomplish that they must be homogeneous. If the items in the list do not
+look and read the same, the reader will stumble on them. Follow these guidelines:
+
+- Keep the length and language of your list items as homogeneous as possible.
+  If, for example, most of your list items are single words or short fragments, try
+  to rewrite the outliers to read like the rest.
+
+- Capitalize the first word of each item.
+
+- Punctuate the ends of **all** items in the list as follows: 
+
+  - If your list items are single words or short fragments without verbs,
+    **do not put a period** at the end of each item.
+
+  - If most of your list items are complete sentences or fragments that contain verbs,
+    **put a period** at the end of each item.
+
+See the [Google Developer Style Guide entry on formatting lists](https://developers.google.com/style/lists) for more detail. 
+
 ## User interface elements
 
 - Use **bold** to indicate anything that's clickable, such as buttons or menu items.
