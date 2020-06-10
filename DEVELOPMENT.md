@@ -46,7 +46,5 @@ DEPLOY_PRIME_URL=localhost make preview-build
 
 ## tekton.dev
 
-- tekton.dev currently points at http://tekton-old.netlify.com/ which is deployed
-  from [the website-old branch](https://github.com/tektoncd/website/tree/website-old)
-- The WIP new website is at https://tekton-dev.netlify.com/ and tekton.dev will be updated
-  to point at it once https://github.com/tektoncd/website/labels/kind%2Fbeta-blocking are completed
+- The latest website is available at [https://tekton.dev/](https://tekton.dev/).
+- The old website is available at [https://tekton-old.netlify.app/](https://tekton-old.netlify.app/) and based on the [website-old](https://github.com/tektoncd/website/tree/website-old) branch.
