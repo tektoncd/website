@@ -1,6 +1,6 @@
 .PHONY: sync
 sync:
-	python sync/sync.py
+	python3 sync/sync.py
 
 .PHONY: serve
 serve:
