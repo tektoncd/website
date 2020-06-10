@@ -47,4 +47,4 @@ DEPLOY_PRIME_URL=localhost make preview-build
 ## tekton.dev
 
 - The latest website is available at [https://tekton.dev/](https://tekton.dev/).
-- The old website is available at [https://tekton-old.netlify.app/](https://tekton-old.netlify.app/) and based on the [website-old](https://github.com/tektoncd/website/tree/website-old) branch.
+- The old website is available at [https://tekton-old.netlify.app/](https://tekton-old.netlify.app/) and based on the branch [website-old](https://github.com/tektoncd/website/tree/website-old).
