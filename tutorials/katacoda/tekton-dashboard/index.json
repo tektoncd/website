@@ -1,0 +1,52 @@
+{
+  "title": "Tekton Dashboard",
+  "description": "Learn how to use the Tekton Dashboard!",
+  "difficulty": "Beginner",
+  "time": "30",
+  "details": {
+    "steps": [
+      {
+        "title": "Install the Tekton Dashboard",
+        "text": "step1.md",
+        "code": "init.sh"
+      },
+      {
+        "title": "Import Tekton Resources for MyApp",
+        "text": "step2.md"
+      },
+      {
+        "title": "Create the PipelineResource for MyApp",
+        "text": "step3.md"
+      },
+      {
+        "title": "Build & Deploy MyApp",
+        "text": "step4.md"
+      },
+      {
+        "title": "Monitor the PipelineRun & View MyApp",
+        "text": "step5.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "*",
+          "target": "~/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal-iframe"
+  },
+  "backend": {
+    "imageid": "kubernetes",
+    "port": "80"
+  }
+}
