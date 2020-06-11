@@ -1,0 +1,45 @@
+{
+  "title": "Tekton Basic Pipeline",
+  "description": "Learn how to build a basic Tekton Pipeline!",
+  "difficulty": "Beginner",
+  "time": "30",
+  "details": {
+    "steps": [
+      {
+        "title": "Create a basic Task",
+        "text": "step1.md",
+        "code": "init.sh"
+      },
+      {
+        "title": "Create a second basic Task",
+        "text": "step2.md"
+      },
+      {
+        "title": "Create a Pipeline and PipelineRun",
+        "text": "step3.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "*",
+          "target": "~/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal-iframe"
+  },
+  "backend": {
+    "imageid": "kubernetes",
+		"imageid": "kubernetes-cluster-running:1.18",
+    "port": "80"
+  }
+}
