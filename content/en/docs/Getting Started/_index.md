@@ -317,10 +317,10 @@ the kind `Task`. The following YAML file specifies a `Task` with one simple
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: echo
+  name: hello
 spec:
   steps:
-    - name: echo
+    - name: hello
       image: ubuntu
       command:
         - echo
@@ -328,10 +328,10 @@ spec:
         - "Hello World!"
 ```
 
-Write the YAML above to a file named `task.yaml`, and apply it to your Kubernetes cluster:
+Write the YAML above to a file named `task-hello.yaml`, and apply it to your Kubernetes cluster:
 
-```
-kubectl apply -f task.yaml
+```bash
+kubectl apply -f task-hello.yaml
 ```
 
 To run this task with Tekton, you need to create a `TaskRun`, which is
@@ -340,7 +340,7 @@ another Kubernetes object used to specify run time information for a `Task`.
 To view this `TaskRun` object you can run the following Tekton CLI (`tkn`) command:
 
 ```shell
-tkn task start echo --dry-run
+tkn task start hello --dry-run
 ```
 
 After running the command above, the following `TaskRun` definition should be shown:
@@ -349,10 +349,10 @@ After running the command above, the following `TaskRun` definition should be sh
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  generateName: echo-run-
+  generateName: hello-run-
 spec:
   taskRef:
-    name: echo
+    name: hello
 ```
 
 To use the `TaskRun` above to start the `echo` `Task`, you can either use 
@@ -361,37 +361,39 @@ To use the `TaskRun` above to start the `echo` `Task`, you can either use
 Start with `tkn`:
 
 ```shell
-tkn task start echo
+tkn task start hello
 ```
 
 Start with `kubectl`:
 
 ```shell
 # use tkn's --dry-run option to save the TaskRun to a file
-tkn task start echo --dry-run > taskRun.yaml
+tkn task start hello --dry-run > taskRun-hello.yaml
 # create the TaskRun
-kubectl create -f taskRun.yaml
+kubectl create -f taskRun-hello.yaml
 ```
 
 Tekton will now start running your `Task`. To see the logs of the last `TaskRun`, run 
 the following `tkn` command:
 
 ```shell
-tkn taskrun logs --last -f
+tkn taskrun logs --last -f 
 ```
 
 It may take a few moments before your `Task` completes. When it executes, it should 
 show the following output:
 
 ```
-[echo] Hello World!
+[hello] Hello World!
 ```
 
 ## What's next
 
 Now you have the core component of Tekton, Tekton Pipelines, installed on
 your Kubernetes or OpenShift cluster with the Tekton CLI installed on your local
-machine. If you would like to install more components, see the list below:
+machine. Continue to experiment with pipelines with the 
+[Getting Started - Pipelines](./pipelines). If you would like to install 
+more components, see the list below:
 
 * [Tekton Triggers](/docs/triggers)
 * [Tekton Dashboard](/docs/dashboard)
