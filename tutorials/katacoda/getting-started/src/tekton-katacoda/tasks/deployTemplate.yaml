@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: deploy-app-task
+spec:
+  resources:
+    inputs:
+      # The input resource(s) of the task, such as an image
+  steps:
+    ...
+    # Each step of the task

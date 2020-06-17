@@ -15,8 +15,9 @@ spec:
       image: ubuntu
       command:
         - echo
-      args:
-        - "Hello World!"
+      script: |
+        set -e
+        echo "Hello World!"
 ```{{copy}}
 
 Write the YAML above to a file named task-hello.yaml, and apply it to your Kubernetes cluster:
@@ -27,7 +28,7 @@ kubectl apply -f task-hello.yaml
 
 To run this task with Tekton, you need to create a TaskRun, which is another Kubernetes object used to specify run time information for a Task.
 
-To view this TaskRun object you can run the following Tekton CLI (tkn) command:
+To view this TaskRun object you can run the following Tekton CLI (`tkn`) command:
 
 ```bash
 tkn task start hello --dry-run

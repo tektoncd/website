@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dsocket-vol
+  labels:
+    type: dsocket-vol
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/run/docker.sock"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dlib-vol
+  labels:
+    type: dlib-vol
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/lib/docker"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dsocket-vol-claim
+spec:
+  selector:
+    matchLabels: 
+      type: dsocket-vol
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dlib-vol-claim
+spec:
+  selector:
+    matchLabels: 
+      type: dlib-vol
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

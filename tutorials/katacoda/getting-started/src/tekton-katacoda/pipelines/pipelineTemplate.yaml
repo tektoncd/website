@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: build-test-deploy-app-pipeline
+spec:
+  resources:
+    # The input and output resources each task uses
+  tasks:
+    # The names of tasks in this pipeline
+    ...

@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  # The name of the task
+  name: build-test-app-task
+spec:
+  resources:
+    inputs:
+        # The input resource(s) of the task, such as a GitHub repository
+  volumes:
+    # Mount the docker socket from the node for building images
+    # See the tutorial for more information
+    - name: docker-socket
+      hostPath:
+        type: Socket
+        path: /var/run/docker.sock
+  steps:
+    # Each step of the task
+  # Volumes mounted to support Katacoda single-node K8S environment
+  volumes:
+  - name: dsocket
+    persistentVolumeClaim:
+      claimName: dsocket-vol-claim
+  - name: dlib
+    persistentVolumeClaim:
+      claimName: dlib-vol-claim

@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: example-pipeline-run
+spec:
+  pipelineRef:
+    name: example-pipeline
+  resources:
+  - name: git
+    resourceRef:
+      name: example-git
