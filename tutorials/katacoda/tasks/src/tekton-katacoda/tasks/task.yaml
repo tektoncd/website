@@ -1,0 +1,37 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: example-task
+spec:
+  inputs:
+    resources:
+    - name: git
+      type: git
+  steps:
+  - name: pytest
+    image: python
+    command:
+    - /bin/bash
+    - -c
+    args:
+    - cd /workspace/git/tasks/src/client && pip install -r requirements.txt && pip install -r dev_requirements.txt && pytest .
+    volumeMounts:
+    - name: credential
+      mountPath: /etc/credential
+  volumes:
+  - name: credential
+    secret:
+      secretName: example-secret
+  sidecars:
+  - name: example-server
+    # The builder image to use
+    image: python
+    # The command to run with the builder image
+    command:
+    - /bin/bash
+    - -c
+    # The arguments to use with the command
+    # Here you will change the directory, install all the dependencies the app uses,
+    # and run the app
+    args:
+    - git clone https://github.com/tektoncd/website.git && cd ./tutorials/katacoda/tasks/src/server && pip install -r requirements.txt && python main.py

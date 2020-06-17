@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: deploy-app
+spec:
+  params:
+  - name: imageName
+    type: string
+    description: The name of built image
+    default: app
+  steps:
+    # Deploy the image
+    - name: deploy
+      image: lachlanevenson/k8s-kubectl
+      args:
+      - run
+      - myapp
+      - --image=$(params.imageName)
+      # Ask Kubectl to pull image from local Docker repository
+      - --image-pull-policy=Never
+    # Expose the image for external acceess
+    - name: expose
+      image: lachlanevenson/k8s-kubectl
+      args:
+      - expose
+      - pod
+      - myapp
+      - --port=80
+      - --target-port=8080
+      - --name=mysvc
+      - --type=NodePort

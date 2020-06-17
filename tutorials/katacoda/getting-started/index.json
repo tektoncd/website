@@ -1,0 +1,48 @@
+{
+  "title": "Getting started with Tekton",
+  "description": "Learn how to build a basic CI/CD workflow with Tekton",
+  "difficulty": "Beginner",
+  "time": "40 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Core concepts",
+        "text": "concepts.md",
+        "background": "env.sh"
+      },
+      {
+        "title": "Setup",
+        "text": "setup.md",
+        "foreground": "init.sh"
+      },
+      {
+        "title": "Specifying Tekton tasks",
+        "text": "tasks.md"
+      },
+      {
+        "title": "Building tasks into a pipeline",
+        "text": "pipeline.md"
+      },
+      {
+        "title": "Adding the resources",
+        "text": "resources.md"
+      },
+      {
+        "title": "Running the pipeline",
+        "text": "run.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "kubernetes-cluster-running:1.18"
+  }
+}

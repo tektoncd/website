@@ -1,0 +1,57 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-test-app
+spec:
+  resources:
+    inputs:
+      - name: git
+        type: git
+  params:
+  - name: dockerfilePath
+    type: string
+    description: The path to the dockerfile
+    default: /workspace/git/tutorials/katacoda/getting-started/src/Dockerfile
+  - name: srcPath
+    type: string
+    description: The path to the source code
+    default: /workspace/git/tutorials/katacoda/getting-started/src/app
+  - name: contextPath
+    type: string
+    description: Docker build context
+    default: /workspace/git/tutorials/katacoda/getting-started/src/
+  - name: imageName
+    type: string
+    description: The name of built image
+    default: app
+  steps:
+  - name: pytest
+    image: python
+    command:
+    - /bin/bash
+    - -c
+    args:
+    - cd $(params.srcPath) && pip3 install -r requirements.txt && pip3 install -r dev_requirements.txt && pytest .
+  - name: docker
+    image: docker
+    command:
+      - docker
+    args:
+    - build
+    - -f
+    - $(params.dockerfilePath)
+    - -t
+    - $(params.imageName)
+    - $(params.contextPath)
+    volumeMounts:
+    - name: dsocket
+      mountPath: /var/run/docker.sock
+    - name: dlib
+      mountPath: /var/lib/docker
+  volumes:
+  - name: dsocket
+    persistentVolumeClaim:
+      claimName: dsocket-vol-claim
+  - name: dlib
+    persistentVolumeClaim:
+      claimName: dlib-vol-claim
