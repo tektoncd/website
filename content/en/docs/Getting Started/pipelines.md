@@ -32,9 +32,10 @@ spec:
   steps:
     - name: goodbye
       image: ubuntu
-      script: |
-        set -e
-        echo "Goodbye World!"
+      command:
+        - echo
+      args:
+        - "Goodbye World!"
 ```
 
 Write the YAML above to a file named `task-goodbye.yaml`, and apply it to your Kubernetes cluster:
@@ -93,7 +94,7 @@ It may take a few moments before your `Task` completes. When it executes, it sho
 show the following output:
 
 ```
-[goodbye] Hello Goodbye!
+[goodbye] Goodbye World!
 ```
 
 To create a `Pipeline`, create a Kubernetes object using the Tekton API with
