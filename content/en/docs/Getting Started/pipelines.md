@@ -32,10 +32,9 @@ spec:
   steps:
     - name: goodbye
       image: ubuntu
-      command:
-        - echo
-      args:
-        - "Goodbye World!"
+      script: |
+        #!/bin/bash
+        echo "Goodbye World!"
 ```
 
 Write the YAML above to a file named `task-goodbye.yaml`, and apply it to your Kubernetes cluster:
