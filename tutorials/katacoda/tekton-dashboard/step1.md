@@ -77,4 +77,4 @@ https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/.
 
 It might take a minute for the ingress and Katacoda to get set up.
 
-![Dashboard homepage screenshot](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/dashboard-homepage.png)
+![Dashboard homepage screenshot](./assets/dashboard-homepage.png)
