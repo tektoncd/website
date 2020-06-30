@@ -8,7 +8,7 @@ https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/#/name
 
 Or navigate to the `default` Namespace's PipelineRuns page.
 
-![Navigate to PipelineRuns page screenshot](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/pipeline-runs-page.png)
+![Navigate to PipelineRuns page screenshot](./assets/pipeline-runs-page.png)
 
 ## Create the PipelineRun
 
@@ -29,8 +29,8 @@ Leave the default values for the rest of the fields.
 
 The form should look like the following:
 
-![Create PipelineRun form screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/create-pipeline-run-form.png)
+![Create PipelineRun form screenshot.](./assets/create-pipeline-run-form.png)
 
 Click the `Create` button to create the PipelineRun.
 
-![Created PipelineRun screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/created-pipeline-run.png)
+![Created PipelineRun screenshot.](./assets/created-pipeline-run.png)

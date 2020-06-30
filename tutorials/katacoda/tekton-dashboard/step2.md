@@ -26,7 +26,7 @@ Service Account `tekton-dashboard`
 
 The form should look like the following:
 
-![Import Tekton resources screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/import-tekton-resources.png)
+![Import Tekton resources screenshot.](./assets/import-tekton-resources.png)
 
 Click the `Import and Apply` button.
 
@@ -37,8 +37,8 @@ The Dashboard creates a PipelineRun to import the specified Tekton resources.
 Click on the `View status of this run` link at the bottom of the page to view
 the status of importing the Tekton resources for MyApp.
 
-![View status of importing Tekton resources screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/view-status-of-pipeline0.png)
+![View status of importing Tekton resources screenshot.](./assets/view-status-of-pipeline0.png)
 
 The Tekton resources have been imported when the PipelineRun has completed.
 
-![Import Tekton resources PipelineRun logs screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/import-pipelinerun-logs.png)
+![Import Tekton resources PipelineRun logs screenshot.](./assets/import-pipelinerun-logs.png)

@@ -11,7 +11,7 @@ Or navigate to the `default` Namespace's PipelineResources page in the Dashboard
 
 *Make sure the `default` Namespace is selected in the Namespace dropdown.*
 
-![Navigate to PipelineResources page screenshot](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/pipeline-resources-page.png)
+![Navigate to PipelineResources page screenshot](./assets/pipeline-resources-page.png)
 
 ## Create the PipelineResource
 
@@ -33,8 +33,8 @@ Revision: `master`{{copy}}
 
 The form should look like the following:
 
-![Create PipelineResource form screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/create-pipeline-resource-form.png)
+![Create PipelineResource form screenshot.](./assets/create-pipeline-resource-form.png)
 
 Click the `Create` button to create the PipelineResource.
 
-![Created PipelineResource screenshot.](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/created-pipeline-resource.png)
+![Created PipelineResource screenshot.](./assets/created-pipeline-resource.png)
