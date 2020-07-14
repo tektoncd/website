@@ -8,7 +8,7 @@ menu:
     weight: 20
 ---
 
-Tekton is a Kubernetes-native continuous integration and delivery (CI/CD)
+Tekton is a cloud native continuous integration and delivery (CI/CD)
 solution. It allows developers to build, test, and deploy across cloud
 providers and on-premise systems.
 

@@ -57,7 +57,7 @@ id = "UA-154682132-1"
 [languages]
 [languages.en]
 title = "Tekton"
-description = "Kubernetes-native CI/CD"
+description = "Cloud Native CI/CD"
 languageName ="English"
 # Weight used for sorting.
 weight = 1

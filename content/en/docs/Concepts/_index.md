@@ -12,7 +12,7 @@ This document is a work in progress.
 
 ## Overview
 
-Tekton is an open-source Kubernetes native CI/CD (Continuous Integration and
+Tekton is an open-source cloud native CI/CD (Continuous Integration and
 Delivery/Deployment) solution. It allows developers to build, test, and
 deploy across destinations using a Kubernetes cluster of their own.
 
