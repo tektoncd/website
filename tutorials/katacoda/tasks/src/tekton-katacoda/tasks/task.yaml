@@ -3,8 +3,8 @@ kind: Task
 metadata:
   name: example-task
 spec:
-  inputs:
-    resources:
+  resources:
+    inputs:
     - name: git
       type: git
   steps:
@@ -14,7 +14,7 @@ spec:
     - /bin/bash
     - -c
     args:
-    - cd /workspace/git/tasks/src/client && pip install -r requirements.txt && pip install -r dev_requirements.txt && pytest .
+    - cd /workspace/git/tutorials/katacoda/tasks/src/client && pip install -r requirements.txt && pip install -r dev_requirements.txt && pytest .
     volumeMounts:
     - name: credential
       mountPath: /etc/credential
@@ -34,4 +34,4 @@ spec:
     # Here you will change the directory, install all the dependencies the app uses,
     # and run the app
     args:
-    - git clone https://github.com/tektoncd/website.git && cd ./tutorials/katacoda/tasks/src/server && pip install -r requirements.txt && python main.py
+    - git clone https://github.com/tektoncd/website.git && cd ./website/tutorials/katacoda/tasks/src/server && pip install -r requirements.txt && python main.py

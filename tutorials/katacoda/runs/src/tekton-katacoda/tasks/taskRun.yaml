@@ -5,8 +5,8 @@ metadata:
 spec:
   taskRef:
     name: example-task
-  inputs:
-    resources:
+  resources:
+    inputs:
     - name: git
       resourceRef:
         name: example-git

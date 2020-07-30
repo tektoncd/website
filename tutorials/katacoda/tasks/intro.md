@@ -1,10 +1,8 @@
-![logo](https://github.com/tektoncd/website/tree/master/tutorials/katacoda/getting-started/images/logo.png?raw=true)
+![logo](https://raw.githubusercontent.com/tektoncd/website/master/tutorials/katacoda/logo.png)
 
-Tekton is Kubernetes-native and works well with widely-adopted CI/CD solutions,
-such as [Jenkins](https://jenkins.io/)/[Jenkins X](https://jenkins-x.io/),
-[Skaffold](https://skaffold.dev/), and [Knative](https://knative.dev/).
-It is flexible, and supports many advanced CI/CD patterns, including
-rolling, blue/green, and canary deployment.
+[Tekton](https://tekton.dev) is a cloud native continuous integration and
+delivery (CI/CD) solution. It allows developers to build, test, and deploy
+across cloud providers and on-premises systems.
 
 In this scenario, you will learn about Tekton tasks, the basic building block
 of CI/CD pipelines in Tekton. More specifically, **you will use a Tekton task
