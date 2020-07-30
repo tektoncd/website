@@ -10,9 +10,9 @@ spec:
   steps:
   - name: pytest
     image: python
-    script : |
-		  #!/bin/bash
-      cd /workspace/git/runs/src/app 
-		  pip install -r requirements.txt 
-		  pip install -r dev_requirements.txt 
-		  pytest .
+    script: |
+      #!/bin/bash
+      cd /workspace/git/tutorials/katacoda/runs/src/app
+      pip install -r requirements.txt
+      pip install -r dev_requirements.txt
+      pytest .

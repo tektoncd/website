@@ -3,8 +3,8 @@ kind: Task
 metadata:
   name: example-task
 spec:
-  inputs:
-    resources:
+  resources:
+    inputs:
       ...
   steps:
   ...

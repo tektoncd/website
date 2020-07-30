@@ -1,7 +1,7 @@
-![logo](https://github.com/tektoncd/website/tree/master/tutorials/katacoda/getting-started/images/logo.png?raw=true)
+![logo](https://raw.githubusercontent.com/tektoncd/website/master/tutorials/katacoda/logo.png)
 
-Tekton is a powerful and flexible open-source framework for creating 
-CI/CD systems, allowing developers to build, test, and deploy across 
+Tekton is a powerful and flexible open-source framework for creating
+CI/CD systems, allowing developers to build, test, and deploy across
 cloud providers and on-premise systems.
 
 In this scenario, you will build a basic CI/CD workflow with Tekton that

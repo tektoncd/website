@@ -18,8 +18,12 @@ Verify both the `build` and `deploy` tasks have passed.
 
 ## Open the Deployed App
 
-MyApp will be running on port `3000`. Click on the following link to open the
-app:
+Expose the app on port 3000:
+```bash
+kubectl port-forward --address=0.0.0.0 service/myapp 3000:3000 > /dev/null 2>&1 &
+```{{execute}}
+
+Click on the following link to open the app:
 https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
 ![View MyApp screenshot.](./assets/view-myapp.png)
