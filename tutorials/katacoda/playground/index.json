@@ -1,0 +1,47 @@
+{
+  "title": "Tekton Playground",
+  "description": "Experiment, explore, and learn Tekton",
+  "difficulty": "Beginner",
+  "time": "10 minutes",
+  "details": {
+    "steps": [
+      {
+        "background": "background.sh",
+        "foreground": "foreground.sh",
+        "text": "step1.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "showdashboard": true,
+    "uilayout": "terminal-iframe",
+    "uimessage1": "\u001b[32mSetting up your Tekton playground...\u001b[m\r\n",
+    "hideintro": false,
+    "hidefinish": false,
+    "dashboards": [
+      {
+        "name": "Dashboard",
+        "port": 9097
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "kubernetes-cluster-running:1.18",
+    "port": "80"
+  }
+}
