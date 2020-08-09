@@ -352,6 +352,7 @@ After running the command above, the following `TaskRun` definition should be sh
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
+  name: hello-run
   generateName: hello-run-
 spec:
   taskRef:
