@@ -122,7 +122,7 @@ kubectl get storageclasses
 ```
 {{% /alert %}}
 
-These storage options can be configured using [`ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)s:
+These storage options can be configured using [`ConfigMaps`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/):
 
 {{% tabs %}}
 {{% tab "Persistent Volumes" %}}
