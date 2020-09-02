@@ -13,65 +13,30 @@ description: >
 
 ## Prerequisites
 
-{{% tabs %}}
-{{% tab "Kubernetes" %}}
 * A Kubernetes cluster version 1.15 or higher for Tekton Pipelines v0.11.0 or higher, or a Kubernetes 
 cluster version 1.11 or higher for Tekton releases before v0.11.0.
 * Enable [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 in the cluster.
-* Grant current user `cluster-admin` privileges.
+* Grant current user the `cluster-admin` role.
 
-If you are using [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/),
-see [Kubernetes Engine Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart)
-for instructions on setting up a Kubernetes cluster. **GKE clusters have RBAC
-enabled and persistent volumes available by default**; to grant current user 
-the required privilege, run the following command:
-
-```sh
-kubectl create clusterrolebinding cluster-admin-binding \
-                                  --clusterrole=cluster-admin \
-                                  --user=$(gcloud config get-value core/account)
-```
-
-For other cloud providers or Minikube installations, refer to their
-documentation for more information.
-{{% /tab %}}
-
-{{% tab "OpenShift" %}}
-* An OpenShift cluster with 3.11 or later releases installed.
-* Install the [OpenShift Container Platform CLI tool](https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html#installing-the-cli).
-* Sign in as a user with `cluster-admin` privileges.
-
-    ```sh
-    # Example #1: sign in using the default `system:admin` user with an OpenShift cluster
-    oc login -u system:admin
-    # Example #2: sign in using the default `admin:admin` user with a MiniShift cluster
-    oc login -u admin:admin
-    ```
-
-{{% /tab %}}
-{{% /tabs %}}
+If you don't already have a cluster, you can create one for testing with `kind`.
+[Install `kind`](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) and create a cluster by running [`kind create cluster`](https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster). This
+will create a cluster running locally, with RBAC enabled and your user granted
+the `cluster-admin` role.
 
 ## Installation
 
 To install the core component of Tekton, Tekton Pipelines, run the command below:
 
-{{% tabs %}}
-{{% tab "Kubernetes" %}}
-
 ```sh
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 ```
-{{% /tab %}}
-{{% tab "OpenShift" %}}
 
-If your container runtime does not support image-reference:tag@digest (for example, like cri-o used in OpenShift 4.x), use release.notags.yaml instead:
+If your container runtime does not support `image-reference:tag@digest` (for example, like cri-o used in OpenShift 4.x), use `release.notags.yaml` instead:
 
 ```sh
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml
 ```
-{{% /tab %}}
-{{% /tabs %}}
 
 {{% alert title="Note" color="success" %}}
 This command automatically installs the latest official release of the
@@ -393,7 +358,7 @@ show the following output:
 ## What's next
 
 Now you have the core component of Tekton, Tekton Pipelines, installed on
-your Kubernetes or OpenShift cluster with the Tekton CLI installed on your local
+your cluster with the Tekton CLI installed on your local
 machine. Continue to experiment with pipelines with the 
 [Getting Started - Pipelines](./pipelines). If you would like to install 
 more components, see the list below:
