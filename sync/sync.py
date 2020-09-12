@@ -66,7 +66,7 @@ def transform_links(link_prefix, dest_prefix, files, url):
     
     set_lines(dest_prefix, files, transformed_lines)
 
-    logging.info(f'Completed: transformed files in {dest_prefix}')
+    logging.info('Completed: transformed files')
 
 
 def set_lines(dest_prefix, files, lines):
