@@ -224,7 +224,7 @@ def create_site_resources(dest_prefix, file, versions):
     if ".js" in file:
         resource = resource_template.render(component_versions_json=json.dumps(versions))
     elif ".md" in file:
-        resource = resource_template.render(component_version=versions)
+        resource = resource_template.render(component_versions=versions)
 
     with open(f'{dest_prefix}/{file}', 'w') as f:
         f.write(resource)
