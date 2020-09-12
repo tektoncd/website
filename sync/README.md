@@ -31,9 +31,8 @@ To build the docker file
 **Note: If you trying running the container without supplying a config directory it will fail. Only copy specific values instead of the entire directory. We're primarily trying to avoid pulling in config/, since it's confusing thatit will not be used.**
 
 ```bash
-# You must cd into the correct directory to build image
-cd sync
-docker build -t tekton-web .
+# You must cd into the correct directory to build the image
+docker build -t tekton/web sync.
 ```
 
 
@@ -90,6 +89,6 @@ archive: https://github.com/tektoncd/foobar/tags
 
 ## Mental Model
 
-This is a quick diagram that will help have a quick mental model on how the sync works
+This is a quick diagram that will help you develop a mental model on how the sync works
 
 ![](https://i.imgur.com/UavDy7u.png)
