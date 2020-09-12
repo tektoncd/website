@@ -218,13 +218,13 @@ def get_versions(sync_configs):
     return component_versions
 
 
-def create_site_resources(dest_prefix, file, type, versions):
+def create_site_resources(dest_prefix, file, versions):
     ''' create site resource based on the version and file '''
     resource_template = jinja_env.get_template(f'{file}.template')
-    if type == "js":
+    if ".js" in file:
         resource = resource_template.render(component_versions_json=json.dumps(versions))
-    elif type == "md":
-        resource = resource_template.render(component=versions)
+    elif ".md" in file:
+        resource = resource_template.render(component_version=versions)
 
     with open(f'{dest_prefix}/{file}', 'w') as f:
         f.write(resource)
@@ -238,8 +238,8 @@ def sync(argv):
     config = yaml_files_to_list(config_files)
     # download resources
     download_resources_to_project(config)
-    create_site_resources(JS_ASSET_DIR, "version-switcher.js", "js", get_versions(config))
-    create_site_resources(VAULT_DIR, "_index.md", "md", get_versions(config))
+    create_site_resources(JS_ASSET_DIR, "version-switcher.js", get_versions(config))
+    create_site_resources(VAULT_DIR, "_index.md", get_versions(config))
     logging.info("Sync Complete")
 
 if __name__ == '__main__':
