@@ -47,8 +47,7 @@ jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 def transform_links(link_prefix, dest_prefix, files, url):
     ''' go through every line to ensure that each url in a line is valid '''
-    
-    logging.info('Running: transforming files...')
+    logging.info(f'Running: transforming files in {dest_prefix}')
 
     lines = get_lines(dest_prefix, files)
     transformed_lines = []
@@ -67,7 +66,7 @@ def transform_links(link_prefix, dest_prefix, files, url):
     
     set_lines(dest_prefix, files, transformed_lines)
 
-    logging.info('Completed: transformed files')
+    logging.info(f'Completed: transformed files in {dest_prefix}')
 
 
 def set_lines(dest_prefix, files, lines):
