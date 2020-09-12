@@ -238,8 +238,8 @@ def sync(argv):
     config = yaml_files_to_list(config_files)
     # download resources
     download_resources_to_project(config)
-    create_site_resources(JS_ASSET_DIR, "version-switcher.js", get_versions(config))
-    create_site_resources(VAULT_DIR, "_index.md", get_versions(config))
+    create_site_resources(JS_ASSET_DIR, "version-switcher.js", "js", get_versions(config))
+    create_site_resources(VAULT_DIR, "_index.md", "md", get_versions(config))
     logging.info("Sync Complete")
 
 if __name__ == '__main__':
