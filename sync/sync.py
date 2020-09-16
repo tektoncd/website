@@ -220,6 +220,7 @@ def get_versions(sync_configs):
 
 def create_site_resources(dest_prefix, file, versions):
     ''' create site resource based on the version and file '''
+    print(versions)
     resource_template = jinja_env.get_template(f'{file}.template')
     if ".js" in file:
         resource = resource_template.render(component_versions_json=json.dumps(versions))
@@ -238,6 +239,7 @@ def sync(argv):
     config = yaml_files_to_list(config_files)
     # download resources
     download_resources_to_project(config)
+    ##### THESE FUNCTIONS ARE NOT GENERATING THE HTML/CSS/JS Correctly #####
     create_site_resources(JS_ASSET_DIR, "version-switcher.js", get_versions(config))
     create_site_resources(VAULT_DIR, "_index.md", get_versions(config))
     logging.info("Sync Complete")
