@@ -79,13 +79,12 @@ def set_lines(dest_prefix, files, lines):
                 print(lines[0])
                 lines = lines[1:]
 
-def get_lines(dest_prefix, files):
+def get_lines(directory, files):
     ''' save all the lines from a directory and list of files into a list'''
     lines = []
-
     for f in files:
-        for k in f:
-            dest_path = f'{dest_prefix}/{f[k]}'
+        for key in f:
+            dest_path = f'{directory}/{f[key]}'
             for line in fileinput.input(dest_path):
                 lines.append((line, f))
 
@@ -115,7 +114,7 @@ def is_valid_url(url):
     return True
 
 def is_reference(url):
-    ''' determine if the url is an a href '''
+    ''' determine if the url is an a link '''
     if len(url) < 0:
         return False
 
@@ -163,7 +162,7 @@ def download_resources_to_project(yaml_list):
     ''' download the files based on a certain spec. The YAML sync spec can be found in sync/config/README.md'''
     for entry in yaml_list:
         directories = None
-        component = entry['component'].lower()
+        component = entry['component']
 
         for index, tag in enumerate(entry['tags']):
             # get the link for the item as well as the output dir
@@ -218,7 +217,7 @@ def get_versions(sync_configs):
     return component_versions
 
 
-def create_site_resources(dest_prefix, file, versions):
+def create_site_resource(dest_prefix, file, versions):
     ''' create site resource based on the version and file '''
     print(versions)
     resource_template = jinja_env.get_template(f'{file}.template')
@@ -239,9 +238,10 @@ def sync(argv):
     config = yaml_files_to_list(config_files)
     # download resources
     download_resources_to_project(config)
-    ##### THESE FUNCTIONS ARE NOT GENERATING THE HTML/CSS/JS Correctly #####
-    create_site_resources(JS_ASSET_DIR, "version-switcher.js", get_versions(config))
-    create_site_resources(VAULT_DIR, "_index.md", get_versions(config))
+    # create version switcher script
+    create_site_resource(JS_ASSET_DIR, "version-switcher.js", get_versions(config))
+    # create index for valut
+    create_site_resource(VAULT_DIR, "_index.md", get_versions(config))
     logging.info("Sync Complete")
 
 if __name__ == '__main__':
