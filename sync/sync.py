@@ -54,7 +54,8 @@ def transform_links(link_prefix, dest_prefix, files, url):
 
     for line, file in lines:
         line, is_transformed = sanitize_text(link_prefix, line)
-        links = get_links(line) 
+        links = get_links(line)
+        # TODO: CHNAGE IS_TRANSFROMED TO LEN(LINKS)
         if is_transformed:
             for link in links:
                 link = link.get("href")
@@ -94,7 +95,7 @@ def github_link(url, link):
     return f'{url.replace("raw", "tree", 1)}/{link}'
 
 def sanitize_text(link_prefix, text):
-    ''' santize every line of text to exclude relative links and have proper markdown '''
+    ''' santize every line of text to exclude relative links and to turn markdown file url's to html '''
     old_line = text.rstrip()
     new_line = re.sub(RELATIVE_LINKS_RE, r'[\1](' + link_prefix + r'\2\3)', old_line)
     return (new_line, old_line == new_line)
@@ -146,7 +147,8 @@ def remove_ending_forward_slash(word):
     return word[:-1] if word.endswith('/') else word
 
 def get_file_directories(entry, index, source_dir, dest_dir):
-    ''' return the files and there directories. Their relative and absolute counterpart is needed to download the files properly to the website '''
+    ''' return the files and there directories. Their relative and absolute 
+    counterpart is needed to download the files properly to the website '''
     tag = entry['tags'][index]
     repository = remove_ending_forward_slash(entry['repository'])
     doc_directory = remove_ending_forward_slash(entry['docDirectory'])
