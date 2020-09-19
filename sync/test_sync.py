@@ -11,22 +11,42 @@ def path_leaf(path):
     head, tail = ntpath.split(path)
     return tail or ntpath.basename(head)
 
+def read_and_delete_file(name):
+    file = open(name, "r")
+    text = file.read() 
+    file.close()
+    os.remove(name)
+    return text
+
 class TestSync(unittest.TestCase):
 
     def test_multiple_get_links(self):
         """This will ensure that get links will return a list of multiple md links"""        
-        result = get_links("this is a [link](www.link.com) and this is a [link](./link)")
         expected = ["www.link.com", "./link"]
-        index = 0
-        for link in result:
+        result = get_links("this is a [link](www.link.com) and this is a [link](./link)")
+
+        for index, link in enumerate(result):
             self.assertEqual(link.get("href"), expected[index])
-            index += 1
 
     def test_transform_links(self):
         """Ensure that transform links will turns links to relative github link or existing file name"""
-        with tempfile.NamedTemporaryFile() as tmp:
-            name = path_leaf(tmp.name)
-            transform_links("", "/tmp", [{name : name}], "")
+        expected = "Hello world [link](test.com/./adw/a/d/awdrelative) and [github](www.github.com)\n"
+        result = None
+        tmp_name = None
+        text = "Hello world [link](test.com/./adw/a/d/awdrelative) and [github](www.github.com)\n"
+
+        #write to file
+        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+            tmp_name = tmp.name
+            name = path_leaf(tmp_name)
+            tmp.write(text.encode())
+
+        #mutate file  
+        transform_links("", "/tmp", [{name : name}], "test.com")
+        #read and delete file
+        result = read_and_delete_file(tmp_name)
+        
+        self.assertEqual(expected, result)
 
 if __name__ == '__main__':
     unittest.main()

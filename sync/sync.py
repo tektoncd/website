@@ -55,7 +55,6 @@ def transform_links(link_prefix, dest_prefix, files, url):
     for line, file in lines:
         line, is_transformed = sanitize_text(link_prefix, line)
         links = get_links(line) 
-
         if is_transformed:
             for link in links:
                 link = link.get("href")
@@ -104,9 +103,7 @@ def is_valid_url(url):
     ''' check if it is a valid url '''
     try:
         urlopen(url).read()
-    except HTTPError as e:
-        return True
-    except URLError as e:
+    except (HTTPError, URLError) as e:
         return True
     except ValueError as e:
         return False
