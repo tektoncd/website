@@ -5,7 +5,7 @@ WORKDIR /app
 # We're primarily trying to avoid pulling in config/, since it's confusing that
 # it will not be used.
 COPY sync.py sync.py
-COPY ../requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
