@@ -1,5 +1,6 @@
 .PHONY: sync
 sync:
+	pip install -r requirements.txt
 	python3 -m flake8 sync/sync.py
 	python3 -m flake8 sync/test_sync.py
 	coverage run sync/test_sync.py
