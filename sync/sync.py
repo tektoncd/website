@@ -48,7 +48,7 @@ jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 
 def transform_links(link_prefix, dest_prefix, files, url):
-    """ go through every line to ensure that each url in a line is valid """
+    """ change every link to point to a valid relative file or absolute url """
     logging.info(f'Running: transforming files in {dest_prefix}')
 
     lines = get_lines(dest_prefix, files)
@@ -57,23 +57,22 @@ def transform_links(link_prefix, dest_prefix, files, url):
     for line, file in lines:
         line, is_transformed = sanitize_text(link_prefix, line)
         links = get_links(line)
-        # TODO: CHNAGE IS_TRANSFROMED TO LEN(LINKS)
         if is_transformed:
             for link in links:
                 link = link.get("href")
                 if not(os.path.isfile(link) or is_url(link) or is_ref(link)):
                     line = line.replace(link, github_link(url, link))
-        
+
         transformed_lines.append(line)
-    
+
     set_lines(dest_prefix, files, transformed_lines)
 
     logging.info(f'Completed: transformed files in {dest_prefix}')
 
 
 def set_lines(dest_prefix, files, lines):
-    """ get all the files into a ball of
-    text and replace each line with a list """
+    """ get all the text from the files and replace
+    each line of text with the list lines """
     for f in files:
         for k in f:
             dest_path = f'{dest_prefix}/{f[k]}'
@@ -156,8 +155,7 @@ def download_files(url_prefix, dest_prefix, files):
             try:
                 wget.download(src_url, out=dest_path)
             except (FileExistsError, URLError):
-                logging.error("download failed...")
-                return False
+                raise Exception(f'download failed for {src_url}')
             logging.info('\n')
 
     return True
@@ -181,8 +179,8 @@ def get_file_dirs(entry, index, source_dir, dest_dir):
 
 
 def download_resources_to_project(yaml_list):
-    """ download the files based on a certain spec. 
-    The YAML sync spec can be found in sync/config/README.md"""
+    """ download the files based on a certain spec.
+    The YAML sync spec can be found in sync/config/README.md """
     for entry in yaml_list:
         # dirs is short for directories
         dirs = None
@@ -198,7 +196,7 @@ def download_resources_to_project(yaml_list):
             else:
                 download_dir = f'/vault/{component}-{tag["displayName"]}/'
                 site_dir = f'{VAULT_DIR}/{component}-{tag["displayName"]}'
-         
+
             dirs = get_file_dirs(entry, index, download_dir, site_dir)
 
             if dirs:
@@ -240,7 +238,7 @@ def yaml_files_to_list(files):
 
 
 def get_tags(list):
-    """ return a list of tags with, there name, and displayName"""
+    """ return a list of tags with, there name, and displayName """
     tags = []
     for tag in list['tags']:
         tags.append({'name': tag['name'], 'displayName': tag['displayName']})

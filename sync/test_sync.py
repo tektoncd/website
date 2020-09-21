@@ -34,8 +34,8 @@ class TestSync(unittest.TestCase):
     # Tests
 
     def test_multiple_get_links(self):
-        """This will ensure that get links will
-        return a list of multiple md links"""
+        """ This will ensure that get links will
+        return a list of multiple md links """
         expected = ["www.link.com", "./link"]
         result = get_links("this is a [link](www.link.com) and [link](./link)")
 
@@ -43,16 +43,20 @@ class TestSync(unittest.TestCase):
             self.assertEqual(link.get("href"), expected[index])
 
     def test_is_ref(self):
+        """ Verify if a string is a reference. A reference is
+        defined as  a string where its first character is a hashtag """
         self.assertEqual(False, is_ref(""))
         self.assertEqual(True, is_ref("#footer"))
         self.assertEqual(False, is_ref("www.google.com"))
 
     def test_remove_ending_forward_slash(self):
+        """ Remove a slash if it is the last character in a string """
         expected = remove_ending_forward_slash("www.google.com/")
         self.assertEqual("www.google.com", expected)
 
     def test_get_tags(self):
-
+        """ map a list of dictionaries to only
+        have name, displayName feilds """
         excepted = [{'name': 'test_tag', 'displayName': 'test_display'}]
         tags = {'tags': [
             {
@@ -65,22 +69,31 @@ class TestSync(unittest.TestCase):
         self.assertEqual(get_tags(tags), excepted)
 
     def test_download_files(self):
+        """ Download file to tmp directory if url is valid """
         excepted = True
         dirpath = tempfile.mkdtemp()
-        result = download_files("https://raw.githubusercontent.com/tektoncd/pipeline/master", dirpath, [{"README.md": "README.md"}])
+        result = download_files(
+            "https://raw.githubusercontent.com/tektoncd/pipeline/master",
+            dirpath,
+            [{"README.md": "README.md"}]
+        )
         shutil.rmtree(dirpath)
         self.assertEqual(result, excepted)
 
-        excepted = False
         dirpath = tempfile.mkdtemp()
-        result = download_files("http://fake.c0m", dirpath, [{"test": "test"}])
+        self.assertRaises(
+            Exception,
+            download_files,
+            "http://fake.c0m",
+            dirpath,
+            [{"test": "test"}]
+        )
         shutil.rmtree(dirpath)
-        self.assertEqual(result, excepted)
 
     def test_yaml_files_to_list(self):
-        # write to file
+        """ convert a list of files into a list of dictionaries """
+        # create a tmp file with yaml txt
         text = "{displayOrder: 1}"
-        excepted = [{'displayOrder': 1}]
         result = None
         tmp_name = None
 
@@ -88,11 +101,14 @@ class TestSync(unittest.TestCase):
             tmp_name = tmp.name
             tmp.write(text.strip().encode())
 
+        excepted = [{'displayOrder': 1}]
         result = yaml_files_to_list([tmp_name])
         self.read_and_delete_file(tmp_name)
         self.assertEqual(result, excepted)
 
     def test_get_files(self):
+        """ create a list of files within a
+        directory that contain a valid extension"""
         excepted = None
         result = None
 
@@ -104,7 +120,7 @@ class TestSync(unittest.TestCase):
 
     def test_get_file_dirs(self):
         expected = (
-            'https://github.com/tektoncd/cli/raw/master/docs', 
+            'https://github.com/tektoncd/cli/raw/master/docs',
             "/tmp",
             "/tmp",
             [{"README.md": "_index.md"}]
@@ -133,6 +149,7 @@ class TestSync(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_get_links(self):
+        """ return a list of links formated in markdown in a given string"""
 
         expected = get_links("")
         self.assertEqual([], expected)

@@ -1,4 +1,4 @@
-# sync
+# Sync
 
 This directory includes a helper script for synchronizing contents
 from specified Tekton repositories to this repository.
@@ -10,7 +10,7 @@ Google Cloud Platform credentials, and execute the following command:
 pip3 install -r requirements.txt
 python3 sync.py
 ```
-
+E
 ## Usage
 
 ```bash
@@ -92,3 +92,18 @@ archive: https://github.com/tektoncd/foobar/tags
 This is a quick diagram that will help you develop a mental model on how the sync works
 
 ![](https://i.imgur.com/UavDy7u.png)
+
+## Running Locally
+
+Steps to run the sync locally:
+
+Step 1
+```bash
+pip install -r requirements.txt
+```
+Step 2
+```bash
+python3 sync/sync.py
+```
+
+**Note** This is a [link](../DEVELOPMENT.md) for the steps to run the entire website locally.
