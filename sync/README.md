@@ -32,7 +32,7 @@ To build the docker file
 
 ```bash
 # You must cd into the correct directory to build the image
-docker build -t tekton/web sync.
+docker build -t tekton/web sync/.
 ```
 
 
