@@ -1,5 +1,9 @@
 .PHONY: sync
 sync:
+	python3 -m flake8 sync/sync.py
+	python3 -m flake8 sync/test_sync.py
+	coverage run sync/test_sync.py
+	coverage report -m sync/sync.py
 	python3 sync/sync.py
 
 .PHONY: serve
