@@ -1,5 +1,7 @@
 .PHONY: sync
 sync:
+	coverage run sync/test_sync.py
+	coverage report -m sync/sync.py
 	python3 sync/sync.py
 
 .PHONY: serve
