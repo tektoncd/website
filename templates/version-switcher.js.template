@@ -30,7 +30,7 @@ function createArchivedVersionsNode (anchorNode, componentName, href) {
   archiveNode.style.paddingLeft = '2em';
   archiveNode.style.color = 'rgb(55, 114, 255)';
   archiveNode.setAttribute('data-ref', `${componentName}-child`.toLowerCase());
-  archiveNode.innerHTML = 'Archived Versions';
+  archiveNode.innerHTML = 'Releases on GitHub';
   archiveNode.setAttribute('href', href);
   anchorNode.appendChild(archiveNode);
 }
