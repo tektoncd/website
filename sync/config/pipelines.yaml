@@ -42,6 +42,7 @@ tags:
   - tasks.md: tasks.md
   - variables.md: variables.md
   - workspaces.md: workspaces.md
+  - events.md: events.md
 # To add a new version, append to the list as below
 #- name: v0.8.2
 #  displayName: v0.8.x
