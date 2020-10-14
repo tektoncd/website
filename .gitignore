@@ -3,5 +3,7 @@ public/
 package-lock.json
 node_modules/
 assets/js/version-switcher.js
-content/en/docs/Pipelines/
-content/en/docs/Triggers/
+content/en/docs/
+.coverage
+.vscode
+tkn_web_env
