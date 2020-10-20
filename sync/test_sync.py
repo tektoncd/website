@@ -10,11 +10,9 @@ from sync import is_url
 from sync import is_ref
 from sync import remove_ending_forward_slash
 from sync import get_tags
-from sync import get_file_dirs
 from sync import download_files
 from sync import yaml_files_to_dic_list
 from sync import get_files
-from sync import get_list_of_files
 
 
 class TestSync(unittest.TestCase):
@@ -33,12 +31,6 @@ class TestSync(unittest.TestCase):
         return text
 
     # Tests
-
-    def test_get_list_of_files(self):
-        """ get all the values from a list of dics and return a list """
-        expected = ["/prefix/f.tmp", "/prefix/t.xt"]
-        result = get_list_of_files("/prefix", [{"_": "f.tmp", "__": "t.xt"}])
-        self.assertEqual(result, expected)
 
     def test_multiple_get_links(self):
         """ This will ensure that get links will
@@ -83,7 +75,7 @@ class TestSync(unittest.TestCase):
         actual = download_files(
             "https://raw.githubusercontent.com/tektoncd/pipeline/master",
             dirpath,
-            [{"README.md": "README.md"}]
+            {"README.md": "README.md"}
         )
         shutil.rmtree(dirpath)
         self.assertEqual(actual, expected)
@@ -105,7 +97,7 @@ class TestSync(unittest.TestCase):
         actual = None
         tmp_name = None
 
-        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmp:
             tmp_name = tmp.name
             tmp.write(text.strip().encode())
 
@@ -120,44 +112,20 @@ class TestSync(unittest.TestCase):
         expected = None
         actual = None
 
-        with tempfile.NamedTemporaryFile(delete=True) as tmp:
+        with tempfile.NamedTemporaryFile(dir='/tmp', delete=True) as tmp:
             expected = [tmp.name]
             actual = get_files("/tmp", self.path_leaf(tmp.name))
 
         self.assertEqual(actual, expected)
 
-    def test_get_file_dirs(self):
-        expected = (
-            'https://github.com/tektoncd/cli/raw/master/docs',
-            "/tmp",
-            "/tmp",
-            [{"README.md": "_index.md"}]
-        )
+        with tempfile.NamedTemporaryFile(dir='/tmp', delete=True) as tmp:
+            expected = [tmp.name]
+            actual = get_files("/tmp", self.path_leaf(tmp.name))
 
-        entry = {
-            "component": "CLI",
-            "displayOrder": 2,
-            "repository": "https://github.com/tektoncd/cli",
-            "docDirectory": "docs",
-            "tags": [
-                {
-                    "name": "master",
-                    "displayName": "master",
-                    "files": [
-                        {
-                            "README.md": "_index.md"
-                        }
-                    ]
-                }
-            ],
-            "archive": "https://github.com/tektoncd/cli/tags"
-        }
-
-        actual = get_file_dirs(entry, 0, "/tmp", "/tmp")
         self.assertEqual(actual, expected)
 
     def test_get_links(self):
-        """ return a list of links formated in markdown in a given string"""
+        """ return a list of links formatted in markdown in a given string"""
         actual = "www.link.com"
 
         expected = get_links("")
@@ -206,13 +174,13 @@ class TestSync(unittest.TestCase):
         tmp_name = None
 
         # write to file
-        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmp:
             tmp_name = tmp.name
             name = self.path_leaf(tmp_name)
             tmp.write(text.strip().encode())
 
         # mutate file
-        transform_text("", "/tmp", [{name: name}], "test.com")
+        transform_text("", "/tmp", {name: name}, "test.com")
         # read and delete file
         actual = self.read_and_delete_file(tmp_name)
 

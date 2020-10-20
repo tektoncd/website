@@ -25,15 +25,15 @@ tags:
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
-  - README.md: _index.md
-  - eventlisteners.md: eventlisteners.md
-  - exposing-eventlisteners.md: exposing-eventlisteners.md
-  - install.md: install.md
-  - triggerbindings.md: triggerbindings.md
-  - triggertemplates.md: triggertemplates.md
-  - clustertriggerbindings.md: clustertriggerbindings.md
-  - cel_expressions.md: cel_expressions.md
-  - getting-started/create-ingress.yaml: create-ingress.yaml
-  - getting-started/create-webhook.yaml: create-webhook.yaml
+    README.md: _index.md
+    eventlisteners.md: eventlisteners.md
+    exposing-eventlisteners.md: exposing-eventlisteners.md
+    install.md: install.md
+    triggerbindings.md: triggerbindings.md
+    triggertemplates.md: triggertemplates.md
+    clustertriggerbindings.md: clustertriggerbindings.md
+    cel_expressions.md: cel_expressions.md
+    getting-started/create-ingress.yaml: create-ingress.yaml
+    getting-started/create-webhook.yaml: create-webhook.yaml
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/triggers/tags

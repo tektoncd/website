@@ -25,7 +25,7 @@ tags:
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
-  - README.md: _index.md
+    README.md: _index.md
 # To add a new version, append to the list as below
 #- name: v0.8.2
 #  displayName: v0.8.x
