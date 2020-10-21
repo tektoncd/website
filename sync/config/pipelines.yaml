@@ -12,15 +12,21 @@ displayOrder: 0
 repository: https://github.com/tektoncd/pipeline
 # The directory in the GitHub repository where contents reside.
 docDirectory: docs
+# The link to the GitHub tag page.
+archive: https://github.com/tektoncd/pipeline/tags
 # The tags (versions) of contents to sync.
-# Note that helper.py and related script reads tags in the order specified in
+# Note that sync.py and related script reads tags in the order specified in
 # the following list; the first entry in tags will automatically become the
 # latest version of contents.
+# To add a new version, append to the list as below
+#- name: v0.8.2
+#  displayName: v0.8.x
+#  files:
+#  - myfiles.md: myfiles.md
 tags:
-  # The name of the tag in the GitHub repository.
 - name: master
   # The name to display on tekton.dev.
-  # helper.py will use this value in the version switcher and other places.
+  # sync.py will use this value in the version switcher and other places.
   displayName: master
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
@@ -43,10 +49,3 @@ tags:
     variables.md: variables.md
     workspaces.md: workspaces.md
     events.md: events.md
-# To add a new version, append to the list as below
-#- name: v0.8.2
-#  displayName: v0.8.x
-#  files:
-#  - myfiles.md: myfiles.md
-# The link to the GitHub tag page.
-archive: https://github.com/tektoncd/pipeline/tags
