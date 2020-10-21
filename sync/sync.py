@@ -1,3 +1,19 @@
+#!/usr/bin/env python
+
+# Copyright 2020 The Tekton Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # This script helps synchronize contents from their respective sources of
 # truth (usually GitHub repositories of each Tekton
 # components, such as tektoncd/pipelines) to tektoncd/website.
@@ -5,22 +21,23 @@
 import fileinput
 import json
 import logging
-import markdown
 import os
 import os.path
+from pathlib import Path
 import re
 import shutil
-import wget
-import yaml
-
-from absl import app
-from absl import flags
-from jinja2 import Environment
-from jinja2 import FileSystemLoader
-from lxml import etree
 from urllib.request import urlopen
 from urllib.error import HTTPError
 from urllib.error import URLError
+import wget
+
+from absl import app
+from absl import flags
+import markdown
+from jinja2 import Environment
+from jinja2 import FileSystemLoader
+from lxml import etree
+from ruamel.yaml import YAML
 
 
 FLAGS = flags.FLAGS
@@ -30,7 +47,7 @@ FLAGS = flags.FLAGS
 # If there is a conflict, we'll get an error at import time.
 flags.DEFINE_string(
     'config',
-    os.path.dirname(os.path.abspath(__file__)) + '/config',
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config'),
     'Config directory', short_name='c')
 
 CONTENT_DIR = './content/en/docs'
@@ -38,9 +55,6 @@ JS_ASSET_DIR = './assets/js'
 TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
-
-GCP_NETLIFY_ENV_CRED = os.environ.get('GCP_CREDENTIAL_JSON')
-GCP_PROJECT = os.environ.get('GCP_PROJECT')
 
 LINKS_RE = r'\[([^\]]*)\]\((?!.*://|/)([^)]*).md(#[^)]*)?\)'
 
@@ -183,20 +197,30 @@ def get_files(path, file_type):
     return file_list
 
 
-def yaml_files_to_dic_list(files):
-    """ return a list of yaml files to a sorted
-     list based on a field called displayOrder """
-
+def load_config(files):
+    """ return a list of yaml files sorted based on a field called displayOrder """
+    yaml = YAML()
     dic_list = []
 
     for file in files:
         with open(file, 'r') as text:
             # get the paths from the config file
-            dic_list.append(yaml.load(text, Loader=yaml.FullLoader))
+            dic_list.append({
+                "filename": file,
+                "content": yaml.load(text)
+            })
 
-    dic_list.sort(key=lambda x: x['displayOrder'])
+    dic_list.sort(key=lambda x: x['content']['displayOrder'])
 
     return dic_list
+
+
+def save_config(config):
+    """ save config files back to yaml """
+    yaml = YAML()
+    for c in config:
+        out = Path(c['filename'])
+        yaml.dump(c['content'], out)
 
 
 def get_tags(sync_config):
@@ -239,13 +263,14 @@ def sync(argv):
     """ fetch all the files and sync it to the website """
     # get the path of the urls needed
     config_files = get_files(f'{FLAGS.config}', ".yaml")
-    config = yaml_files_to_dic_list(config_files)
+    config = [x["content"] for x in load_config(config_files)]
     # download resources
     download_resources_to_project(config)
+    versions = get_versions(config)
     # create version switcher script
-    create_resource(JS_ASSET_DIR, "version-switcher.js", get_versions(config))
+    create_resource(JS_ASSET_DIR, "version-switcher.js", versions)
     # create index for vault
-    create_resource(VAULT_DIR, "_index.md", get_versions(config))
+    create_resource(VAULT_DIR, "_index.md", versions)
 
 
 if __name__ == '__main__':

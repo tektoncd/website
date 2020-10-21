@@ -1,3 +1,19 @@
+#!/usr/bin/env python
+
+# Copyright 2020 The Tekton Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import unittest
 import tempfile
 import shutil
@@ -11,7 +27,8 @@ from sync import is_ref
 from sync import remove_ending_forward_slash
 from sync import get_tags
 from sync import download_files
-from sync import yaml_files_to_dic_list
+from sync import load_config
+from sync import save_config
 from sync import get_files
 
 
@@ -90,7 +107,7 @@ class TestSync(unittest.TestCase):
         )
         shutil.rmtree(dirpath)
 
-    def test_yaml_files_to_dic_list(self):
+    def test_load_save_config(self):
         """ convert a list of files into a list of dictionaries """
         # create a tmp file with yaml txt
         text = "{displayOrder: 1}"
@@ -101,10 +118,19 @@ class TestSync(unittest.TestCase):
             tmp_name = tmp.name
             tmp.write(text.strip().encode())
 
-        expected = [{'displayOrder': 1}]
-        actual = yaml_files_to_dic_list([tmp_name])
-        self.read_and_delete_file(tmp_name)
+        expected = [{'content': {'displayOrder': 1},
+                     'filename': tmp_name}]
+        actual = load_config([tmp_name])
         self.assertEqual(actual, expected)
+
+        mod_config = actual
+        mod_config[0]['content']['displayOrder'] = 2
+        expected = [{'content': {'displayOrder': 2},
+                     'filename': tmp_name}]
+        save_config(mod_config)
+        actual = load_config([tmp_name])
+        self.assertEqual(actual, expected)
+        self.read_and_delete_file(tmp_name)
 
     def test_get_files(self):
         """ create a list of files within a
