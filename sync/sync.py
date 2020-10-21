@@ -21,6 +21,8 @@
 import fileinput
 import json
 import logging
+import markdown
+from multiprocessing import Pool
 import os
 import os.path
 from pathlib import Path
@@ -84,10 +86,15 @@ def set_lines(dest_prefix, files, url, link_prefix):
     """ get all the text from the files and replace
     each line of text with the list lines """
     dest_files = [f'{dest_prefix}/{f}' for f in files.values()]
-    for line in fileinput.input(dest_files, inplace=1):
-        # add a line of text to the payload
-        # Callback function will mutate text and set the lines provided
-        transform_links(line, url, link_prefix)
+
+    def process_file(dest_file):
+        for line in fileinput.input(dest_file, inplace=1):
+            # add a line of text to the payload
+            # transform_links mutates text and set the lines provided
+            transform_links(line, url, link_prefix)
+
+    with Pool() as pool:
+        pool.imap_unordered(process_file, dest_files)
 
 
 def github_link(url, link):
@@ -135,23 +142,26 @@ def get_links(md):
     return []
 
 
+def download_file(src_url, dest_path):
+    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+    logging.info(f'Downloading {src_url} to {dest_path}...\n')
+    try:
+        wget.download(src_url, out=dest_path)
+    except (FileExistsError, URLError):
+        raise Exception(f'download failed for {src_url}')
+
+
 def download_files(url_prefix, dest_prefix, files):
     """ download the file and create the
     correct folders that are necessary """
     if os.path.isdir(dest_prefix):
         shutil.rmtree(dest_prefix)
     os.mkdir(dest_prefix)
-    for u, f in files.items():
-        src_url = f'{url_prefix}/{u}'
-        dest_path = f'{dest_prefix}/{f}'
-        os.makedirs(os.path.dirname(dest_path), exist_ok=True)
-        logging.info(f'Downloading {src_url} to {dest_path}...\n')
-        try:
-            wget.download(src_url, out=dest_path)
-        except (FileExistsError, URLError):
-            raise Exception(f'download failed for {src_url}')
-        logging.info('\n')
-
+    download_args = [
+        (f'{url_prefix}/{u}', f'{dest_prefix}/{f}')
+        for u, f in files.items()]
+    with Pool() as pool:
+        pool.starmap(download_file, download_args)
     return True
 
 
