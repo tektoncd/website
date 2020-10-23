@@ -19,17 +19,14 @@ import tempfile
 import shutil
 import ntpath
 import os
+from shutil import copytree
+from urllib.parse import urlparse
 
-from sync import get_links
-from sync import transform_text
-from sync import is_url
-from sync import is_ref
-from sync import remove_ending_forward_slash
-from sync import get_tags
-from sync import download_files
-from sync import load_config
-from sync import save_config
-from sync import get_files
+from sync import (
+    get_links, transform_text, is_absolute_url,
+    is_fragment, remove_ending_forward_slash,
+    get_tags, download_files, load_config, save_config,
+    get_files, transform_link)
 
 
 class TestSync(unittest.TestCase):
@@ -48,22 +45,12 @@ class TestSync(unittest.TestCase):
         return text
 
     # Tests
-
-    def test_multiple_get_links(self):
-        """ This will ensure that get links will
-        return a list of multiple md links """
-        expected = ["www.link.com", "./link"]
-        result = get_links("this is a [link](www.link.com) and [link](./link)")
-
-        for index, link in enumerate(result):
-            self.assertEqual(link.get("href"), expected[index])
-
-    def test_is_ref(self):
+    def test_is_fragment(self):
         """ Verify if a string is a reference. A reference is
         defined as  a string where its first character is a hashtag """
-        self.assertEqual(is_ref(""), False)
-        self.assertEqual(is_ref("#footer"), True)
-        self.assertEqual(is_ref("www.google.com"), False)
+        self.assertFalse(is_fragment(urlparse("")))
+        self.assertTrue(is_fragment(urlparse("#footer")))
+        self.assertFalse(is_fragment(urlparse("www.google.com")))
 
     def test_remove_ending_forward_slash(self):
         """ Remove a slash if it is the last character in a string """
@@ -160,57 +147,87 @@ class TestSync(unittest.TestCase):
         expected = get_links("[link](www.link.com) this is a link")
         self.assertEqual(actual, expected[0].get("href"))
 
-    def test_is_url(self):
+    def test_multiple_get_links(self):
+        """ This will ensure that get links will
+        return a list of multiple md links """
+        expected = ["www.link.com", "./link"]
+        result = get_links("this is a [link](www.link.com) and [link](./link)")
+
+        for index, link in enumerate(result):
+            self.assertEqual(link.get("href"), expected[index])
+
+    def test_is_absolute_url(self):
         """This will return a test to see if the link is a valid url format"""
-        expected = is_url("http://www.fake.g00gl3.com")
-        self.assertEqual(True, expected)
+        self.assertTrue(is_absolute_url(urlparse("http://www.fake.g00gl3.com")))
+        self.assertTrue(is_absolute_url(urlparse("http://www.google.com")))
+        self.assertFalse(is_absolute_url(urlparse("www.google.com")))
+        self.assertFalse(is_absolute_url(urlparse(".sync.py")))
+        self.assertFalse(is_absolute_url(urlparse("#fragment")))
 
-        expected = is_url("http://www.google.com")
-        self.assertEqual(True, expected)
-
-        expected = is_url("http://www.github.com")
-        self.assertEqual(True, expected)
-
-        expected = is_url("./sync.py")
-        self.assertEqual(False, expected)
-
-        expected = is_url("www.github.com")
-        self.assertEqual(False, expected)
+    def test_transform_link(self):
+        base_path = './test-content'
+        rewrite_path = '/docs/foo'
+        rewrite_url = 'https://foo.bar'
+        self.assertEqual(
+            transform_link("", base_path, rewrite_path, rewrite_url), "")
+        self.assertEqual(
+            transform_link("http://test.com", base_path, rewrite_path, rewrite_url),
+            "http://test.com")
+        self.assertEqual(
+            transform_link("test.txt", base_path, rewrite_path, rewrite_url),
+            "/docs/foo/test.txt")
+        self.assertEqual(
+            transform_link("content.md", base_path, rewrite_path, rewrite_url),
+            "/docs/foo/content/")
+        self.assertEqual(
+            transform_link("notthere.txt", base_path, rewrite_path, rewrite_url),
+            "https://foo.bar/notthere.txt")
 
     def test_transform_text(self):
         """Ensure that transform links will turns links to
         relative github link or existing file name"""
 
-        expected = """
-        [invalid-relative-link](test.com/./adw/a/d/awdrelative)
-        [valid-relative-link](./sync.py)
-        [valid-absolute-link](www.github.com)
-        [invalid-absolute-link](https://website-invalid-random321.net)
-        [valid-ref-link](#footer)
-        """
-        text = """
-        [invalid-relative-link](./adw/a/d/awdrelative)
-        [valid-relative-link](./sync.py)
-        [valid-absolute-link](www.github.com)
-        [invalid-absolute-link](https://website-invalid-random321.net)
-        [valid-ref-link](#footer)
-        """
+        expected = (
+            "[exists-relative-link](test-content/test.txt)\n"
+            "[exists-relative-link](test-content/content/)\n"
+            "[exists-relative-link-fragment](test-content/test.txt#fragment)\n"
+            "[notfound-relative-link](http://test.com/this/is/not/found)\n"
+            "[notfound-relative-link-fragment](http://test.com/this/is/not/found#fragment)\n"
+            "[invalid-absolute-link](http://test.com/www.github.com)\n"
+            "[valid-absolute-link](https://website-invalid-random321.net) "
+            "[valid-ref-link](#footer)"
+        )
+        text = (
+            "[exists-relative-link](./test.txt)\n"
+            "[exists-relative-link](./content.md)\n"
+            "[exists-relative-link-fragment](test.txt#fragment)\n"
+            "[notfound-relative-link](./this/is/not/found)\n"
+            "[notfound-relative-link-fragment](./this/is/not/found#fragment)\n"
+            "[invalid-absolute-link](www.github.com)\n"
+            "[valid-absolute-link](https://website-invalid-random321.net) "
+            "[valid-ref-link](#footer)"
+        )
 
-        actual = None
-        tmp_name = None
+        content_file = "content.md"
 
         # write to file
-        with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmp:
-            tmp_name = tmp.name
-            name = self.path_leaf(tmp_name)
-            tmp.write(text.strip().encode())
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            with open(os.path.join(tmpdirname, content_file), 'w+') as content:
+                content.write(text.strip())
+            with open(os.path.join(tmpdirname, 'test.txt'), 'w+') as test:
+                test.write(text.strip())
 
-        # mutate file
-        transform_text("", "/tmp", {name: name}, "test.com")
-        # read and delete file
-        actual = self.read_and_delete_file(tmp_name)
+            # mutate file
+            transform_text(folder=tmpdirname,
+                           files={content_file: content_file},
+                           base_path="test-content",
+                           base_url="http://test.com")
+            # read the result
+            actual = ""
+            with open(os.path.join(tmpdirname, content_file), 'r') as result:
+                actual = result.read()
 
-        self.assertEqual(actual.strip(), expected.strip())
+            self.assertEqual(actual.strip(), expected.strip())
 
 
 if __name__ == '__main__':
