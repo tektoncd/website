@@ -26,16 +26,13 @@ from multiprocessing import Pool
 import os
 import os.path
 from pathlib import Path
-import re
 import shutil
-from urllib.request import urlopen
-from urllib.error import HTTPError
 from urllib.error import URLError
+from urllib.parse import urlparse, urljoin, urlunparse
 import wget
 
 from absl import app
 from absl import flags
-import markdown
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 from lxml import etree
@@ -58,76 +55,77 @@ TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
 BUCKET_NAME = 'tekton-website-assets'
 
-LINKS_RE = r'\[([^\]]*)\]\((?!.*://|/)([^)]*).md(#[^)]*)?\)'
-
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 
-def transform_text(link_prefix, dest_prefix, files, url):
+def transform_text(folder, files, base_path, base_url):
     """ change every link to point to a valid relative file or absolute url """
+    files_in_folder = [f'{folder}/{f}' for f in files.values()]
 
-    logging.info(f'Running: transforming files in {dest_prefix}')
-    set_lines(dest_prefix, files, url, link_prefix)
-    logging.info(f'Completed: transformed files in {dest_prefix}')
-
-
-def transform_links(line, url, link_prefix):
-    line, is_transformed = sanitize_text(link_prefix, line)
-    links = get_links(line)
-    if is_transformed:
-        for link in links:
-            link = link.get("href")
-            if not(os.path.isfile(link) or is_url(link) or is_ref(link)):
-                line = line.replace(link, github_link(url, link))
-    print(line)
-
-
-def set_lines(dest_prefix, files, url, link_prefix):
-    """ get all the text from the files and replace
-    each line of text with the list lines """
-    dest_files = [f'{dest_prefix}/{f}' for f in files.values()]
-
-    def process_file(dest_file):
-        for line in fileinput.input(dest_file, inplace=1):
+    def process_file(file_in_folder):
+        for line in fileinput.input(file_in_folder, inplace=1):
             # add a line of text to the payload
             # transform_links mutates text and set the lines provided
-            transform_links(line, url, link_prefix)
+            print(transform_line(line, folder, base_path, base_url))
 
-    with Pool() as pool:
-        pool.imap_unordered(process_file, dest_files)
-
-
-def github_link(url, link):
-    """ given a github raw link convert it to the main github link """
-    return f'{url.replace("raw", "tree", 1)}/{link}'
+    for file_in_folder in files_in_folder:
+        process_file(file_in_folder)
 
 
-def sanitize_text(link_prefix, text):
-    """ santize every line of text to exclude relative
-    links and to turn markdown file URL's to html """
-    old_line = text.rstrip()
-    new_line = re.sub(LINKS_RE, r'[\1](' + link_prefix + r'\2\3)', old_line)
-    return new_line, old_line == new_line
+def transform_line(line, base_path, rewrite_path, rewrite_url):
+    """ transform all the links in one line """
+    line = line.rstrip()
+    links = get_links(line)
+    # If there are links in this line we may need to fix them
+    for link in links:
+        # link contains the text and href
+        href =link.get("href")
+        href_mod = transform_link(href, base_path, rewrite_path, rewrite_url)
+        line = line.replace(href, href_mod)
+    return line
 
 
-def is_url(url):
-    """ check if it is a valid url """
-    try:
-        urlopen(url).read()
-    except (HTTPError, URLError):
-        return True
-    except ValueError:
-        return False
+def transform_link(link, base_path, rewrite_path, rewrite_url):
+    """ Transform hrefs to be valid URLs on the web-site
 
-    return True
+    Absolute URLs are not changed (they may be external)
+    Fragments are relative to the page and do not need changes
+    Path only links should point to a file synced to the website
+    but sometimes the file may be missing (if it's not in the sync
+    configuration), so we follow this approach:
+    - prefix with base_path and check for the file locally
+    - if not found, prefix with base_url instead
+
+    Note that urlparse treats URLs without scheme like path only
+    URLs, so 'github.com' will be rewritten to base_url/github.com
+    """
+
+    # ignore empty links
+    if not link:
+        return link
+    # urlparse returns a named tuple
+    parsed = urlparse(link)
+    if is_absolute_url(parsed) or is_fragment(parsed):
+        return link
+    path = os.path.normpath(parsed.path)
+    if os.path.isfile(os.path.join(base_path, path)):
+        filename, ext = os.path.splitext(path)
+        # md files links are in the format .../[md filename]/
+        if ext == '.md':
+            path = filename + '/'
+        return urlunparse(parsed._replace(path="/".join([rewrite_path, path])))
+    # when not found on disk, append to the base_url
+    return urljoin(rewrite_url, link)
 
 
-def is_ref(url):
+def is_absolute_url(parsed_url):
+    """ check if it is an absolute url """
+    return all([parsed_url.scheme, parsed_url.netloc])
+
+
+def is_fragment(parsed_url):
     """ determine if the url is an a link """
-    if not url:
-        return False
-
-    return url[0] == "#"
+    return len(parsed_url.fragment) > 0 and not any(parsed_url[:-1])
 
 
 def get_links(md):
@@ -146,7 +144,7 @@ def download_file(src_url, dest_path):
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     logging.info(f'Downloading {src_url} to {dest_path}...\n')
     try:
-        wget.download(src_url, out=dest_path)
+        wget.download(src_url, out=dest_path, bar=None)
     except (FileExistsError, URLError):
         raise Exception(f'download failed for {src_url}')
 
@@ -179,18 +177,20 @@ def download_resources_to_project(yaml_list):
         doc_directory = remove_ending_forward_slash(entry['docDirectory'])
 
         for index, tag in enumerate(entry['tags']):
-            host_dir = f'{repository}/raw/{tag["name"]}/{doc_directory}'
+            logging.info(f'Syncing {component}@{tag["name"]}')
+            download_url = f'{repository}/raw/{tag["name"]}/{doc_directory}'
+            link_base_url = f'{repository}/tree/{tag["name"]}/{doc_directory}'
             if index == 0:
                 # first links belongs on the home page
-                download_dir = f'/docs/{component}/'
+                download_dir = f'/docs/{component}'.lower()
                 site_dir = f'{CONTENT_DIR}/{component}'
             else:
                 # the other links belong in the other versions a.k.a vault
-                download_dir = f'/vault/{component}-{tag["displayName"]}/'
+                download_dir = f'/vault/{component}-{tag["displayName"]}'
                 site_dir = f'{VAULT_DIR}/{component}-{tag["displayName"]}'
 
-            download_files(host_dir, site_dir, tag["files"])
-            transform_text(download_dir, site_dir, tag["files"], host_dir)
+            download_files(download_url, site_dir, tag["files"])
+            transform_text(site_dir, tag["files"], download_dir, link_base_url)
 
 
 def get_files(path, file_type):
