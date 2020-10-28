@@ -8,13 +8,18 @@ function expandOrCollapseSubMenu (componentName) {
   });
 }
 
-function createLatestVersionNode (anchorNode, componentName, version, disabled) {
+function createLatestVersionNode (anchorNode, componentName, version, disabled, visible) {
   const latestVersionNode = document.createElement('a');
   latestVersionNode.style.paddingLeft = '2em';
   latestVersionNode.style.color = 'rgb(55, 114, 255)';
   if (disabled) {
     latestVersionNode.className = 'dropdown-item disabled';
     latestVersionNode.innerHTML = `${componentName}: ${version}`;
+} else if (visible) {
+    latestVersionNode.className = 'dropdown-item';
+    latestVersionNode.setAttribute('href', `/docs/${componentName.toLowerCase()}`);
+    latestVersionNode.setAttribute('data-ref', `${componentName}-child`.toLowerCase());
+    latestVersionNode.innerHTML = `Latest (${version})`;
   } else {
     latestVersionNode.className = 'dropdown-item d-none';
     latestVersionNode.setAttribute('href', `/docs/${componentName.toLowerCase()}`);
@@ -117,7 +122,7 @@ function setVaultVersionSwitcher () {
   componentVersions.forEach(function (componentVersion) {
     if (componentVersion.name === componentName) {
       const latestVersion = componentVersion.tags[0].displayName;
-      createLatestVersionNode(otherVersionsFormNode, componentName, latestVersion);
+      createLatestVersionNode(otherVersionsFormNode, componentName, latestVersion, false, true);
 
       const previousVersions = componentVersion.tags.slice(1);
       createPreviousVersionsNodes(otherVersionsFormNode, componentName, previousVersions, versionName);
