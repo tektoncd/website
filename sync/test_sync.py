@@ -19,7 +19,6 @@ import tempfile
 import shutil
 import ntpath
 import os
-from shutil import copytree
 from urllib.parse import urlparse
 
 from sync import (

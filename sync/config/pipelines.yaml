@@ -24,6 +24,106 @@ archive: https://github.com/tektoncd/pipeline/tags
 #  files:
 #  - myfiles.md: myfiles.md
 tags:
+- name: v0.17.2
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.17.2
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    auth.md: auth.md
+    conditions.md: conditions.md
+    container-contract.md: container-contract.md
+    labels.md: labels.md
+    logs.md: logs.md
+    metrics.md: metrics.md
+    migrating-from-knative-build.md: migrating-from-knative-build.md
+    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
+    pipelineruns.md: pipelineruns.md
+    pipelines.md: pipelines.md
+    podtemplates.md: podtemplates.md
+    resources.md: resources.md
+    taskruns.md: taskruns.md
+    tasks.md: tasks.md
+    variables.md: variables.md
+    workspaces.md: workspaces.md
+    events.md: events.md
+- name: v0.16.3
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.16.3
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    auth.md: auth.md
+    conditions.md: conditions.md
+    container-contract.md: container-contract.md
+    labels.md: labels.md
+    logs.md: logs.md
+    metrics.md: metrics.md
+    migrating-from-knative-build.md: migrating-from-knative-build.md
+    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
+    pipelineruns.md: pipelineruns.md
+    pipelines.md: pipelines.md
+    podtemplates.md: podtemplates.md
+    resources.md: resources.md
+    taskruns.md: taskruns.md
+    tasks.md: tasks.md
+    variables.md: variables.md
+    workspaces.md: workspaces.md
+    events.md: events.md
+- name: v0.15.2
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.15.2
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    auth.md: auth.md
+    conditions.md: conditions.md
+    container-contract.md: container-contract.md
+    labels.md: labels.md
+    logs.md: logs.md
+    metrics.md: metrics.md
+    migrating-from-knative-build.md: migrating-from-knative-build.md
+    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
+    pipelineruns.md: pipelineruns.md
+    pipelines.md: pipelines.md
+    podtemplates.md: podtemplates.md
+    resources.md: resources.md
+    taskruns.md: taskruns.md
+    tasks.md: tasks.md
+    variables.md: variables.md
+    workspaces.md: workspaces.md
+    events.md: events.md
+- name: v0.14.3
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.14.3
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    auth.md: auth.md
+    conditions.md: conditions.md
+    container-contract.md: container-contract.md
+    labels.md: labels.md
+    logs.md: logs.md
+    metrics.md: metrics.md
+    migrating-from-knative-build.md: migrating-from-knative-build.md
+    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
+    pipelineruns.md: pipelineruns.md
+    pipelines.md: pipelines.md
+    podtemplates.md: podtemplates.md
+    resources.md: resources.md
+    taskruns.md: taskruns.md
+    tasks.md: tasks.md
+    variables.md: variables.md
+    workspaces.md: workspaces.md
+    events.md: events.md
 - name: master
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
