@@ -19,7 +19,74 @@ archive: https://github.com/tektoncd/triggers/tags
 # the following list; the first entry in tags will automatically become the
 # latest version of contents.
 tags:
-  # The name of the tag in the GitHub repository.
+- name: v0.9.1
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.9.1
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    eventlisteners.md: eventlisteners.md
+    exposing-eventlisteners.md: exposing-eventlisteners.md
+    install.md: install.md
+    triggerbindings.md: triggerbindings.md
+    triggertemplates.md: triggertemplates.md
+    clustertriggerbindings.md: clustertriggerbindings.md
+    cel_expressions.md: cel_expressions.md
+    getting-started/create-ingress.yaml: create-ingress.yaml
+    getting-started/create-webhook.yaml: create-webhook.yaml
+- name: v0.8.1
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.8.1
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    eventlisteners.md: eventlisteners.md
+    exposing-eventlisteners.md: exposing-eventlisteners.md
+    install.md: install.md
+    triggerbindings.md: triggerbindings.md
+    triggertemplates.md: triggertemplates.md
+    clustertriggerbindings.md: clustertriggerbindings.md
+    cel_expressions.md: cel_expressions.md
+    getting-started/create-ingress.yaml: create-ingress.yaml
+    getting-started/create-webhook.yaml: create-webhook.yaml
+- name: v0.7.0
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.7.0
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    eventlisteners.md: eventlisteners.md
+    exposing-eventlisteners.md: exposing-eventlisteners.md
+    install.md: install.md
+    triggerbindings.md: triggerbindings.md
+    triggertemplates.md: triggertemplates.md
+    clustertriggerbindings.md: clustertriggerbindings.md
+    cel_expressions.md: cel_expressions.md
+    getting-started/create-ingress.yaml: create-ingress.yaml
+    getting-started/create-webhook.yaml: create-webhook.yaml
+- name: v0.6.1
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.6.1
+  # Key-value pairs of files to sync, where the key is the original filename
+  # and the value is the new filename.
+  files:
+    README.md: _index.md
+    eventlisteners.md: eventlisteners.md
+    exposing-eventlisteners.md: exposing-eventlisteners.md
+    install.md: install.md
+    triggerbindings.md: triggerbindings.md
+    triggertemplates.md: triggertemplates.md
+    clustertriggerbindings.md: clustertriggerbindings.md
+    cel_expressions.md: cel_expressions.md
+    create-ingress.yaml: create-ingress.yaml
+    create-webhook.yaml: create-webhook.yaml
 - name: master
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.

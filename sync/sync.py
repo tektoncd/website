@@ -190,10 +190,12 @@ def download_resources_to_project(yaml_list):
                 # first links belongs on the home page
                 download_dir = f'/docs/{component}'.lower()
                 site_dir = f'{CONTENT_DIR}/{component}'
+                os.makedirs(site_dir, exist_ok=True)
             else:
                 # the other links belong in the other versions a.k.a vault
                 download_dir = f'/vault/{component}-{tag["displayName"]}'
                 site_dir = f'{VAULT_DIR}/{component}-{tag["displayName"]}'
+                os.makedirs(site_dir, exist_ok=True)
 
             download_files(download_url, site_dir, tag["files"])
             transform_text(site_dir, tag["files"], download_dir, link_base_url)
