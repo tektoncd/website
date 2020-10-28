@@ -191,9 +191,10 @@ class TestSync(unittest.TestCase):
             "[exists-relative-link](test-content/test.txt)\n"
             "[exists-relative-link](test-content/content/)\n"
             "[exists-relative-link-fragment](test-content/test.txt#fragment)\n"
-            "[notfound-relative-link](http://test.com/this/is/not/found)\n"
-            "[notfound-relative-link-fragment](http://test.com/this/is/not/found#fragment)\n"
-            "[invalid-absolute-link](http://test.com/www.github.com)\n"
+            "[notfound-relative-link](http://test.com/tree/docs/this/is/not/found)\n"
+            "[notfound-relative-link-fragment](http://test.com/tree/docs/this/is/not/found#fragment)\n"
+            "[notfound-relative-link-dotdot](http://test.com/tree/examples/notfound.txt)\n"
+            "[invalid-absolute-link](http://test.com/tree/docs/www.github.com)\n"
             "[valid-absolute-link](https://website-invalid-random321.net) "
             "[valid-ref-link](#footer)"
         )
@@ -203,6 +204,7 @@ class TestSync(unittest.TestCase):
             "[exists-relative-link-fragment](test.txt#fragment)\n"
             "[notfound-relative-link](./this/is/not/found)\n"
             "[notfound-relative-link-fragment](./this/is/not/found#fragment)\n"
+            "[notfound-relative-link-dotdot](../examples/notfound.txt)\n"
             "[invalid-absolute-link](www.github.com)\n"
             "[valid-absolute-link](https://website-invalid-random321.net) "
             "[valid-ref-link](#footer)"
@@ -221,7 +223,7 @@ class TestSync(unittest.TestCase):
             transform_text(folder=tmpdirname,
                            files={content_file: content_file},
                            base_path="test-content",
-                           base_url="http://test.com")
+                           base_url="http://test.com/tree/docs/")
             # read the result
             actual = ""
             with open(os.path.join(tmpdirname, content_file), 'r') as result:

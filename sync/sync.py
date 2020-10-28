@@ -99,7 +99,6 @@ def transform_link(link, base_path, rewrite_path, rewrite_url):
     Note that urlparse treats URLs without scheme like path only
     URLs, so 'github.com' will be rewritten to base_url/github.com
     """
-
     # ignore empty links
     if not link:
         return link
@@ -179,7 +178,7 @@ def download_resources_to_project(yaml_list):
         for index, tag in enumerate(entry['tags']):
             logging.info(f'Syncing {component}@{tag["name"]}')
             download_url = f'{repository}/raw/{tag["name"]}/{doc_directory}'
-            link_base_url = f'{repository}/tree/{tag["name"]}/{doc_directory}'
+            link_base_url = f'{repository}/tree/{tag["name"]}/{doc_directory}/'
             if index == 0:
                 # first links belongs on the home page
                 download_dir = f'/docs/{component}'.lower()
