@@ -89,7 +89,9 @@ def transform_link(link, base_path, rewrite_path, rewrite_url):
     """ Transform hrefs to be valid URLs on the web-site
 
     Absolute URLs are not changed (they may be external)
-    Fragments are relative to the page and do not need changes
+    Fragments are relative to the page and do not need changes,
+    except for lower() on local files because hugo generated
+    anchors are always lower case.
     Path only links should point to a file synced to the website
     but sometimes the file may be missing (if it's not in the sync
     configuration), so we follow this approach:
@@ -104,17 +106,22 @@ def transform_link(link, base_path, rewrite_path, rewrite_url):
         return link
     # urlparse returns a named tuple
     parsed = urlparse(link)
-    if is_absolute_url(parsed) or is_fragment(parsed):
+    if is_absolute_url(parsed):
         return link
+    if is_fragment(parsed):
+        # A fragment only link points to an .md file
+        return urlunparse(parsed._replace(fragment=parsed.fragment.lower()))
     path = os.path.normpath(parsed.path)
     if os.path.isfile(os.path.join(base_path, path)):
         filename, ext = os.path.splitext(path)
-        # md files links are in the format .../[md filename]/
         if ext == '.md':
+            # md files links are rendered as .../[md filename]/
             path = filename + '/'
+            # for .md files, lower the case of fragments to match hugo's behaviour
+            parsed = parsed._replace(fragment=parsed.fragment.lower())
         return urlunparse(parsed._replace(path="/".join([rewrite_path, path])))
     # when not found on disk, append to the base_url
-    return urljoin(rewrite_url, link)
+    return urljoin(rewrite_url, urlunparse(parsed))
 
 
 def is_absolute_url(parsed_url):

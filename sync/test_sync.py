@@ -186,28 +186,29 @@ class TestSync(unittest.TestCase):
     def test_transform_text(self):
         """Ensure that transform links will turns links to
         relative github link or existing file name"""
+        self.maxDiff = None
 
         expected = (
             "[exists-relative-link](test-content/test.txt)\n"
             "[exists-relative-link](test-content/content/)\n"
-            "[exists-relative-link-fragment](test-content/test.txt#fragment)\n"
-            "[notfound-relative-link](http://test.com/tree/docs/this/is/not/found)\n"
-            "[notfound-relative-link-fragment](http://test.com/tree/docs/this/is/not/found#fragment)\n"
+            "[exists-relative-link-fragment](test-content/test.txt#Fragment)\n"
+            "[notfound-relative-link](http://test.com/tree/docs/this/is/not/found.txt#FraGment)\n"
+            "[notfound-relative-link-fragment](http://test.com/tree/docs/this/is/not/found.md#fraGmenT)\n"
             "[notfound-relative-link-dotdot](http://test.com/tree/examples/notfound.txt)\n"
             "[invalid-absolute-link](http://test.com/tree/docs/www.github.com)\n"
-            "[valid-absolute-link](https://website-invalid-random321.net) "
+            "[valid-absolute-link](https://website-random321.net#FRagment) "
             "[valid-ref-link](#footer)"
         )
         text = (
             "[exists-relative-link](./test.txt)\n"
             "[exists-relative-link](./content.md)\n"
-            "[exists-relative-link-fragment](test.txt#fragment)\n"
-            "[notfound-relative-link](./this/is/not/found)\n"
-            "[notfound-relative-link-fragment](./this/is/not/found#fragment)\n"
+            "[exists-relative-link-fragment](test.txt#Fragment)\n"
+            "[notfound-relative-link](./this/is/not/found.txt#FraGment)\n"
+            "[notfound-relative-link-fragment](./this/is/not/found.md#fraGmenT)\n"
             "[notfound-relative-link-dotdot](../examples/notfound.txt)\n"
             "[invalid-absolute-link](www.github.com)\n"
-            "[valid-absolute-link](https://website-invalid-random321.net) "
-            "[valid-ref-link](#footer)"
+            "[valid-absolute-link](https://website-random321.net#FRagment) "
+            "[valid-ref-link](#fooTEr)"
         )
 
         content_file = "content.md"

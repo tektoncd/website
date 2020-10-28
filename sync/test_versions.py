@@ -24,7 +24,7 @@ test_config_string = """
 # This is a test config
 component: test
 displayOrder: 0
-repository: https://foo.bar
+repository: https://foo.bar/org/test
 docDirectory: docs
 archive: https://foo.bar/tags
 tags:
@@ -44,7 +44,7 @@ test_config_string_new = """
 # This is a test config
 component: test
 displayOrder: 0
-repository: https://foo.bar
+repository: https://foo.bar/org/test
 docDirectory: docs
 archive: https://foo.bar/tags
 tags:
