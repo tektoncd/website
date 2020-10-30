@@ -97,8 +97,6 @@ class TestSync(unittest.TestCase):
         """ convert a list of files into a list of dictionaries """
         # create a tmp file with yaml txt
         text = "{displayOrder: 1}"
-        actual = None
-        tmp_name = None
 
         with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmp:
             tmp_name = tmp.name
@@ -121,8 +119,6 @@ class TestSync(unittest.TestCase):
     def test_get_files(self):
         """ create a list of files within a
         directory that contain a valid extension"""
-        expected = None
-        actual = None
 
         with tempfile.NamedTemporaryFile(dir='/tmp', delete=True) as tmp:
             expected = [tmp.name]
@@ -225,7 +221,6 @@ class TestSync(unittest.TestCase):
                            base_path="test-content",
                            base_url="http://test.com/tree/docs/")
             # read the result
-            actual = ""
             with open(os.path.join(tmpdirname, content_file), 'r') as result:
                 actual = result.read()
 

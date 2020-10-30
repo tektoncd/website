@@ -14,50 +14,94 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import click
 import copy
 import logging
+import os
+import sync
 import sys
 
-from absl import app
-from absl import flags
 
-import sync
-
-FLAGS = flags.FLAGS
-
-flags.DEFINE_string(
-    'project', 'pipeline', 'Name of the component', short_name='p')
-flags.DEFINE_string(
-    'version', None, 'Version of the component', short_name='r')
-
-def add_version(config, component, version):
-    """ add a new version for the component in the config """
-    updated = False
-    for idx, c in enumerate(config):
-        if c['content']['repository'].endswith(f'/{component}'):
-            updated = True
-            tags = c['content']['tags']
-            new_tag = copy.deepcopy(tags[0])
-            new_tag['name'] = version
-            new_tag['displayName'] = version
-            config[idx]['content']['tags'] = [new_tag]
-            config[idx]['content']['tags'].extend(tags)
-    return config, updated
+DEFAULT_CONFIG_FOLDER = os.path.join(os.path.dirname(
+    os.path.abspath(__file__)), 'config')
 
 
-def main(argv):
-    """ add a new version to a component """
-    # load the configs
-    config_files = sync.get_files(f'{FLAGS.config}', ".yaml")
-    config = sync.load_config(config_files)
-    # add a version to the config
-    new_config, updated = add_version(config, FLAGS.project, FLAGS.version)
-    if updated:
-        sync.save_config(new_config)
-    else:
-        logging.error(f'Could not find any config file for {FLAGS.project} to update')
+class VersionNotFoundError(Exception):
+    pass
+
+
+@click.group()
+def versions():
+    pass
+
+
+@versions.command()
+@click.option('--config-folder', default=DEFAULT_CONFIG_FOLDER,
+              help='the folder that contains the config files')
+@click.option('--project', required=True,
+              help='the tekton project name')
+@click.argument('version')
+def add(config_folder, project, version):
+    """ add a new version in the config for the specified project """
+    command(add_version, config_folder, project, version)
+
+
+@versions.command()
+@click.option('--config-folder', default=DEFAULT_CONFIG_FOLDER,
+              help='the folder that contains the config files')
+@click.option('--project', required=True,
+              help='the tekton project name')
+@click.argument('version')
+def rm(config_folder, project, version):
+    """ remove a version from the config for the specified project """
+    command(rm_version, config_folder, project, version)
+
+
+def command(cmd_fn, config_folder, project, version):
+    configs = load_config(config_folder)
+    config = select_config(configs, project)
+    if not config:
+        raise Exception(f'Cound not find a config for {project} in {config_files}')
+    try:
+        cmd_fn(config, version)
+        sync.save_config(configs)
+    except VersionNotFoundError as e:
+        logging.error(f'Could not update config for {project}: {e}')
         sys.exit(1)
 
 
+def select_config(configs, project):
+    """ returns the first config that matches the project """
+    for c in configs:
+        if c['content']['repository'].endswith(f'/{project}'):
+            return c
+    return None
+
+
+def add_version(config, version):
+    tags = config['content']['tags']
+    new_tag = copy.deepcopy(tags[0])
+    new_tag['name'] = version
+    new_tag['displayName'] = version
+    config['content']['tags'] = [new_tag]
+    config['content']['tags'].extend(tags)
+    return config
+
+
+def rm_version(config, version):
+    for idx, tag in enumerate(config['content']['tags']):
+        logging.info(f'{idx}, {tag}')
+        if version == tag['name']:
+            del config['content']['tags'][idx]
+            return config
+    raise VersionNotFoundError(f'Version {version} not found in {config}')
+
+
+def load_config(config_folder):
+    """ wrapper around sync.load_config that takes an input folder """
+    config_files = sync.get_files(config_folder, ".yaml")
+    return sync.load_config(config_files)
+
+
 if __name__ == '__main__':
-    app.run(main)
+    versions()

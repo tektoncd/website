@@ -105,7 +105,8 @@ docker build -t tekton/web sync/.
 
 ## `versions`
 
-The `versions` script can be used to add a new version to the `sync` configurations.
+The `versions` script can be used to add a new version or remove an unwanted
+one from the `sync` configurations.
 It was designed to be integrated in the release process of Tekton projects.
 
 To run this script locally, set up a Python 3 environment and execute
@@ -122,16 +123,30 @@ pip3 install -r requirements.txt
 
 ## Usage
 
+The script provides online help via the `--help` flag.
+Use `[command] --help` for help on the specific command (`add` or `rm`).
+
 ```bash
-USAGE: ./sync/versions.py [flags]
+$ ./sync/versions.py
+Usage: versions.py [OPTIONS] COMMAND [ARGS]...
 
-flags:
+Options:
+  --help  Show this message and exit.
 
-./sync/versions.py:
-  -p,--project: Name of the component
-    (default: 'pipeline')
-  -r,--version: Version of the component
-  -c,--config: Config directory
+Commands:
+  add  add a new version in the config for the specified project
+  rm   remove a version from the config for the specified project
+```
 
-Try --helpfull to get a list of all flags.
+## Examples:
+
+Adding a new version to the pipeline project:
+```bash
+$ ./sync/versions.py add v0.18.0
+```
+
+Adding a new minor to the triggers project, and remove the old one:
+```bash
+$ ./sync/versions.py add v0.9.1 --project triggers
+$ ./sync/versions.py rm v0.9.0 --project triggers
 ```
