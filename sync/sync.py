@@ -31,29 +31,20 @@ from urllib.error import URLError
 from urllib.parse import urlparse, urljoin, urlunparse
 import wget
 
-from absl import app
-from absl import flags
+import click
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 from lxml import etree
 from ruamel.yaml import YAML
 
 
-FLAGS = flags.FLAGS
-
-# Flag names are globally defined!  So in general, we need to be
-# careful to pick names that are unlikely to be used by other libraries.
-# If there is a conflict, we'll get an error at import time.
-flags.DEFINE_string(
-    'config',
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config'),
-    'Config directory', short_name='c')
-
 CONTENT_DIR = './content/en/docs'
 JS_ASSET_DIR = './assets/js'
 TEMPLATE_DIR = './templates'
 VAULT_DIR = './content/en/vault'
-BUCKET_NAME = 'tekton-website-assets'
+
+DEFAULT_CONFIG_FOLDER = os.path.join(os.path.dirname(
+    os.path.abspath(__file__)), 'config')
 
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
@@ -276,11 +267,13 @@ def create_resource(dest_prefix, file, versions):
     with open(f'{dest_prefix}/{file}', 'w') as f:
         f.write(resource)
 
-
-def sync(argv):
+@click.command()
+@click.option('--config-folder', default=DEFAULT_CONFIG_FOLDER,
+              help='the folder that contains the config files')
+def sync(config_folder):
     """ fetch all the files and sync it to the website """
     # get the path of the urls needed
-    config_files = get_files(f'{FLAGS.config}', ".yaml")
+    config_files = get_files(config_folder, ".yaml")
     config = [x["content"] for x in load_config(config_files)]
     # download resources
     download_resources_to_project(config)
@@ -292,4 +285,4 @@ def sync(argv):
 
 
 if __name__ == '__main__':
-    app.run(sync)
+    sync()
