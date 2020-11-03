@@ -1,0 +1,43 @@
+
+
+# UI strings. Buttons and similar.
+
+[ui_pager_prev]
+other = "Anterior"
+
+[ui_pager_next]
+other = "Próximo"
+
+[ui_read_more]
+other = "Leia mais"
+
+[ui_search]
+other = "Pesquisar neste site…"
+
+# Used in sentences such as "Posted in News"
+[ui_in]
+other = "em"
+
+# Footer text
+[footer_all_rights_reserved]
+other = """
+Linux Foundation®. Todos os direitos reservados. A Linux Foundation tem marcas registradas e usa marcas comerciais. 
+Para obter uma lista das marcas registradas da Linux Foundation, consulte nossa [página de uso de marcas registradas](https://www.linuxfoundation.org/trademark-usage). 
+Linux é uma marca registrada de Linus Torvalds. [Política de Privacidade](https://www.linuxfoundation.org/privacy/) and [Terms of Use](https://www.linuxfoundation.org/terms/).
+"""
+
+# Post (blog, articles etc.)
+[post_byline_by]
+other = "Por"
+[post_created]
+other = "Criado"
+[post_last_mod]
+other = "Última modificação"
+[post_edit_this]
+other = "Editar esta página"
+[post_create_issue]
+other = "Criar issue de documentação"
+[post_create_project_issue]
+other = "Criar issue do projeto"
+[post_posts_in]
+other = "Postagens em"

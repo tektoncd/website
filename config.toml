@@ -62,6 +62,14 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 
+[languages.pt-br]
+title = "Tekton"
+description = "Cloud Native CI/CD"
+languageName ="Português Brasil"
+contentDir = "content/pt-br"
+time_format_default = "02.01.2006"
+time_format_blog = "02.01.2006"
+
 # Everything below this are Site Params
 
 [params]
