@@ -1,9 +1,24 @@
-resources/_gen/
-public/
+# Node
 package-lock.json
 node_modules/
+
+# Generated content
+resources/_gen/
+public/
 assets/js/version-switcher.js
-content/en/docs/
-.coverage
+
+# IDEs
 .vscode
+**/.idea/
+.coverage
+
+# Python file for sync
 tkn_web_env
+**/.venv
+**/__pycache__/
+
+# Synced docs
+content/en/docs/Pipelines
+content/en/docs/Triggers
+content/en/docs/CLI
+content/en/vault/
