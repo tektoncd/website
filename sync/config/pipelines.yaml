@@ -24,10 +24,10 @@ archive: https://github.com/tektoncd/pipeline/tags
 #  files:
 #  - myfiles.md: myfiles.md
 tags:
-- name: v0.17.2
+- name: v0.17.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
-  displayName: v0.17.2
+  displayName: v0.17.3
   # Key-value pairs of files to sync, where the key is the original filename
   # and the value is the new filename.
   files:
