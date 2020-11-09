@@ -99,7 +99,7 @@ def rm_version(config, version):
 
 def load_config(config_folder):
     """ wrapper around sync.load_config that takes an input folder """
-    config_files = sync.get_files(config_folder, ".yaml")
+    config_files = sync.get_files_in_path(config_folder, ".yaml")
     return sync.load_config(config_files)
 
 

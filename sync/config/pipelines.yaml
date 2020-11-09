@@ -1,10 +1,10 @@
-# Each YAML file under sync/ configures how helper/helper.py synchronizes
+# Each YAML file under sync/ configures how sync/sync.py synchronizes
 # contents of various versions from its source of truth (usually a GitHub
 # repository of a Tekton component, such as tektoncd/pipelines) to
 # content/ (for the lastest version) and vault/ (for earlier versions).
 
 # The name of the component.
-# helper.py will use this value to build directories in content/ and vault/.
+# sync.py will use this value to build directories in content/ and vault/.
 component: Pipelines
 # The order of the component.
 displayOrder: 0
@@ -19,133 +19,86 @@ archive: https://github.com/tektoncd/pipeline/tags
 # the following list; the first entry in tags will automatically become the
 # latest version of contents.
 # To add a new version, append to the list as below
-#- name: v0.8.2
-#  displayName: v0.8.x
-#  files:
-#  - myfiles.md: myfiles.md
+# - name: vX.Y.Z
+#   displayName: vX.Y.Z
+#   folders:
+#     docs:
+#       target: '/'            # optional, default value '/'
+#       index: README.md       # optional, if _index.md exists
+#       include: ['*.md']      # optional, default value ['*']
+#       exclude: ['not_in.md'] # optional, default value []
+#       header: <dict>         # optional, no header added if not set
+#         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
 - name: v0.17.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.17.3
-  # Key-value pairs of files to sync, where the key is the original filename
-  # and the value is the new filename.
-  files:
-    README.md: _index.md
-    auth.md: auth.md
-    conditions.md: conditions.md
-    container-contract.md: container-contract.md
-    labels.md: labels.md
-    logs.md: logs.md
-    metrics.md: metrics.md
-    migrating-from-knative-build.md: migrating-from-knative-build.md
-    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
-    pipelineruns.md: pipelineruns.md
-    pipelines.md: pipelines.md
-    podtemplates.md: podtemplates.md
-    resources.md: resources.md
-    taskruns.md: taskruns.md
-    tasks.md: tasks.md
-    variables.md: variables.md
-    workspaces.md: workspaces.md
-    events.md: events.md
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+        - api-spec.md
+        - deprecations.md
+        - install.md
+        - runs.md
+        - tekton-bundle-contracts.md
+        - tutorial.md
 - name: v0.16.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.16.3
-  # Key-value pairs of files to sync, where the key is the original filename
-  # and the value is the new filename.
-  files:
-    README.md: _index.md
-    auth.md: auth.md
-    conditions.md: conditions.md
-    container-contract.md: container-contract.md
-    labels.md: labels.md
-    logs.md: logs.md
-    metrics.md: metrics.md
-    migrating-from-knative-build.md: migrating-from-knative-build.md
-    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
-    pipelineruns.md: pipelineruns.md
-    pipelines.md: pipelines.md
-    podtemplates.md: podtemplates.md
-    resources.md: resources.md
-    taskruns.md: taskruns.md
-    tasks.md: tasks.md
-    variables.md: variables.md
-    workspaces.md: workspaces.md
-    events.md: events.md
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+        - deprecations.md
+        - install.md
+        - runs.md
+        - tutorial.md
 - name: v0.15.2
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.15.2
-  # Key-value pairs of files to sync, where the key is the original filename
-  # and the value is the new filename.
-  files:
-    README.md: _index.md
-    auth.md: auth.md
-    conditions.md: conditions.md
-    container-contract.md: container-contract.md
-    labels.md: labels.md
-    logs.md: logs.md
-    metrics.md: metrics.md
-    migrating-from-knative-build.md: migrating-from-knative-build.md
-    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
-    pipelineruns.md: pipelineruns.md
-    pipelines.md: pipelines.md
-    podtemplates.md: podtemplates.md
-    resources.md: resources.md
-    taskruns.md: taskruns.md
-    tasks.md: tasks.md
-    variables.md: variables.md
-    workspaces.md: workspaces.md
-    events.md: events.md
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+        - deprecations.md
+        - install.md
+        - tutorial.md
 - name: v0.14.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.14.3
-  # Key-value pairs of files to sync, where the key is the original filename
-  # and the value is the new filename.
-  files:
-    README.md: _index.md
-    auth.md: auth.md
-    conditions.md: conditions.md
-    container-contract.md: container-contract.md
-    labels.md: labels.md
-    logs.md: logs.md
-    metrics.md: metrics.md
-    migrating-from-knative-build.md: migrating-from-knative-build.md
-    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
-    pipelineruns.md: pipelineruns.md
-    pipelines.md: pipelines.md
-    podtemplates.md: podtemplates.md
-    resources.md: resources.md
-    taskruns.md: taskruns.md
-    tasks.md: tasks.md
-    variables.md: variables.md
-    workspaces.md: workspaces.md
-    events.md: events.md
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+        - deprecations.md
+        - install.md
+        - tutorial.md
 - name: master
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: master
-  # Key-value pairs of files to sync, where the key is the original filename
-  # and the value is the new filename.
-  files:
-    README.md: _index.md
-    auth.md: auth.md
-    conditions.md: conditions.md
-    container-contract.md: container-contract.md
-    labels.md: labels.md
-    logs.md: logs.md
-    metrics.md: metrics.md
-    migrating-from-knative-build.md: migrating-from-knative-build.md
-    migrating-v1alpha1-to-v1beta1.md: migrating-v1alpha1-to-v1beta1.md
-    pipelineruns.md: pipelineruns.md
-    pipelines.md: pipelines.md
-    podtemplates.md: podtemplates.md
-    resources.md: resources.md
-    taskruns.md: taskruns.md
-    tasks.md: tasks.md
-    variables.md: variables.md
-    workspaces.md: workspaces.md
-    events.md: events.md
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+        - api-spec.md
+        - deprecations.md
+        - install.md
+        - runs.md
+        - tekton-bundle-contracts.md
+        - tutorial.md

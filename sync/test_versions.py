@@ -34,14 +34,14 @@ archive: https://foo.bar/tags
 tags:
 - name: foo
   displayName: foo
-  files:
-    FOO.md: _index.md
-    bar.md: bar.md
+  folders:
+    docs:
+        include: ['*']
 - name: bar
   displayName: bar
-  files:
-    FOO.md: _index.md
-    bar.md: bar.md
+  folders:
+    docs:
+        include: ['*']
 """
 
 test_config2_string = """
@@ -54,9 +54,9 @@ archive: https://foo.bar/tags2
 tags:
 - name: foo
   displayName: foo
-  files:
-    FOO.md: _index.md
-    bar.md: bar.md
+  folders:
+    docs:
+        include: ['*']
 """
 
 test_config_string_new = """
@@ -69,19 +69,19 @@ archive: https://foo.bar/tags
 tags:
 - name: new
   displayName: new
-  files:
-    FOO.md: _index.md
-    bar.md: bar.md
+  folders:
+    docs:
+        include: ['*']
 - name: foo
   displayName: foo
-  files:
-    FOO.md: _index.md
-    bar.md: bar.md
+  folders:
+    docs:
+        include: ['*']
 - name: bar
   displayName: bar
-  files:
-    FOO.md: _index.md
-    bar.md: bar.md
+  folders:
+    docs:
+        include: ['*']
 """
 
 yaml = YAML()
@@ -125,7 +125,7 @@ class TestVersions(unittest.TestCase):
 
     def test_rm_version_missing(self):
         version = 'missing'
-        self.assertRaisesRegexp(
+        self.assertRaisesRegex(
             versions.VersionNotFoundError, f'Version {version} not found in',
             versions.rm_version, test_config, version)
 
