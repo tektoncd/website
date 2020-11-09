@@ -39,6 +39,12 @@ tags:
     docs:
       index: README.md
       include: ['*.md']
+    docs/cmd:
+      index: tkn.md
+      include: ['*.md']
+      target: 'cmd'
+      header:
+        description: The Tekton CLI reference
 - name: v0.12.1
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
@@ -75,3 +81,9 @@ tags:
     docs:
       index: README.md
       include: ['*.md']
+    docs/cmd:
+      index: tkn.md
+      include: ['*.md']
+      target: 'cmd'
+      header:
+        description: The `tkn` CLI reference
