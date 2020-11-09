@@ -225,7 +225,9 @@ class TestSync(unittest.TestCase):
         local_files = {
             'test-content/content.md': ('_index.md', ''),
             'test-content/test.txt': ('test.txt', ''),
-            'another-content/test.md': ('test.md', 'another')
+            'another-content/test.md': ('test.md', 'another'),
+            'test-content/nested/content.md': ('content.md', 'nested'),
+            'test-content/nested/example.yaml': ('example.yaml', 'nested')
         }
 
         cases = [
@@ -234,7 +236,9 @@ class TestSync(unittest.TestCase):
             "test.txt",
             "content.md",
             "notthere.txt",
-            "../another-content/test.md"
+            "../another-content/test.md",
+            "./nested/content.md",
+            "./nested/example.yaml"
         ]
 
         expected_results = [
@@ -243,7 +247,9 @@ class TestSync(unittest.TestCase):
             "/docs/foo/test.txt",
             "/docs/foo/",
             "https://foo.bar/test-content/notthere.txt",
-            "/docs/foo/another/test/"
+            "/docs/foo/another/test/",
+            "/docs/foo/nested/content/",
+            "/docs/foo/nested/example.yaml"
         ]
 
         for case, expected in zip(cases, expected_results):
@@ -384,6 +390,7 @@ class TestSync(unittest.TestCase):
             site_folder=f'{sync.CONTENT_DIR}/test',
             base_path='/docs/test',
             base_url=f'http://test.com/test/tree/{self.tagname}/')
+
 
 if __name__ == '__main__':
     unittest.main()

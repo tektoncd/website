@@ -266,16 +266,16 @@ def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):
         if ext == '.md':
             # Links to the index file are rendered as base_path/
             if is_index:
-                path = ''
+                target_file = ''
             # links to md other files are rendered as .../[md filename]/
             else:
-                path = filename + '/'
+                target_file = filename + '/'
             # for .md files, lower the case of fragments to match hugo's behaviour
             parsed = parsed._replace(fragment=parsed.fragment.lower())
         if target_folder:
-            new_path = [rewrite_path, target_folder, path]
+            new_path = [rewrite_path, target_folder, target_file]
         else:
-            new_path = [rewrite_path, path]
+            new_path = [rewrite_path, target_file]
         return parsed._replace(path="/".join(new_path)).geturl()
     # when not found on disk, append to the base_url
     return urljoin(rewrite_url, parsed._replace(path=fq_path).geturl())
