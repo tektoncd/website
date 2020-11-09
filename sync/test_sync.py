@@ -14,24 +14,47 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
-import tempfile
-import shutil
 import ntpath
 import os
+import shutil
+import tempfile
+import unittest
+from unittest import mock
 from urllib.parse import urlparse
 
-from sync import (
-    get_links, transform_text, is_absolute_url,
-    is_fragment, remove_ending_forward_slash,
-    get_tags, download_files, load_config, save_config,
-    get_files, transform_link)
+import git
+import sync
 
+from sync import (
+    doc_config, docs_from_tree, get_links, is_absolute_url,
+    is_fragment, get_tags, load_config, save_config,
+    get_files_in_path, transform_link, transform_line,
+    transform_doc, transform_docs)
+
+
+BASE_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
 class TestSync(unittest.TestCase):
 
-    # Utils
+    def setUp(self):
+        self._tempdir = tempfile.TemporaryDirectory()
+        # Create a test repo in a tmp dir
+        self.gitrepo = git.Repo.init(self._tempdir.name)
+        # Copy test content in it
+        docs_folder = os.path.join(self._tempdir.name, 'test-content')
+        shutil.copytree(os.path.join(BASE_FOLDER, 'test-content'), docs_folder)
+        # Commit the new content
+        self.gitrepo.index.add(docs_folder)
+        self.gitrepo.index.commit("Added test content")
+        # Create a tag
+        self.tagname = "test_version"
+        self.gitrepo.create_tag(self.tagname)
+        self.doc = self.gitrepo.tree().join('test-content/content.md')
 
+    def tearDown(self):
+        self._tempdir.cleanup()
+
+    # Utils
     def path_leaf(self, path):
         head, tail = ntpath.split(path)
         return tail or ntpath.basename(head)
@@ -44,18 +67,76 @@ class TestSync(unittest.TestCase):
         return text
 
     # Tests
+    def test_doc_config(self):
+        folder_config = dict(index='foo.md')
+
+        expected = ('content.md', '', None)
+        actual = doc_config(self.doc, folder_config)
+        self.assertEqual(actual, expected)
+
+    def test_doc_config_header(self):
+        folder_config = dict(
+            index='foo.md',
+            header={'title': 'test'})
+
+        header = folder_config['header']
+        header['weight'] = 10
+        expected = ('content.md', '', header)
+        actual = doc_config(self.doc, folder_config, 10)
+        self.assertEqual(actual, expected)
+
+    def test_doc_config_index_target(self):
+        folder_config = dict(
+            index='content.md',
+            header={'title': 'test'},
+            target='foobar')
+
+        header = folder_config['header']
+        header['weight'] = 10
+        expected = ('_index.md', 'foobar', header)
+        actual = doc_config(self.doc, folder_config, 10)
+        self.assertEqual(actual, expected)
+
+    def test_docs_from_tree(self):
+        tree = self.gitrepo.tree().join('test-content')
+        expected = ['content.md', 'test.txt', 'unwanted.txt']
+        actual = [x.name for x in docs_from_tree(tree)]
+        self.assertEqual(actual, expected)
+
+    def test_docs_from_tree_include(self):
+        tree = self.gitrepo.tree().join('test-content')
+        expected = ['content.md']
+        actual = [x.name for x in
+            docs_from_tree(tree, include=['*.md'])]
+        self.assertEqual(actual, expected)
+
+    def test_docs_from_tree_include_specific(self):
+        tree = self.gitrepo.tree().join('test-content')
+        expected = ['content.md', 'test.txt']
+        actual = [x.name for x in
+            docs_from_tree(tree, include=['content.md', 'test.txt'])]
+        self.assertEqual(actual, expected)
+
+    def test_docs_from_tree_include_subfolder(self):
+        tree = self.gitrepo.tree().join('test-content/nested')
+        expected = ['content.md']
+        actual = [x.name for x in
+            docs_from_tree(tree, include=['content.md'])]
+        self.assertEqual(actual, expected)
+
+    def test_docs_from_tree_exclude(self):
+        tree = self.gitrepo.tree().join('test-content')
+        expected = ['content.md']
+        actual = [x.name for x in
+            docs_from_tree(tree, exclude=['*.txt'])]
+        self.assertEqual(actual, expected)
+
     def test_is_fragment(self):
         """ Verify if a string is a reference. A reference is
         defined as  a string where its first character is a hashtag """
         self.assertFalse(is_fragment(urlparse("")))
         self.assertTrue(is_fragment(urlparse("#footer")))
         self.assertFalse(is_fragment(urlparse("www.google.com")))
-
-    def test_remove_ending_forward_slash(self):
-        """ Remove a slash if it is the last character in a string """
-        actual = remove_ending_forward_slash("www.google.com/")
-        expected = "www.google.com"
-        self.assertEqual(actual, expected)
 
     def test_get_tags(self):
         """ map a list of dictionaries to only
@@ -70,28 +151,6 @@ class TestSync(unittest.TestCase):
         ]}
 
         self.assertEqual(get_tags(tags), expected)
-
-    def test_download_files(self):
-        """ Download file to tmp directory if url is valid """
-        expected = True
-        dirpath = tempfile.mkdtemp()
-        actual = download_files(
-            "https://raw.githubusercontent.com/tektoncd/pipeline/master",
-            dirpath,
-            {"README.md": "README.md"}
-        )
-        shutil.rmtree(dirpath)
-        self.assertEqual(actual, expected)
-
-        dirpath = tempfile.mkdtemp()
-        self.assertRaises(
-            Exception,
-            download_files,
-            "http://fake.c0m",
-            dirpath,
-            [{"test": "test"}]
-        )
-        shutil.rmtree(dirpath)
 
     def test_load_save_config(self):
         """ convert a list of files into a list of dictionaries """
@@ -116,19 +175,19 @@ class TestSync(unittest.TestCase):
         self.assertEqual(actual, expected)
         self.read_and_delete_file(tmp_name)
 
-    def test_get_files(self):
+    def test_get_files_in_path(self):
         """ create a list of files within a
         directory that contain a valid extension"""
 
         with tempfile.NamedTemporaryFile(dir='/tmp', delete=True) as tmp:
             expected = [tmp.name]
-            actual = get_files("/tmp", self.path_leaf(tmp.name))
+            actual = get_files_in_path("/tmp", self.path_leaf(tmp.name))
 
         self.assertEqual(actual, expected)
 
         with tempfile.NamedTemporaryFile(dir='/tmp', delete=True) as tmp:
             expected = [tmp.name]
-            actual = get_files("/tmp", self.path_leaf(tmp.name))
+            actual = get_files_in_path("/tmp", self.path_leaf(tmp.name))
 
         self.assertEqual(actual, expected)
 
@@ -163,69 +222,168 @@ class TestSync(unittest.TestCase):
         base_path = './test-content'
         rewrite_path = '/docs/foo'
         rewrite_url = 'https://foo.bar'
-        self.assertEqual(
-            transform_link("", base_path, rewrite_path, rewrite_url), "")
-        self.assertEqual(
-            transform_link("http://test.com", base_path, rewrite_path, rewrite_url),
-            "http://test.com")
-        self.assertEqual(
-            transform_link("test.txt", base_path, rewrite_path, rewrite_url),
-            "/docs/foo/test.txt")
-        self.assertEqual(
-            transform_link("content.md", base_path, rewrite_path, rewrite_url),
-            "/docs/foo/content/")
-        self.assertEqual(
-            transform_link("notthere.txt", base_path, rewrite_path, rewrite_url),
-            "https://foo.bar/notthere.txt")
+        local_files = {
+            'test-content/content.md': ('_index.md', ''),
+            'test-content/test.txt': ('test.txt', ''),
+            'another-content/test.md': ('test.md', 'another')
+        }
 
-    def test_transform_text(self):
-        """Ensure that transform links will turns links to
-        relative github link or existing file name"""
+        cases = [
+            "",
+            "http://test.com",
+            "test.txt",
+            "content.md",
+            "notthere.txt",
+            "../another-content/test.md"
+        ]
+
+        expected_results = [
+            "",
+            "http://test.com",
+            "/docs/foo/test.txt",
+            "/docs/foo/",
+            "https://foo.bar/test-content/notthere.txt",
+            "/docs/foo/another/test/"
+        ]
+
+        for case, expected in zip(cases, expected_results):
+            self.assertEqual(
+                transform_link(case, base_path, local_files, rewrite_path, rewrite_url),
+                expected)
+
+    def test_transform_line(self):
         self.maxDiff = None
 
-        expected = (
-            "[exists-relative-link](test-content/test.txt)\n"
-            "[exists-relative-link](test-content/content/)\n"
-            "[exists-relative-link-fragment](test-content/test.txt#Fragment)\n"
-            "[notfound-relative-link](http://test.com/tree/docs/this/is/not/found.txt#FraGment)\n"
-            "[notfound-relative-link-fragment](http://test.com/tree/docs/this/is/not/found.md#fraGmenT)\n"
-            "[notfound-relative-link-dotdot](http://test.com/tree/examples/notfound.txt)\n"
-            "[invalid-absolute-link](http://test.com/tree/docs/www.github.com)\n"
-            "[valid-absolute-link](https://website-random321.net#FRagment) "
-            "[valid-ref-link](#footer)"
-        )
-        text = (
-            "[exists-relative-link](./test.txt)\n"
-            "[exists-relative-link](./content.md)\n"
-            "[exists-relative-link-fragment](test.txt#Fragment)\n"
-            "[notfound-relative-link](./this/is/not/found.txt#FraGment)\n"
-            "[notfound-relative-link-fragment](./this/is/not/found.md#fraGmenT)\n"
-            "[notfound-relative-link-dotdot](../examples/notfound.txt)\n"
-            "[invalid-absolute-link](www.github.com)\n"
-            "[valid-absolute-link](https://website-random321.net#FRagment) "
-            "[valid-ref-link](#fooTEr)"
-        )
+        # Links are in a page stored undrer base_path
+        base_path = 'test-content'
 
-        content_file = "content.md"
+        # The following pages are synced
+        local_files = {
+            f'{base_path}/content.md': '_index.md',
+            f'{base_path}/else.md': 'else.md',
+            f'{base_path}/test.txt': 'test.txt',
+            'some_other_folder/with_contend.md': 'with_contend.md'
+        }
 
-        # write to file
-        with tempfile.TemporaryDirectory() as tmpdirname:
-            with open(os.path.join(tmpdirname, content_file), 'w+') as content:
-                content.write(text.strip())
-            with open(os.path.join(tmpdirname, 'test.txt'), 'w+') as test:
-                test.write(text.strip())
+        cases = [
+            "[exists-relative-link](./test.txt)",
+            "[exists-relative-link-index](./content.md)",
+            "[exists-relative-link-index](./else.md)",
+            "[exists-relative-link-other-path](../some_other_folder/with_content.md)",
+            "[exists-relative-link-fragment](test.txt#Fragment)",
+            "[notfound-relative-link](./this/is/not/found.txt#FraGment)",
+            "[notfound-relative-link-fragment](./this/is/not/found.md#fraGmenT)",
+            "[notfound-relative-link-dotdot](../examples/notfound.txt)",
+            "[invalid-absolute-link](www.github.com)",
+            ("[valid-absolute-link](https://website-random321.net#FRagment) "
+             "[valid-ref-link](#fooTEr)")
+        ]
+        expected_results = [
+            "[exists-relative-link](/docs/test/test.txt)",
+            "[exists-relative-link-index](/docs/test/)",
+            "[exists-relative-link-index](/docs/test/else/)",
+            "[exists-relative-link-other-path](/docs/test/else/)",
+            "[exists-relative-link-fragment](/docs/test/test.txt#Fragment)",
+            "[notfound-relative-link](http://test.com/tree/docs/test/this/is/not/found.txt#FraGment)",
+            "[notfound-relative-link-fragment](http://test.com/tree/docs/test/this/is/not/found.md#fraGmenT)",
+            "[notfound-relative-link-dotdot](http://test.com/tree/docs/examples/notfound.txt)",
+            "[invalid-absolute-link](http://test.com/tree/docs/www.github.com)",
+            ("[valid-absolute-link](https://website-random321.net#FRagment) "
+             "[valid-ref-link](#footer)")
+        ]
 
-            # mutate file
-            transform_text(folder=tmpdirname,
-                           files={content_file: content_file},
-                           base_path="test-content",
-                           base_url="http://test.com/tree/docs/")
-            # read the result
-            with open(os.path.join(tmpdirname, content_file), 'r') as result:
-                actual = result.read()
+        for case, expected in zip(cases, expected_results):
+            actual = transform_line(
+                line=case, base_path=base_path, local_files=local_files,
+                rewrite_path='/docs/test', rewrite_url='http://test.com/tree/docs/test'
+            )
 
-            self.assertEqual(actual.strip(), expected.strip())
+    def test_transform_doc(self):
+        header = dict(test1='abc', test2=1, test3=True)
+        with tempfile.TemporaryDirectory() as site_dir:
+            expected_result = os.path.join(site_dir, 'target', 'target.md')
+            expected_content = (
+                "---\n"
+                "test1: abc\n"
+                "test2: 1\n"
+                "test3: true\n"
+                "---\n"
+            )
+            actual_result = transform_doc(
+                self.doc, 'test-content', 'target.md', 'target', header, {},
+                '/doc/test', 'http://test.com/test/tree', site_dir)
+            self.assertEqual(actual_result, expected_result)
 
+            with open(expected_result, 'r') as result:
+                actual_content = result.read()
+                self.assertEqual(actual_content, expected_content)
+
+    def test_transform_docs(self):
+        folders_config = {
+            'test-content': {
+                'index': 'content.md',
+                'target': 'target',
+                'include': ['*.md', '*.txt'],
+                'exclude': ['unwanted.txt'],
+                'header': {
+                    'test1': 'abc'
+                }
+            }
+        }
+        with tempfile.TemporaryDirectory() as site_dir:
+            expected_results = [
+                os.path.join(site_dir, 'target', '_index.md'),
+                os.path.join(site_dir, 'target', 'test.txt')]
+
+            template = (
+                "---\n"
+                "test1: abc\n"
+                "weight: {weight}\n"
+                "---\n"
+            )
+            expected_contents = [template.format(weight=idx) for idx in range(2)]
+            actual_results = transform_docs(
+                self.gitrepo, self.tagname, folders_config, site_dir,
+                '/doc/test', 'http://test.com/test/tree')
+            self.assertEqual(set(actual_results), set(expected_results))
+
+            for result, content in zip(expected_results, expected_contents):
+                with open(result, 'r') as result:
+                    actual_content = result.read()
+                    self.assertEqual(actual_content, content)
+
+    @mock.patch('sync.transform_docs')
+    def test_download_resources_to_project(self, transform_docs_mock):
+        folders_config = {
+            'test-content': {
+                'index': 'content.md',
+                'target': 'target',
+                'include': ['*.md', '*.txt'],
+                'exclude': ['unwanted.txt'],
+                'header': {
+                    'test1': 'abc'
+                }
+            }
+        }
+        test_component = {
+            'component': 'test',
+            'repository': 'http://test.com/test',
+            'docDirectory': 'docs',
+            'tags': [{
+                'name': self.tagname,
+                'displayName': self.tagname,
+                'folders': folders_config
+            }]
+        }
+        clones = {'http://test.com/test': self.gitrepo}
+        sync.download_resources_to_project([test_component], clones)
+        transform_docs_mock.assert_called_once_with(
+            git_repo=self.gitrepo,
+            tag=self.tagname,
+            folders=folders_config,
+            site_folder=f'{sync.CONTENT_DIR}/test',
+            base_path='/docs/test',
+            base_url=f'http://test.com/test/tree/{self.tagname}/')
 
 if __name__ == '__main__':
     unittest.main()

@@ -80,8 +80,7 @@ tags:
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: master
-  # Key-value pairs of files to sync, where the key is the original filename
-  # and the value is the new filename.
+  # Dict of folders to sync
   files:
     foo.md : bar.md
 ```
