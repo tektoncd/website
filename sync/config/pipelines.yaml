@@ -30,6 +30,19 @@ archive: https://github.com/tektoncd/pipeline/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+- name: v0.18.0
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.18.0
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+      - api-spec.md
+      - install.md
+      - tutorial.md
 - name: v0.17.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
@@ -40,12 +53,12 @@ tags:
       index: README.md
       include: ['*.md']
       exclude:
-        - api-spec.md
-        - deprecations.md
-        - install.md
-        - runs.md
-        - tekton-bundle-contracts.md
-        - tutorial.md
+      - api-spec.md
+      - deprecations.md
+      - install.md
+      - runs.md
+      - tekton-bundle-contracts.md
+      - tutorial.md
 - name: v0.16.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
@@ -56,10 +69,10 @@ tags:
       index: README.md
       include: ['*.md']
       exclude:
-        - deprecations.md
-        - install.md
-        - runs.md
-        - tutorial.md
+      - deprecations.md
+      - install.md
+      - runs.md
+      - tutorial.md
 - name: v0.15.2
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
@@ -70,9 +83,9 @@ tags:
       index: README.md
       include: ['*.md']
       exclude:
-        - deprecations.md
-        - install.md
-        - tutorial.md
+      - deprecations.md
+      - install.md
+      - tutorial.md
 - name: v0.14.3
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
@@ -83,9 +96,9 @@ tags:
       index: README.md
       include: ['*.md']
       exclude:
-        - deprecations.md
-        - install.md
-        - tutorial.md
+      - deprecations.md
+      - install.md
+      - tutorial.md
 - name: master
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
@@ -96,9 +109,9 @@ tags:
       index: README.md
       include: ['*.md']
       exclude:
-        - api-spec.md
-        - deprecations.md
-        - install.md
-        - runs.md
-        - tekton-bundle-contracts.md
-        - tutorial.md
+      - api-spec.md
+      - deprecations.md
+      - install.md
+      - runs.md
+      - tekton-bundle-contracts.md
+      - tutorial.md
