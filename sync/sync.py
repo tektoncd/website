@@ -60,7 +60,7 @@ def doc_config(doc, folder_config, weight=None):
     :param folder_config: a dict with the configuration of the folder the doc
       was found in, as specified in the sync config file under `folders`
     :params weight: optional weight of the doc. When specified it's set in the
-      returned header dict
+      returned header dict, as long as it's not already defined in the config
     :returns: a tuple (target_filename, target_folder, header), which describes
       which files `doc` should be written to, in which folder, with which header
     """
@@ -74,7 +74,8 @@ def doc_config(doc, folder_config, weight=None):
     if 'header' in folder_config:
         header_dict = copy.deepcopy(folder_config['header'])
         if weight is not None:
-            header_dict['weight'] = weight
+            # Only override if not set in the config
+            header_dict['weight'] = header_dict.get('weight', weight)
     return target_filename, target_folder, header_dict
 
 
@@ -115,7 +116,14 @@ def transform_docs(git_repo, tag, folders, site_folder, base_path, base_url):
 
     # List all relevant blobs based on the folder config
     files = []
+    openapi_results = []
     for folder, folder_config in folders.items():
+        header = folder_config.get('header')
+        if header and header.get('type', '') == 'swagger':
+            # We handle swagger files separately
+            openapi_results.append(
+                write_openapi(folder_config, site_folder))
+            continue
         root = tag.commit.tree.join(folder)
         docs = docs_from_tree(
             tree=root, include=folder_config.get('include', ['*']),
@@ -137,6 +145,7 @@ def transform_docs(git_repo, tag, folders, site_folder, base_path, base_url):
         results = pool.starmap(transform_doc, tranform_args)
 
     # Return the list of files transformed
+    results.extend(openapi_results)
     return results
 
 
@@ -145,6 +154,22 @@ def safe_makedirs(path):
         os.makedirs(path, exist_ok=True)
     except FileExistsError:
         pass
+
+def write_openapi(swagger_config, site_folder):
+    target_folder = swagger_config.get('target', 'openapi')
+    openapi_url = swagger_config.get('url')
+    header = swagger_config.get('header')
+    if not openapi_url:
+        raise Exception(f'Openapi requires a target URL, non provided')
+    site_target_folder = os.path.join(site_folder, target_folder)
+    safe_makedirs(site_target_folder)
+    target = os.path.join(site_target_folder, 'openapi.md')
+    with open(target, 'w+') as target_doc:
+        target_doc.write(YAML_SEPARATOR)
+        YAML().dump(header, target_doc)
+        target_doc.write(YAML_SEPARATOR)
+        target_doc.write(f'\n{{{{< swaggerui src="{openapi_url}" >}}}}\n')
+    return target
 
 
 def transform_doc(doc, source_folder, target, target_folder, header,
@@ -168,9 +193,8 @@ def transform_doc(doc, source_folder, target, target_folder, header,
     :param base_url: used to rewrite relative links to unknown files
     :param site_folder: the root folder on disk where files shall be written to
     """
-    if doc.mime_type != 'text/plain':
-        logging.error(f'Cannot process {doc.mime_type} file {doc.path}')
-        sys.exit(1)
+    if doc.mime_type not in ['text/plain', 'application/json']:
+        raise Exception(f'Cannot process {doc.mime_type} file {doc.path}')
     site_target_folder = os.path.normpath(os.path.join(site_folder, target_folder))
     safe_makedirs(site_target_folder)
     target = os.path.join(site_target_folder, target)
@@ -180,9 +204,10 @@ def transform_doc(doc, source_folder, target, target_folder, header,
             target_doc.write(YAML_SEPARATOR)
             YAML().dump(header, target_doc)
             target_doc.write(YAML_SEPARATOR)
-        for line in decode(doc.data_stream.read()).splitlines():
-            target_doc.write(
-                f'{transform_line(line, source_folder, local_files, base_path, base_url)}\n')
+        else:
+            for line in decode(doc.data_stream.read()).splitlines():
+                target_doc.write(
+                    f'{transform_line(line, source_folder, local_files, base_path, base_url)}\n')
     return target
 
 

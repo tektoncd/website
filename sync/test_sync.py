@@ -29,7 +29,7 @@ from sync import (
     doc_config, docs_from_tree, get_links, is_absolute_url,
     is_fragment, get_tags, load_config, save_config,
     get_files_in_path, transform_link, transform_line,
-    transform_doc, transform_docs)
+    transform_doc, transform_docs, write_openapi)
 
 
 BASE_FOLDER = os.path.dirname(os.path.abspath(__file__))
@@ -357,6 +357,37 @@ class TestSync(unittest.TestCase):
                 with open(result, 'r') as result:
                     actual_content = result.read()
                     self.assertEqual(actual_content, content)
+
+    def test_write_openapi(self):
+        folders_config = {
+            'openapi': {
+                'url': 'http://test.com/swagger.json',
+                'target': 'openapi',
+                'header': {
+                    'test1': 'abc',
+                    'type': 'swagger',
+                    'weight': 123,
+                }
+            }
+        }
+        with tempfile.TemporaryDirectory() as site_dir:
+            expected_result = os.path.join(site_dir, 'openapi', 'openapi.md')
+
+            expected_content = (
+                "---\n"
+                "test1: abc\n"
+                "type: swagger\n"
+                "weight: 123\n"
+                "---\n"
+                "\n{{< swaggerui src=\"http://test.com/swagger.json\" >}}\n"
+            )
+
+            actual_result = write_openapi(folders_config['openapi'], site_dir)
+            self.assertEqual(actual_result, expected_result)
+
+            with open(expected_result, 'r') as result:
+                actual_content = result.read()
+                self.assertEqual(actual_content, expected_content)
 
     @mock.patch('sync.transform_docs')
     def test_download_resources_to_project(self, transform_docs_mock):

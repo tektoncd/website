@@ -102,3 +102,12 @@ tags:
         - runs.md
         - tekton-bundle-contracts.md
         - tutorial.md
+    openapi:
+      target: 'reference'
+      url: https://raw.githubusercontent.com/tektoncd/pipeline/master/pkg/apis/pipeline/v1beta1/swagger.json
+      header:
+        title: "Tekton Pipeline API"
+        type: swagger
+        weight: 0
+        description: >
+          OpenAPI Reference for the Tekton Pipeline  API
