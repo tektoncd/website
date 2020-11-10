@@ -403,15 +403,22 @@ def create_resource(dest_prefix, file, versions):
         f.write(resource)
 
 
-def clone_repo(repo):
+def clone_repo(repo, update):
     project = repo.split('/')[-1]
     clone_dir = os.path.join(DEFAULT_CACHE_FOLDER, project)
 
     if os.path.isdir(clone_dir):
-        # We do not manage local caches
-        # Assume it's cloned and up to date
-        print(f'{project}: Cache folder {clone_dir} found, skipping clone.')
-        return repo, git.Repo(clone_dir)
+        if not update:
+            print(f'{project}: Cache folder {clone_dir} found, skipping clone.')
+            return repo, git.Repo(clone_dir)
+        # Cleanup and update via fetch --all
+        print(f'{project}: updating started')
+        cloned_repo = git.Repo(clone_dir)
+        cloned_repo.git.reset('--hard')
+        cloned_repo.git.clean('-xdf')
+        cloned_repo.git.fetch('--all')
+        print(f'{project}: updating completed')
+        return repo, cloned_repo
 
     # Clone the repo
     print(f'{project}: cloning started')
@@ -420,25 +427,27 @@ def clone_repo(repo):
     return repo, cloned_repo
 
 
-def clone_repos(sync_configs):
+def clone_repos(sync_configs, update):
     # Make sure the cache folder exists
     safe_makedirs(DEFAULT_CACHE_FOLDER)
 
     with Pool() as pool:
-        results = pool.map(clone_repo, [x['repository'] for x in sync_configs])
+        results = pool.starmap(clone_repo, [(x['repository'], update) for x in sync_configs])
     return {x: y for x, y in results}
 
 
 @click.command()
 @click.option('--config-folder', default=DEFAULT_CONFIG_FOLDER,
               help='the folder that contains the config files')
-def sync(config_folder):
+@click.option('--update-cache/--no-update-cache', default=False,
+              help='update clone caches. !! This will force cleanup caches !!')
+def sync(config_folder, update_cache):
     """ fetch all the files and sync it to the website """
     # get the path of the urls needed
     config_files = get_files_in_path(config_folder, ".yaml")
     config = [x["content"] for x in load_config(config_files)]
     # clone all relevant repos
-    clones = clone_repos(config)
+    clones = clone_repos(config, update_cache)
     # download resources from the clone cache
     download_resources_to_project(config, clones)
     versions = get_versions(config)

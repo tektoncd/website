@@ -1,6 +1,6 @@
 .PHONY: sync
 sync:
-	python3 sync/sync.py
+	python3 sync/sync.py --update-cache
 
 .PHONY: serve
 serve:
