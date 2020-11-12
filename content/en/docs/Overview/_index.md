@@ -1,14 +1,12 @@
 <!--
 ---
+title: "Overview of Tekton"
 linkTitle: "Overview of Tekton"
 weight: 1
+description: >
+  Components, benefits and caveats, common usage.
 ---
 -->
-
-# Overview of Tekton
-
-This document describes Tekton, its components, as well as its benefits and caveats. It also describes the most
-common usage scenarios for Tekton.
 
 ## What is Tekton?
 
