@@ -1,4 +1,4 @@
-# Contributing to the Tekton website
+# Contributing to the Tekton Website
 
 Thanks for considering contributing to our project!
 
@@ -7,9 +7,17 @@ Thanks for considering contributing to our project!
 
 To get started developing, see our [DEVELOPMENT.md](./DEVELOPMENT.md) and [DOC-CON-MAIN.md](./content/en/doc-con-main.md).
 
-- The [OWNERS](OWNERS) of this repo are the
-  [members of the Tekton governing board](https://github.com/tektoncd/community/blob/master/governance.md)
-  as well as folks from the Linux Foundation who contribute to this project.
+The [OWNERS](OWNERS) of this repo are:
+- [members of the Tekton governing board](https://github.com/tektoncd/community/blob/master/governance.md)
+
+-  regular contributors who were elected by the Tekton governing board. 
+
+For a contributor to be noimated as an owner for the tekton website repo:
+
+- create 5 pull requests for the tekton website
+- regulary attend the docs/website working group
+
+attend the as well as folks from the Linux Foundation who contribute to this project on a regular basis. 
 
 In [the community repo](https://github.com/tektoncd/community) you'll find info
 on:
