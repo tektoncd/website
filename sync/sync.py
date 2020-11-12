@@ -186,7 +186,7 @@ def transform_doc(doc, source_folder, target, target_folder, header,
     return target
 
 
-def decode(s, encodings=('ascii', 'utf8', 'latin1')):
+def decode(s, encodings=('utf8', 'latin1', 'ascii')):
     for encoding in encodings:
         try:
             return s.decode(encoding)
