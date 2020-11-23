@@ -30,10 +30,10 @@ archive: https://github.com/tektoncd/pipeline/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
-- name: v0.18.0
+- name: v0.18.1
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
-  displayName: v0.18.0
+  displayName: v0.18.1
   # Dict of folders to sync
   folders:
     docs:
