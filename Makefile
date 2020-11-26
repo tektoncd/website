@@ -5,6 +5,7 @@ sync:
 .PHONY: serve
 serve:
 	hugo server \
+	--baseURL $(URL) \
 	--buildDrafts \
 	--buildFuture \
 	--disableFastRender \
@@ -13,7 +14,7 @@ serve:
 
 .PHONY: production-build
 production-build: sync
-	hugo
+	hugo --baseURL $(URL)
 
 .PHONY: preview-build
 preview-build: sync
