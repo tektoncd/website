@@ -5,11 +5,17 @@
 [build.environment]
   HUGO_VERSION = "0.53"
 
-[dev]
-  command = "make serve URL=http://localhost:8888/"
+[context.production.environment]
+  HUGO_ENV = "production"
 
 [context.deploy-preview]
+  HUGO_ENV = "staging"
   command = "make preview-build"
 
 [context.branch-deploy]
   command = "make preview-build"
+
+
+
+[dev]
+  command = "make serve URL=http://localhost:8888/"
