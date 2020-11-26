@@ -1,12 +1,15 @@
 [build]
-publish = "public"
-command = "make production-build"
+  publish = "public"
+  command = "make production-build"
 
 [build.environment]
-HUGO_VERSION = "0.53"
+  HUGO_VERSION = "0.53"
+
+[dev]
+  command = "make serve URL=http://localhost:8888/"
 
 [context.deploy-preview]
-command = "make preview-build"
+  command = "make preview-build"
 
 [context.branch-deploy]
-command = "make preview-build"
+  command = "make preview-build"
