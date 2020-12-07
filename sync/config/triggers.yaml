@@ -30,6 +30,20 @@ archive: https://github.com/tektoncd/triggers/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+- name: v0.10.1
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.10.1
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+      - create-webhook.yaml
 - name: v0.9.1
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
