@@ -18,15 +18,19 @@ filling in the form with the following information:
 
 Repository URL: `https://github.com/ncskier/myapp`{{copy}}
 
-Namespace: `default`
+Repository path: `tekton/`{{copy}}
 
-Repository directory: `tekton/`{{copy}}
+Target namespace: `default`
 
-Service Account `tekton-dashboard`
+Expand the 'Advanced configuration' section and fill in the following:
+
+Service Account: `tekton-dashboard`
+
+Leave the default values for the rest of the fields.
 
 The form should look like the following:
 
-![Import Tekton resources screenshot.](./assets/import-tekton-resources.png)
+![Import Tekton resources screenshot.](./assets/import-tekton-resources.jpg)
 
 Click the `Import and Apply` button.
 
@@ -37,8 +41,8 @@ The Dashboard creates a PipelineRun to import the specified Tekton resources.
 Click on the `View status of this run` link at the bottom of the page to view
 the status of importing the Tekton resources for MyApp.
 
-![View status of importing Tekton resources screenshot.](./assets/view-status-of-pipeline0.png)
+![View status of importing Tekton resources screenshot.](./assets/view-status-of-pipeline0.jpg)
 
 The Tekton resources have been imported when the PipelineRun has completed.
 
-![Import Tekton resources PipelineRun logs screenshot.](./assets/import-pipelinerun-logs.png)
+![Import Tekton resources PipelineRun logs screenshot.](./assets/import-pipelinerun-logs.jpg)
