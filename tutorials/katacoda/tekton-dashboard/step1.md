@@ -11,7 +11,7 @@ Now, let's begin!
 ## Install the Tekton Dashboard Prerequisites
 
 - [Tekton Pipelines](https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
-`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.15.2/release.yaml`{{execute}}
+`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.20.0/release.yaml`{{execute}}
 
 Verify the pods are running:
 `kubectl get pods -n tekton-pipelines`{{execute}}
@@ -20,7 +20,7 @@ Verify the pods are running:
 
 For reference, the installation instructions are [here](https://github.com/tektoncd/dashboard#install-dashboard). To install the Tekton Dashboard, run the following
 command:
-`kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/previous/v0.8.2/tekton-dashboard-release.yaml`{{execute}}
+`kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/previous/v0.13.0/tekton-dashboard-release.yaml`{{execute}}
 
 <!-- `kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/release.yaml`{{execute}} -->
 
@@ -46,4 +46,4 @@ https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/.
 
 It might take a minute for the ingress and Katacoda to get set up.
 
-![Dashboard homepage screenshot](./assets/dashboard-homepage.png)
+![Dashboard homepage screenshot](./assets/dashboard-homepage.jpg)

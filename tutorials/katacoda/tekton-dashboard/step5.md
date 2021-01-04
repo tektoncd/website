@@ -6,15 +6,15 @@ Then, we will open MyApp.
 View the PipelineRun logs for the MyApp PipelineRun by clicking on the link in
 the creation notification at the top of the page.
 
-![PipelineRun creation notification screenshot.](./assets/pipeline-run-created-notification.png)
+![PipelineRun creation notification screenshot.](./assets/pipeline-run-created-notification.jpg)
 
 Or select the PipelineRun from the list of PipelineRuns.
 
-![View the running PipelineRun logs for MyApp screenshot.](./assets/pipeline-run-running.png)
+![View the running PipelineRun logs for MyApp screenshot.](./assets/pipeline-run-running.jpg)
 
-Verify both the `build` and `deploy` tasks have passed.
+Wait until both the `build` and `deploy` tasks have passed.
 
-![View the completed PipelineRun logs for MyApp screenshot.](./assets/pipeline-run-completed.png)
+![View the completed PipelineRun logs for MyApp screenshot.](./assets/pipeline-run-completed.jpg)
 
 ## Open the Deployed App
 
@@ -26,4 +26,4 @@ kubectl port-forward --address=0.0.0.0 service/myapp 3000:3000 > /dev/null 2>&1 
 Click on the following link to open the app:
 https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
-![View MyApp screenshot.](./assets/view-myapp.png)
+![View MyApp screenshot.](./assets/view-myapp.jpg)
