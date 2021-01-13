@@ -14,8 +14,8 @@ To run this script locally, set up a Python 3 environment and execute
 the script:
 
 ```bash
-python3 -m venv tkn_web_env
-source tkn_web_env/bin/activate    
+python3 -m venv .venv
+source .venv/bin/activate    
 pip3 install -r requirements.txt
 ./sync/sync.py
 ```
@@ -112,10 +112,10 @@ To run this script locally, set up a Python 3 environment and execute
 the script:
 
 ```bash
-python3 -m venv tkn_web_env
-source tkn_web_env/bin/activate    
+python3 -m venv .venv
+source .venv/bin/activate    
 pip3 install -r requirements.txt
-./sync/versions.py -p <project-name> -r <version-name>
+./sync/versions.py add --project <project-name> <version-name>
 ```
 
 **Note:** Follow [these steps](../DEVELOPMENT.md) to run the entire website locally.
@@ -141,7 +141,7 @@ Commands:
 
 Adding a new version to the pipeline project:
 ```bash
-$ ./sync/versions.py add v0.18.0
+$ ./sync/versions.py add v0.18.0 --project pipeline
 ```
 
 Adding a new minor to the triggers project, and remove the old one:
