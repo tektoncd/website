@@ -7,9 +7,7 @@ description: >
 ---
 
 {{% tutorial name="Getting started with Tekton"
-             katacoda-src="ratrosyu/getting-started"
-             github-lnk="michaelawyu/tekton-examples/tree/master/getting-started"
-             qwiklabs-lnk="" %}}
+             katacoda-lnk="https://katacoda.com/tektoncd/scenarios/getting-started" %}}
 
 ## Prerequisites
 
