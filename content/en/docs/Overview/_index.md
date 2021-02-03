@@ -63,7 +63,7 @@ Tekton consists of the following components:
 - **[Tekton Catalog](https://github.com/tektoncd/catalog/blob/v1beta1/README.md)** is a repository of high-quality, community-contributed
   Tekton building blocks - `Tasks`, `Pipelines`, and so on - that are ready for use in your own pipelines.
 
-- **[Tekton Hub](https://github.com/tektoncd/hub/blob/master/README.md)** is a Web-based graphical interface for accessing the Tekton Catalog.
+- **[Tekton Hub](https://github.com/tektoncd/hub/blob/main/README.md)** is a Web-based graphical interface for accessing the Tekton Catalog.
 
 - **[Tekton Operator](https://github.com/tektoncd/operator/blob/master/README.md)** is a Kubernetes [Operator pattern](https://operatorhub.io/what-is-an-operator)
   that allows you to install, update, and remove Tekton projects on your Kubernetes cluster.
