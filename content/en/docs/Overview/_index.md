@@ -57,8 +57,8 @@ Tekton consists of the following components:
 - **[Tekton CLI](https://github.com/tektoncd/cli/blob/master/README.md)** provides a command-line interface called `tkn`, built on top
   of the Kubernetes CLI, that allows you to interact with Tekton. 
 
-- **[Tekton Dashboard](https://github.com/tektoncd/dashboard/blob/master/README.md)** is a Web-based graphical interface for Tekton
-  Pipelines that displays information about the execution of your pipelines. It is currently a work-in-progress. 
+- **[Tekton Dashboard](https://github.com/tektoncd/dashboard/blob/main/README.md)** is a Web-based graphical interface for Tekton
+  Pipelines that displays information about the execution of your pipelines. It is currently a work-in-progress.
 
 - **[Tekton Catalog](https://github.com/tektoncd/catalog/blob/v1beta1/README.md)** is a repository of high-quality, community-contributed
   Tekton building blocks - `Tasks`, `Pipelines`, and so on - that are ready for use in your own pipelines.
