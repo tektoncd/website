@@ -10,7 +10,7 @@ Now, let's begin!
 
 ## Install the Tekton Dashboard Prerequisites
 
-- [Tekton Pipelines](https://github.com/tektoncd/pipeline/blob/master/docs/install.md)
+- [Tekton Pipelines](https://github.com/tektoncd/pipeline/blob/main/docs/install.md)
 `kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.20.0/release.yaml`{{execute}}
 
 Verify the pods are running:
