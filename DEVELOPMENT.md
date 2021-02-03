@@ -18,24 +18,42 @@
 
 Step 1
 ```bash
+# Clone the repo
 git clone https://github.com/tektoncd/website && cd website
 ```
+
 Step 2
 ```bash
+# Install node modules
 npm install
 ```
+
 Step 3
 ```bash
-pip install -r requirements.txt
+Install the sync script (https://github.com/tektoncd/website/blob/master/sync/README.md)
+python3 -m venv .venv
+source .venv/bin/activate    
+pip3 install -r requirements.txt
+
 ```
 Step 4
 ```bash
-python3 sync/sync.py
+# Run the sync.
+# This clones docs repositories to local cache and builds the
+# documentation content for the website
+./sync/sync.py
 ```
+
 Step 5
 ```bash
+# Build and serve the website locally
 netlify dev
 ```
+
+The `sync.py` script clones the required repositories to a local cache folder, by default `sync/.cache`.
+You can modify content and create commits in your local cache to test changes to the original docs.
+
+To force and update of the local cache, use `./sync/sync.py --update-cache`.
 
 ## tekton.dev
 
