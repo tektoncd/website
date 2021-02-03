@@ -30,10 +30,28 @@ archive: https://github.com/tektoncd/cli/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
-- name: v0.13.0
+- name: v0.15.0
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
-  displayName: v0.13.0
+  displayName: v0.15.0
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+- name: v0.14.0
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.14.0
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+- name: v0.13.1
+  # The name to display on tekton.dev.
+  # helper.py will use this value in the version switcher and other places.
+  displayName: v0.13.1
   # Dict of folders to sync
   folders:
     docs:
