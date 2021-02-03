@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/tektoncd/website/master/tutorials/katacoda/logo.png)
+![logo](https://raw.githubusercontent.com/tektoncd/website/main/tutorials/katacoda/logo.png)
 
 Tekton is a powerful and flexible open-source framework for creating
 CI/CD systems, allowing developers to build, test, and deploy across

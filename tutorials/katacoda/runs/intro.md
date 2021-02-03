@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/tektoncd/website/master/tutorials/katacoda/logo.png)
+![logo](https://raw.githubusercontent.com/tektoncd/website/main/tutorials/katacoda/logo.png)
 
 [Tekton](https://tekton.dev) is a cloud native continuous integration and
 delivery (CI/CD) solution. It allows developers to build, test, and deploy

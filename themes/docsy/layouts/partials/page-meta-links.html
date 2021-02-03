@@ -4,19 +4,19 @@
 {{ $gh_project_repo := ($.Param "github_project_repo") }}
 {{ if $gh_repo }}
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-{{ $editURL := printf "%s/edit/master/content/%s" $gh_repo .Path }}
+{{ $editURL := printf "%s/edit/main/content/%s" $gh_repo .Path }}
 {{ if $gh_project_repo }}
 {{ $filename := .File.LogicalName }}
 {{ if and $gh_project_repo (eq $filename "_index.md") }}
 {{ $filename = "README.md" }}
 {{ end }}
-{{ $editURL = printf "%s/edit/master/docs/%s" $gh_project_repo $filename }}
+{{ $editURL = printf "%s/edit/main/docs/%s" $gh_project_repo $filename }}
 {{ else if and ($gh_subdir) (.Site.Language.Lang) }}
-{{ $editURL = printf "%s/edit/master/%s/content/%s/%s" $gh_repo $gh_subdir ($.Site.Language.Lang) $.Path }}
+{{ $editURL = printf "%s/edit/main/%s/content/%s/%s" $gh_repo $gh_subdir ($.Site.Language.Lang) $.Path }}
 {{ else if .Site.Language.Lang }}
-{{ $editURL = printf "%s/edit/master/content/%s/%s" $gh_repo ($.Site.Language.Lang) .Path }}
+{{ $editURL = printf "%s/edit/main/content/%s/%s" $gh_repo ($.Site.Language.Lang) .Path }}
 {{ else if $gh_subdir }}
-{{ $editURL = printf "%s/edit/master/%s/content/%s" $gh_repo $gh_subdir $.Path }}
+{{ $editURL = printf "%s/edit/main/%s/content/%s" $gh_repo $gh_subdir $.Path }}
 {{ end }}
 {{ $issuesURL := printf "%s/issues/new?title=%s" $gh_repo (htmlEscape ($.Title | default $.LinkTitle ))}}
 <a href="{{ $editURL }}" target="_blank"><i class="fa fa-edit fa-fw"></i> {{ T "post_edit_this" }}</a>

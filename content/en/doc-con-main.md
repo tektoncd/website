@@ -46,10 +46,10 @@ Here's how we handle different types of documentation work:
 If you're making a quick fix, such as a typo, or adding a few words of clarification, simply
 submit a pull request against the relevant [Tekton repository](https://github.com/tektoncd).
 If you're submitting a larger change, also create an issue that describes the new or updated
-content and link the pull request to it. 
+content and link the pull request to it.
 
 **Note:** If you're creating a new page, make sure to include its proposed location within the
-Tekton documentation set. 
+Tekton documentation set.
 
 Assign the pull request and if applicable, the accompanying issue to @sergetron, Tekton's
 technical writer. The pull request then goes through technical and editorial review, and is
@@ -66,7 +66,7 @@ of this guide to learn how to produce clear, concise, and informative documentat
 
 If you found a problem with Tekton documentation but can't fix it yourself, you can request a
 documentation improvement by creating an issue against the relevant [Tekton repository](https://github.com/tektoncd)
-and assigning it to @sergetron, Tekton's technical writer. 
+and assigning it to @sergetron, Tekton's technical writer.
 
 We evaluate the need to determine the scope of the requested content and an estimated delivery
 time based on our current workload. We then place the issue in the documentation queue.
@@ -78,11 +78,11 @@ review, and is published on the Tekton documentation website.
 
 Submit a documentation change by opening a pull request against the relevant
 [Tekton repository](https://github.com/tektoncd). Documentation for each project is stored
-in the `docs` directory within the repository. 
+in the `docs` directory within the repository.
 
 Tekton documentation is mirrored on the [Tekton website](https://tekton.dev) with the GitHub
 repositories acting as the source of truth. If you are adding a new page to a project's documentation,
-you must also [add it to the website's configuration](https://github.com/tektoncd/website/tree/master/sync/config)
+you must also [add it to the website's configuration](https://github.com/tektoncd/website/tree/main/sync/config)
 so that it's picked up by the synchronization script and appears in the navigation tree in the
 "Documentation" section. Depending on the content you're adding, you may also want to add links
 to your new page to existing Tekton documentation.
@@ -90,7 +90,7 @@ to your new page to existing Tekton documentation.
 ## I need help!
 
 If you're not sure how to address a certain documentation issue, join the
-[#docs channel](https://app.slack.com/client/TJ45YV83X/CQYFEE00K) on the Tekton Slack and ask! 
+[#docs channel](https://app.slack.com/client/TJ45YV83X/CQYFEE00K) on the Tekton Slack and ask!
 
 Also, before and while you contribute, read the following topics:
 
