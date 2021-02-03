@@ -54,8 +54,8 @@ Tekton consists of the following components:
   For example, you can trigger the instantiation and execution of a pipeline every time a PR is merged against a GitHub repository. You
   can also build a user interface that launches specific Tekton triggers. 
 
-- **[Tekton CLI](https://github.com/tektoncd/cli/blob/master/README.md)** provides a command-line interface called `tkn`, built on top
-  of the Kubernetes CLI, that allows you to interact with Tekton. 
+- **[Tekton CLI](https://github.com/tektoncd/cli/blob/main/README.md)** provides a command-line interface called `tkn`, built on top
+  of the Kubernetes CLI, that allows you to interact with Tekton.
 
 - **[Tekton Dashboard](https://github.com/tektoncd/dashboard/blob/main/README.md)** is a Web-based graphical interface for Tekton
   Pipelines that displays information about the execution of your pipelines. It is currently a work-in-progress.
@@ -75,7 +75,7 @@ To install Tekton, you need a Kubernetes cluster running a
 [version of Kubernetes specified for the current Tekton release](https://github.com/tektoncd/pipeline/#want-to-start-using-pipelines).
 Once installed, you can interact with Tekton using one of the following:
 
-- **[The tkn CLI](https://github.com/tektoncd/cli/blob/master/README.md)**, also known as the Tekton CLI, is the preferred command-line method
+- **[The tkn CLI](https://github.com/tektoncd/cli/blob/main/README.md)**, also known as the Tekton CLI, is the preferred command-line method
   for interacting with Tekton. `tkn` provides a quick and streamlined experience, including high-level commands and color coding. To use it,
   you only need to be familiar with Tekton.
 - **[The kubectl CLI](https://kubernetes.io/docs/reference/kubectl/overview/)**, also known as the Kubernetes CLI, provides substantially more
