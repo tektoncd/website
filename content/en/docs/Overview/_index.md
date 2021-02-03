@@ -50,9 +50,9 @@ Tekton consists of the following components:
   defines a set of Kubernetes [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
   that act as building blocks from which you can assemble CI/CD pipelines. 
 
-- **[Tekton Triggers](https://github.com/tektoncd/triggers/blob/master/README.md)** allows you to instantiate pipelines based on events.
+- **[Tekton Triggers](https://github.com/tektoncd/triggers/blob/main/README.md)** allows you to instantiate pipelines based on events.
   For example, you can trigger the instantiation and execution of a pipeline every time a PR is merged against a GitHub repository. You
-  can also build a user interface that launches specific Tekton triggers. 
+  can also build a user interface that launches specific Tekton triggers.
 
 - **[Tekton CLI](https://github.com/tektoncd/cli/blob/main/README.md)** provides a command-line interface called `tkn`, built on top
   of the Kubernetes CLI, that allows you to interact with Tekton.
