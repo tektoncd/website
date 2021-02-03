@@ -99,10 +99,10 @@ tags:
       - '*.md'
       - create-ingress.yaml
       - create-webhook.yaml
-- name: master
+- name: main
   # The name to display on tekton.dev.
   # helper.py will use this value in the version switcher and other places.
-  displayName: master
+  displayName: main
   # Dict of folders to sync
   folders:
     docs:
