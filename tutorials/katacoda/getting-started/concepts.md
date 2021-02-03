@@ -7,4 +7,4 @@ For example, if you plan to build a CI/CD system that builds source code
 from your GitHub repository into a container image, the Tekton pipeline may
 look as follows:
 
-![architecture](https://github.com/tektoncd/website/tree/master/tutorials/katacoda/getting-started/images/architecture.png?raw=true)
+![architecture](https://github.com/tektoncd/website/tree/main/tutorials/katacoda/getting-started/images/architecture.png?raw=true)

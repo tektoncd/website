@@ -8,8 +8,7 @@ spec:
   params:
   # The revision/branch of the repository
   - name: revision
-    value: master
+    value: main
   # The URL of the repository
   - name: url
     value: https://github.com/tektoncd/website/
-
