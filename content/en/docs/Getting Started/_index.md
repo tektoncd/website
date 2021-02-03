@@ -46,11 +46,11 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline
 ```
 
 Replace `YOUR-VERSION` with the release you prefer. [You can find the full list
-of official Tekton releases on GitHub](https://github.com/tektoncd/pipeline/releases). 
+of official Tekton releases on GitHub](https://github.com/tektoncd/pipeline/releases).
 
 Additionally, Tekton Pipelines pushes nightly releases every night to
 `gcr.io/tekton-nightly`. If you are feeling adventurous and would like to
-experiment with the most recent, unreleased code, see [Tekton Development Guide](https://github.com/tektoncd/pipeline/blob/master/DEVELOPMENT.md).
+experiment with the most recent, unreleased code, see [Tekton Development Guide](https://github.com/tektoncd/pipeline/blob/main/DEVELOPMENT.md).
 {{% /alert %}}
 
 It may take a few moments before the installation completes. You can check
