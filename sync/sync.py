@@ -26,15 +26,16 @@ import markdown
 from multiprocessing import Pool
 import os
 import os.path
+import re
 import sys
 from urllib.error import URLError
 from urllib.parse import urlparse, urljoin, urlunparse
 
+from bs4 import BeautifulSoup
 import click
 import git
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
-from lxml import etree
 from ruamel.yaml import YAML
 
 
@@ -49,7 +50,9 @@ DEFAULT_CACHE_FOLDER = os.path.join(BASE_FOLDER, '.cache')
 
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
+FM_BOUNDARY = re.compile(r"^(?:<!--\n)?-{3,}\s*$(?:\n-->)?", re.MULTILINE)
 YAML_SEPARATOR = "---\n"
+
 FOLDER_INDEX = '_index.md'
 
 
@@ -176,13 +179,13 @@ def transform_doc(doc, source_folder, target, target_folder, header,
     target = os.path.join(site_target_folder, target)
     with open(target, 'w+') as target_doc:
         # If there is an header configured, write it (in YAML)
-        if header:
-            target_doc.write(YAML_SEPARATOR)
-            YAML().dump(header, target_doc)
-            target_doc.write(YAML_SEPARATOR)
-        for line in decode(doc.data_stream.read()).splitlines():
-            target_doc.write(
-                f'{transform_line(line, source_folder, local_files, base_path, base_url)}\n')
+        doc_all = decode(doc.data_stream.read())
+        doc_markdown, fm = read_front_matter(doc_all)
+        # Update the doc front matter with the configured one and write it
+        write_front_matter(target_doc, fm, header)
+        doc_markdown = transform_links_doc(
+            doc_markdown, source_folder, local_files, base_path, base_url)
+        target_doc.write(doc_markdown)
     return target
 
 
@@ -195,29 +198,45 @@ def decode(s, encodings=('utf8', 'latin1', 'ascii')):
     return s.decode('ascii', 'ignore')
 
 
-def transform_line(line, base_path, local_files, rewrite_path, rewrite_url):
-    """ transform all the links in one line """
-    line = line.rstrip()
-    links = get_links(line)
-    # If there are links in this line we may need to fix them
-    for link in links:
-        # link contains the text and href
-        href =link.get("href")
-        href_mod = transform_link(href, base_path, local_files, rewrite_path, rewrite_url)
-        line = line.replace(href, href_mod)
-    return line
+def read_front_matter(text):
+    """ returns a tuple text, frontmatter (as dict) """
+    if FM_BOUNDARY.match(text):
+        try:
+            _, fm, content = FM_BOUNDARY.split(text, 2)
+        except ValueError:
+            # Not enough values to unpack, boundary was matched once
+            return text, None
+        if content.startswith('\n'):
+            content = content[1:]
+        return content, YAML().load(fm)
+    else:
+        return text, None
+
+def write_front_matter(target_doc, fm_doc, fm_config):
+    fm_doc = fm_doc or {}
+    fm_config = fm_config or {}
+    fm_doc.update(fm_config)
+    if fm_doc:
+        target_doc.write(YAML_SEPARATOR)
+        YAML().dump(fm_doc, target_doc)
+        target_doc.write(YAML_SEPARATOR)
+
+def transform_links_doc(text, base_path, local_files, rewrite_path, rewrite_url):
+    """ transform all the links the text """
+    links = get_links(text)
+    # Rewrite map, only use links with an href
+    rewrite_map = {x.get("href"): transform_link(x.get("href"), base_path, local_files, rewrite_path, rewrite_url)
+        for x in links if x.get("href")}
+    for source, target in rewrite_map.items():
+        text = text.replace(source, target)
+    return text
 
 
 def get_links(md):
     """ return a list of all the links in a string formatted in markdown """
     md = markdown.markdown(md)
-    try:
-        doc = etree.fromstring(md)
-        return doc.xpath('//a')
-    except etree.XMLSyntaxError:
-        pass
-
-    return []
+    soup = BeautifulSoup(md, 'html.parser')
+    return soup.find_all("a")
 
 
 def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):

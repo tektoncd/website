@@ -28,8 +28,8 @@ import sync
 from sync import (
     doc_config, docs_from_tree, get_links, is_absolute_url,
     is_fragment, get_tags, load_config, save_config,
-    get_files_in_path, transform_link, transform_line,
-    transform_doc, transform_docs)
+    get_files_in_path, transform_link, transform_links_doc,
+    transform_doc, transform_docs, read_front_matter)
 
 
 BASE_FOLDER = os.path.dirname(os.path.abspath(__file__))
@@ -257,7 +257,7 @@ class TestSync(unittest.TestCase):
                 transform_link(case, base_path, local_files, rewrite_path, rewrite_url),
                 expected)
 
-    def test_transform_line(self):
+    def test_transform_links_doc(self):
         self.maxDiff = None
 
         # Links are in a page stored undrer base_path
@@ -282,7 +282,9 @@ class TestSync(unittest.TestCase):
             "[notfound-relative-link-dotdot](../examples/notfound.txt)",
             "[invalid-absolute-link](www.github.com)",
             ("[valid-absolute-link](https://website-random321.net#FRagment) "
-             "[valid-ref-link](#fooTEr)")
+             "[valid-ref-link](#fooTEr)"),
+            ("Valid link broken on two lines [exists-link-in-list]("
+            "./test.txt)")
         ]
         expected_results = [
             "[exists-relative-link](/docs/test/test.txt)",
@@ -295,14 +297,33 @@ class TestSync(unittest.TestCase):
             "[notfound-relative-link-dotdot](http://test.com/tree/docs/examples/notfound.txt)",
             "[invalid-absolute-link](http://test.com/tree/docs/www.github.com)",
             ("[valid-absolute-link](https://website-random321.net#FRagment) "
-             "[valid-ref-link](#footer)")
+             "[valid-ref-link](#footer)"),
+            ("Valid link broken on two lines [exists-link-in-list]("
+            "/docs/test/test.txt)")
         ]
 
         for case, expected in zip(cases, expected_results):
-            actual = transform_line(
-                line=case, base_path=base_path, local_files=local_files,
+            actual = transform_links_doc(
+                text=case, base_path=base_path, local_files=local_files,
                 rewrite_path='/docs/test', rewrite_url='http://test.com/tree/docs/test'
             )
+
+    def test_read_front_matter(self):
+        cases = [
+            'abc',
+            '---\ntest1',
+            '---\ntest1: abc\ntest2: 1\n---\nabc',
+            '<!--\n---\ntest1: abc\ntest2: 1\n---\n-->\nabc'
+        ]
+        expected = [
+            ('abc', None),
+            ('---\ntest1', None),
+            ('abc', {"test1": "abc", "test2": 1}),
+            ('abc', {"test1": "abc", "test2": 1})
+        ]
+        for case, exp in zip(cases, expected):
+            actual = read_front_matter(case)
+            self.assertEqual(actual, exp)
 
     def test_transform_doc(self):
         header = dict(test1='abc', test2=1, test3=True)
