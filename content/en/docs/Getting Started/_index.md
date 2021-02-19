@@ -218,7 +218,7 @@ rpm-based distros).
     ```bash
     # Replace LINK-TO-THE-PACKAGE with the package URL you would like to use.
     curl -LO LINK-TO-THE-PACKAGE
-    sudo apt install ./PACKAGE-NAME
+    sudo dpkg -i ./PACKAGE-NAME
     ```
 
     If you are using the latest releases of Ubuntu or Debian, you may use the
