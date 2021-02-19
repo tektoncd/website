@@ -176,7 +176,13 @@ def transform_doc(doc, source_folder, target, target_folder, header,
     target = os.path.join(site_target_folder, target)
     with open(target, 'w+') as target_doc:
         # If there is an header configured, write it (in YAML)
+        # If there is no title set, use the filename
+        # If there is not linkTitle set, use the title
         if header:
+            filename, _ = os.path.splitext(doc.name)
+            header['title'] = header.get('title', filename)
+            header['linkTitle'] = header.get('linkTitle',
+                header.get('title', filename))
             target_doc.write(YAML_SEPARATOR)
             YAML().dump(header, target_doc)
             target_doc.write(YAML_SEPARATOR)

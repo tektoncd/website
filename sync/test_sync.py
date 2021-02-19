@@ -313,6 +313,8 @@ class TestSync(unittest.TestCase):
                 "test1: abc\n"
                 "test2: 1\n"
                 "test3: true\n"
+                "title: content\n"
+                "linkTitle: content\n"
                 "---\n"
             )
             actual_result = transform_doc(
@@ -345,9 +347,12 @@ class TestSync(unittest.TestCase):
                 "---\n"
                 "test1: abc\n"
                 "weight: {weight}\n"
+                "title: {name}\n"
+                "linkTitle: {name}\n"
                 "---\n"
             )
-            expected_contents = [template.format(weight=idx) for idx in range(2)]
+            expected_contents = [template.format(weight=idx, name=name)
+                for idx, name in zip(range(2), ['content', 'test'])]
             actual_results = transform_docs(
                 self.gitrepo, self.tagname, folders_config, site_dir,
                 '/doc/test', 'http://test.com/test/tree')
