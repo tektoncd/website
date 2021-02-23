@@ -57,3 +57,28 @@ These two YAML files control the synchronization/curation from the `tektoncd/pip
 and `tektoncd/triggers` repositories respectively.
 
 The YAML files here are used by the scripts in `../sync`.
+
+## Subdirectory configuration
+
+Each doc folder should have its own `folders` config. For example, to configure
+all Markdown files in a repo with the following folder structure:
+
+```text
+docs
+├── subdir
+│   └── README.md
+└── README.md
+```
+
+The `folders` config should look like:
+
+```yaml
+folders:
+  docs:
+    index: README.md
+    include: ['*.md']
+  docs/subdir:
+    target: subdir
+    index: README.md
+    include: ['*.md']
+```
