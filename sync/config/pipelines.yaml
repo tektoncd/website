@@ -135,10 +135,10 @@ tags:
       - deprecations.md
       - install.md
       - tutorial.md
-- name: master
+- name: main
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
-  displayName: master
+  displayName: main
   # Dict of folders to sync
   folders:
     docs:
