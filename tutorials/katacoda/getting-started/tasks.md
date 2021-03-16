@@ -53,7 +53,7 @@ tool image to build a Go program, or run tests in a Go project.
 You can also find many available images on container registries such as
 DockerHub, and [Google Cloud Platform tool images (builder images) GitHub repository](https://github.com/GoogleCloudPlatform/cloud-builders).
 Of course, if you prefer, it is possible to use an image of your own
-instead as well.
+instead.
 
 In this lab, since `app/` includes a Python web application, you will use the
 [Python](https://hub.docker.com/_/python) tool image. In the same file, add a
