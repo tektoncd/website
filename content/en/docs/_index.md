@@ -1,6 +1,6 @@
 
 ---
-title: "Tekton Documentation"
+title: "Welcome to Tekton"
 linkTitle: "Documentation"
 weight: 20
 menu:
@@ -8,14 +8,10 @@ menu:
     weight: 20
 ---
 
-Tekton is a cloud native continuous integration and delivery (CI/CD)
-solution. It allows developers to build, test, and deploy across cloud
-providers and on-premise systems.
-
-### What's next
-
-To get started, read the contents below.
-
+Tekton is a cloud-native solution for building CI/CD systems. It consists of Tekton Pipelines, which provides
+the building blocks, and of supporting components, such as Tekton CLI and Tekton Catalog, that make Tekton a complete ecosystem.  
+Tekton is part of the [CD Foundation](https://cd.foundation/), a [Linux Foundation](https://www.linuxfoundation.org/projects/) project. For more information, see the [Overview of Tekton](/docs/overview). 
+ 
 {{% alert title="Note" color="success" %}}
 
 Tekton provides a number of interactive tutorials at [tekton.dev/try](/try)
