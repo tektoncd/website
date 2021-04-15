@@ -16,6 +16,8 @@ defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
 
+hasCJKLanguage = true
+
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
 # Highlighting config
@@ -61,6 +63,18 @@ description = "Cloud Native CI/CD"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
+
+[languages.ja]
+title = "Tekton"
+description = "クラウドネイティブ CI/CD"
+languageName = "日本語"
+contentDir = "content/ja"
+weight = 2
+
+[languages.ja.params]
+time_format_default = "2006/01/02"
+time_format_blog = "2006/01/02"
+language_alternatives = ["en"]
 
 # Everything below this are Site Params
 
