@@ -30,10 +30,62 @@ archive: https://github.com/tektoncd/triggers/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
-- name: v0.10.1
+- name: origin/release-v0.14.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
-  displayName: v0.10.1
+  displayName: v0.14.1
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: origin/release-v0.13.x
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.13.0
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: origin/release-v0.12.x
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.12.1
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: origin/release-v0.11.x
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.11.2
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: v0.10.2
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: v0.10.2
   # Dict of folders to sync
   folders:
     docs:
