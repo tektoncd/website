@@ -242,7 +242,7 @@ rpm-based distros).
     rpm -Uvh LINK-TO-THE-PACKAGE
     ```
 
-    If you are using Fedora 30/31, CentOS 7/8, EPEL, or RHEL 8, @chmousel
+    If you are using Fedora 33/34, CentOS 7/8, EPEL, or RHEL 8, @chmousel
     provides an unofficial `copr` package repository for installing the
     package:
 
