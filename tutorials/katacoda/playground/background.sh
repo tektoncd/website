@@ -6,7 +6,7 @@ launch.sh
 echo "done" >> /opt/.clusterstarted
 
 echo "Installing Tekton Pipelines"
-kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.20.0/release.yaml
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 
 mkdir /mnt/data
 
@@ -33,12 +33,12 @@ kubectl create configmap config-artifact-pvc --from-literal=storageClassName=man
 echo "done" >> /opt/.pipelinesinstalled
 
 echo "Installing Tekton Dashboard"
-kubectl apply --filename https://github.com/tektoncd/dashboard/releases/download/v0.13.0/tekton-dashboard-release.yaml
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
 echo "done" >> /opt/.dashboardinstalled
 
 echo "Installing Tekton CLI"
-curl -LO https://github.com/tektoncd/cli/releases/download/v0.15.0/tkn_0.15.0_Linux_x86_64.tar.gz
-tar xvzf tkn_0.15.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
+curl -LO https://github.com/tektoncd/cli/releases/download/v0.18.0/tkn_0.18.0_Linux_x86_64.tar.gz
+tar xvzf tkn_0.18.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
 echo "done" >> /opt/.tkninstalled
 
 echo "Waiting for Tekton pods to be ready"

@@ -29,11 +29,7 @@ Type: `Git`
 
 URL: `https://github.com/ncskier/myapp`{{copy}}
 
-Revision: `master`{{copy}}
-
-The form should look like the following:
-
-![Create PipelineResource form screenshot.](./assets/create-pipeline-resource-form.jpg)
+Revision: `main`{{copy}}
 
 Click the `Create` button to create the PipelineResource.
 

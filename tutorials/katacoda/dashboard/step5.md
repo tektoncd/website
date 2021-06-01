@@ -3,12 +3,7 @@ Then, we will open MyApp.
 
 ## Monitor the PipelineRun logs
 
-View the PipelineRun logs for the MyApp PipelineRun by clicking on the link in
-the creation notification at the top of the page.
-
-![PipelineRun creation notification screenshot.](./assets/pipeline-run-created-notification.jpg)
-
-Or select the PipelineRun from the list of PipelineRuns.
+View the PipelineRun logs for the MyApp PipelineRun by selecting it from the list of PipelineRuns.
 
 ![View the running PipelineRun logs for MyApp screenshot.](./assets/pipeline-run-running.jpg)
 
