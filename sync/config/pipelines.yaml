@@ -42,7 +42,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.24.3
+- name: origin/release-v0.24.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.24.3
@@ -54,7 +54,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.23.0
+- name: origin/release-v0.23.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.23.0
@@ -66,7 +66,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.22.0
+- name: origin/release-v0.22.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.22.0
@@ -78,7 +78,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.21.0
+- name: origin/release-v0.21.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.21.0
@@ -90,10 +90,10 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.20.0
+- name: origin/release-v0.20.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
-  displayName: v0.20.0
+  displayName: v0.20.1
   # Dict of folders to sync
   folders:
     docs:
@@ -102,7 +102,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.19.0
+- name: origin/release-v0.19.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.19.0
@@ -114,7 +114,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.18.1
+- name: origin/release-v0.18.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.18.1
@@ -127,7 +127,7 @@ tags:
       - api-spec.md
       - install.md
       - tutorial.md
-- name: v0.17.3
+- name: origin/release-v0.17.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.17.3
@@ -143,7 +143,7 @@ tags:
       - runs.md
       - tekton-bundle-contracts.md
       - tutorial.md
-- name: v0.16.3
+- name: origin/release-v0.16.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.16.3
@@ -157,7 +157,7 @@ tags:
       - install.md
       - runs.md
       - tutorial.md
-- name: v0.15.2
+- name: origin/release-v0.15.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.15.2
@@ -170,7 +170,7 @@ tags:
       - deprecations.md
       - install.md
       - tutorial.md
-- name: v0.14.3
+- name: origin/release-v0.14.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.14.3
