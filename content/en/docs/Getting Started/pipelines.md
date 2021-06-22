@@ -131,7 +131,7 @@ To view this `pipelineRun` object you can run the following Tekton CLI (`tkn`) c
 tkn pipeline start hello-goodbye --dry-run
 ```
 
-After running the command above, the following `TaskRun` definition should be shown:
+After running the command above, the following `PipelineRun` definition should be shown:
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
