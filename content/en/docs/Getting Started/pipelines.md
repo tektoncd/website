@@ -14,7 +14,7 @@ description: >
 
 As you learned previously, with Tekton, each operation in your CI/CD workflow becomes a `Step`,
 which is executed with a container image you specify. `Steps` are then
-organized in `Tasks`, which run as a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
+organized in `Tasks`, which run as a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/)
 in your cluster. You can further organize `Tasks` into `Pipelines`, which 
 can control the order of execution of several `Tasks`. 
 
