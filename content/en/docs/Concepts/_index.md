@@ -44,7 +44,7 @@ each step with a container image you provide. For example, you may use the
 in the same manner as you would on your local workstation (`go build`).
 
 A **task** is a collection of **steps** in order. Tekton runs a task in
-the form of a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/),
+the form of a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/),
 where each step becomes a running container in the pod. This design allows you
 to set up a shared environment for a number of related steps; for example,
 you may mount a [Kubernetes volume](https://kubernetes.io/docs/concepts/storage/volumes/)
