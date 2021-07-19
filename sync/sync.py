@@ -171,7 +171,9 @@ def transform_doc(doc, source_folder, target, target_folder, header,
     :param base_url: used to rewrite relative links to unknown files
     :param site_folder: the root folder on disk where files shall be written to
     """
-    if doc.mime_type != 'text/plain':
+    # Some machines seem to use text/plain (e.g. running on a mac) and some use
+    # text/markdown (e.g. running in a fresh ubuntu container)
+    if doc.mime_type != 'text/plain' and doc.mime_type != 'text/markdown':
         logging.error(f'Cannot process {doc.mime_type} file {doc.path}')
         sys.exit(1)
     site_target_folder = os.path.normpath(os.path.join(site_folder, target_folder))
