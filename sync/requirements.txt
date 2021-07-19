@@ -1,7 +1,7 @@
 wget==3.2
 ruamel.yaml==0.16.12
 google-cloud-storage==1.23.0
-Jinja2==2.11.1
+Jinja2==2.11.3
 google-auth==1.14.0
 urlopen==1.0.0
 markdown==3.1.1
