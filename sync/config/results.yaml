@@ -1,0 +1,49 @@
+# Each YAML file under sync/ configures how sync/sync.py synchronizes
+# contents of various versions from its source of truth (usually a GitHub
+# repository of a Tekton component, such as tektoncd/pipelines) to
+# content/ (for the lastest version) and vault/ (for earlier versions).
+
+# The name of the component.
+# sync.py will use this value to build directories in content/ and vault/.
+component: Results
+# The order of the component.
+displayOrder: 3
+# The GitHub repository where documentation resides.
+repository: https://github.com/tektoncd/results
+# The directory in the GitHub repository where contents reside.
+docDirectory: docs
+# The link to the GitHub tag page.
+archive: https://github.com/tektoncd/results/tags 
+# The tags (versions) of contents to sync.
+# Note that sync.py and related script reads tags in the order specified in
+# the following list; the first entry in tags will automatically become the
+# latest version of contents.
+# To add a new version, append to the list as below
+# - name: vX.Y.Z
+#   displayName: vX.Y.Z
+#   folders:
+#     docs:
+#       target: '/'            # optional, default value '/'
+#       index: README.md       # optional, if _index.md exists
+#       include: ['*.md']      # optional, default value ['*']
+#       exclude: ['not_in.md'] # optional, default value []
+#       header: <dict>         # optional, no header added if not set
+#         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
+tags:
+- name: main
+  # The name to display on tekton.dev.
+  # sync.py will use this value in the version switcher and other places.
+  displayName: main
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/api:
+      target: api
+      index: README.md
+      include: ['*.md']
+    docs/watcher:
+      target: watcher
+      index: README.md
+      include: ['*.md']
