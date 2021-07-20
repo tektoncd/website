@@ -18,7 +18,11 @@
       </main>
       {{ partial "footer.html" . }}
     </div>
+    {{ if eq .Site.Language.Lang "ja" }}
+    {{ partial "privacy-notice-ja.html" }}
+    {{ else }}
     {{ partial "privacy-notice.html" }}
+    {{ end }}
     {{ partialCached "scripts.html" . }}
   </body>
 </html>

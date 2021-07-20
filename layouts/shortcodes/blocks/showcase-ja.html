@@ -1,0 +1,29 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $col_id := .Get "color" | default .Ordinal }}
+{{ $height := .Get "height" | default "auto"  }}
+{{/* Height can be one of: auto, min, med, max, full. */}}
+<a id="td-block-{{ .Ordinal }}" class="td-offset-anchor"></a>
+<section class="row td-box td-box--{{ $col_id }} position-relative td-box--gradient td-box--height-{{ $height }}">
+	<div class="container">
+		<div class="col">
+			<div class="row p-0">
+				<div class="col-lg-6 mb-5 mb-lg-0">
+					<div class="text-left">
+						<p class="h3 text-light d-inline">Tektonは強力で柔軟性のある</p>
+						<p class="h3 text-dark d-inline">CD/CDシステム構築用のオープンソースフレームワークで、</p>
+						<p class="h3 text-light d-inline">開発者が</p>
+						<p class="h3 text-dark d-inline">ビルド、テストおよびデプロイ</p>
+						<p class="h3 text-light d-inline">をクラウドプロバイダーおよびオンプレミスシステム全体で行うことを可能とします。</p>
+						<a class="h3 text-danger d-inline" href="/try">インタラクティブなチュートリアルはこちらから開始可能です。</a>
+					</div>
+				</div>
+				<div class="col-lg-6 mb-5 mb-lg-0">
+					{{ $jsAsciinema := resources.Get "js/asciinema-player.js" }}
+					{{ $jsAsciinema := $jsAsciinema | minify | fingerprint }}
+					<script src="{{ $jsAsciinema.RelPermalink }}" integrity="{{ $jsAsciinema.Data.Integrity }}"></script>
+					<asciinema-player src="/asciinema/demo.cast" autoplay="true" rows="18" cols="76" theme="solarized-dark"></asciinema-player>
+				</div>
+			</div>
+		</div>
+  	</div>
+</section>
