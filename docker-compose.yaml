@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+
+   site:
+      image: tekton/website
+      build:
+         context: .
+      command: server
+      ports: 
+         - "8888:1313"
+      volumes:
+         - /src/content/en/docs/Pipelines/
+         - /src/content/en/docs/Triggers/
+         - /src/content/en/docs/CLI/
+         - /src/content/en/vault/
+         - /src/node_modules/
+         - .:/src/

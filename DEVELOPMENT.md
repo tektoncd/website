@@ -1,10 +1,47 @@
 # Developing the Tekton website
 
 - [Developing the Tekton website](#developing-the-tekton-website)
-- [Running Locally](#running-locally)
+- [Running in a Docker container](#running-in-a-docker-container)
+- [Running Natively](#running-natively)
 - [tekton.dev](#tektondev)
 
-## Dependencies
+## Running in a Docker container
+
+### Prerequisites
+
+Install [Docker Compose](https://docs.docker.com/compose/install/).
+
+### Setup
+
+1. Build the Docker image
+
+   ```bash
+   docker-compose build
+
+   ```
+
+1. Run the built image
+
+   ```bash
+   docker-compose up
+   ```
+
+1. Verify that the website is working
+
+   Open your web browser and type `http://localhost:8888` in the navigation bar.
+   This opens a local instance of the website, you can now make changes in the
+   documentation and those changes will immediately show up in the browser after
+   you save.
+
+To remove the produced images run:
+
+```bash
+docker-compose rm
+```
+
+## Running Natively
+
+### Prerequisites
 
 * [python3](https://www.python.org/downloads/) 
 * [hugo (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases)
@@ -14,41 +51,47 @@
 * [netlify cli](https://cli.netlify.com/getting-started)
 * [netlify account](https://app.netlify.com/)
 
-## Running Locally
+### Setup
 
-Step 1
-```bash
-# Clone the repo
-git clone https://github.com/tektoncd/website && cd website
-```
+1. Clone the repository
 
-Step 2
-```bash
-# Install node modules
-npm install
-```
+   ```bash
+   git clone https://github.com/tektoncd/website && cd website
+   ```
 
-Step 3
-```bash
-Install the sync script (https://github.com/tektoncd/website/blob/master/sync/README.md)
-python3 -m venv .venv
-source .venv/bin/activate    
-pip3 install -r requirements.txt
+1. Install the required node modules
 
-```
-Step 4
-```bash
-# Run the sync.
-# This clones docs repositories to local cache and builds the
-# documentation content for the website
-./sync/sync.py
-```
+   ```bash
+   npm install
+   ```
 
-Step 5
-```bash
-# Build and serve the website locally
-netlify dev
-```
+1. Install the dependencies for the [sync script](https://github.com/tektoncd/website/blob/master/sync/README.md)
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate    
+   pip3 install -r requirements.txt
+
+   ```
+
+1. Run the sync script
+
+   ```bash
+   ./sync/sync.py
+   ```
+
+1. Serve the website locally
+
+   ```bash
+   netlify dev
+   ```
+
+1. Verify that the website is working
+
+   Open your web browser and type `http://localhost:8888` in the navigation bar.
+   This opens a local instance of the website, you can now make changes in the
+   documentation and those changes will immediately show up in the browser after
+   you save.
 
 The `sync.py` script clones the required repositories to a local cache folder, by default `sync/.cache`.
 You can modify content and create commits in your local cache to test changes to the original docs.
