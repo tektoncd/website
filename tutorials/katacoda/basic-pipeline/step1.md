@@ -13,8 +13,6 @@ spec:
   steps:
     - name: hello
       image: ubuntu
-      command:
-        - echo
       script: |
         set -e
         echo "Hello World!"
