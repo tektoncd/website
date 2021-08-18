@@ -11,7 +11,9 @@ Now, let's begin!
 ## Install the Tekton Dashboard Prerequisites
 
 - [Tekton Pipelines](https://github.com/tektoncd/pipeline/blob/main/docs/install.md)
-`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml`{{execute}}
+<!-- `kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml`{{execute}} -->
+<!-- Pin to v0.26 since that's the last supported release on Kubernetes 1.18 (environment provided by Katacoda) -->
+`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.26.0/release.yaml`{{execute}}
 
 Verify the pods are running:
 `kubectl get pods -n tekton-pipelines`{{execute}}

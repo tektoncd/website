@@ -18,7 +18,9 @@ KubeDNS is running at ...
 To add Tekton to this experimental Kubernetes cluster, execute the command
 below:
 
-`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml`{{execute}}
+<!-- `kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml`{{execute}} -->
+<!-- Pin to v0.26 since that's the last supported release on Kubernetes 1.18 (environment provided by Katacoda) -->
+`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.26.0/release.yaml`{{execute}}
 
 It may take a few moments for the installation to complete. To monitor the
 progress, run the following command:
