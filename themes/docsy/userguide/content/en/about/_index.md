@@ -4,6 +4,7 @@ linkTitle: About
 menu:
   main:
     weight: 10
+    pre: <i class='fas fa-info-circle'></i>
 layout: docs
 ---
 
@@ -98,10 +99,12 @@ The Docsy template currently includes built-in integration with the following to
    site.
 * [**Google Custom Search**](https://cse.google.com/cse/): Use Google Custom Search for in-site search queries, or 
   configure your site to search the web.
+* [**Algolia DocSearch**](https://community.algolia.com/docsearch/): Let your users search your site with Algolia DocSearch.
+* [**Lunr**](https://lunrjs.com/): Local indexing and search for your site without the need for external search services.
 
 ### Make it your own
 
-You can configure the Docsy theme as much or as little as you like, anything from changing the colours and images to adding your own type of page layout. [Learn more...](docs/adding-content/lookandfeel/)
+You can configure the Docsy theme as much or as little as you like, anything from changing the colours and images to adding your own type of page layout. [Learn more...](/docs/adding-content/lookandfeel/)
 
 ### Get organized
 

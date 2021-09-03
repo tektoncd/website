@@ -6,7 +6,8 @@
 {{ $image_anchor := .Get "image_anchor" | default "smart" }}
 {{ $logo_anchor := .Get "logo_anchor" | default "smart" }}
 {{/* Height can be one of: auto, min, med, max, full. */}}
-{{ $height := .Get "height" | default "max"  }}
+{{ $height := .Get "height" | default "max" }}
+{{ $byline := .Get "byline" | default "" }}
 {{ with $promo_image }}
 {{ $promo_image_big := (.Fill (printf "1920x1080 %s" $image_anchor)) }}
 {{ $promo_image_small := (.Fill (printf "960x540 %s" $image_anchor)) }}
@@ -31,10 +32,19 @@
           {{ with .Get "title" }}<h1 class="display-1 mt-0 mt-md-5 pb-4">{{ $title := . }}{{ with $logo_image }}{{ $logo_image_resized := (.Fit (printf "70x70 %s" $logo_anchor)) }}<img class="td-cover-logo" src="{{ $logo_image_resized.RelPermalink }}" alt="{{ $title | html }} Logo">{{ end }}{{ $title | html }}</h1>{{ end }}
           {{ with .Get "subtitle" }}<p class="display-2 text-uppercase mb-0">{{ . | html }}</p>{{ end }}
           <div class="pt-3 lead">
-            {{ .Inner | markdownify}}
+            {{ if eq .Page.File.Ext "md" }}
+                {{ .Inner | markdownify }}
+            {{ else }}
+                {{ .Inner | htmlUnescape | safeHTML }}
+            {{ end }}
           </div>
         </div>
       </div>
     </div>
   </div>
+  {{ if $byline }}
+  <div class="byline">
+    <small>{{ $byline }}</small>
+  </div>
+  {{ end }}
 </section>

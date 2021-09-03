@@ -32,13 +32,13 @@ If you've copied the example site, you already have appropriately named top-leve
 
 ### Custom sections
 
-If you've copied the example site and *don't* want to use one of the provided content sections, just delete the appropriate content subdirectory. Similarly, if you want to add a top-level section, just add a new subdirectory, though you'll need to specify the layout or content type explicitly in the [frontmatter](#page-frontmatter) of each page if you want to use any existing Docsy template other than the default one. For example, if you create a new directory `content/en/`**`amazing`** and want one or more pages in that custom section to use Docsy's `docs` template, you add `layout: docs` to the frontmatter of each page:
+If you've copied the example site and *don't* want to use one of the provided content sections, just delete the appropriate content subdirectory. Similarly, if you want to add a top-level section, just add a new subdirectory, though you'll need to specify the layout or content type explicitly in the [frontmatter](#page-frontmatter) of each page if you want to use any existing Docsy template other than the default one. For example, if you create a new directory `content/en/amazing` and want one or more pages in that custom section to use Docsy's `docs` template, you add `type: docs` to the frontmatter of each page:
 
 ```yaml
 ---
 title: "My amazing new section"
 weight: 1
-layout: docs
+type: docs
 description: >
   A special section with a docs layout.
 ---
@@ -48,28 +48,85 @@ Alternatively, create your own page template for your new section in your projec
 
 You can find out much more about how Hugo page layouts work in [Hugo Templates](https://gohugo.io/templates/). The rest of this page tells you about how to add content and use each of Docsy's templates.
 
+### Alternative site structure
+
+As noted above, by default your site has a home page (using the `_default` layout), a docs section under `/docs/`, a blog section under `/blog/` and a community section under `/community/`.   [The type](https://gohugo.io/content-management/types/) of each section (which determines the layout it uses) matches its directory name.
+
+In some cases, you may want to have a different directory structure, but still make use of Docsy's layouts. A common example is for a "docs site", where most of the pages (including the home page) use the docs layout, or perhaps you'd rather have a `/news/` directory treated with the blog layout.
+
+Since Hugo 0.76, this has become practical without copying layouts to your site, or having to specify `type: blog` on every single page by making use of [target specific cascading front matter](https://gohugo.io/content-management/front-matter/#target-specific-pages).
+
+For example, for the `/news/` section, you can specify the following front matter in the index page which will change the type of the section and everything below it to "blog":
+
+```yaml
+---
+title: "Latest News"
+linkTitle: "News"
+menu:
+  main:
+    weight: 30
+
+cascade:
+- type: "blog"
+---
+```
+
+If you want to create a "docs" site, specifying something like the following in the top level `_index.md` will set all top level sections to be treated as "docs", except for "news":
+
+```yaml
+---
+title: "My Wonderful Site"
+
+cascade:
+- type: "blog"
+  toc_root: true
+  _target:
+    path: "/news/**"
+- type: "docs"
+  _target:
+    path: "/**"
+---
+```
+
+Note the addition of `toc_root` here.  Setting that to true for a section causes it to be treated as a separate part of the site, with its own left hand navigation menu.
+
+An example docs-based site that uses this technique can be found at the [mostly docs](https://github.com/gwatts/mostlydocs/) repo.
+
 ## Page frontmatter
 
 Each page file in a Hugo site has metadata frontmatter that tells Hugo about the page. You specify page frontmatter in TOML, YAML, or JSON (our example site and this site use YAML). Use the frontmatter to specify the page title, description, creation date, link title, template, menu weighting, and even any resources such as images used by the page. You can see a complete list of possible page frontmatter in [Front Matter](https://gohugo.io/content-management/front-matter/).
 
 For example, here's the frontmatter for this page:
 
-```
+```yaml
 ---
 title: "Adding Content"
 linkTitle: "Adding Content"
 weight: 1
 description: >
-  How to add content to your Docsy site.
+  Add different types of content to your Docsy site.
 ---
 ```
 
-The minimum frontmatter you need to provide is a title: everything else is up to you! (though if you leave out the page weight your [navigation](/docs/adding-content/navigation) may get a little disorganized).
+The minimum frontmatter you need to provide is a title: everything else is up to you! However, if you leave out the page weight, your [navigation](/docs/adding-content/navigation) may get a little disorganized. You may also want to include `description` since Docsy uses that to generate the meta `description` tag used by search engines. See [Search Engine Optimization (SEO) meta tags]({{< ref "feedback#search-engine-optimization-meta-tags" >}}) for details.
 
 
 ## Page contents and markup
 
-By default you create pages in a Docsy site as simple [Markdown or HTML files](https://gohugo.io/content-management/formats/) with [page frontmatter](#page-frontmatter), as described above. Hugo currently uses [BlackFriday](https://github.com/russross/blackfriday) as its default Markdown parser.
+By default you create pages in a Docsy site as simple [Markdown or HTML files](https://gohugo.io/content-management/formats/) with [page frontmatter](#page-frontmatter), as described above. Versions of Hugo before 0.60 use [BlackFriday](https://github.com/russross/blackfriday) as its Markdown parser. From 0.60, Hugo uses [Goldmark](https://github.com/yuin/goldmark/) as its Markdown parser by default.
+
+{{% alert title="Tip" %}}
+If you've been using earlier versions of Hugo, you may need to make some small changes to your site to work with the current Markdown parser. In particular, if you cloned an earlier version of our example site, add the following to your `config.toml` to allow Goldmark to render raw HTML as well as Markdown:
+
+```
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+```
+
+Alternatively, if you want to continue using Blackfriday, you can follow the instructions in the [Hugo documentation](https://gohugo.io/getting-started/configuration-markup#blackfriday) to change the Markdown parser.
+{{% /alert %}}
 
 In addition to your marked-up text, you can also use Hugo and Docsy's [shortcodes](/docs/adding-content/shortcodes): reusable chunks of HTML that you can use to quickly build your pages. Find out more about shortcodes in [Docsy Shortcodes](/docs/adding-content/shortcodes).
 
@@ -81,7 +138,7 @@ External parsers may not be suitable for use with all deployment options, as you
 
 ### Working with links
 
-Hugo and Blackfriday let you specify links using normal Markdown syntax, though remember that you need to specify links relative to your site's root URL, and that relative URLs are left unchanged by Hugo in your site's generated HTML.
+Hugo lets you specify links using normal Markdown syntax, though remember that you need to specify links relative to your site's root URL, and that relative URLs are left unchanged by Hugo in your site's generated HTML.
 
 Alternatively you can use Hugo's helper [`ref` and `relref` shortcodes](https://gohugo.io/content-management/cross-references/) for creating internal links that resolve to the correct URL. However, be aware this means your links will not appear as links at all if a user views your page outside your generated site, for example using the rendered Markdown feature in GitHub's web UI.
 
@@ -117,7 +174,7 @@ Docsy's `docs` layout gives you a left nav pane with an autogenerated nested men
 
 To add docs to a subsection, just add your page files to the relevant subdirectory. Any pages that you add to a subsection in addition to the subsection index page will appear in a submenu (look to the left to see one in action!), again ordered by page `weight`. Find out more about adding Docsy's navigation metadata in [Navigation and Search](/docs/adding-content/navigation/)
 
-If you've copied the example site, you'll already have some suggested subdirectories in your `docs` directory, with guidance for what types of content to put in them and some example Markdown pages. You can find out more about organizing your content with Docsy in [Organizing Your Content](/docs/organizing/).
+If you've copied the example site, you'll already have some suggested subdirectories in your `docs` directory, with guidance for what types of content to put in them and some example Markdown pages. You can find out more about organizing your content with Docsy in [Organizing Your Content](/docs/best-practices/organizing-content/).
 
 #### Docs section landing pages
 
@@ -183,15 +240,15 @@ Docsy's [default page template](https://github.com/google/docsy/blob/master/layo
 
 ### Customizing the example site pages
 
-If you've copied the example site, you already have a simple site landing page in `content/en/_index.html`. This is made up of Docsy's provided Hugo shortcode [page blocks](/docs/adding-content/shortcodes).
+If you've copied the example site, you already have a simple site landing page in `content/en/_index.html`. This is made up of Docsy's provided Hugo shortcode [page blocks](/docs/adding-content/shortcodes/#shortcode-blocks).
 
-To customize the large landing image, which is in a [cover](#blocks-cover) block, replace the `content/en/featured-background.jpg` file in your project with your own image (it can be called whatever you like as long as it has `background` in the file name). You can remove or add as many blocks as you like, as well as adding your own custom content. 
+To customize the large landing image, which is in a [cover](/docs/adding-content/shortcodes/#blockscover) block, replace the `content/en/featured-background.jpg` file in your project with your own image (it can be called whatever you like as long as it has `background` in the file name). You can remove or add as many blocks as you like, as well as adding your own custom content. 
 
-The example site also has an About page in `content/en/about/_index.html` using the same Docsy template. Again, this is made up of [page blocks](/docs/adding-content/shortcodes), including another background image in `content/en/about/featured-background.jpg`. As with the site landing page, you can replace the image, remove or add blocks, or just add your own content.
+The example site also has an About page in `content/en/about/_index.html` using the same Docsy template. Again, this is made up of [page blocks](/docs/adding-content/shortcodes/#shortcode-blocks), including another background image in `content/en/about/featured-background.jpg`. As with the site landing page, you can replace the image, remove or add blocks, or just add your own content.
 
 ### Building your own landing pages
 
-If you've just used the theme, you can still use all Docsy's provided [page blocks](/docs/adding-content/shortcodes)  (or any other content you want) to build your own landing pages in the same file locations.
+If you've just used the theme, you can still use all Docsy's provided [page blocks](/docs/adding-content/shortcodes/#shortcode-blocks) (or any other content you want) to build your own landing pages in the same file locations.
 
 ## Adding a community page
 
@@ -255,6 +312,15 @@ To disable all RSS feeds, add the following to your `config.toml`:
 ```toml
 disableKinds = ["RSS"]
 ```
+
+{{% alert title="Note" color="info" %}}
+If you have enabled our [print feature](/docs/adding-content/print/) or otherwise specified section-level output formats in `config.toml`, make sure that `"RSS"` is listed as an output format, otherwise you won't get section-level RSS feeds (and your blog section won't get a nice orange RSS button). Your `config.toml` specification overrides the Hugo default [output formats](https://gohugo.io/templates/output-formats/) for sections, which are HTML and RSS.
+
+```toml
+[outputs]
+section = [ "HTML", "RSS", "print" ]
+```
+{{% /alert %}}
 
 ## Sitemap
 
