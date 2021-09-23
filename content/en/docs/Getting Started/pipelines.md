@@ -1,191 +1,165 @@
 ---
 title: "Getting Started with Pipelines"
 linkTitle: "Getting Started with Pipelines"
-weight: 1
+weight: 2
 description: >
-  Prerequisites, Installation, and Basic Usage
+  Create and run your first Tekton pipeline
+
 ---
+
+This tutorial shows you how to:
+
+- Create two tasks.
+- Create a pipeline containing your tasks.
+- Use `PipelineRun` to instantiate and run the pipeline containing your tasks.
+
+For this tutorial we are going to use [minikube][minikube] to run the commands
+locally.
 
 ## Prerequisites
 
-* Completed the [Getting Started example](/docs/getting-started/).
+- Complete the [Getting started with tasks](/docs/getting-started/tasks/)
+  tutorial. *Do not clean up your resources*, skip the last section.
 
-## Extending your first CI/CD Workflow with a second Task and a Pipeline
+- [Install the Tekton CLI](/docs/cli/).
 
-As you learned previously, with Tekton, each operation in your CI/CD workflow becomes a `Step`,
-which is executed with a container image you specify. `Steps` are then
-organized in `Tasks`, which run as a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/)
-in your cluster. You can further organize `Tasks` into `Pipelines`, which 
-can control the order of execution of several `Tasks`. 
+## Creating and running a second task
 
-To create a second `Task`, create a Kubernetes object using the Tekton API with
-the kind `Task`. The following YAML file specifies a `Task` with one simple
-`Step`, which prints a `Goodbye World!` message using
-[the official Ubuntu image](https://hub.docker.com/_/ubuntu/):
+You already have a *Hello World!* task. To create a second *Goodbye World!*
+task:
 
-```yaml
-apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: goodbye
-spec:
-  steps:
-    - name: goodbye
-      image: ubuntu
-      script: |
-        #!/bin/bash
-        echo "Goodbye World!"
-```
+1.  Create a new file named  `goodbye-world.yaml` and add the following
+    content:
 
-Write the YAML above to a file named `task-goodbye.yaml`, and apply it to your Kubernetes cluster:
-
-```bash
-kubectl apply -f task-goodbye.yaml
-```
-
-To run this task with Tekton, you need to create a `TaskRun`, which is
-another Kubernetes object used to specify run time information for a `Task`. 
-
-To view this `TaskRun` object you can run the following Tekton CLI (`tkn`) command:
-
-```shell
-tkn task start goodbye --dry-run
-```
-
-After running the command above, the following `TaskRun` definition should be shown:
-
-```yaml
-apiVersion: tekton.dev/v1beta1
-kind: TaskRun
-metadata:
-  generateName: goodbye-run-
-spec:
-  taskRef:
-    name: goodbye
-```
-
-To use the `TaskRun` above to start the `echo` `Task`, you can either use 
-`tkn` or `kubectl`.
-
-Start with `tkn`:
-
-```shell
-tkn task start goodbye
-```
-
-Start with `kubectl`:
-
-```shell
-# use tkn's --dry-run option to save the TaskRun to a file
-tkn task start goodbye --dry-run > taskRun-goodbye.yaml
-# create the TaskRun
-kubectl create -f taskRun-goodbye.yaml
-```
-
-Tekton will now start running your `Task`. To see the logs of the `TaskRun`, run 
-the following `tkn` command:
-
-```shell
-tkn taskrun logs --last -f 
-```
-
-It may take a few moments before your `Task` completes. When it executes, it should 
-show the following output:
-
-```
-[goodbye] Goodbye World!
-```
-
-To create a `Pipeline`, create a Kubernetes object using the Tekton API with
-the kind `Pipeline`. The following YAML file specifies a `Pipeline`.
-
-```yaml
-apiVersion: tekton.dev/v1beta1
-kind: Pipeline
-metadata:
-  name: hello-goodbye
-spec:
-  tasks:
-  - name: hello
-    taskRef:
-      name: hello
-  - name: goodbye
-    runAfter:
-     - hello
-    taskRef:
+    ```yaml
+    apiVersion: tekton.dev/v1beta1
+    kind: Task
+    metadata:
       name: goodbye
-```
+    spec:
+      steps:
+        - name: goodbye
+          image: ubuntu
+          script: |
+            #!/bin/bash
+            echo "Goodbye World!"
+    ```
 
-Write the YAML above to a file named `pipeline-hello-goodbye.yaml`, and apply it to your Kubernetes cluster:
+1.  Apply your task file:
+
+    ```bash
+    kubectl apply --filename goodbye-world.yaml
+    ```
+
+When a task is part of a pipeline you don't have to instantiate it, the pipeline
+is going to take care of that.
+
+## Creating and running a pipeline
+
+A **[pipeline](/docs/pipelines/pipelines/)** defines an ordered series of tasks
+arranged in a specific execution order as part of your CI/CD workflow.
+
+In this section you are going to create your first pipeline, that will include
+both the *Hello World!* and *Goodbye World!* tasks.
+
+1.  Create a new file named  `hello-goodbye-pipeline.yaml` and add the following
+    content:
+
+    ```yaml
+    apiVersion: tekton.dev/v1beta1
+    kind: Pipeline
+    metadata:
+      name: hello-goodbye
+    spec:
+      tasks:
+        - name: hello
+          taskRef:
+            name: hello
+        - name: goodbye
+          runAfter:
+            - hello
+          taskRef:
+            name: goodbye
+    ```
+
+1.  Apply your pipeline configuration to your cluster:
+
+    ```bash
+    kubectl apply --filename hello-goodbye-pipeline.yaml
+    ```
+
+1.  Instantiate your pipeline with a `PipelineRun` object. Create a new file
+    named `hello-goodbye-pipeline-run.yaml` with the following content:
+
+    ```yaml
+    apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      name: hello-goodbye-run
+    spec:
+      pipelineRef:
+        name: hello-goodbye
+    ```
+
+1.  Start your pipeline by applying the `PipelineRun` configuration to your
+    cluster:
+
+    ```bash
+    kubectl apply --filename hello-goodbye-pipeline-run.yaml
+    ```
+
+    You see the following output:
+
+    ```bash
+    pipelinerun.tekton.dev/hello-goodbye-run created
+    ```
+
+    Tekton now starts running your pipeline.
+
+1.  To see the logs of the `PipelineRun`, use the following command:
+
+    ```bash
+    tkn pipelinerun logs hello-goodbye-run -f -n default
+    ```
+
+    The output shows both Tasks completed successfully:
+
+    <pre>
+    [hello : hello] Hello World!
+
+    [goodbye : goodbye] Goodbye World!
+    </pre>
+
+## Cleanup
+
+To delete the cluster that you created for this quickstart run:
 
 ```bash
-kubectl apply -f pipeline-hello-goodbye.yaml
+minikube delete
 ```
 
-To run this pipeline with Tekton, you need to create a `pipelineRun`, which is
-another Kubernetes object used to specify run time information for a `Pipeline`. 
+The output confirms that your cluster was deleted:
 
-To view this `pipelineRun` object you can run the following Tekton CLI (`tkn`) command:
+<pre>
+🔥  Deleting "minikube" in docker ...
+🔥  Deleting container "minikube" ...
+🔥  Removing /home/user/.minikube/machines/minikube ...
+💀  Removed all traces of the "minikube" cluster.
+</pre>
 
-```shell
-tkn pipeline start hello-goodbye --dry-run
-```
+## Further reading
 
-After running the command above, the following `PipelineRun` definition should be shown:
+- [Tasks](/docs/pipelines/tasks)
+- [Pipelines](/docs/pipelines/pipelines)
 
-```yaml
-apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
-metadata:
-  generateName: hello-goodbye-run-
-spec:
-  pipelineRef:
-    name: hello-goodbye
-```
+Other useful resources
 
-To use the `pipelineRun` above to start the `echo` `Pipeline`, you can either use 
-`tkn` or `kubectl`.
+- [Convenience scripts to run Kind][kind-setup]
+- [Instructions to setup Minikube and Docker][local-setup]
 
-Start with `tkn`:
+[minikube]: https://minikube.sigs.k8s.io/docs/start/
+[kind]: https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+[kind-setup]: https://github.com/tektoncd/plumbing/tree/main/hack
+[kubectl]: https://github.com/tektoncd/pipeline/blob/main/docs/developers/local-setup.md
+[local-setup]: https://github.com/tektoncd/pipeline/blob/main/docs/developers/local-setup.md
 
-```shell
-tkn pipeline start hello-goodbye
-```
-
-Start with `kubectl`:
-
-```shell
-# use tkn's --dry-run option to save the pipelineRun to a file
-tkn pipeline start hello-goodbye --dry-run > pipelineRun-hello-goodbye.yaml
-# create the pipelineRun
-kubectl create -f pipelineRun-hello-goodbye.yaml
-```
-
-Tekton will now start running your `Pipeline`. To see the logs of the `pipelineRun`, run 
-the following `tkn` command:
-
-```shell
-tkn pipelinerun logs --last -f 
-```
-
-It may take a few moments before your `Pipeline` completes. When it executes, it should 
-show the following output:
-
-```
-[hello : hello] Hello World!
-
-[goodbye : goodbye] Goodbye World!
-```
-
-
-
-## What's next
-
-Now you have the core component of Tekton, Tekton Pipelines, installed on
-your Kubernetes or OpenShift cluster with the Tekton CLI installed on your local
-machine. If you would like to install more components, see the list below:
-
-* [Tekton Triggers](/docs/triggers)
-* [Tekton Dashboard](/docs/dashboard)
-
-Learn more about Tekton in [Concepts](/docs/concepts/).
