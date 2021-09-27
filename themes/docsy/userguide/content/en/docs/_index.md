@@ -5,6 +5,7 @@ linkTitle: "Documentation"
 menu:
   main:
     weight: 20
+    pre: <i class='fas fa-book'></i>
 ---
 
 Welcome to the Docsy theme user guide! This guide shows you how to get started creating technical documentation sites using Docsy, including site customization and how to use Docsy's blocks and templates.
@@ -35,6 +36,8 @@ If you have a smaller project with only a couple of pages of documentation and h
 * A good README file that tells users what your project does and links to some examples.
 
 If you have a very large documentation project, our example site structure may not be sufficient either, though you can still use our theme, possibly with heavier customization.
+
+If you'd like to use Docsy's layouts but prefer to use Jekyll, [vsoch](https://github.com/vsoch) has created a [Docsy Jekyll port](https://github.com/vsoch/docsy-jekyll) that includes many of Docsy's features (though as this is a separate project it won't be automatically updated along with Docsy).
 
 ## Ready to get started?
 
