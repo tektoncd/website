@@ -46,6 +46,7 @@ docker-compose rm
 * [python3](https://www.python.org/downloads/) 
 * [hugo (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases)
 * [pip](https://pip.pypa.io/en/stable/installing/)
+* [git 1.8.5 or later](https://github.com/git/git/releases)
 * [npm v6.14.5](https://nodejs.org/en/)
 * [node v14.3.0](https://nodejs.org/en/)
 * [netlify cli](https://cli.netlify.com/getting-started)
