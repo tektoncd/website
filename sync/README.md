@@ -15,14 +15,14 @@ the script:
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate    
+source .venv/bin/activate
 pip3 install -r requirements.txt
 ./sync/sync.py
 ```
 
 **Note:** Follow [these steps](../DEVELOPMENT.md) to run the entire website locally.
 
-### Usage
+### Usage of Sync
 
 ```bash
        USAGE: sync.py [flags]
@@ -75,7 +75,7 @@ archive: https://github.com/tektoncd/foobar/tags
 #  files:
 #  - myfiles.md: myfiles.md
 tags:
-  # The name of the tag in the GitHub repository.
+  # The name of a tag or branch in the GitHub repository.
 - name: master
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
@@ -113,14 +113,14 @@ the script:
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate    
+source .venv/bin/activate
 pip3 install -r requirements.txt
 ./sync/versions.py add --project <project-name> <version-name>
 ```
 
 **Note:** Follow [these steps](../DEVELOPMENT.md) to run the entire website locally.
 
-## Usage
+## Usage of Versions
 
 The script provides online help via the `--help` flag.
 Use `[command] --help` for help on the specific command (`add` or `rm`).
@@ -137,15 +137,17 @@ Commands:
   rm   remove a version from the config for the specified project
 ```
 
-## Examples:
+## Examples
 
 Adding a new version to the pipeline project:
+
 ```bash
-$ ./sync/versions.py add v0.18.0 --project pipeline
+./sync/versions.py add v0.18.0 --project pipeline
 ```
 
 Adding a new minor to the triggers project, and remove the old one:
+
 ```bash
-$ ./sync/versions.py add v0.9.1 --project triggers
-$ ./sync/versions.py rm v0.9.0 --project triggers
+./sync/versions.py add v0.9.1 --project triggers
+./sync/versions.py rm v0.9.0 --project triggers
 ```

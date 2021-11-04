@@ -109,11 +109,11 @@ def transform_docs(git_repo, tag, folders, site_folder, base_path, base_url):
     try:
         tag = next(x for x in git_repo.tags if x.name == tag)
     except StopIteration:
-        # When no tag is found try to match a branch (references)
+        # When no tag is found try to match a branch (remote heads)
         try:
-            tag = next(x for x in git_repo.references if x.name == tag)
+            tag = next(x for x in git_repo.remote().refs if x.remote_head == tag)
         except StopIteration:
-            logging.error(f'No tag {tag} found in {git_repo}')
+            logging.error(f'No tag or branch {tag} found in {git_repo}')
             sys.exit(1)
 
     # List all relevant blobs based on the folder config

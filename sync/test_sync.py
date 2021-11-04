@@ -38,21 +38,27 @@ class TestSync(unittest.TestCase):
 
     def setUp(self):
         self._tempdir = tempfile.TemporaryDirectory()
+        self._tempdir2 = tempfile.TemporaryDirectory()
         # Create a test repo in a tmp dir
-        self.gitrepo = git.Repo.init(self._tempdir.name)
+        gitrepo = git.Repo.init(self._tempdir.name)
         # Copy test content in it
         docs_folder = os.path.join(self._tempdir.name, 'test-content')
         shutil.copytree(os.path.join(BASE_FOLDER, 'test-content'), docs_folder)
         # Commit the new content
-        self.gitrepo.index.add(docs_folder)
-        self.gitrepo.index.commit("Added test content")
+        gitrepo.index.add(docs_folder)
+        gitrepo.index.commit("Added test content")
         # Create a tag
         self.tagname = "test_version"
-        self.gitrepo.create_tag(self.tagname)
-        self.doc = self.gitrepo.tree().join('test-content/content.md')
+        gitrepo.create_tag(self.tagname)
+        self.doc = gitrepo.tree().join('test-content/content.md')
+        # Create a branch
+        self.branchname = "test_branch"
+        gitrepo.create_head(self.branchname)
+        self.gitrepo = gitrepo.clone(self._tempdir2)
 
     def tearDown(self):
         self._tempdir.cleanup()
+        self._tempdir2.cleanup()
 
     # Utils
     def path_leaf(self, path):
@@ -371,6 +377,40 @@ class TestSync(unittest.TestCase):
             expected_contents = [template.format(weight=idx) for idx in range(2)]
             actual_results = transform_docs(
                 self.gitrepo, self.tagname, folders_config, site_dir,
+                '/doc/test', 'http://test.com/test/tree')
+            self.assertEqual(set(actual_results), set(expected_results))
+
+            for result, content in zip(expected_results, expected_contents):
+                with open(result, 'r') as result:
+                    actual_content = result.read()
+                    self.assertEqual(actual_content, content)
+
+    def test_transform_docs_with_branch(self):
+        folders_config = {
+            'test-content': {
+                'index': 'content.md',
+                'target': 'target',
+                'include': ['*.md', '*.txt'],
+                'exclude': ['unwanted.txt'],
+                'header': {
+                    'test1': 'abc'
+                }
+            }
+        }
+        with tempfile.TemporaryDirectory() as site_dir:
+            expected_results = [
+                os.path.join(site_dir, 'target', '_index.md'),
+                os.path.join(site_dir, 'target', 'test.txt')]
+
+            template = (
+                "---\n"
+                "test1: abc\n"
+                "weight: {weight}\n"
+                "---\n"
+            )
+            expected_contents = [template.format(weight=idx) for idx in range(2)]
+            actual_results = transform_docs(
+                self.gitrepo, self.branchname, folders_config, site_dir,
                 '/doc/test', 'http://test.com/test/tree')
             self.assertEqual(set(actual_results), set(expected_results))
 
