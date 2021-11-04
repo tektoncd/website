@@ -230,6 +230,7 @@ class TestSync(unittest.TestCase):
         rewrite_url = 'https://foo.bar'
         local_files = {
             'test-content/content.md': ('_index.md', ''),
+            'test-content/parallel.md': ('parallel.md', ''),
             'test-content/test.txt': ('test.txt', ''),
             'another-content/test.md': ('test.md', 'another'),
             'test-content/nested/content.md': ('content.md', 'nested'),
@@ -244,7 +245,9 @@ class TestSync(unittest.TestCase):
             "notthere.txt",
             "../another-content/test.md",
             "./nested/content.md",
-            "./nested/example.yaml"
+            "./nested/example.yaml",
+            "./parallel.md",
+            "./parallel.md#with-fragment"
         ]
 
         expected_results = [
@@ -255,7 +258,9 @@ class TestSync(unittest.TestCase):
             "https://foo.bar/test-content/notthere.txt",
             "/docs/foo/another/test/",
             "/docs/foo/nested/content/",
-            "/docs/foo/nested/example.yaml"
+            "/docs/foo/nested/example.yaml",
+            "/docs/foo/parallel/",
+            "/docs/foo/parallel/#with-fragment"
         ]
 
         for case, expected in zip(cases, expected_results):
@@ -279,8 +284,8 @@ class TestSync(unittest.TestCase):
 
         cases = [
             "[exists-relative-link](./test.txt)",
-            "[exists-relative-link-index](./content.md)",
-            "[exists-relative-link-index](./else.md)",
+            "[exists-relative-link-index](./content.md)\nand\n[exists-relative-link-index](./content.md#with-fragment)",
+            "[else](else.md) and [else2](else.md)\nand\n[else-frag](./else.md#with-fragment) and [again](./else.md#with-another-fragment)",
             "[exists-relative-link-other-path](../some_other_folder/with_content.md)",
             "[exists-relative-link-fragment](test.txt#Fragment)",
             "[notfound-relative-link](./this/is/not/found.txt#FraGment)",
@@ -294,8 +299,8 @@ class TestSync(unittest.TestCase):
         ]
         expected_results = [
             "[exists-relative-link](/docs/test/test.txt)",
-            "[exists-relative-link-index](/docs/test/)",
-            "[exists-relative-link-index](/docs/test/else/)",
+            "[exists-relative-link-index](/docs/test/)\nand\n[exists-relative-link-index](/docs/test/#with-fragment)",
+            "[else](/docs/test/else) and [else](/docs/test/else/)\nand\n[else-frag](/docs/test/else/#with-fragment) and [again](/docs/test/else/#with-another-fragment)",
             "[exists-relative-link-other-path](/docs/test/else/)",
             "[exists-relative-link-fragment](/docs/test/test.txt#Fragment)",
             "[notfound-relative-link](http://test.com/tree/docs/test/this/is/not/found.txt#FraGment)",

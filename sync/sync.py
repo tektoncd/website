@@ -230,7 +230,7 @@ def transform_links_doc(text, base_path, local_files, rewrite_path, rewrite_url)
     rewrite_map = {x.get("href"): transform_link(x.get("href"), base_path, local_files, rewrite_path, rewrite_url)
         for x in links if x.get("href")}
     for source, target in rewrite_map.items():
-        text = text.replace(source, target)
+        text = text.replace(f'({source})', f'({target})')
     return text
 
 
