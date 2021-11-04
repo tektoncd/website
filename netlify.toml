@@ -15,7 +15,13 @@
 [context.branch-deploy]
   command = "make preview-build"
 
-
-
 [dev]
   command = "make serve URL=http://localhost:8888/"
+
+[[plugins]]
+package = "netlify-plugin-checklinks"
+
+  [plugins.inputs]
+  todoPatterns = ["load", "fragment"]
+  checkExternal = false
+  followSourceMaps = true
