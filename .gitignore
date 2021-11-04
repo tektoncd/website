@@ -23,3 +23,6 @@ content/en/docs/Triggers
 content/en/docs/CLI
 content/en/vault/
 sync/.cache
+
+# Local Netlify folder
+.netlify
