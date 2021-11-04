@@ -30,7 +30,7 @@ archive: https://github.com/tektoncd/operator/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
-  - name: origin/release-v0.50.x
+  - name: release-v0.50.x
     # The name to display on tekton.dev.
     # helper.py will use this value in the version switcher and other places.
     displayName: v0.50.1

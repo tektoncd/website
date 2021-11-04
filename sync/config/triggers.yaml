@@ -41,7 +41,7 @@ tags:
       target: getting-started
       include:
       - create-ingress.yaml
-- name: origin/release-v0.16.x
+- name: release-v0.16.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.16.1
@@ -54,7 +54,7 @@ tags:
       target: getting-started
       include:
       - create-ingress.yaml
-- name: origin/release-v0.15.x
+- name: release-v0.15.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.15.2
@@ -67,7 +67,7 @@ tags:
       target: getting-started
       include:
       - create-ingress.yaml
-- name: origin/release-v0.14.x
+- name: release-v0.14.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.14.2
@@ -80,7 +80,7 @@ tags:
       target: getting-started
       include:
       - create-ingress.yaml
-- name: origin/release-v0.13.x
+- name: release-v0.13.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.13.0
@@ -93,7 +93,7 @@ tags:
       target: getting-started
       include:
       - create-ingress.yaml
-- name: origin/release-v0.12.x
+- name: release-v0.12.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.12.1
@@ -106,7 +106,7 @@ tags:
       target: getting-started
       include:
       - create-ingress.yaml
-- name: origin/release-v0.11.x
+- name: release-v0.11.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.11.2
