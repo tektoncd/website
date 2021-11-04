@@ -27,6 +27,9 @@ pygmentsUseClassic = false
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
 
+# Enables emoji
+enableEmoji = true
+
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
