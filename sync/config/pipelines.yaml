@@ -74,7 +74,7 @@ tags:
       exclude:
       - api-spec.md
       - tutorial.md
-- name: v0.25.0
+- name: release-v0.25.x
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
   displayName: v0.25.0
