@@ -22,6 +22,8 @@ content/en/docs/Pipelines
 content/en/docs/Triggers
 content/en/docs/CLI
 content/en/vault/
+content/en/docs/Chains
+content/en/docs/Operator
 sync/.cache
 
 # Local Netlify folder
