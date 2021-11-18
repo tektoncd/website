@@ -119,7 +119,10 @@ def transform_docs(git_repo, tag, folders, site_folder, base_path, base_url):
     # List all relevant blobs based on the folder config
     files = []
     for folder, folder_config in folders.items():
-        root = tag.commit.tree.join(folder)
+        if folder == '.':
+            root = tag.commit.tree
+        else:
+            root = tag.commit.tree.join(folder)
         docs = docs_from_tree(
             tree=root, include=folder_config.get('include', ['*']),
             exclude=folder_config.get('exclude', []))
