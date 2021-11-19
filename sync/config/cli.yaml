@@ -6,13 +6,9 @@
 # The name of the component.
 # sync.py will use this value to build directories in content/ and vault/.
 component: CLI
-# The order of the component.
-displayOrder: 2
 # The GitHub repository where documentation resides.
 repository: https://github.com/tektoncd/cli
 # The directory in the GitHub repository where contents reside.
-docDirectory: docs
-# The link to the GitHub tag page.
 archive: https://github.com/tektoncd/cli/tags
 # The tags (versions) of contents to sync.
 # Note that sync.py and related script reads tags in the order specified in
@@ -23,7 +19,7 @@ archive: https://github.com/tektoncd/cli/tags
 #   displayName: vX.Y.Z
 #   folders:
 #     docs:
-#       target: '/'            # optional, default value '/'
+#       target: ''             # optional, default value ''
 #       index: README.md       # optional, if _index.md exists
 #       include: ['*.md']      # optional, default value ['*']
 #       exclude: ['not_in.md'] # optional, default value []

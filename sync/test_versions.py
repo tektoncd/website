@@ -27,9 +27,7 @@ import versions
 test_config_string = """
 # This is a test config
 component: test
-displayOrder: 0
 repository: https://foo.bar/org/test
-docDirectory: docs
 archive: https://foo.bar/tags
 tags:
 - name: foo
@@ -47,9 +45,7 @@ tags:
 test_config2_string = """
 # This is a test config
 component: test2
-displayOrder: 1
 repository: https://foo.bar/org/test2
-docDirectory: docs
 archive: https://foo.bar/tags2
 tags:
 - name: foo
@@ -62,9 +58,7 @@ tags:
 test_config_string_new = """
 # This is a test config
 component: test
-displayOrder: 0
 repository: https://foo.bar/org/test
-docDirectory: docs
 archive: https://foo.bar/tags
 tags:
 - name: new

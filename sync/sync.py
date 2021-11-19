@@ -363,7 +363,7 @@ def get_files_in_path(path, file_type):
 
 
 def load_config(files):
-    """ return a list of yaml files sorted based on a field called displayOrder """
+    """ return a list of yaml files"""
     yaml = YAML()
     dic_list = []
 
@@ -374,8 +374,6 @@ def load_config(files):
                 "filename": file,
                 "content": yaml.load(text)
             })
-
-    dic_list.sort(key=lambda x: x['content']['displayOrder'])
 
     return dic_list
 

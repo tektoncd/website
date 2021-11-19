@@ -161,20 +161,20 @@ class TestSync(unittest.TestCase):
     def test_load_save_config(self):
         """ convert a list of files into a list of dictionaries """
         # create a tmp file with yaml txt
-        text = "{displayOrder: 1}"
+        text = "{repository: foo}"
 
         with tempfile.NamedTemporaryFile(dir='/tmp', delete=False) as tmp:
             tmp_name = tmp.name
             tmp.write(text.strip().encode())
 
-        expected = [{'content': {'displayOrder': 1},
+        expected = [{'content': {'repository': "foo"},
                      'filename': tmp_name}]
         actual = load_config([tmp_name])
         self.assertEqual(actual, expected)
 
         mod_config = actual
-        mod_config[0]['content']['displayOrder'] = 2
-        expected = [{'content': {'displayOrder': 2},
+        mod_config[0]['content']['repository'] = "bar"
+        expected = [{'content': {'repository': "bar"},
                      'filename': tmp_name}]
         save_config(mod_config)
         actual = load_config([tmp_name])
@@ -440,7 +440,6 @@ class TestSync(unittest.TestCase):
         test_component = {
             'component': 'test',
             'repository': 'http://test.com/test',
-            'docDirectory': 'docs',
             'tags': [{
                 'name': self.tagname,
                 'displayName': self.tagname,
