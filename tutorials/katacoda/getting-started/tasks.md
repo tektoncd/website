@@ -63,7 +63,7 @@ step to `spec.steps`:
 steps:
 # The name of the step
 - name: pytest
-  image: python
+  image: python:3.9
   command:
   - /bin/bash
   - -c
