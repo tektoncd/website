@@ -9,13 +9,9 @@ The configuration is structure as follows:
 # The name of the component.
 # sync.py will use this value to build directories in content/ and vault/.
 component: <Component>
-# The order of the component in the documentation.
-displayOrder: 0
 # The GitHub repository where documentation resides.
 repository: https://github.com/tektoncd/<component>
 # The directory in the GitHub repository where contents reside.
-docDirectory: docs
-# The link to the GitHub tag page.
 archive: https://github.com/tektoncd/<component>/tags
 # The tags (versions) of contents to sync.
 # Note that sync.py and related script reads tags in the order specified in

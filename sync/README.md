@@ -57,12 +57,8 @@ The yaml sync file requires the following schema
 # The name of the component.
 # sync.py will use this value to build directories in content/ and vault/. This is used to for the list on the redenred web website.
 component: Foobar
-# The order of the component.
-displayOrder: 0
 # The GitHub repository where documentation resides.
 repository: https://github.com/tektoncd/foobar
-# The directory in the GitHub repository where contents reside.
-docDirectory: docs
 # The link to the GitHub tag page.
 archive: https://github.com/tektoncd/foobar/tags
 # The tags (versions) of contents to sync.
