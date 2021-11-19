@@ -51,6 +51,7 @@ class TestSync(unittest.TestCase):
         self.tagname = "test_version"
         gitrepo.create_tag(self.tagname)
         self.doc = gitrepo.tree().join('test-content/content.md')
+        self.png = gitrepo.tree().join('test-content/tekton.png')
         # Create a branch
         self.branchname = "test_branch"
         gitrepo.create_head(self.branchname)
@@ -105,7 +106,7 @@ class TestSync(unittest.TestCase):
 
     def test_docs_from_tree(self):
         tree = self.gitrepo.tree().join('test-content')
-        expected = ['content.md', 'test.txt', 'unwanted.txt']
+        expected = ['content.md', 'tekton.png', 'test.txt', 'unwanted.txt']
         actual = [x.name for x in docs_from_tree(tree)]
         self.assertEqual(actual, expected)
 
@@ -132,7 +133,7 @@ class TestSync(unittest.TestCase):
 
     def test_docs_from_tree_exclude(self):
         tree = self.gitrepo.tree().join('test-content')
-        expected = ['content.md']
+        expected = ['content.md', 'tekton.png']
         actual = [x.name for x in
             docs_from_tree(tree, exclude=['*.txt'])]
         self.assertEqual(actual, expected)
@@ -353,6 +354,20 @@ class TestSync(unittest.TestCase):
             self.assertEqual(actual_result, expected_result)
 
             with open(expected_result, 'r') as result:
+                actual_content = result.read()
+                self.assertEqual(actual_content, expected_content)
+
+    def test_transform_doc_png(self):
+        with tempfile.TemporaryDirectory() as site_dir:
+            expected_result = os.path.join(site_dir, 'target', 'tekton.png')
+            expected_content = self.png.data_stream.read()
+
+            actual_result = transform_doc(
+                self.png, 'test-content', 'tekton.png', 'target', {}, {},
+                '/doc/test', 'http://test.com/test/tree', site_dir)
+            self.assertEqual(actual_result, expected_result)
+
+            with open(expected_result, 'rb') as result:
                 actual_content = result.read()
                 self.assertEqual(actual_content, expected_content)
 
