@@ -171,23 +171,27 @@ def transform_doc(doc, source_folder, target, target_folder, header,
     :param base_url: used to rewrite relative links to unknown files
     :param site_folder: the root folder on disk where files shall be written to
     """
-    # Some machines seem to use text/plain (e.g. running on a mac) and some use
-    # text/markdown (e.g. running in a fresh ubuntu container)
-    if doc.mime_type != 'text/plain' and doc.mime_type != 'text/markdown':
-        logging.error(f'Cannot process {doc.mime_type} file {doc.path}')
-        sys.exit(1)
     site_target_folder = os.path.normpath(os.path.join(site_folder, target_folder))
     safe_makedirs(site_target_folder)
     target = os.path.join(site_target_folder, target)
-    with open(target, 'w+') as target_doc:
-        # If there is an header configured, write it (in YAML)
-        doc_all = decode(doc.data_stream.read())
-        doc_markdown, fm = read_front_matter(doc_all)
-        # Update the doc front matter with the configured one and write it
-        write_front_matter(target_doc, fm, header)
-        doc_markdown = transform_links_doc(
-            doc_markdown, source_folder, local_files, base_path, base_url)
-        target_doc.write(doc_markdown)
+    # Look for markdown files.
+    # Some machines seem to use text/plain (e.g. running on a mac) and some use
+    # text/markdown (e.g. running in a fresh ubuntu container)
+    if doc.mime_type == 'text/plain' or doc.mime_type == 'text/markdown':
+        with open(target, 'w+') as target_doc:
+            # If there is an header configured, write it (in YAML)
+            doc_all = decode(doc.data_stream.read())
+            doc_markdown, fm = read_front_matter(doc_all)
+            # Update the doc front matter with the configured one and write it
+            write_front_matter(target_doc, fm, header)
+            doc_markdown = transform_links_doc(
+                doc_markdown, source_folder, local_files, base_path, base_url)
+            target_doc.write(doc_markdown)
+        return target
+    # Pass-through for other mime types
+    with open(target, 'bw+') as target_doc:
+        logging.info(f'Pass-through {doc.mime_type} file {doc.path}')
+        target_doc.write(doc.data_stream.read())
     return target
 
 
