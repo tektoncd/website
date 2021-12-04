@@ -173,8 +173,7 @@ together with the core component of Tekton, Tekton Pipelines.
 `tkn` is available on macOS via [`brew`](https://brew.sh/):
 
 ```bash
-brew tap tektoncd/tools
-brew install tektoncd/tools/tektoncd-cli
+brew install tektoncd-cli
 ```
 
 You can also download it as a tarball from the [`tkn` Releases page](https://github.com/tektoncd/cli/releases).
