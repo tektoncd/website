@@ -1,12 +1,12 @@
 <!-- Prefill header if not given as parameter -->
-{{ $header := default (printf "Tab %v" ( add $.Ordinal 1)) (.Get "header") }}
+{{ $header := default (printf "Tab %v" ( add $.Ordinal 1)) (.Get 0) }}
 
 <!-- store all tab info in dict tab -->
 {{ $tab := dict "header" $header }}
 {{ with $.Inner }}
 <!-- Trim any leading and trailing newlines from .Inner, this avoids
      spurious lines during syntax highlighting -->
-{{ $tab = merge $tab (dict "content" (trim $.Inner "\n")) }}
+{{ $tab = merge $tab (dict "content" ( $.Inner )) }}
 {{ end }}
 
 <!-- add dict tab to parent's scratchpad -->
