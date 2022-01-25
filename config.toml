@@ -78,6 +78,7 @@ version_menu = "Releases"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/tektoncd/website"
+github_branch = "main"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
