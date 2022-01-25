@@ -7,6 +7,9 @@ resources/_gen/
 public/
 assets/js/version-switcher.js
 
+# Hugo
+.hugo_build.lock
+
 # IDEs
 .vscode
 **/.idea/
