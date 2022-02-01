@@ -1,10 +1,12 @@
 <!--
 ---
-linkTitle: "Writing Primer"
-weight: 2
+title: "Tips and tricks for good writing"
+linkTitle: "Tips and tricks for good writing"
+weight: 3
+description:
+  Tips and tricks to write high quality documentation
 ---
 -->
-# Writing High Quality Documentation for Tekton
 
 “I hate writing!” is a line heard all too often. Documenting a feature can be an intimidating task. 
 
@@ -98,4 +100,4 @@ the document.
 ## How can I learn more?
 
 Take a look at the [Google Developer Style Guide](https://developers.google.com/style/). It covers
-style, tone, grammar, and punctuation. Also, ask @sergetron for reading recommendations!
+style, tone, grammar, and punctuation.
