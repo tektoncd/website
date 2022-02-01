@@ -1,35 +1,22 @@
 <!--
 ---
-linkTitle: "Contributing to Tekton Documentation"
-weight: 1
+title: "Contribute to Documentation"
+linkTitle: "Contribute to Documentation"
+weight: 11
+description: > 
+  Contribution guidelines
 ---
 -->
-# Contributing to Tekton Documentation
 
 If you would like to contribute to Tekton documentation, we’re happy to have your help!
 Anyone can contribute, whether you’re new to the project or you’ve been around a long time,
 and whether you self-identify as a developer, an end user, or someone who just can’t stand
 seeing typos.
 
-This guide covers the following topics:
-
-- [Contribution types](#contribution-types)
-- [Contribution process](#contribution-process)
-- [Requesting a documentation improvement](#requesting-a-documentation-improvement)
-- [Submitting a documentation change](#submitting-a-documentation-change)
-- [I need help!](#i-need-help)
-
-Before you begin contributing, you should also read the following:
-
-- [Content guidelines for Tekton documentation](doc-con-content.md)
-- [Formatting conventions for Tekton documentation](doc-con-formatting.md)
-- [Writing high quality documentation for Tekton](doc-con-writing.md)
-
 ## Contribution types
 
 You can request an improvement by filing an issue or update the documentation yourself by
 filing a pull request against the relevant [Tekton repository](https://github.com/tektoncd).
-Assign your issue or pull request to @sergetron, Tekton's technical writer, for triage.
 
 Here's how we handle different types of documentation work:
 
@@ -51,14 +38,17 @@ content and link the pull request to it.
 **Note:** If you're creating a new page, make sure to include its proposed location within the
 Tekton documentation set.
 
-Assign the pull request and if applicable, the accompanying issue to @sergetron, Tekton's
-technical writer. The pull request then goes through technical and editorial review, and is
-published on the Tekton documentation website. Depending on our current workload, the review
-may take some time. Once the review is complete, the pull request is published to the Tekton
+Assign the pull request and if applicable, the accompanying issue to one of the
+[Tekton website approvers][approvers]. The pull request then goes through
+technical and editorial review, and is published on the Tekton documentation
+website. Depending on our current workload, the review may take some time. Once
+the review is complete, the pull request is published to the Tekton
 documentation site.
 
 Documentation contributions should be technically accurate and easy to understand. See the rest
 of this guide to learn how to produce clear, concise, and informative documentation.
+
+[approvers]: https://github.com/tektoncd/website/blob/main/OWNERS
 
 ## Requesting a documentation improvement
 
@@ -66,7 +56,6 @@ of this guide to learn how to produce clear, concise, and informative documentat
 
 If you found a problem with Tekton documentation but can't fix it yourself, you can request a
 documentation improvement by creating an issue against the relevant [Tekton repository](https://github.com/tektoncd)
-and assigning it to @sergetron, Tekton's technical writer.
 
 We evaluate the need to determine the scope of the requested content and an estimated delivery
 time based on our current workload. We then place the issue in the documentation queue.
@@ -92,8 +81,3 @@ to your new page to existing Tekton documentation.
 If you're not sure how to address a certain documentation issue, join the
 [#docs channel](https://app.slack.com/client/TJ45YV83X/CQYFEE00K) on the Tekton Slack and ask!
 
-Also, before and while you contribute, read the following topics:
-
-- [Content guidelines for Tekton documentation](doc-con-content.md)
-- [Formatting conventions for Tekton documentation](doc-con-formatting.md)
-- [Writing high quality documentation for Tekton](doc-con-writing.md)
