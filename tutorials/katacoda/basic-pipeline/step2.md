@@ -85,5 +85,7 @@ It may take a few moments before your `Task` completes. When it executes, it sho
 show the following output:
 
 ```console
+[goodbye] + set -e
+[goodbye] + echo Goodbye World!
 [goodbye] Goodbye World!
 ```
