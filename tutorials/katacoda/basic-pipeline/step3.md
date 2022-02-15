@@ -77,10 +77,6 @@ show the following output:
 
 ```console
 [hello : hello] Hello World!
-[hello : hello] + set -e
-[hello : hello] + echo Hello World!
 
 [goodbye : goodbye] Goodbye World!
-[goodbye : goodbye] + set -e
-[goodbye : goodbye] + echo Goodbye World!
 ```
