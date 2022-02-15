@@ -236,6 +236,8 @@ def transform_links_doc(text, base_path, local_files, rewrite_path, rewrite_url)
     # Rewrite map, only use links with an href
     rewrite_map = {x.get("href"): transform_link(x.get("href"), base_path, local_files, rewrite_path, rewrite_url)
         for x in links if x.get("href")}
+    rewrite_map.update({x.get("src"): transform_link(x.get("src"), base_path, local_files, rewrite_path, rewrite_url)
+        for x in links if x.get("src")})
     for source, target in rewrite_map.items():
         text = text.replace(f'({source})', f'({target})')
     return text
@@ -245,7 +247,9 @@ def get_links(md):
     """ return a list of all the links in a string formatted in markdown """
     md = markdown.markdown(md)
     soup = BeautifulSoup(md, 'html.parser')
-    return soup.find_all("a")
+    links = soup.find_all("a")
+    links.extend(soup.find_all("img"))
+    return links
 
 
 def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):
@@ -306,6 +310,8 @@ def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):
             new_path = [rewrite_path, target_file]
         return parsed._replace(path="/".join(new_path)).geturl()
     # when not found on disk, append to the base_url
+    if not rewrite_url.endswith("/"):
+        rewrite_url += "/"
     return urljoin(rewrite_url, parsed._replace(path=fq_path).geturl())
 
 

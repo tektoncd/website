@@ -272,15 +272,16 @@ class TestSync(unittest.TestCase):
     def test_transform_links_doc(self):
         self.maxDiff = None
 
-        # Links are in a page stored undrer base_path
+        # Links are in a page stored under base_path
         base_path = 'test-content'
 
         # The following pages are synced
         local_files = {
-            f'{base_path}/content.md': '_index.md',
-            f'{base_path}/else.md': 'else.md',
-            f'{base_path}/test.txt': 'test.txt',
-            'some_other_folder/with_contend.md': 'with_contend.md'
+            f'{base_path}/content.md': ['_index.md', ''],
+            f'{base_path}/else.md': ['else.md', ''],
+            f'{base_path}/test.txt': ['test.txt', ''],
+            'some_other_folder/with_content.md': ['with_content.md', 'else'],
+            f'{base_path}/tekton.png': ['tekton.png', '']
         }
 
         cases = [
@@ -296,22 +297,24 @@ class TestSync(unittest.TestCase):
             ("[valid-absolute-link](https://website-random321.net#FRagment) "
              "[valid-ref-link](#fooTEr)"),
             ("Valid link broken on two lines [exists-link-in-list]("
-            "./test.txt)")
+            "./test.txt)"),
+            "[exists-png-image](./tekton.png)"
         ]
         expected_results = [
             "[exists-relative-link](/docs/test/test.txt)",
             "[exists-relative-link-index](/docs/test/)\nand\n[exists-relative-link-index](/docs/test/#with-fragment)",
-            "[else](/docs/test/else) and [else](/docs/test/else/)\nand\n[else-frag](/docs/test/else/#with-fragment) and [again](/docs/test/else/#with-another-fragment)",
-            "[exists-relative-link-other-path](/docs/test/else/)",
+            "[else](/docs/test/else/) and [else2](/docs/test/else/)\nand\n[else-frag](/docs/test/else/#with-fragment) and [again](/docs/test/else/#with-another-fragment)",
+            "[exists-relative-link-other-path](/docs/test/else/with_content/)",
             "[exists-relative-link-fragment](/docs/test/test.txt#Fragment)",
-            "[notfound-relative-link](http://test.com/tree/docs/test/this/is/not/found.txt#FraGment)",
-            "[notfound-relative-link-fragment](http://test.com/tree/docs/test/this/is/not/found.md#fraGmenT)",
-            "[notfound-relative-link-dotdot](http://test.com/tree/docs/examples/notfound.txt)",
-            "[invalid-absolute-link](http://test.com/tree/docs/www.github.com)",
+            "[notfound-relative-link](http://test.com/tree/docs/test/test-content/this/is/not/found.txt#FraGment)",
+            "[notfound-relative-link-fragment](http://test.com/tree/docs/test/test-content/this/is/not/found.md#fraGmenT)",
+            "[notfound-relative-link-dotdot](http://test.com/tree/docs/test/examples/notfound.txt)",
+            "[invalid-absolute-link](http://test.com/tree/docs/test/test-content/www.github.com)",
             ("[valid-absolute-link](https://website-random321.net#FRagment) "
              "[valid-ref-link](#footer)"),
             ("Valid link broken on two lines [exists-link-in-list]("
-            "/docs/test/test.txt)")
+            "/docs/test/test.txt)"),
+            "[exists-png-image](/docs/test/tekton.png)"
         ]
 
         for case, expected in zip(cases, expected_results):
@@ -319,6 +322,7 @@ class TestSync(unittest.TestCase):
                 text=case, base_path=base_path, local_files=local_files,
                 rewrite_path='/docs/test', rewrite_url='http://test.com/tree/docs/test'
             )
+            self.assertEqual(actual, expected)
 
     def test_read_front_matter(self):
         cases = [
