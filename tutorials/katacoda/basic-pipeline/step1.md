@@ -13,9 +13,11 @@ spec:
   steps:
     - name: hello
       image: ubuntu
-      script: |
-        set -e
-        echo "Hello World!"
+      command:
+      - bash
+      - -c
+      args:
+      - echo "Hello World!"
 ```{{copy}}
 
 Write the YAML above to a file named task-hello.yaml, and apply it to your Kubernetes cluster:
@@ -70,7 +72,5 @@ tkn taskrun logs --last -f
 It may take a few moments before your Task completes. When it executes, it should show the following output:
 
 ```console
-[hello] + set -e
-[hello] + echo Hello World!
 [hello] Hello World!
 ```
