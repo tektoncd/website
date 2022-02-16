@@ -9,7 +9,7 @@ spec:
       type: git
   steps:
   - name: pytest
-    image: python:3.10
+    image: python
     command:
     - /bin/bash
     - -c
@@ -25,7 +25,7 @@ spec:
   sidecars:
   - name: example-server
     # The builder image to use
-    image: python:3.10
+    image: python
     # The command to run with the builder image
     command:
     - /bin/bash
