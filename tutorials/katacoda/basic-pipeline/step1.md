@@ -14,7 +14,7 @@ spec:
     - name: hello
       image: ubuntu
       script: |
-        set -e
+        #!/usr/bin/env bash
         echo "Hello World!"
 ```{{copy}}
 

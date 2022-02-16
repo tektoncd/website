@@ -1,6 +1,6 @@
-In this section, we will build upon the first task we created and create
-a second task and verify it. It may seem repeatitive, but this is just an
-example. (after you're done just imagine what you could do!)
+In this section, we will build upon the first task we created, create
+a second task and verify it. It may seem repetitive, but this is just an
+example (after you're done just imagine what else you could do!).
 
 ## Extending your first CI/CD Workflow with a second Task and a Pipeline
 
@@ -25,7 +25,7 @@ spec:
     - name: goodbye
       image: ubuntu
       script: |
-        set -e
+        #!/usr/bin/env bash
         echo "Goodbye World!"
 ```{{copy}}
 
