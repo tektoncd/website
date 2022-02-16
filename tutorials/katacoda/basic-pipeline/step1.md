@@ -13,11 +13,9 @@ spec:
   steps:
     - name: hello
       image: ubuntu
-      command:
-      - bash
-      - -c
-      args:
-      - echo "Hello World!"
+      script: |
+        #!/usr/bin/env bash
+        echo "Hello World!"
 ```{{copy}}
 
 Write the YAML above to a file named task-hello.yaml, and apply it to your Kubernetes cluster:
