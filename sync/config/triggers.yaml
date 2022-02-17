@@ -193,6 +193,7 @@ tags:
     docs:
       index: README.md
       include: ['*.md']
+      exclude: ['triggers-api.md']
     docs/getting-started:
       target: getting-started
       include:
