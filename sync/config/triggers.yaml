@@ -26,8 +26,30 @@ archive: https://github.com/tektoncd/triggers/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
-- name: v0.17.0
-  displayName: v0.17.0
+- name: v0.19.0
+  displayName: v0.19.0
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: v0.18.0
+  displayName: v0.18.0
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: v0.17.1
+  displayName: v0.17.1
   # Dict of folders to sync
   folders:
     docs:
