@@ -104,7 +104,7 @@ running in its own container.
         - name: echo
           image: alpine
           script: |
-            #!/bin/bash
+            #!/bin/sh
             echo "Hello World"
     ```
 
