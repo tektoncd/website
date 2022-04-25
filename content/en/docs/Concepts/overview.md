@@ -1,12 +1,15 @@
 <!--
 ---
-title: "Overview of Tekton"
-linkTitle: "Overview of Tekton"
+title: "Overview"
+linkTitle: "Overview"
 weight: 1
 description: >
+
   Components, benefits and caveats, common usage.
 ---
 -->
+
+
 
 ## What is Tekton?
 
@@ -122,4 +125,9 @@ you must explicitly configure each `Task` to make its outputs available to the n
 
 ### I want to learn more!
 
-To learn more about the Tekton entities described above and start using Tekton, see the [Tekton Pipelines Overview](https://github.com/tektoncd/pipeline/blob/main/docs/README.md).
+-  See [the Tekton concept model](/docs/concepts/concept-model) to learn more
+   about the basics of how Tekton tasks and pipelines interact.
+
+-  Run your first pipeline following the [Getting
+   Started](/docs/getting-started/) guide.
+
