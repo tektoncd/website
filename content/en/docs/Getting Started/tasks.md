@@ -1,3 +1,4 @@
+<!--
 ---
 title: "Getting started with Tasks"
 likTitle: "Tasks"
@@ -5,6 +6,7 @@ weight: 1
 description: >
   Set up and run your first Tekton task
 ---
+-->
 
 This tutorial shows you how to 
 

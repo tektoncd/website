@@ -1,29 +1,31 @@
+<!--
 ---
 title: "Getting Started with Pipelines"
 linkTitle: "Getting Started with Pipelines"
 weight: 2
 description: >
   Create and run your first Tekton pipeline
-
 ---
+-->
 
 This tutorial shows you how to:
 
-- Create two tasks.
-- Create a pipeline containing your tasks.
-- Use `PipelineRun` to instantiate and run the pipeline containing your tasks.
+1.  Create two tasks.
+1.  Create a pipeline containing your tasks.
+1.  Use `PipelineRun` to instantiate and run the pipeline containing your tasks.
 
 For this tutorial we are going to use [minikube][minikube] to run the commands
 locally.
 
 ## Prerequisites
 
-- Complete the [Getting started with tasks](/docs/getting-started/tasks/)
-  tutorial. *Do not clean up your resources*, skip the last section.
+1.  Complete the [Getting started with tasks](/docs/getting-started/tasks/)
+    tutorial. *Do not clean up your resources*, skip the last section.
 
-- [Install the Tekton CLI](/docs/cli/).
+1.  [Install the Tekton CLI](/docs/installation/tkn-cli/), which provides `tkn`
+    command.
 
-## Creating and running a second task
+## Create and run a second task
 
 You already have a *Hello World!* task. To create a second *Goodbye World!*
 task:
@@ -54,7 +56,7 @@ task:
 When a task is part of a pipeline you don't have to instantiate it, the pipeline
 is going to take care of that.
 
-## Creating and running a pipeline
+## Create and run a pipeline
 
 A **[pipeline](/docs/pipelines/pipelines/)** defines an ordered series of tasks
 arranged in a specific execution order as part of your CI/CD workflow.
