@@ -24,5 +24,3 @@ echo '# event arrives, such as one from a GitHub webhook' | pv -qL 12
 echo '# Tekton has a dashboard and a CLI as well' | pv -qL 12
 echo '# Learn more about Tekton at ' | pv -qL 12
 echo '# tekton.dev/docs' | cat | pv -qL 12 | lolcat
-echo '# or play with one of our interactive tutorials at ' | pv -qL 12
-echo '# tekton.dev/try' | cat | pv -qL 12 | lolcat
