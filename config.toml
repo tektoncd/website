@@ -35,14 +35,12 @@ enableEmoji = true
 blog = "/:section/:year/:month/:day/:slug/"
 
 [markup]
-defaultMarkdownHandler = "blackfriday"
+defaultMarkdownHandler = "goldmark"
 
-## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
-[blackfriday]
-plainIDAnchors = true
-hrefTargetBlank = true
-angledQuotes = false
-latexDashes = true
+## Configuration for goldmark markdown parser: https://gohugo.io/getting-started/configuration-markup/#goldmark
+[markup.goldmark]
+	[markup.goldmark.renderer]
+		unsafe = true
 
 # Image processing configuration.
 [imaging]
