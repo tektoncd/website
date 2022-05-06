@@ -121,6 +121,9 @@ both the *Hello World!* and *Goodbye World!* tasks.
     ```bash
     tkn pipelinerun logs hello-goodbye-run -f -n default
     ```
+    
+    *Note*. If you get a message similar to ''tkn: command not found'', please find 
+    installation notes here: https://tekton.dev/docs/cli/
 
     The output shows both Tasks completed successfully:
 
