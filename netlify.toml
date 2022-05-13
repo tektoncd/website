@@ -17,6 +17,7 @@
 
 [dev]
   command = "make serve URL=http://localhost:8888/"
+  framework = "hugo"
 
 [[plugins]]
 package = "netlify-plugin-checklinks"
