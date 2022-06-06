@@ -507,6 +507,7 @@ data:
 
 ## Further reading
 
+- [Build and push and image with Kaniko and Tekton][kaniko-build].
 - [Full Tasks and Pipelines documentation](/docs/pipelines/).
 
 [tekton-hub]: https://hub.tekton.dev/
@@ -515,3 +516,4 @@ data:
 [bundles]: /docs/pipelines/pipelines/#tekton-bundles
 [getting-started]: /docs/getting-started/
 [secrets]: https://kubernetes.io/docs/concepts/configuration/secret/
+[kaniko-build]: /docs/how-to-guides/kaniko-build-push/
