@@ -39,7 +39,7 @@ from jinja2 import FileSystemLoader
 from ruamel.yaml import YAML
 
 
-CONTENT_DIR = './content/en/docs'
+CONTENT_DIR = './content/en/docs/Reference'
 VAULT_DIR = './content/en/vault'
 JS_ASSET_DIR = './assets/js'
 TEMPLATE_DIR = './templates'
@@ -335,7 +335,7 @@ def download_resources_to_project(yaml_list, clones):
             link_base_url = f'{repository}/tree/{tag["name"]}/'
             if index == 0:
                 # first links belongs on the home page
-                base_path = f'/docs/{component}'.lower()
+                base_path = f'/docs/Reference/{component}'.lower()
                 site_dir = f'{CONTENT_DIR}/{component}'
                 os.makedirs(site_dir, exist_ok=True)
             else:

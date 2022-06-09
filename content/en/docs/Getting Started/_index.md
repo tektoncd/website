@@ -2,7 +2,7 @@
 ---
 title: "Getting Started"
 linkTitle: "Getting Started"
-weight: 1
+weight: 2
 description: >
   Get started with Tekton
 ---

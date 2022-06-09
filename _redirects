@@ -1,0 +1,7 @@
+/docs/results/*   /docs/reference/results/:splat    301!
+/docs/pipelines/* /docs/reference/pipelines/:splat  301!
+/docs/triggers/*  /docs/reference/triggers/:splat   301!
+/docs/cli/*       /docs/reference/cli/:splat        301!
+/docs/dashboard/* /docs/reference/dashboard/:splat  301!
+/docs/operator/*  /docs/reference/operator/:splat   301!
+/docs/chains/*    /docs/reference/chains/:splat     301!

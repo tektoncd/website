@@ -18,14 +18,16 @@ tkn_web_env
 **/__pycache__/
 
 # Synced docs
-content/en/docs/Pipelines
-content/en/docs/Triggers
-content/en/docs/CLI
 content/en/vault/
-content/en/docs/Chains
-content/en/docs/Operator
-content/en/docs/Dashboard
-content/en/docs/Results
+content/en/docs/Reference/Pipelines
+content/en/docs/Reference/Triggers
+content/en/docs/Reference/CLI
+content/en/docs/Reference/Chains
+content/en/docs/Reference/Operator
+content/en/docs/Reference/Dashboard
+content/en/docs/Reference/Results
+
+content/en/vault/
 sync/.cache
 
 # Local Netlify folder

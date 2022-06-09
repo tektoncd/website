@@ -6,13 +6,10 @@ services:
       image: tekton/website
       build:
          context: .
-      command: server
       ports: 
-         - "8888:1313"
+         - "8888:8888"
       volumes:
-         - /src/content/en/docs/Pipelines/
-         - /src/content/en/docs/Triggers/
-         - /src/content/en/docs/CLI/
+         - /src/content/en/docs/Reference/
          - /src/content/en/vault/
          - /src/node_modules/
          - .:/src/

@@ -1,22 +1,18 @@
-FROM klakegg/hugo:ext-alpine as dependencies
-
-WORKDIR /app
+FROM klakegg/hugo:0.94.2-ext-alpine as dependencies
+# Install the dependencies and sync remote files
 RUN apk add git gcc build-base python3-dev py3-pip
+WORKDIR /app
 COPY . /app
 RUN npm install
-RUN python3 -m venv .venv
-RUN source .venv/bin/activate
 RUN pip3 install -r requirements.txt
 RUN make sync
 
-
-FROM klakegg/hugo:ext-alpine as website
+FROM klakegg/hugo:0.94.2-ext-alpine as website
+#Later versions have errors inside a container
+RUN npm install -g netlify-cli@9.16.7 
 COPY . /src
 COPY --from=dependencies /app/node_modules /src/node_modules
-COPY --from=dependencies /app/content/en/docs/Pipelines /src/content/en/docs/Pipelines
-COPY --from=dependencies /app/content/en/docs/Triggers /src/content/en/docs/Triggers
-COPY --from=dependencies /app/content/en/docs/CLI /src/content/en/docs/CLI
-COPY --from=dependencies /app/content/en/vault /src/content/en/vault
-COPY --from=dependencies /app/sync/.cache /src/sync/.cache
+COPY --from=dependencies /app/content/en/docs/Reference /src/content/en/docs/Reference
 
-CMD ["serve", "--baseURL http://localhost:8888/", "--buildDrafts", "--buildFuture", "--disableFastRender", "--ignoreCache", "--watch"]
+ENTRYPOINT ["/usr/local/node/bin/netlify"]
+CMD ["dev"]
