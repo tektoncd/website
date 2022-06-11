@@ -78,8 +78,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
    ```bash
    kubectl get pods --namespace tekton-pipelines --watch
    ```
-
-When all components show `Running` under the `STATUS` column the installation
+Watch the components using their names under the `NAME` column, when all components show `Running` under the `STATUS` column, the installation
 is complete.
 
 Hit *Ctrl + C* to stop monitoring.
