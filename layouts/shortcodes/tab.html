@@ -1,3 +1,32 @@
-<div class="tab-pane" title="{{ .Get 0 }}">
-    {{ .Inner }}
-</div>
+<!-- Prefill header if not given as parameter -->
+{{ if and (not .IsNamedParams) (.Get 0) }}
+  {{ .Scratch.Set "header" (.Get 0) }}
+{{ else }}
+  {{ .Scratch.Set "header" (default (printf "Tab %v" ( add $.Ordinal 1)) (.Get "header")) }}
+{{ end }}
+{{ $header := (.Scratch.Get "header")  }}
+
+<!-- store all tab info in dict tab -->
+{{ $tab := dict "header" $header }}
+{{ with $.Get "lang" }}
+  {{ $tab = merge $tab (dict "language" ($.Get "lang")) }}
+{{ end }}
+{{ with $.Get "highlight" }}
+  {{ $tab = merge $tab (dict "highlight" ($.Get "highlight")) }}
+{{ end }}
+{{ with $.Get "code" }}
+  {{ $tab = merge $tab (dict "code" ($.Get "code")) }}
+{{ end }}
+{{ with $.Get "disabled" }}
+  {{ $tab = merge $tab (dict "disabled" ($.Get "disabled")) }}
+{{ end }}
+{{ with $.Inner }}
+  <!-- Trim any leading and trailing newlines from .Inner, this avoids
+       spurious lines during syntax highlighting -->
+  {{ $tab = merge $tab (dict "content" $.Inner ) }}
+{{ end }}
+
+<!-- add dict tab to parent's scratchpad -->
+{{ with .Parent }}
+  {{- $.Parent.Scratch.SetInMap "tabs" (printf "%v" $.Ordinal) $tab -}}
+{{ end }}
