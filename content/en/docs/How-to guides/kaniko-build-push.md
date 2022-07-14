@@ -84,7 +84,7 @@ metadata:
   name: clone-build-push-run
 spec:
   pipelineRef:
-    name: clone-read
+    name: clone-build-push
   workspaces:
   - name: shared-data
     volumeClaimTemplate:
