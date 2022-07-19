@@ -224,7 +224,7 @@ the [Git authentication section][pipelines-git] in the Pipelines documentation.
     - name: git-credentials
       description: My ssh credentials
     tasks:
-    - name: fetch-repo
+    - name: fetch-source
       taskRef:
         name: git-clone
       workspaces:

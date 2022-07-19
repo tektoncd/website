@@ -129,7 +129,7 @@ hub][tekton-hub].
     tasks:
     ...
       - name: build-push
-        runAfter: ["fetch-repo"]
+        runAfter: ["fetch-source"]
         taskRef:
           name: kaniko
         workspaces:
@@ -272,36 +272,36 @@ You are ready to install the Tasks and run the pipeline.
 1.  Monitor the Pipeline execution:
 
     ```bash
-    tkn pipelinerun logs clone-read-run -f
+    tkn pipelinerun logs clone-build-push-run -f
     ```
 
     After a few seconds, the output confirms that the image was built and
     pushed successfully:
   
     ```
-    [fetch-repo : clone] + '[' false '=' true ]
-    [fetch-repo : clone] + '[' false '=' true ]
-    [fetch-repo : clone] + '[' false '=' true ]
-    [fetch-repo : clone] + CHECKOUT_DIR=/workspace/output/
-    [fetch-repo : clone] + '[' true '=' true ]
-    [fetch-repo : clone] + cleandir
-    [fetch-repo : clone] + '[' -d /workspace/output/ ]
-    [fetch-repo : clone] + rm -rf '/workspace/output//*'
-    [fetch-repo : clone] + rm -rf '/workspace/output//.[!.]*'
-    [fetch-repo : clone] + rm -rf '/workspace/output//..?*'
-    [fetch-repo : clone] + test -z 
-    [fetch-repo : clone] + test -z 
-    [fetch-repo : clone] + test -z 
-    [fetch-repo : clone] + /ko-app/git-init '-url=https://github.com/google/docsy-example.git' '-revision=' '-refspec=' '-path=/workspace/output/' '-sslVerify=true' '-submodules=true' '-depth=1' '-sparseCheckoutDirectories='
-    [fetch-repo : clone] {"level":"info","ts":1654637310.4419358,"caller":"git/git.go:170","msg":"Successfully cloned https://github.com/google/docsy-example.git @ 1c7f7e300c90cd690ca5be66b43fe58713bb21c9 (grafted, HEAD) in path /workspace/output/"}
-    [fetch-repo : clone] {"level":"info","ts":1654637320.384655,"caller":"git/git.go:208","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
-    [fetch-repo : clone] + cd /workspace/output/
-    [fetch-repo : clone] + git rev-parse HEAD
-    [fetch-repo : clone] + RESULT_SHA=1c7f7e300c90cd690ca5be66b43fe58713bb21c9
-    [fetch-repo : clone] + EXIT_CODE=0
-    [fetch-repo : clone] + '[' 0 '!=' 0 ]
-    [fetch-repo : clone] + printf '%s' 1c7f7e300c90cd690ca5be66b43fe58713bb21c9
-    [fetch-repo : clone] + printf '%s' https://github.com/google/docsy-example.git
+    [fetch-source : clone] + '[' false '=' true ]
+    [fetch-source : clone] + '[' false '=' true ]
+    [fetch-source : clone] + '[' false '=' true ]
+    [fetch-source : clone] + CHECKOUT_DIR=/workspace/output/
+    [fetch-source : clone] + '[' true '=' true ]
+    [fetch-source : clone] + cleandir
+    [fetch-source : clone] + '[' -d /workspace/output/ ]
+    [fetch-source : clone] + rm -rf '/workspace/output//*'
+    [fetch-source : clone] + rm -rf '/workspace/output//.[!.]*'
+    [fetch-source : clone] + rm -rf '/workspace/output//..?*'
+    [fetch-source : clone] + test -z 
+    [fetch-source : clone] + test -z 
+    [fetch-source : clone] + test -z 
+    [fetch-source : clone] + /ko-app/git-init '-url=https://github.com/google/docsy-example.git' '-revision=' '-refspec=' '-path=/workspace/output/' '-sslVerify=true' '-submodules=true' '-depth=1' '-sparseCheckoutDirectories='
+    [fetch-source : clone] {"level":"info","ts":1654637310.4419358,"caller":"git/git.go:170","msg":"Successfully cloned https://github.com/google/docsy-example.git @ 1c7f7e300c90cd690ca5be66b43fe58713bb21c9 (grafted, HEAD) in path /workspace/output/"}
+    [fetch-source : clone] {"level":"info","ts":1654637320.384655,"caller":"git/git.go:208","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
+    [fetch-source : clone] + cd /workspace/output/
+    [fetch-source : clone] + git rev-parse HEAD
+    [fetch-source : clone] + RESULT_SHA=1c7f7e300c90cd690ca5be66b43fe58713bb21c9
+    [fetch-source : clone] + EXIT_CODE=0
+    [fetch-source : clone] + '[' 0 '!=' 0 ]
+    [fetch-source : clone] + printf '%s' 1c7f7e300c90cd690ca5be66b43fe58713bb21c9
+    [fetch-source : clone] + printf '%s' https://github.com/google/docsy-example.git
 
     [build-push : build-and-push] WARN
     [build-push : build-and-push] User provided docker configuration exists at /kaniko/.docker/config.json 
@@ -349,7 +349,7 @@ spec:
   - name: shared-data
   - name: docker-credentials
   tasks:
-  - name: fetch-repo
+  - name: fetch-source
     taskRef:
       name: git-clone
     workspaces:
@@ -359,7 +359,7 @@ spec:
     - name: url
       value: $(params.repo-url)
   - name: build-push
-    runAfter: ["fetch-repo"]
+    runAfter: ["fetch-source"]
     taskRef:
       name: kaniko
     workspaces:
