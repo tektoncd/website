@@ -1,23 +1,26 @@
+<!--
 ---
 title: "Getting started with Tasks"
 likTitle: "Tasks"
 weight: 1
 description: >
-  Set up and run your first Tekton task
+  Set up and run your first Tekton Task
 ---
+!-->
 
 This tutorial shows you how to 
 
 1. Create a Kubernetes cluster with [minikube](https://minikube.sigs.k8s.io/).
 1. Install Tekton pipelines.
-1. Create a task.
-1. Use `TaskRun` to instantiate and run your task.
+1. Create a Task.
+1. Use `TaskRun` to instantiate and run your Task.
 
 ## Prerequisites
 
 1.  [Install minikube](https://minikube.sigs.k8s.io/docs/start/). You only have
     to complete the step 1, "Installation".
-1.  [Install kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+
+1.  [Install kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl).
 
 ## Create your Kubernetes cluster
 
@@ -78,20 +81,32 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
    ```bash
    kubectl get pods --namespace tekton-pipelines --watch
    ```
+When both `tekton-pipelines-controller` and `tekton-pipelines-webhook` show
+`1/1` under the `READY` column, you are ready to continue. For example:
 
-When all components show `Running` under the `STATUS` column the installation
-is complete.
+```bash
+$ kubectl get pods --namespace tekton-pipelines --watch
+
+NAME                                           READY   STATUS              RESTARTS   AGE
+tekton-pipelines-controller-6d989cc968-j57cs   0/1     Pending             0          3s
+tekton-pipelines-webhook-69744499d9-t58s5      0/1     ContainerCreating   0          3s
+tekton-pipelines-controller-6d989cc968-j57cs   0/1     ContainerCreating   0          3s
+tekton-pipelines-controller-6d989cc968-j57cs   0/1     Running             0          5s
+tekton-pipelines-webhook-69744499d9-t58s5      0/1     Running             0          6s
+tekton-pipelines-controller-6d989cc968-j57cs   1/1     Running             0          10s
+tekton-pipelines-webhook-69744499d9-t58s5      1/1     Running             0          20s
+```
 
 Hit *Ctrl + C* to stop monitoring.
 
-## Create and run a basic task
+## Create and run a basic Task
 
-A **task**, represented in the API as an object of kind `Task`, defines a
-series of **steps** that run sequentially to perform logic that the task
-requires. Every task runs as a pod on your Kubernetes cluster, with each step
+A **Task**, represented in the API as an object of kind `Task`, defines a
+series of **Steps** that run sequentially to perform logic that the Task
+requires. Every Task runs as a pod on your Kubernetes cluster, with each step
 running in its own container.
 
-1.  To create a task, open your favorite editor and create a file named
+1.  To create a Task, open your favorite editor and create a file named
     `hello-world.yaml` with the following content:
 
     ```yaml
@@ -117,13 +132,13 @@ running in its own container.
     kubectl apply --filename hello-world.yaml
     ```
 
-      The output confirms that the task was completed successfully.
+      The output confirms that the Task was completed successfully.
 
       ```bash
       task.tekton.dev/hello created
       ```
 
-1.  To run this task, you must instantiate it using `TaskRun`. Create another
+1.  To run this Task, you must instantiate it using `TaskRun`. Create another
     file named `hello-world-run.yaml` with the following content:
 
     ```yaml
@@ -136,7 +151,7 @@ running in its own container.
         name: hello
     ```
 
-1.  Apply the changes to your cluster to launch the task:
+1.  Apply the changes to your cluster to launch the Task:
 
     ```bash
     kubectl apply --filename hello-world-run.yaml
@@ -148,7 +163,7 @@ running in its own container.
     kubectl get taskrun hello-task-run
     ```
 
-    The output of this command shows the status of the task
+    The output of this command shows the status of the Task
 
      <pre>
      NAME                               SUCCEEDED    REASON       STARTTIME   COMPLETIONTIME

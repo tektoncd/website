@@ -1,32 +1,33 @@
+<!--
 ---
 title: "Getting Started with Pipelines"
 linkTitle: "Getting Started with Pipelines"
 weight: 2
 description: >
-  Create and run your first Tekton pipeline
-
+  Create and run your first Tekton Pipeline
 ---
+-->
 
 This tutorial shows you how to:
 
-- Create two tasks.
-- Create a pipeline containing your tasks.
-- Use `PipelineRun` to instantiate and run the pipeline containing your tasks.
++   Create two Tasks.
++   Create a Pipeline containing your Tasks.
++   Use `PipelineRun` to instantiate and run the Pipeline containing your Tasks.
 
 For this tutorial we are going to use [minikube][minikube] to run the commands
 locally.
 
 ## Prerequisites
 
-- Complete the [Getting started with tasks](/docs/getting-started/tasks/)
-  tutorial. *Do not clean up your resources*, skip the last section.
+1.  Complete the [Getting started with Tasks](/docs/getting-started/tasks/)
+    tutorial. *Do not clean up your resources*, skip the last section.
 
-- [Install the Tekton CLI](/docs/cli/).
+1.  [Install `tkn`, the Tekton CLI](/docs/cli/).
 
-## Creating and running a second task
+## Create and run a second Task
 
-You already have a *Hello World!* task. To create a second *Goodbye World!*
-task:
+You already have a *Hello World!* Task. To create a second *Goodbye World!*
+Task:
 
 1.  Create a new file named  `goodbye-world.yaml` and add the following
     content:
@@ -45,22 +46,22 @@ task:
             echo "Goodbye World!"
     ```
 
-1.  Apply your task file:
+1.  Apply your Task file:
 
     ```bash
     kubectl apply --filename goodbye-world.yaml
     ```
 
-When a task is part of a pipeline you don't have to instantiate it, the pipeline
+When a Task is part of a Pipeline you don't have to instantiate it, the Pipeline
 is going to take care of that.
 
-## Creating and running a pipeline
+## Create and run a Pipeline
 
-A **[pipeline](/docs/pipelines/pipelines/)** defines an ordered series of tasks
+A **[Pipeline](/docs/pipelines/pipelines/)** defines an ordered series of Tasks
 arranged in a specific execution order as part of your CI/CD workflow.
 
-In this section you are going to create your first pipeline, that will include
-both the *Hello World!* and *Goodbye World!* tasks.
+In this section you are going to create your first Pipeline, that will include
+both the *Hello World!* and *Goodbye World!* Tasks.
 
 1.  Create a new file named  `hello-goodbye-pipeline.yaml` and add the following
     content:
@@ -82,13 +83,13 @@ both the *Hello World!* and *Goodbye World!* tasks.
             name: goodbye
     ```
 
-1.  Apply your pipeline configuration to your cluster:
+1.  Apply your Pipeline configuration to your cluster:
 
     ```bash
     kubectl apply --filename hello-goodbye-pipeline.yaml
     ```
 
-1.  Instantiate your pipeline with a `PipelineRun` object. Create a new file
+1.  Instantiate your Pipeline with a `PipelineRun` object. Create a new file
     named `hello-goodbye-pipeline-run.yaml` with the following content:
 
     ```yaml
@@ -101,7 +102,7 @@ both the *Hello World!* and *Goodbye World!* tasks.
         name: hello-goodbye
     ```
 
-1.  Start your pipeline by applying the `PipelineRun` configuration to your
+1.  Start your Pipeline by applying the `PipelineRun` configuration to your
     cluster:
 
     ```bash
@@ -114,7 +115,7 @@ both the *Hello World!* and *Goodbye World!* tasks.
     pipelinerun.tekton.dev/hello-goodbye-run created
     ```
 
-    Tekton now starts running your pipeline.
+    Tekton now starts running your Pipeline.
 
 1.  To see the logs of the `PipelineRun`, use the following command:
 
