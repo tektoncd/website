@@ -12,6 +12,7 @@ RUN make sync
 
 FROM klakegg/hugo:ext-alpine as website
 COPY . /src
+RUN git config --global --add safe.directory /src
 COPY --from=dependencies /app/node_modules /src/node_modules
 COPY --from=dependencies /app/content/en/docs/Pipelines /src/content/en/docs/Pipelines
 COPY --from=dependencies /app/content/en/docs/Triggers /src/content/en/docs/Triggers
