@@ -49,7 +49,7 @@ anchor = "smart"
 [services]
 [services.googleAnalytics]
 # Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-# id = "UA-154682132-1"
+id = "UA-154682132-1"
 
 # Language configuration
 
@@ -79,7 +79,7 @@ github_repo = "https://github.com/tektoncd/website"
 # github_subdir = ""
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-# gcs_engine_id = "013756393218025596041:6eajntqsa6c"
+gcs_engine_id = "013756393218025596041:6eajntqsa6c"
 
 # User interface configuration
 [params.ui]
