@@ -6,7 +6,6 @@ services:
       image: tekton/website
       build:
          context: .
-      command: server
       ports: 
          - "8888:1313"
       volumes:

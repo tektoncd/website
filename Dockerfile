@@ -20,4 +20,4 @@ COPY --from=dependencies /app/content/en/docs/CLI /src/content/en/docs/CLI
 COPY --from=dependencies /app/content/en/vault /src/content/en/vault
 COPY --from=dependencies /app/sync/.cache /src/sync/.cache
 
-CMD ["serve", "--baseURL http://localhost:8888/", "--buildDrafts", "--buildFuture", "--disableFastRender", "--ignoreCache", "--watch"]
+CMD ["serve", "--buildDrafts", "--buildFuture", "--disableFastRender", "--ignoreCache", "--watch"]
