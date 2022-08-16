@@ -29,5 +29,11 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    
 }
+
+/* Keep cover top nav bar with dark background */
+
+.td-navbar-cover {
+    &.navbar-bg-onscroll { background: $dark !important }
+}
+
