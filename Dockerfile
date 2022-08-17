@@ -14,9 +14,13 @@ FROM klakegg/hugo:ext-alpine as website
 COPY . /src
 RUN git config --global --add safe.directory /src
 COPY --from=dependencies /app/node_modules /src/node_modules
-COPY --from=dependencies /app/content/en/docs/Pipelines /src/content/en/docs/Pipelines
-COPY --from=dependencies /app/content/en/docs/Triggers /src/content/en/docs/Triggers
+COPY --from=dependencies /app/content/en/docs/Chains /src/content/en/docs/Chains
 COPY --from=dependencies /app/content/en/docs/CLI /src/content/en/docs/CLI
+COPY --from=dependencies /app/content/en/docs/Dashboard /src/content/en/docs/Dashboard
+COPY --from=dependencies /app/content/en/docs/Operator /src/content/en/docs/Operator
+COPY --from=dependencies /app/content/en/docs/Pipelines /src/content/en/docs/Pipelines
+COPY --from=dependencies /app/content/en/docs/Results /src/content/en/docs/Results
+COPY --from=dependencies /app/content/en/docs/Triggers /src/content/en/docs/Triggers
 COPY --from=dependencies /app/content/en/vault /src/content/en/vault
 COPY --from=dependencies /app/sync/.cache /src/sync/.cache
 

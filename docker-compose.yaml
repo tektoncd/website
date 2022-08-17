@@ -9,9 +9,13 @@ services:
       ports: 
          - "8888:1313"
       volumes:
-         - /src/content/en/docs/Pipelines/
-         - /src/content/en/docs/Triggers/
+         - /src/content/en/docs/Chains/
          - /src/content/en/docs/CLI/
+         - /src/content/en/docs/Dashboard/
+         - /src/content/en/docs/Operator/
+         - /src/content/en/docs/Pipelines/
+         - /src/content/en/docs/Results/
+         - /src/content/en/docs/Triggers/
          - /src/content/en/vault/
          - /src/node_modules/
          - .:/src/
