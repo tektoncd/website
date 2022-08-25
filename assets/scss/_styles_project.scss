@@ -37,3 +37,28 @@
     &.navbar-bg-onscroll { background: $dark !important }
 }
 
+nav.foldable-nav {
+    .ul-1 {
+        .with-child {
+            &>label {
+                &:hover {
+                    &:before {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+
+            &>input {
+                &:checked {
+                    &~label {
+                        &:hover {
+                            &:before {
+                                transform: rotate(90deg)!important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
