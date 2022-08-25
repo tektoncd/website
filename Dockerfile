@@ -1,4 +1,4 @@
-FROM klakegg/hugo:ext-alpine as dependencies
+FROM klakegg/hugo:0.101.0-ext-alpine as dependencies
 
 WORKDIR /app
 RUN apk add git gcc build-base python3-dev py3-pip
@@ -10,7 +10,7 @@ RUN pip3 install -r requirements.txt
 RUN make sync
 
 
-FROM klakegg/hugo:ext-alpine as website
+FROM klakegg/hugo:0.101.0-ext-alpine as website
 COPY . /src
 RUN git config --global --add safe.directory /src
 COPY --from=dependencies /app/node_modules /src/node_modules
