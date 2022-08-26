@@ -52,6 +52,8 @@ jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 FM_BOUNDARY = re.compile(r"^(?:<!--\n)?-{3,}\s*$(?:\n-->)?", re.MULTILINE)
 YAML_SEPARATOR = "---\n"
+YAML_WRAP1 = "<!--\n"
+YAML_WRAP2 = "-->\n"
 
 FOLDER_INDEX = '_index.md'
 
@@ -226,9 +228,11 @@ def write_front_matter(target_doc, fm_doc, fm_config):
     fm_config = fm_config or {}
     fm_doc.update(fm_config)
     if fm_doc:
+        target_doc.write(YAML_WRAP1)
         target_doc.write(YAML_SEPARATOR)
         YAML().dump(fm_doc, target_doc)
         target_doc.write(YAML_SEPARATOR)
+        target_doc.write(YAML_WRAP2)
 
 def transform_links_doc(text, base_path, local_files, rewrite_path, rewrite_url):
     """ transform all the links the text """
