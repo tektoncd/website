@@ -342,11 +342,13 @@ class TestSync(unittest.TestCase):
         with tempfile.TemporaryDirectory() as site_dir:
             expected_result = os.path.join(site_dir, 'target', 'target.md')
             expected_content = (
+                "<!--\n"
                 "---\n"
                 "test1: abc\n"
                 "test2: 1\n"
                 "test3: true\n"
                 "---\n"
+                "-->\n"
             )
             actual_result = transform_doc(
                 self.doc, 'test-content', 'target.md', 'target', header, {},
@@ -389,10 +391,12 @@ class TestSync(unittest.TestCase):
                 os.path.join(site_dir, 'target', 'test.txt')]
 
             template = (
+                "<!--\n"
                 "---\n"
                 "test1: abc\n"
                 "weight: {weight}\n"
                 "---\n"
+                "-->\n"
             )
             expected_contents = [template.format(weight=idx) for idx in range(2)]
             actual_results = transform_docs(
@@ -423,10 +427,12 @@ class TestSync(unittest.TestCase):
                 os.path.join(site_dir, 'target', 'test.txt')]
 
             template = (
+                "<!--\n"
                 "---\n"
                 "test1: abc\n"
                 "weight: {weight}\n"
                 "---\n"
+                "-->\n"
             )
             expected_contents = [template.format(weight=idx) for idx in range(2)]
             actual_results = transform_docs(
