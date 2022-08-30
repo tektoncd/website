@@ -1,19 +1,20 @@
 <!--
 ---
-title: "Install Tekton Triggers"
-linkTitle: "Tekton Triggers"
-weight: 3
-description: >
-  Install Tekton Triggers on you cluster
+title: "Install and set up Tekton Triggers"
+linkTitle: "Install and set up Tekton Triggers"
+weight: 2
 ---
 -->
+
+This document shows you how to install and set up Tekton Triggers.
 
 ## Prerequisites
 
 -   [Kubernetes] cluster version 1.18 or later.
--   Admin privileges to the user running the installation.
 -   [Kubectl].
--   [Tekton Pipelines](/docs/installation/pipelines/)
+-   [Tekton Pipelines][pipelines-install].
+-   Grant `cluster-admin` privileges to the user that installed Tekton Pipelines. See
+    the [kubernetes role-based access control (RBAC) docs][rbac].
 
 ## Installation
 
@@ -71,14 +72,33 @@ description: >
     kubectl get pods --namespace tekton-pipelines --watch
     ```
 
-    When all components show `Running` under the `STATUS` column the installation is
+    When all components show `1/1` under the `READY` column, the installation is
     complete. Hit *Ctrl + C* to stop monitoring.
+
+## Customization options
+
+You can customize the behavior of the Triggers Controller changing some values
+in the `config/feature-flags-triggers.yaml` file.
+
++ Enable alpha features. Set the value of `enable-api-fields:` to `"alpha"`, the
+  default value is `"stable"`. This flag only applies to the v1beta1 API
+  version.
+
++ Exclude labels. Set the `labels-exclusion-pattern:` field to a regex  pattern.
+  Labels that match this pattern are excluded from getting added to the
+  resources created by the EventListener. By default this field is empty, so all
+  labels added to the EventListener are propagated down.
 
 ## Further reading
 
-See the [Triggers reference documentation][triggers] to learn more about usage
-and configuration options.
++ [Get started with Tekton Triggers][get-started]
++ [Explore Tekton Triggers code examples][code-examples]
 
 [kubernetes]: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
 [kubectl]: https://kubernetes.io/docs/tasks/tools/#kubectl
-[triggers]: /docs/triggers/
+[triggers]: https://tekton.dev/docs/triggers/
+[get-started]: https://github.com/tektoncd/triggers/blob/main/docs/getting-started
+[code-examples]: https://github.com/tektoncd/triggers/tree/main/examples
+[pipelines-install]: https://github.com/tektoncd/pipeline/blob/main/docs/install.md
+[rbac]: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+

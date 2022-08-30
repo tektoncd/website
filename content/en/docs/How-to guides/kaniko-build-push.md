@@ -172,76 +172,28 @@ together.
 ### Container registry authentication
 
 In most cases, to push the image to a container registry you must provide
-authentication credentials first.
+authentication credentials first. The process is different for each cloud
+provider:
 
-1.  Set up authentication with the Docker credential helper and generate the
-    Docker configuration file, `~/.docker/config.json`, for your registry. This
-    step is different depending on your registry.
+{{< tabs >}}
 
-    - [Google Artifact Registry][google-ar]
-    - [Red Hat Quay][rh-quay]
-    - [Docker Hub][docker-hub]
-    - [Azure container registry][azure]
-    - [Amazon ECR][az-ecr]
-    - [Jfrog Artifactory][jfrog]
+{{< tab "Google" >}}
+{{< includefile "/vendor/google/registry_authentication.md" >}}
+{{< /tab >}}
 
-    Check your cloud provider documentation to complete this step.
+{{< tab IBM >}}
+{{< includefile file="/vendor/ibm/registry_authentication.md" >}}
+{{< /tab >}}
 
-1.  Create a [Kubernetes Secret][secrets], `docker-credentials.yaml` with your
-    credentials:
+{{< tab Microsoft >}}
+{{< includefile file="/vendor/microsoft/registry_authentication.md" >}}
+{{< /tab >}}
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: docker-credentials
-    data:
-      config.json: efuJAmF1...
-    ```
+{{< /tabs >}}
 
-    The value of `config.json` is the base64-encoded `~/.docker/config.json`
-    file. You can get this data with the following command:
+If your provider is not in thhis document, Check your cloud provider
+documentation to complete this step.
 
-    ```bash
-    cat ~/.docker/config.json | base64 -w0
-    ```
-
-1.  Update `pipeline.yaml` and add a Workspace to mount the credentials
-    directory:
-
-    At the Pipeline level:
-
-    ```yaml
-    workspaces:
-    - name: docker-credentials
-    ```
-
-    And under the `build-push` Task:
-
-    ```yaml
-    workspaces:
-    - name: dockerconfig
-      workspace: docker-credentials
-    ```
-
-1.  Instantiate the new `docker-credentials` Workspace in your
-    `pipelinerun.yaml` file by adding a new entry under `workspaces`:
-
-    ```yaml
-    - name: docker-credentials
-      secret:
-        secretName: docker-credentials
-    ```
-
-See the complete files in the [full code samples section](#full-code-samples).
-
-[secrets]: https://kubernetes.io/docs/concepts/configuration/secret/
-[rh-quay]: https://access.redhat.com/documentation/en-us/red_hat_quay/3.4/html-single/use_red_hat_quay/index#allow-robot-access-user-repo
-[google-ar]: https://cloud.google.com/artifact-registry/docs/docker/authentication
-[docker-hub]: https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-[azure]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-authentication?tabs=azure-cli#individual-login-with-azure-ad
-[az-ecr]: https://aws.amazon.com/blogs/compute/authenticating-amazon-ecr-repositories-for-docker-cli-with-credential-helper/
-[jfrog]: https://www.jfrog.com/confluence/display/JFROG/Using+Docker+V1#UsingDockerV1-3.SettingUpAuthentication
 
 ## Run your Pipeline
 

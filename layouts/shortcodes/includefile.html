@@ -28,8 +28,7 @@ if the file is not found */}}
     safeHTML ) (.Get "lang") "" -}}
   {{ else }}
     {{ $renderOptions := dict "display" "block" "markup" "org" }}
-    {{  $.Scratch.Get "filepath"  | readFile | .Page.RenderString |
-    htmlUnescape | safeHTML  }}
+    {{  $.Scratch.Get "filepath"  | readFile | .Page.RenderString | safeHTML  }}
   {{ end }}
 {{ else }}
 
