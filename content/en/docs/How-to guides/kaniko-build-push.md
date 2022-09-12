@@ -81,7 +81,7 @@ Then create the corresponding `pipelinerun.yaml` file:
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: clone-build-push-run
+  generateName: clone-build-push-run-
 spec:
   pipelineRef:
     name: clone-build-push
@@ -266,16 +266,23 @@ You are ready to install the Tasks and run the pipeline.
     kubectl apply -f pipeline.yaml
     ```
 
-1.  Apply the PipelineRun:
+1.  Create the PipelineRun:
 
     ```bash
-    kubectl apply -f pipelinerun.yaml
+    kubectl create -f pipelinerun.yaml
     ```
 
-1.  Monitor the Pipeline execution:
+    This creates a PipelineRun with a unique name each time:
+
+    ```
+    pipelinerun.tekton.dev/clone-build-push-run-4kgjr created
+    ```
+
+1.  Use the PipelineRun name from the output of the previous step to monitor the
+    Pipeline execution:
 
     ```bash
-    tkn pipelinerun logs clone-build-push-run -f
+    tkn pipelinerun logs  clone-build-push-run-4kgjr -f
     ```
 
     After a few seconds, the output confirms that the image was built and
@@ -381,7 +388,7 @@ The PipelineRun:
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: clone-build-push-run
+  generateName: clone-build-push-run-
 spec:
   pipelineRef:
     name: clone-build-push

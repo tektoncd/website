@@ -131,14 +131,17 @@ together in the file.
     apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
-      name: clone-read-run
+      generateName: clone-read-run-
     spec:
       pipelineRef:
         name: clone-read
+      podTemplate:
+        securityContext:
+          fsGroup: 65532
     ```
 
-    This PipelineRun, `clone-read-run`, instantiates `clone-read`, as specified
-    by [the `pipelineRef` target][pipelineref] in the `spec` section.
+    This PipelineRun instantiates `clone-read`, as specified by [the
+    `pipelineRef` target][pipelineref] in the `spec` section.
 
 1.  Instantiate the Workspace:
   
@@ -347,16 +350,24 @@ Now you are ready to test the code.
     kubectl apply -f pipeline.yaml
     ```
 
-2.  Apply the PipelineRun:
+1.  Create the PipelineRun:
 
     ```bash
-    kubectl apply -f pipelinerun.yaml
+    kubectl create -f pipelinerun.yaml
     ```
 
-3.  Monitor the Pipeline execution:
+    This creates a PipelineRun with a unique name each time:
+
+    ```
+    pipelinerun.tekton.dev/clone-read-run-4kgjr created
+    ```
+
+
+1.  Use the PipelineRun name from the output of the previous step to monitor the
+    Pipeline execution:
 
     ```bash
-    tkn pipelinerun logs clone-read-run -f
+    tkn pipelinerun logs  clone-read-run-4kgjr -f
     ```
 
     You may have to wait a few seconds. The output confirms that the respository
@@ -451,10 +462,13 @@ The PipelineRun:
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: clone-read-run
+  generateName: clone-read-run-
 spec:
   pipelineRef:
     name: clone-read
+  podTemplate:
+    securityContext:
+      fsGroup: 65532
   workspaces:
   - name: shared-data
     volumeClaimTemplate:
