@@ -37,3 +37,61 @@
     &.navbar-bg-onscroll { background: $dark !important }
 }
 
+/* Click-to-copy button styles */
+
+.highlight {
+
+   position: relative;
+   
+   .click-to-copy {
+       display: block;
+       text-align: right;
+       height: 1ex;
+   }
+
+   pre {
+
+       button {
+           position: absolute;
+           color: $light;
+           border-radius: 3px;
+           border-width: 0;
+           background-color: inherit;
+           box-shadow: 1px 1px $light;
+           right: 8px;
+           top: 6px;
+       }
+
+       button:hover {
+           color: $dark;
+           background-color: $light;
+       }
+
+       button:active {
+           color: $dark;
+           background-color: $light;
+           transform: translateY(2px);
+      }
+
+      .c2c-tooltip {
+         background: $dark;
+         color: white;
+         padding: 2px 4px;
+         border-radius: 3px;
+         display: block;
+         visibility: hidden;
+         opacity: 0;
+         transition: visibility 0s, opacity 0.7s linear;
+      }
+
+      .c2c-tooltip[show-tooltip] {
+         visibility: visible;
+         opacity: 1;
+      }
+   }
+}
+
+/* Consistent borders around code blocks */
+
+pre { border: 1px solid $light;}
+
