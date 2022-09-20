@@ -27,7 +27,7 @@ This tutorial shows you how to
 Create a cluster
 
 ```bash
-minikube start
+minikube start --kubernetes-version v1.24.4
 ```
 
 The process takes a few seconds, you see an output symilar to the following,
