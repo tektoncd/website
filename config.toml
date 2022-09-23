@@ -28,6 +28,9 @@ pygmentsStyle = "manni"
 # Enables emoji
 enableEmoji = true
 
+# Ignore vendor files
+ignoreFiles = ['vendor/.*']
+
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"

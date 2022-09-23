@@ -2,7 +2,7 @@
 ---
 title: "Content guidelines"
 linkTitle: "Content guidelines"
-weight: 2
+weight: 1
 description: >
   Content guidelines for Tekton documentation
 ---
@@ -14,34 +14,34 @@ Follow these guidelines when planning and writing Tekton documentation.
 
 Each page in the Tekton documentation set must fall into one of the following categories:
 
--	**Tutorials** - These are introductory guides, focused on new users:
-	- Task-oriented
-	- Make sure it works: For Tekton, this means pick a runtime and stick with it
-		throughout the entire tutorial, so you can have reproducible steps that a
-		newcomer can copy-paste.
-	- Do not explain anything in detail, focus on doing. This is a common
-	  pitfall, trying to explain things too early.
-  - Do not provide more than one way of doing things. Pick the easiest path and
-    go with it. This is another common pitfall, trying to show everything you
-    can do in an introductory guide.
-	- Show results immediately.
++   **Tutorials** - These are introductory guides, focused on new users:
+    - Task-oriented
+    - Make sure it works: For Tekton, this means pick a runtime and stick with it
+      throughout the entire tutorial, so you can have reproducible steps that a
+      newcomer can copy-paste.
+    - Do not explain anything in detail, focus on doing. This is a common
+      pitfall, trying to explain things too early.
+    - Do not provide more than one way of doing things. Pick the easiest path and
+      go with it. This is another common pitfall, trying to show everything you
+      can do in an introductory guide.
+    - Show results immediately.
 
--	**How-to guides** - These are docs that explain how to complete a particular task:
-	- Goal oriented.
-	- Assumes some knowledge from the user, no need to start from scratch.
-	- Focus on the goal at hand.
-	- It’s fine to show several ways to achieve the goal, but there’s no need to
-		be comprehensive. (That’s what reference docs are for). 
-	- Provide a descriptive title.
++   **How-to guides** - These are docs that explain how to complete a particular task:
+    - Goal oriented.
+    - Assumes some knowledge from the user, no need to start from scratch.
+    - Focus on the goal at hand.
+    - It’s fine to show several ways to achieve the goal, but there’s no need to
+      be comprehensive. (That’s what reference docs are for). 
+    - Provide a descriptive title.
 
--	**Reference Guides** - These provide the technical details for everything
-	Tekton does. The most common example is the API reference docs:
-	- Be accurate
-	- Mirror the codebase when possible, so your reader knows what to expect.
++   **Reference Guides** - These provide the technical details for everything
+    Tekton does. The most common example is the API reference docs:
+    - Be accurate
+    - Mirror the codebase when possible, so your reader knows what to expect.
 
--	**Explanations** - Conceptual information:
-	- Descriptive content, explain how things work
-	- Do not include steps here
++   **Explanations** - Conceptual information:
+    - Descriptive content, explain how things work
+    - Do not include steps here
 
 You can find an in-depth discussion about this documentation framework in the
 [Grand Unified Theory of Documentation](https://diataxis.fr/).
@@ -55,13 +55,14 @@ Follow these simple guidelines:
 *   Break up longer documents into logical sections.
 *   Use paragraphs to separate thoughts and ideas.
 *   Ensure paragraphs flow into one another - that is, they are logically connected.
-*   Use headings and subheadings to indicate topics and sub-topics.
+*   Use headings and subheadings to indicate topics and sub-topics. Don't use
+    more than 3 subheading levels.
 
 ## Style and tone
 
-- **Always use active voice.** It's much easier to parse and more user-friendly
-  (relatable) than passive. Passive voice sounds stuffy and officious. It takes
-  much more brain work to understand and causes the reader to zone out.
+**Always use active voice.** It's much easier to parse and more user-friendly
+(relatable) than passive. Passive voice sounds stuffy and officious. It takes
+much more brain work to understand and causes the reader to zone out.
 
 <table>
   <tr>
@@ -78,8 +79,10 @@ Follow these simple guidelines:
   </tr>
 </table>
 
-- **Never use "should" or "might."** These words introduce uncertainty. We're
-  either sure how our software works or we're not.
+---
+
+**Never use "should" or "might."** These words introduce uncertainty. We're
+either sure how our software works or we're not.
 
 <table>
   <tr>
@@ -96,9 +99,11 @@ Follow these simple guidelines:
   </tr>
 </table>
 
-- **Don't use future tense** unless no other way exists to convey the
-  information. Future tense creates an unwanted deferral of the result, while
-  the result of each step should be immediate. For example:
+---
+
+**Don't use future tense** unless no other way exists to convey the information.
+Future tense creates an unwanted deferral of the result, while the result of
+each step should be immediate. For example:
 
 <table>
   <tr>
@@ -115,8 +120,10 @@ Follow these simple guidelines:
   </tr>
 </table>
 
-- **Avoid repetition.** Repetition is a "mental stumbling block" that gets in
-  the way of the reader's comprehension of the thought or topic. For example:
+---
+
+**Avoid repetition.** Repetition is a "mental stumbling block" that gets in the
+way of the reader's comprehension of the thought or topic. For example:
 
 <table>
   <tr>
@@ -133,8 +140,10 @@ Follow these simple guidelines:
   </tr>
 </table>
 
-- **Never use "we."** The reader will wonder whether they're part of the "we" or
-  not. For example:
+---
+
+**Never use "we."** The reader will wonder whether they're part of the "we" or
+not. For example:
 
 <table>
   <tr>
@@ -151,10 +160,12 @@ Follow these simple guidelines:
   </tr>
 </table>
 
-- **Never use "might" or "may."** "May" is often confused with "might" but they
-  are not the same. "Might" introduces uncertainty just like "should," while
-  "may" implies the permission has been granted and not that an option or action
-  is available to the user. For example:
+---
+
+**Never use "might" or "may."** "May" is often confused with "might" but they
+are not the same. "Might" introduces uncertainty just like "should," while "may"
+implies the permission has been granted and not that an option or action is
+available to the user. For example:
 
 <table>
   <tr>
@@ -177,40 +188,3 @@ Follow these simple guidelines:
   </tr>
 </table>
 
-## Calling out important things
-
-To call out something of particular importance, use the three severity levels of callouts: note, caution, and warning.
-<table>
-  <tr>
-   <td><strong>Callout Type</strong>
-   </td>
-   <td><strong>Example</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Note</strong> calls the reader's attention to something important.
-   </td>
-   <td><strong>Note:</strong> It is best to capture Smurfs in batches, as processing a large number of Smurfs at once can result in long wait times.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Caution</strong> indicates something that may cost the reader additional time and work if not followed. 
-   </td>
-   <td><strong>Caution:</strong> Papa Smurf is a highly skilled mage. To maximize your Smurf yields, avoid capturing him along with other Smurfs.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Warning</strong> warns the reader of a potential catastrophic failure.
-   </td>
-   <td><strong>Warning: </strong>Looking directly into the Basilisk's eyes turns you instantly to stone.
-   </td>
-  </tr>
-</table>
-
-## Things to avoid
-
-Avoid the following:
-
-- **Copy-pasting large portions of existing documentation.** If you need to reuse a large piece of content,
-    link it instead. Duplication inevitably leads to the two copies going out of sync and confusing readers.
-- **Vendor-specific links.** We don't want to imply any kind of endorsement.
