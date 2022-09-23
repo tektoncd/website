@@ -2,7 +2,7 @@
 ---
 title: "Run the site locally"
 linkTitle: "Run the site locally"
-weight: 1
+weight: 4
 description: > 
    Run the Tekton documentation site locally
 ---
@@ -10,31 +10,29 @@ description: >
 
 ## Running in a Docker container
 
-### Prerequisites
 
-Install [Docker Compose](https://docs.docker.com/compose/install/).
+1. Install [Docker Compose](https://docs.docker.com/compose/install/).
 
-### Setup
 
-1. Build the Docker image
+1. Build the Docker image:
 
    ```bash
    docker-compose build
 
    ```
 
-1. Run the built image
+1. Run the built image:
 
    ```bash
    docker-compose up
    ```
 
-1. Verify that the website is working
+1. Verify that the website is working. Open your web browser and type
+   `http://localhost:8888` in the navigation bar.  This opens a local instance
+   of the website, you can now make changes in the documentation and those
+   changes will immediately show up in the browser after you save.
 
-   Open your web browser and type `http://localhost:8888` in the navigation bar.
-   This opens a local instance of the website, you can now make changes in the
-   documentation and those changes will immediately show up in the browser after
-   you save.
+1. Hit *Ctrl + C* to stop the container.
 
 To remove the produced images run:
 
