@@ -3,13 +3,14 @@ sync:
 	python3 sync/sync.py --update-cache
 
 .PHONY: serve
-serve:
+serve: sync
 	hugo server \
 	--baseURL $(URL) \
 	--buildDrafts \
 	--buildFuture \
 	--disableFastRender \
 	--ignoreCache \
+	--liveReloadPort 8888 \
 	--watch
 
 .PHONY: production-build
