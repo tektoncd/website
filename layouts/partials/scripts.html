@@ -15,6 +15,6 @@
 {{ end }}
 
 {{ $c2cJS := resources.Get "js/click-to-copy.js" | minify |  fingerprint }}
-<script defer src="{{ $c2cJS.Permalink }}" integrity="{{ $c2cJS.Data.Integrity }}"></script>
+<script defer src="{{ $c2cJS.RelPermalink }}" integrity="{{ $c2cJS.Data.Integrity }}"></script>
 
 {{ partial "hooks/body-end.html" . }}

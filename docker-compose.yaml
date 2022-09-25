@@ -7,7 +7,7 @@ services:
       build:
          context: .
       ports: 
-         - "8888:1313"
+         - '8888:8888'
       volumes:
          - /src/content/en/docs/Chains/
          - /src/content/en/docs/CLI/
@@ -18,4 +18,5 @@ services:
          - /src/content/en/docs/Triggers/
          - /src/content/en/vault/
          - /src/node_modules/
+         - /src/sync/.cache/
          - .:/src/
