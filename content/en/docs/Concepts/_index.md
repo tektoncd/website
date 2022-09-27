@@ -1,7 +1,7 @@
 ---
 title: "Concepts"
 linkTitle: "Concepts"
-weight: 2
+weight: 3
 description: >
   Conceptual and technical information about Tekton
 ---

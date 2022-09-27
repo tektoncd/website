@@ -2,7 +2,7 @@
 ---
 title: "How-to Guides"
 linkTitle: "How-to Guides"
-weight: 3
+weight: 4
 description: >
   Guides to help you complete a specific goal
 ---
