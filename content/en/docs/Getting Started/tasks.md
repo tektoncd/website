@@ -13,7 +13,7 @@ This tutorial shows you how to
 1. Create a Kubernetes cluster with [minikube](https://minikube.sigs.k8s.io/).
 1. Install Tekton pipelines.
 1. Create a Task.
-1. Use `TaskRun` to instantiate and run your Task.
+1. Use `TaskRun` to instantiate and run the Task.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ This tutorial shows you how to
 
 1.  [Install kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl).
 
-## Create your Kubernetes cluster
+## Create a Kubernetes cluster
 
 Create a cluster
 
@@ -34,7 +34,7 @@ The process takes a few seconds, you see an output symilar to the following,
 depending on the [minikube driver](https://minikube.sigs.k8s.io/docs/drivers/)
 that you are using:
 
-<pre>
+```
 😄  minikube v1.25.1
 ✨  Using the docker driver based on existing profile
 👍  Starting control plane node minikube in cluster minikube
@@ -49,7 +49,7 @@ that you are using:
     ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
 🌟  Enabled addons: storage-provisioner, default-storageclass
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
-</pre>
+```
 
 You can check that the cluster was successfully created with `kubectl`:
 
@@ -59,13 +59,13 @@ kubectl cluster-info
 
 The output confirms that Kubernetes is running:
 
-<pre>
+```
 Kubernetes control plane is running at https://127.0.0.1:39509
 CoreDNS is running at
 https://127.0.0.1:39509/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-</pre>
+```
 
 ## Install Tekton Pipelines
 
@@ -81,29 +81,28 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
    ```bash
    kubectl get pods --namespace tekton-pipelines --watch
    ```
-When both `tekton-pipelines-controller` and `tekton-pipelines-webhook` show
-`1/1` under the `READY` column, you are ready to continue. For example:
 
-```bash
-$ kubectl get pods --namespace tekton-pipelines --watch
+    When both `tekton-pipelines-controller` and `tekton-pipelines-webhook` show
+    `1/1` under the `READY` column, you are ready to continue. For example:
 
-NAME                                           READY   STATUS              RESTARTS   AGE
-tekton-pipelines-controller-6d989cc968-j57cs   0/1     Pending             0          3s
-tekton-pipelines-webhook-69744499d9-t58s5      0/1     ContainerCreating   0          3s
-tekton-pipelines-controller-6d989cc968-j57cs   0/1     ContainerCreating   0          3s
-tekton-pipelines-controller-6d989cc968-j57cs   0/1     Running             0          5s
-tekton-pipelines-webhook-69744499d9-t58s5      0/1     Running             0          6s
-tekton-pipelines-controller-6d989cc968-j57cs   1/1     Running             0          10s
-tekton-pipelines-webhook-69744499d9-t58s5      1/1     Running             0          20s
-```
+    ```
+    NAME                                           READY   STATUS              RESTARTS   AGE
+    tekton-pipelines-controller-6d989cc968-j57cs   0/1     Pending             0          3s
+    tekton-pipelines-webhook-69744499d9-t58s5      0/1     ContainerCreating   0          3s
+    tekton-pipelines-controller-6d989cc968-j57cs   0/1     ContainerCreating   0          3s
+    tekton-pipelines-controller-6d989cc968-j57cs   0/1     Running             0          5s
+    tekton-pipelines-webhook-69744499d9-t58s5      0/1     Running             0          6s
+    tekton-pipelines-controller-6d989cc968-j57cs   1/1     Running             0          10s
+    tekton-pipelines-webhook-69744499d9-t58s5      1/1     Running             0          20s
+    ```
 
-Hit *Ctrl + C* to stop monitoring.
+    Hit *Ctrl + C* to stop monitoring.
 
 ## Create and run a basic Task
 
 A **Task**, represented in the API as an object of kind `Task`, defines a
 series of **Steps** that run sequentially to perform logic that the Task
-requires. Every Task runs as a pod on your Kubernetes cluster, with each step
+requires. Every Task runs as a pod on the Kubernetes cluster, with each step
 running in its own container.
 
 1.  To create a Task, open your favorite editor and create a file named
@@ -134,11 +133,11 @@ running in its own container.
 
       The output confirms that the Task was completed successfully.
 
-      ```bash
+      ```
       task.tekton.dev/hello created
       ```
 
-1.  To run this Task, you must instantiate it using `TaskRun`. Create another
+1.  A `TaskRun` object instantiates and executes this Task. Create another
     file named `hello-world-run.yaml` with the following content:
 
     ```yaml
@@ -165,17 +164,18 @@ running in its own container.
 
     The output of this command shows the status of the Task
 
-     <pre>
-     NAME                               SUCCEEDED    REASON       STARTTIME   COMPLETIONTIME
+     
+    ```
+     NAME                    SUCCEEDED    REASON       STARTTIME   COMPLETIONTIME
      hello-task-run          True         Succeeded    22h         22h
-     </pre>
+    ```
 
     The value `True` under `SUCCEEDED` confirms that TaskRun completed with no errors.
 
 
 1.  Take a look at the logs:
 
-    ```
+    ```bash
     kubectl logs --selector=tekton.dev/taskRun=hello-task-run
     ```
 
@@ -187,20 +187,33 @@ running in its own container.
 
 ## Cleanup
 
-If you want to continue and create a pipeline, do not delete your cluster and
-proceed to the [next tutorial](/docs/getting-started/pipelines/).
+To learn about Tekton Pipelines, skip this section and proceed to the [next
+tutorial][pipelines-qs].
 
-To delete the cluster that you created for this quickstart run:
+To delete the cluster that you created for this guide run:
 
 ```bash
 minikube delete
 ```
 
-The output confirms that your cluster was deleted:
+The output confirms that the cluster was deleted:
 
-<pre>
+```
 🔥  Deleting "minikube" in docker ...
 🔥  Deleting container "minikube" ...
 🔥  Removing /home/user/.minikube/machines/minikube ...
 💀  Removed all traces of the "minikube" cluster.
-</pre>
+```
+
+## Further Reading:
+
+We recommend that you complete [Getting started with Pipelines][pipelines-qs].
+
+For more complex examples see:
+
+- [Clone a git repository with Tekton][git-howto].
+- [Build and push a container image with Tekton][kaniko-howto].
+
+[pipelines-qs]: /docs/getting-started/pipelines/
+[git-howto]: /docs/how-to-guides/clone-repository/
+[kaniko-howto]: /docs/how-to-guides/kaniko-build-push/
