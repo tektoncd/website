@@ -14,8 +14,7 @@ This tutorial shows you how to:
 +   Create a Pipeline containing your Tasks.
 +   Use `PipelineRun` to instantiate and run the Pipeline containing your Tasks.
 
-For this tutorial we are going to use [minikube][minikube] to run the commands
-locally.
+This guide uses a local cluster with [minikube][].
 
 ## Prerequisites
 
@@ -26,7 +25,7 @@ locally.
 
 ## Create and run a second Task
 
-You already have a *Hello World!* Task. To create a second *Goodbye World!*
+You already have a "Hello World!" Task. To create a second "Goodbye!"
 Task:
 
 1.  Create a new file named  `goodbye-world.yaml` and add the following
@@ -38,30 +37,35 @@ Task:
     metadata:
       name: goodbye
     spec:
+      params:
+      - name: username
+        type: string
       steps:
         - name: goodbye
           image: ubuntu
           script: |
             #!/bin/bash
-            echo "Goodbye World!"
+            echo "Goodbye $(params.username)!"
     ```
 
-1.  Apply your Task file:
+    This Task takes one parameter, `username`. Whenever this Task is used a
+    value for that parameter must be passed to the Task.
+
+1.  Apply the Task file:
 
     ```bash
     kubectl apply --filename goodbye-world.yaml
     ```
 
-When a Task is part of a Pipeline you don't have to instantiate it, the Pipeline
-is going to take care of that.
+When a Task is part of a Pipeline you don't have to instantiate it individually.
 
 ## Create and run a Pipeline
 
-A **[Pipeline](/docs/pipelines/pipelines/)** defines an ordered series of Tasks
-arranged in a specific execution order as part of your CI/CD workflow.
+A **Pipeline** defines an ordered series of Tasks arranged in a specific
+execution order as part of the CI/CD workflow.
 
 In this section you are going to create your first Pipeline, that will include
-both the *Hello World!* and *Goodbye World!* Tasks.
+both the "Hello World!" and "Goodbye!" Tasks.
 
 1.  Create a new file named  `hello-goodbye-pipeline.yaml` and add the following
     content:
@@ -72,6 +76,9 @@ both the *Hello World!* and *Goodbye World!* Tasks.
     metadata:
       name: hello-goodbye
     spec:
+      params:
+      - name: username
+        type: string
       tasks:
         - name: hello
           taskRef:
@@ -81,16 +88,23 @@ both the *Hello World!* and *Goodbye World!* Tasks.
             - hello
           taskRef:
             name: goodbye
+          params:
+          - name: username
+            value: $(params.username)
     ```
 
-1.  Apply your Pipeline configuration to your cluster:
+    The Pipeline defines the parameter `username`, that parameter is then passed to
+    the  `goodbye` Task.
+
+1.  Apply the Pipeline configuration to your cluster:
 
     ```bash
     kubectl apply --filename hello-goodbye-pipeline.yaml
     ```
 
-1.  Instantiate your Pipeline with a `PipelineRun` object. Create a new file
-    named `hello-goodbye-pipeline-run.yaml` with the following content:
+1.  A **Pipeline Run**, represented in the API as an object of kind
+    `PipelineRun`, instantiates a Pipeline. To create  Pipeline Run, create a
+    new file named `hello-goodbye-pipeline-run.yaml` with the following:
 
     ```yaml
     apiVersion: tekton.dev/v1beta1
@@ -100,9 +114,14 @@ both the *Hello World!* and *Goodbye World!* Tasks.
     spec:
       pipelineRef:
         name: hello-goodbye
+      params:
+      - name: username
+        value: "Tekton"
     ```
+    
+    This sets the actual value for the `username` parameter: `"Tekton"`.
 
-1.  Start your Pipeline by applying the `PipelineRun` configuration to your
+1.  Start the Pipeline by applying the `PipelineRun` configuration to your
     cluster:
 
     ```bash
@@ -111,11 +130,11 @@ both the *Hello World!* and *Goodbye World!* Tasks.
 
     You see the following output:
 
-    ```bash
+    ```
     pipelinerun.tekton.dev/hello-goodbye-run created
     ```
 
-    Tekton now starts running your Pipeline.
+    Tekton now starts running the Pipeline.
 
 1.  To see the logs of the `PipelineRun`, use the following command:
 
@@ -128,18 +147,21 @@ both the *Hello World!* and *Goodbye World!* Tasks.
     <pre>
     [hello : hello] Hello World!
 
-    [goodbye : goodbye] Goodbye World!
+    [goodbye : goodbye] Goodbye Tekton!
     </pre>
 
 ## Cleanup
 
-To delete the cluster that you created for this quickstart run:
+To learn about Tekton Triggers, skip this section and proceed to the
+[next tutorial][triggers-qs].
+
+To delete the cluster that you created for this guide run:
 
 ```bash
 minikube delete
 ```
 
-The output confirms that your cluster was deleted:
+The output confirms that the cluster was deleted:
 
 <pre>
 🔥  Deleting "minikube" in docker ...
@@ -150,17 +172,16 @@ The output confirms that your cluster was deleted:
 
 ## Further reading
 
-- [Tasks](/docs/pipelines/tasks)
-- [Pipelines](/docs/pipelines/pipelines)
+We recommend that you complete [Getting started with Triggers][triggers-qs].
 
-Other useful resources
+For more complex examples check:
 
-- [Convenience scripts to run Kind][kind-setup]
-- [Instructions to setup Minikube and Docker][local-setup]
+- [Clone a git repository with Tekton][git-howto].
+- [Build and push a container image with Tekton][kaniko-howto].
 
 [minikube]: https://minikube.sigs.k8s.io/docs/start/
 [kind]: https://kind.sigs.k8s.io/docs/user/quick-start/#installation
-[kind-setup]: https://github.com/tektoncd/plumbing/tree/main/hack
 [kubectl]: https://github.com/tektoncd/pipeline/blob/main/docs/developers/local-setup.md
-[local-setup]: https://github.com/tektoncd/pipeline/blob/main/docs/developers/local-setup.md
-
+[git-howto]: /docs/how-to-guides/clone-repository/
+[kaniko-howto]: /docs/how-to-guides/kaniko-build-push/
+[triggers-qs]: /docs/getting-started/triggers/
