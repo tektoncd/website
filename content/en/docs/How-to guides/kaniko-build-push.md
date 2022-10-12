@@ -46,7 +46,7 @@ this guide.
 
 ## Clone the repository
 
-Create a new Pipeline, `pipeline,yaml`, that uses the *git clone* Task to [clone
+Create a new Pipeline, `pipeline.yaml`, that uses the *git clone* Task to [clone
 the source code from a git repository][tekton-clone]:
 
 ```yaml
