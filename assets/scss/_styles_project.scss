@@ -31,10 +31,16 @@
     }
 }
 
-/* Keep cover top nav bar with dark background */
+/* Top nav bar background */
 
 .td-navbar-cover {
     &.navbar-bg-onscroll { background: $dark !important }
+}
+
+/* Remove default styles from community page lists */
+
+.linkbox {
+   ul { list-style-type: none }
 }
 
 /* Click-to-copy button styles */
