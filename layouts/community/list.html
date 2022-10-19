@@ -13,8 +13,12 @@
 
 {{ partial "community-links.html" . }}
 
-<div class="td-content">
-    {{ .Content }}
-</div>
+<section class="row td-box linkbox">
+    <div class="col">
+        <div class="td-content">
+            {{ .Content }}
+        </div>
+    </div>
+</section>
 
 {{ end }}
