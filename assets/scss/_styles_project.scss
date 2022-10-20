@@ -43,6 +43,21 @@
    ul { list-style-type: none }
 }
 
+/* Styles for RSS link */
+.td-rss-button {
+   font-size: 0;
+   background-color: $primary;
+
+   &:hover { 
+      color: #fff;
+      background-color: darken($primary, 10%);
+   }
+
+   i { font-size: 20px; }
+
+
+}
+
 /* Click-to-copy button styles */
 
 .highlight {
