@@ -35,28 +35,28 @@ Slack][tekton-slack] and the [Tekton TW working group][tekton-tw-wg].
     ```html
     ## Authentication
 
-    {{< tabs >}}
+    {{</* tabs */>}}
 
-    {{< tab "Default" >}}
+    {{</* tab "Default" */>}}
       Default authentication process:
 
       1. Step 1
       2. Step 2
-    {{< /tab >}}
+    {{</* /tab */>}}
 
-    {{< tab "My cloud provider" >}}
-    {{< readfile file="/vendor/my-vendor/my-service-auth.md" >}}
-    {{< /tab >}}
+    {{</* tab "My cloud provider" */>}}
+    {{</* readfile file="/vendor/my-vendor/my-service-auth.md" */>}}
+    {{</* /tab */>}}
 
-    {{< /tabs >}}
+    {{</* /tabs */>}}
     ```
 1.  If it's not already there, add the vendor disclaimer at the top of the
     document, below the front matter.
 
     ```html
-    {{% pageinfo %}}
-    {{% readfile "/vendor/disclaimer.md" %}}
-    {{% /pageinfo %}}
+    {{%/* pageinfo */%}}
+    {{%/* readfile "/vendor/disclaimer.md" */%}}
+    {{%/* /pageinfo */%}}
 
     ```
 
@@ -102,9 +102,9 @@ existing one:
     matter.
 
     ```html
-    {{% pageinfo %}}
-    {{% readfile "/vendor/disclaimer.md" %}}
-    {{% /pageinfo %}}
+    {{%/* pageinfo */%}}
+    {{%/* readfile "/vendor/disclaimer.md" */%}}
+    {{%/* /pageinfo */%}}
 
     ```
 
@@ -120,11 +120,11 @@ existing one:
       Installation guide to run Tekton on my cloud service.
     ---
 
-    {{% pageinfo %}}
-    {{% readfile "/vendor/disclaimer.md" %}}
-    {{% /pageinfo %}}
+    {{%/* pageinfo */%}}
+    {{%/* readfile "/vendor/disclaimer.md" */%}}
+    {{%/* /pageinfo */%}}
 
-    {{% readfile "/vendor/my-vendor/installation.md" %}}
+    {{%/* readfile "/vendor/my-vendor/installation.md" */%}}
 
    ```
 
