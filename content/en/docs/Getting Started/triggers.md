@@ -121,8 +121,8 @@ A TriggerTemplate defines what happens when an event is detected.
 
 ## Create a TriggerBinding
 
-A TriggerBinding that executes the TriggerTemplate, the same way you had to
-create a PipelineRun to execute the Pipeline.
+A TriggerBinding executes the TriggerTemplate, the same way you had to create a
+PipelineRun to execute the Pipeline.
 
 1.  Create a file named `trigger-binding.yaml` with the following content:
 

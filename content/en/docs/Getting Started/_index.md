@@ -17,16 +17,15 @@ Tekton](/docs/getting-started/tasks/). If you prefer, watch the following
 videos to learn the basics of how Tekton works before your first hands-on
 experience:
 
-### Tekton for Kubernetes Cloud-Native CI/CD explained.
-
+{{< card footer="Tekton for Kubernetes explained">}}
   {{< youtube "6oE7jgRuF2o"  >}}
+{{< /card >}}
 
-### Tekton CI/CD pipelines and tasks overview.
-
+{{< card footer="Tekton CI/CD Pipelines overview">}}
   {{< youtube "pW606eBa7og" >}}
+{{< /card >}}
 
-### Tekton Chains: Extensibility, automation, and security.
-
+{{< card footer="Tekton Chains: extensibility, automation, and security">}}
   {{< youtube "p9K3_xtozzA" >}}
-
+{{< /card >}}
 
