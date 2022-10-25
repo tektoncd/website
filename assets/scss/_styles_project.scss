@@ -13,6 +13,14 @@
     z-index: 1;
 }
 
+/* Styling for version-switcher dropdown */
+
+.dropdown-menu {
+   border: 2px solid $primary;
+   max-height: 50vh;
+   overflow-y: auto;
+}
+
 /* 
     Styling for mobile:
 */
@@ -45,17 +53,19 @@
 
 /* Styles for RSS link */
 .td-rss-button {
-   font-size: 0;
-   background-color: $primary;
+   background-color: $primary !important;
 
    &:hover { 
-      color: #fff;
-      background-color: darken($primary, 10%);
+      color: #fff !important;
+      background-color: darken($primary, 10%) !important;
    }
+}
 
-   i { font-size: 20px; }
+/* Vertical scrolling for large code samples */
 
-
+pre {
+   max-height: 25em;
+   overflow-y: auto;
 }
 
 /* Click-to-copy button styles */
@@ -79,7 +89,7 @@
            border-width: 0;
            background-color: inherit;
            box-shadow: 1px 1px $light;
-           right: 8px;
+           right: 18px !important;
            top: 6px;
        }
 
