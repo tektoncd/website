@@ -30,3 +30,6 @@ sync/.cache
 
 # Local Netlify folder
 .netlify
+
+# MacOS folders
+**/.DS_Store
