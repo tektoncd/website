@@ -7,7 +7,7 @@ description: >
   From founding project to graduated, a brief history of Tekton
 ---
 
-We're very happy to announce that Tekton as reached graduated status within the
+We're very happy to announce that Tekton has reached graduated status within the
 Continuous Delivery Foundation (CDF). The CDF Technical Oversight Committee
 (TOC) conducted public [voting][voting-email] to decide on the graduation status
 for Tekton, and the result was unanimously positive. The Tekton community is
@@ -19,8 +19,8 @@ graduation" and what this milestone means for the project.
 
 ## Early Days
 
-The Tekton project has its roots in [Knative][knative], where it is initially
-called "Knative Build" and later "Knative Pipeline". The project is spun off in
+The Tekton project has its roots in [Knative][knative], where it was initially
+called "Knative Build" and later "Knative Pipeline". The project was spun off in
 August 2018, when it got it's current name and a new home on GitHub as
 ["tektoncd/pipeline"][pipeline-repo]. Here's one of the project's very first
 commits:
@@ -40,17 +40,18 @@ This PR demonstrates some paper prototype examples of what it could look
 like to define pipelines using the CRDs described in the README.
 ```
 
-A few months later, in March 2019, [Tekton is donated][cdf-creation-blog] to the
-newly formed [Continuos Delivery Foundation (CDF)][cdf]. 
+A few months later, in March 2019, [Tekton was donated][cdf-creation-blog] to
+the newly formed [Continuos Delivery Foundation (CDF)][cdf].
 
 ## Growing the community
 
 Since then the project has thrived thanks to a rich community of contributors.
-One of earlier repositories to be created is the community one, where the
-project documented its governance, code of conduct and contributing guidelines.
+One of earlier repositories to be created was the [community][community-repo]
+one, where the project documented its governance, code of conduct and
+contributing guidelines.
 
 At the end of 2019 Tekton the number of repositories had grown to eleven. A
-regular monthly release cadence is established - Pipeline has 9 releases and in
+regular monthly release cadence was established - Pipeline had 9 releases and in
 March 2020 the beta version of the Tekton Pipeline API was
 [released][pipeline-beta-release]. During this time, we also implemented the
 project's release automation using Tekton itself.
@@ -68,7 +69,7 @@ href="https://tekton.devstats.cd.foundation/d/74/contributions-chart?orgId=1&fro
 
 ## Focus on security
 
-One year later, it's now 2021, Tekton has matured considerably, while remaining
+One year later, it's now 2021, Tekton had matured considerably, while remaining
 true to its nature of having a small footprint and giving users full flexibility
 in how they setup their CI/CD system through Tekton.
 
@@ -76,10 +77,10 @@ This very flexibility has enabled Tekton to become the base for the
 implementation of more opinionated services on top, ranging from open source
 projects, and cloud services as well as end-user platforms for DevOps services.
 
-It's now prime time to focus more thoroughly on security! In July 2021 the
-Tekton Vulnerability Team is formed. Tekton pipelines release v0.29 is the first
-one to be signed through Tekton chains, with the provenance Rekor UUID included
-in the release notes.
+It was then prime time to focus more thoroughly on security! In July 2021 the
+Tekton Vulnerability Team was formed. Tekton pipelines release v0.29 was the
+first one to be signed through Tekton chains, with the provenance Rekor UUID
+included in the release notes.
 
 End user adoption shows how Tekton, with the help of Tekton Chains, can help
 solve software supply chain security challenges.
@@ -89,12 +90,12 @@ solve software supply chain security challenges.
 In March 2022, thanks to the the sponsorship of the CDF, Tekton completed an
 [independent security audit][security-audit].
 
-Later that year, Tekton achieves the [OpenSSF Best Practices
+Later that year, Tekton achieved the [OpenSSF Best Practices
 badges][openssf-badge] for its six core components.
 
 ## Long Term Support 
 
-In October 2022 the Tekton community defines its [policy for long term support
+In October 2022 the Tekton community defined its [policy for long term support
 (LTS)][lts-policy]:
 
 > The Tekton project maintains four release branches for each project, created
@@ -148,9 +149,10 @@ community. Congratulations and thank you to all the Tekton contributors who made
 it possible!
 
 Thank you for the the CDF for hosting the project and supporting it, especially
-through the security audit. Thank you to the TOC for their support and
-sponsorship as well as to the CDF team, Fatih, Jesse and Roxanne for their great
-work with marketing and organizing the [press release][press-release].
+through the security audit. Thank you to the TOC and its chair Oleg for their
+support and sponsorship as well as to the CDF team, Fatih, Jesse and Roxanne for
+their great work with marketing and organizing the [press
+release][press-release].
 
 [knative]: https://knative.dev
 [cdf-creation-blog]:
@@ -173,3 +175,4 @@ work with marketing and organizing the [press release][press-release].
 [press-release]:
     https://cd.foundation/announcement/2022/10/25/cd-foundation-welcomes-new-software-supply-chain-security-project-pyrsia-announces-tekton-graduation-and-cdevents-release/
 [voting-email]: https://lists.cd.foundation/g/cdf-toc/topic/94265202#861
+[community-repo]: https://github.com/tektoncd/community
