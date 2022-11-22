@@ -66,7 +66,7 @@ when the EventListener detects an event.
     ```
 
     When `tekton-triggers-controller`, `tekton-triggers-webhook`, and
-    `tekton-triggers-core-controller` show `1/1` under the `READY` column, you
+    `tekton-triggers-core-interceptors` show `1/1` under the `READY` column, you
     are ready to continue. For example:
 
     ```
