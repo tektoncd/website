@@ -2,6 +2,9 @@
 package-lock.json
 node_modules/
 
+# Hugo
+.hugo_build.lock
+
 # Generated content
 resources/_gen/
 public/
