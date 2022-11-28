@@ -9,6 +9,10 @@ description: >
 ---
 -->
 
+{{% pageinfo %}}
+{{% readfile "/vendor/disclaimer.md" %}}
+{{% /pageinfo %}}
+
 This guide shows you how to:
 
 1.  Create a Task to clone source code from a git repository.
@@ -31,7 +35,7 @@ can [skip to the full code samples](#full-code-samples).
     ```
 
     See the [Pipelines installation documentation][pipelines-inst] for other
-    installation options.
+    installation options and vendor specific instructions.
 
 1.  Install the [Tekton CLI, `tkn`][tkn-inst], on your machine.
 
@@ -174,11 +178,14 @@ together.
 In most cases, to push the image to a container registry you must provide
 authentication credentials first.
 
-1.  Set up authentication with the Docker credential helper and generate the
-    Docker configuration file, `~/.docker/config.json`, for your registry. This
-    step is different depending on your registry.
+{{% tabs %}}
 
-    - [Google Artifact Registry][google-ar]
+{{% tab "General Authentication" %}}
+
+1.  Set up authentication with the Docker credential helper and generate the
+    Docker configuration file, `$HOME/.docker/config.json`, for your registry.
+    This step is different depending on your registry.
+
     - [Red Hat Quay][rh-quay]
     - [Docker Hub][docker-hub]
     - [Azure container registry][azure]
@@ -233,8 +240,6 @@ authentication credentials first.
         secretName: docker-credentials
     ```
 
-See the complete files in the [full code samples section](#full-code-samples).
-
 [secrets]: https://kubernetes.io/docs/concepts/configuration/secret/
 [rh-quay]: https://access.redhat.com/documentation/en-us/red_hat_quay/3.4/html-single/use_red_hat_quay/index#allow-robot-access-user-repo
 [google-ar]: https://cloud.google.com/artifact-registry/docs/docker/authentication
@@ -242,6 +247,18 @@ See the complete files in the [full code samples section](#full-code-samples).
 [azure]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-authentication?tabs=azure-cli#individual-login-with-azure-ad
 [az-ecr]: https://aws.amazon.com/blogs/compute/authenticating-amazon-ecr-repositories-for-docker-cli-with-credential-helper/
 [jfrog]: https://www.jfrog.com/confluence/display/JFROG/Using+Docker+V1#UsingDockerV1-3.SettingUpAuthentication
+
+{{% /tab %}}
+
+{{% tab "Google Cloud" %}}
+
+{{< readfile file="/vendor/google/registry-authentication.md" >}}
+
+{{% /tab %}}
+
+{{% /tabs %}}
+
+See the complete files in the [full code samples section](#full-code-samples).
 
 ## Run your Pipeline
 
