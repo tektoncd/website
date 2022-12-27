@@ -57,7 +57,7 @@ Task:
     kubectl apply --filename goodbye-world.yaml
     ```
 
-When a Task is part of a Pipeline, Tekton create a `TaskRun` object for every
+When a Task is part of a Pipeline, Tekton creates a `TaskRun` object for every
 task in the Pipeline.
 
 ## Create and run a Pipeline
