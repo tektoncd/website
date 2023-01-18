@@ -228,14 +228,14 @@ class TestSync(unittest.TestCase):
     def test_transform_link(self):
         base_path = './test-content'
         rewrite_path = '/docs/foo'
-        rewrite_url = 'https://foo.bar'
+        rewrite_url = 'https://foo.github.com'
         local_files = {
             'test-content/content.md': ('_index.md', ''),
             'test-content/parallel.md': ('parallel.md', ''),
             'test-content/test.txt': ('test.txt', ''),
             'another-content/test.md': ('test.md', 'another'),
             'test-content/nested/content.md': ('content.md', 'nested'),
-            'test-content/nested/example.yaml': ('example.yaml', 'nested')
+            'test-content/nested/example.yaml': ('example.yaml', 'nested'),
         }
 
         cases = [
@@ -247,6 +247,7 @@ class TestSync(unittest.TestCase):
             "../another-content/test.md",
             "./nested/content.md",
             "./nested/example.yaml",
+            "./nested/image.svg",
             "./parallel.md",
             "./parallel.md#with-fragment"
         ]
@@ -256,10 +257,11 @@ class TestSync(unittest.TestCase):
             "http://test.com",
             "/docs/foo/test.txt",
             "/docs/foo/",
-            "https://foo.bar/test-content/notthere.txt",
+            "https://foo.github.com/test-content/notthere.txt",
             "/docs/foo/another/test/",
             "/docs/foo/nested/content/",
             "/docs/foo/nested/example.yaml",
+            "https://foo.raw.github.com/test-content/nested/image.svg",
             "/docs/foo/parallel/",
             "/docs/foo/parallel/#with-fragment"
         ]

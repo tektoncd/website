@@ -56,6 +56,7 @@ FM_WRAPPER_OPEN = "<!--\n"
 FM_WRAPPER_CLOSE = "-->\n"
 
 FOLDER_INDEX = '_index.md'
+IMAGE_EXTS = ['.svg', '.png', '.jpg']
 
 
 def doc_config(doc, folder_config, weight=None):
@@ -133,7 +134,7 @@ def transform_docs(git_repo, tag, folders, site_folder, base_path, base_url):
             for idx, doc in enumerate(docs)])
 
     # Build a dict of all valid local links
-    # This is used by `transfor_line` to identify local links
+    # This is used by `transform_link` to identify local links
     local_files = {doc.path: (target, target_folder) for
                     doc, _, target, target_folder, _ in files}
 
@@ -237,9 +238,12 @@ def write_front_matter(target_doc, fm_doc, fm_config):
 def transform_links_doc(text, base_path, local_files, rewrite_path, rewrite_url):
     """ transform all the links the text """
     links = get_links(text)
-    # Rewrite map, only use links with an href
+    # Rewrite map, only use links with href and src
     rewrite_map = {x.get("href"): transform_link(x.get("href"), base_path, local_files, rewrite_path, rewrite_url)
         for x in links if x.get("href")}
+    rewrite_map = {x.get("src"): transform_link(x.get("src"), base_path, local_files, rewrite_path, rewrite_url)
+        for x in links if x.get("src")}
+
     for source, target in rewrite_map.items():
         text = text.replace(f'({source})', f'({target})')
     return text
@@ -249,7 +253,9 @@ def get_links(md):
     """ return a list of all the links in a string formatted in markdown """
     md = markdown.markdown(md)
     soup = BeautifulSoup(md, 'html.parser')
-    return soup.find_all("a")
+    links = soup.find_all("a")
+    links.extend(soup.find_all("img"))
+    return links
 
 
 def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):
@@ -309,7 +315,16 @@ def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):
         else:
             new_path = [rewrite_path, target_file]
         return parsed._replace(path="/".join(new_path)).geturl()
+
+    # If it's an image, point to the raw source file
+    ext = os.path.splitext(parsed.path)[1]
+    if ext in IMAGE_EXTS:
+        rewrite_url = rewrite_url.replace('tree', '').replace('github.com',
+                                                               'raw.github.com')
+
     # when not found on disk, append to the base_url
+    if not rewrite_url.endswith('/'):
+        rewrite_url += '/'
     return urljoin(rewrite_url, parsed._replace(path=fq_path).geturl())
 
 
