@@ -1,5 +1,6 @@
 .PHONY: sync
 sync:
+	git config http.postBuffer 524288000
 	python3 sync/sync.py --update-cache
 
 .PHONY: serve
