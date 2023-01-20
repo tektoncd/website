@@ -55,7 +55,7 @@ function createPreviousVersionsNodes (anchorNode, componentName, previousVersion
     }
     previousVersionNode.style.paddingLeft = '2em';
     previousVersionNode.style.color = 'rgb(55, 114, 255)';
-    previousVersionNode.setAttribute('href', `/vault/${componentName.toLowerCase()}-${previousVersion.toLowerCase()}`);
+    previousVersionNode.setAttribute('href', `/vault/${componentName.toLowerCase()}-${previousVersion.toLowerCase().replace(' ', '-')}`);
     previousVersionNode.setAttribute('data-ref', `${componentName}-child`.toLowerCase());
     previousVersionNode.innerHTML = `${previousVersion}`;
     anchorNode.appendChild(previousVersionNode);
