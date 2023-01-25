@@ -30,7 +30,7 @@ Create a cluster
 minikube start --kubernetes-version v1.24.4
 ```
 
-The process takes a few seconds, you see an output symilar to the following,
+The process takes a few seconds, you see an output similar to the following,
 depending on the [minikube driver](https://minikube.sigs.k8s.io/docs/drivers/)
 that you are using:
 
