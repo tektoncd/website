@@ -1,6 +1,8 @@
 ---
 title: "Tekton Documentation Vault"
 linkTitle: "Vault"
+cascade:
+   - type: "docs"
 ---
 
 This section keeps the documentation of past versions of Tekton components.
