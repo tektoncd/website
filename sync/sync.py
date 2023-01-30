@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2020 The Tekton Authors
+# Copyright 2020-2023 The Tekton Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -239,10 +239,12 @@ def transform_links_doc(text, base_path, local_files, rewrite_path, rewrite_url)
     """ transform all the links the text """
     links = get_links(text)
     # Rewrite map, only use links with href and src
-    rewrite_map = {x.get("href"): transform_link(x.get("href"), base_path, local_files, rewrite_path, rewrite_url)
+    rewrite_map_links = {x.get("href"): transform_link(x.get("href"), base_path, local_files, rewrite_path, rewrite_url)
         for x in links if x.get("href")}
-    rewrite_map = {x.get("src"): transform_link(x.get("src"), base_path, local_files, rewrite_path, rewrite_url)
+    rewrite_map_images = {x.get("src"): transform_link(x.get("src"), base_path, local_files, rewrite_path, rewrite_url)
         for x in links if x.get("src")}
+
+    rewrite_map = {**rewrite_map_links, **rewrite_map_images}
 
     for source, target in rewrite_map.items():
         text = text.replace(f'({source})', f'({target})')
