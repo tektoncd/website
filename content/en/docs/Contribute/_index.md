@@ -2,7 +2,7 @@
 ---
 title: "Contribute to Documentation"
 linkTitle: "Contribute to Documentation"
-weight: 11
+weight: 0
 description: > 
   Contribution guidelines
 ---
