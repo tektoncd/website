@@ -1,0 +1,67 @@
+{{/* Render documentation nav from definition in config file */}}
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  {{ if not .Site.Params.ui.sidebar_search_disable -}}
+  <form class="td-sidebar__search d-flex align-items-center">
+    {{ partial "search-input.html" . }}
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  {{ else -}}
+  <div id="content-mobile">
+  <form class="td-sidebar__search d-flex align-items-center">
+    {{ partial "search-input.html" . }}
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  </div>
+  <div id="content-desktop"></div>
+  {{ end -}}
+
+  <nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav" >
+  {{ $navRoot := cond (and (ne .Params.toc_root true) (eq .Site.Home.Type "docs")) .Site.Home .FirstSection -}}
+  {{ $mid := printf "m-%s" (.RelPermalink | anchorize) -}}
+  {{ $activePath := true }}
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="{{ $mid }}-li">
+        <a href="/docs/" class="align-left tree-root pl-0 active td-sidebar-link tid-sidebar-link__section" id=" {{ $mid }}"><span class="td-sidebar-nav-active-item">Documentation</span></a>
+        <ul class="ul-1">
+           {{- $active := false -}}
+           {{ $currentPage := . -}}
+           {{- range .Site.Menus.docs -}}
+  				 {{- $mid = printf "m-%s" (.URL | anchorize) -}}
+  				 {{- $activePath = false -}}
+           {{- $docMenu := . -}}
+           {{-  $inMain := false -}}
+           {{- range $navRoot.Site.Menus.main -}}
+              {{if eq .Name $docMenu.Name }}
+              {{ $inMain = true }}
+              {{ end }}
+           {{- end -}}
+          
+           {{- if not $inMain }}
+            {{ $active = eq	$currentPage.RelPermalink .URL }}
+            {{ $activePath = (strings.Contains $currentPage.RelPermalink .URL) }}
+            <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child{{ if $activePath }} active-path{{ end }}" id="{{ $mid }}-li">
+							<input type="checkbox" id="{{ $mid }}-check"{{ if $activePath}} checked{{ end }}/>
+							<label for="{{ $mid }}-check"><a href="{{ .URL  }}" class="align-left pl-0{{ if $active }} active{{ end }} td-sidebar-link td-sidebar-link__section" id="{{ $mid }}" title="{{ .Title }}"><span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}"> {{ .Name }}</span></a></label>
+
+						 {{ $p := $navRoot.Site.GetPage .URL }}
+						 <ul class="ul-2 foldable">
+							{{ range $p.Pages -}}
+							 {{- $mid = printf "m-%s" (.RelPermalink | anchorize) -}}
+							 {{- $active = eq $currentPage.RelPermalink .RelPermalink -}}
+							<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child{{ if $active }} active-path{{ end }}" id="{{ $mid }}-li">
+							 <input type="checkbox" id="{{ $mid }}-check"{{ if $active}} checked{{ end }}/>
+							 <label for="{{ $mid }}-check"><a class="align-left pl-0 {{ if $active}} active{{ end }} td-sidebar-link td-sidebar-link__page" id="{{ $mid }}" href="{{ .RelPermalink }}"><span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}"> {{ .LinkTitle }}</span></a></label>
+							</li>
+            </li>
+           {{- end -}}
+           </ul>
+           {{ end -}}
+           {{ end -}}
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
