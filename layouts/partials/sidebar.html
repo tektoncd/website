@@ -3,6 +3,7 @@
 {{ $shouldCache := ge (len .Site.Pages) $sidebarCacheLimit -}}
 {{ $sidebarCacheTypeRoot := cond (isset .Site.Params.ui "sidebar_cache_type_root") .Site.Params.ui.sidebar_cache_type_root false -}}
 {{ $isDocs := (strings.Contains .RelPermalink "docs/") }}
+{{ $isVault := (strings.Contains .RelPermalink "vault/") }}
 {{ if $shouldCache -}}
   {{ $mid := printf "m-%s" (.RelPermalink | anchorize) }}
   <script>
@@ -22,6 +23,8 @@
 {{ else -}}
   {{ if $isDocs -}}
     {{ partial "sidebar-tree-docs.html" . }}
+  {{- else if $isVault -}}
+    {{ partial "sidebar-tree-vault.html" . }}
   {{- else -}}
     {{ partial "sidebar-tree.html" . }}
   {{- end }}

@@ -27,7 +27,7 @@ archive: https://github.com/tektoncd/pipeline/tags
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
 - name: release-v0.44.x
-  displayName: v0.44.x (LTS)
+  displayName: v0.44.x-LTS
   # Dict of folders to sync
   folders:
     docs:
@@ -57,7 +57,7 @@ tags:
         - api-spec.md
         - tutorial.md
 - name: release-v0.41.x
-  displayName: v0.41.x LTS
+  displayName: v0.41.x-LTS
   # Dict of folders to sync
   folders:
     docs:

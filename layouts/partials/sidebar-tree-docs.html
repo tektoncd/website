@@ -39,7 +39,7 @@
               {{ end }}
            {{- end -}}
           
-           {{- if not $inMain }}
+           {{- if not (or $inMain (eq .Name "Vault") ) }}
             {{ $active = eq	$currentPage.RelPermalink .URL }}
             {{ $activePath = (strings.Contains $currentPage.RelPermalink .URL) }}
             <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child{{ if $activePath }} active-path{{ end }}" id="{{ $mid }}-li">
