@@ -104,7 +104,7 @@ function setVaultVersionSwitcher () {
     if (componentVersion.name.toLowerCase() === componentRawName) {
       componentName = componentVersion.name;
       componentVersion.tags.forEach(function (bundle) {
-        if (bundle.displayName.toLowerCase() === versionRawName) {
+        if (bundle.displayName.toLowerCase().startsWith(versionRawName)) {
           versionName = bundle.displayName;
         }
       });
