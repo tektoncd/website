@@ -17,7 +17,9 @@ serve: sync
 .PHONY: production-build
 production-build: sync
 	hugo --baseURL $(URL)
+	cp analytics.txt public/
 
 .PHONY: preview-build
 preview-build: sync
 	hugo --baseURL $(DEPLOY_PRIME_URL)
+	cp analytics.txt public/
