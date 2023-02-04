@@ -273,7 +273,7 @@ create a second Task that displays  the `README` file from the cloned git
 repository. You can find more useful examples in the [How-to section][how-tos]
 and the [examples folder][repo-examples] in the Pipelines git repository.
 
-1.  Add a new entry to the `tasks` section of `pipelines.yaml`:
+1.  Add a new entry to the `tasks` section of `pipeline.yaml`:
 
     ```yaml
     - name: show-readme
