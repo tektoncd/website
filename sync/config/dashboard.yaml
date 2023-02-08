@@ -26,13 +26,13 @@ archive: https://github.com/tektoncd/dashboard/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
-- name: release-v0.32.x
+- name: release-v0.32.x-lts
   displayName: v0.32.x-LTS
   folders:
     docs:
       index: README.md
       include: ['*.jpg', '*.md', '*.svg']
-- name: release-v0.30.x
+- name: release-v0.30.x-lts
   displayName: v0.30.x-LTS
   folders:
     docs:
