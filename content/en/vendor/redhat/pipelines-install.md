@@ -19,9 +19,13 @@ Constraints][security-con] for more information.
    ```
 1. Install Tekton Pipelines:
 
+    Because OpenShift uses random user id (and user id range per namespace) for pods, we need to remove the `securityContext.runAsUser` and `securityContext.runAsGroup` from any container from the release.yaml.
+    You will need to have [`yq`](https://mikefarah.gitbook.io/yq/) installed for this to work. Another way would be to download the yaml, search and replace (here replace with nothing) in your favourite editor.
+
    ```bash
-   oc apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml
+   curl https://storage.googleapis.com/tekton-releases/pipeline/latest/release.notags.yaml | yq 'del(.spec.template.spec.containers[].securityContext.runAsUser, .spec.template.spec.containers[].securityContext.runAsGroup)' | oc apply -f -
    ```
+
 
    See the [OpenShift CLI documentation][openshift-cli] for more information on
    the `oc` command.
