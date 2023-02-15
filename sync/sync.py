@@ -500,6 +500,8 @@ def sync(config_folder, update_cache):
     versions = get_versions(config)
     # create version switcher script
     create_resource(JS_ASSET_DIR, "version-switcher.js", versions)
+    # create release switcher script
+    create_resource(JS_ASSET_DIR, "release-switcher.js", versions)
     # create index for vault
     create_resource(VAULT_DIR, FOLDER_INDEX, versions)
 

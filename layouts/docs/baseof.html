@@ -20,6 +20,9 @@
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ partial "version-banner.html" . }}
+			      {{ if strings.Contains .Page.RelPermalink "/docs/" -}}
+              {{ partial "release-selector.html" }}
+            {{ end -}}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
             {{ block "main" . }}{{ end }}
           </main>

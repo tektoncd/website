@@ -1,0 +1,20 @@
+{{ $jsRelSwitcher := resources.Get "js/release-switcher.js" }}
+{{ $jsRelSwitcher := $jsRelSwitcher | fingerprint }}
+<script src="{{ $jsRelSwitcher.RelPermalink }}" integrity="{{ $jsRelSwitcher.Data.Integrity }}"></script>
+<nav class="td-breadcrumbs td-breadcrumbs__single" id="release-switcher">
+  <ol class="breadcrumb font-weight-bold">
+    <li id="latest-release-li" class="breadcrumb-item active">
+      Documentation for latest release
+    </li>
+
+    <li id="nightly-release-li" class="breadcrumb-item">
+      <a id="nightly-release-link" href="#">Go to Nightly Release</a>
+    </li>
+
+    <li id="lts-release-li" class="breadcrumb-item">
+      <a id="lts-release-link" href="#">Go to Latest LTS release</a>
+    </li>
+  </ol>
+  <script>findReleases()</script>
+</nav>
+

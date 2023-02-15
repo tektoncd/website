@@ -1,0 +1,62 @@
+if (typeof componentVersions === 'undefined') {
+  const componentVersions = JSON.parse('{{ component_versions_json }}');
+}
+
+const getComponentReleases = () => {
+  const pathName = window.location.pathname;
+  const componentVersionStr = pathName.split("/")[2];
+  const componentRawName = componentVersionStr.split("-")[0];
+  let latestVersion;
+  let nightlyVersion;
+  let latestLTS;
+  let componentName;
+
+  componentVersions.forEach((componentVersion) => {
+    if (componentVersion.name.toLowerCase() === componentRawName) {
+      componentName = componentVersion.name;
+      const versions = componentVersion.tags;
+      latestVersion = versions[0].displayName;
+      if (versions.length > 1) {
+        nightlyVersion = versions[versions.length - 1].displayName;
+      }
+      versions.forEach((version) => {
+        if (version.displayName.toLowerCase().includes('lts') && !latestLTS) {
+          latestLTS = version.displayName;
+        }
+      });
+    }
+  });
+  return {
+    name: componentName,
+    latest: latestVersion,
+    nightly: nightlyVersion,
+    lts: latestLTS,
+  };
+};
+
+const findReleases = () => {
+  const componentReleases = getComponentReleases();
+
+  const releasesNode = document.getElementById('release-switcher');
+  const latestNode = document.getElementById('latest-release-li');
+  const nightlyLiNode = document.getElementById('nightly-release-li');
+  const nightlyNode = document.getElementById('nightly-release-link');
+  const ltsLiNode = document.getElementById('lts-release-li');
+  const ltsNode = document.getElementById('lts-release-link');
+
+  if (componentReleases.name) {
+    let nightlyURL = `/vault/${componentReleases.name}-${componentReleases.nightly}`;
+    let ltsURL = `/vault/${componentReleases.name}-${componentReleases.lts}`;
+    releasesNode.style.visibility = 'visible';
+    latestNode.innerText = `Documentation for ${componentReleases.name}-${componentReleases.latest}`;
+    if (componentReleases.nightly) {
+      nightlyLiNode.style.visibility = 'visible';
+      nightlyNode.setAttribute('href', nightlyURL.toLowerCase());
+    }
+    if (componentReleases.lts) {
+      ltsLiNode.style.visibility = 'visible';
+      ltsURL = (componentReleases.lts == componentReleases.latest) ? '#' : ltsURL.toLowerCase();
+      ltsNode.setAttribute('href', ltsURL);
+    }
+  }
+};

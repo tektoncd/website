@@ -394,8 +394,4 @@ tags:
       include: ['*.md']
       exclude:
       - api-spec.md
-      - deprecations.md
-      - install.md
-      - runs.md
-      - tekton-bundle-contracts.md
       - tutorial.md
