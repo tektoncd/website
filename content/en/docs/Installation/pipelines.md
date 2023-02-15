@@ -8,7 +8,7 @@ description: >
 ---
 -->
 
-{{% readfile "/docs/Pipelines/install.md" %}}
+{{< readfile "/docs/Pipelines/install.md" >}}
 
 ---
 {{< card  >}}

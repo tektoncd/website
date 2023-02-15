@@ -6,6 +6,7 @@ node_modules/
 resources/_gen/
 public/
 assets/js/version-switcher.js
+assets/js/release-switcher.js
 
 # IDEs
 .vscode

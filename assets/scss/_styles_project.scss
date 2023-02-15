@@ -122,6 +122,12 @@ pre {
    }
 }
 
+/* Hide releases disclaimer by default, dinamically show it with js */
+
+#release-switcher { visibility: hidden }
+#nightly-release-li { visibility: hidden }
+#lts-release-li { visibility: hidden }
+
 /* Consistent borders around code blocks */
 
 pre { border: 1px solid $light;}
