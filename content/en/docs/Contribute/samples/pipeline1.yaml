@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+spec:
+  taskRef:
+    name: example-task
+    bundle: python:3-alpine
+

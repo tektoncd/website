@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+spec:
+  taskRef:
+    resolver: bundles
+    params:
+    - name: bundle
+      value: python:3-alpine
+    - name: name
+      value: taskName
+    - name: kind
+      value: Task
+
