@@ -34,7 +34,7 @@ imaging:
   anchor: smart
 services:
   googleAnalytics:
-    id: UA-154682132-1
+    id: G-G2WH79BEEM
 languages:
   en:
     title: Tekton
