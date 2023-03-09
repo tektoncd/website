@@ -17,4 +17,14 @@
 {{ $c2cJS := resources.Get "js/click-to-copy.js" | minify |  fingerprint }}
 <script defer src="{{ $c2cJS.RelPermalink }}" integrity="{{ $c2cJS.Data.Integrity }}"></script>
 
+{{ if .Page.Store.Get "hasMermaid" }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9.2.2/dist/mermaid.min.js"
+  integrity="sha512-IX+bU+wShHqfqaMHLMrtwi4nK6W/Z+QdZoL4kPNtRxI2wCLyHPMAdl3a43Fv1Foqv4AP+aiW6hg1dcrTt3xc+Q=="
+  crossorigin="anonymous">
+  mermaid.initialize({ 
+    startOnLoad: true, 
+    });
+</script>
+{{ end }}
+
 {{ partial "hooks/body-end.html" . }}
