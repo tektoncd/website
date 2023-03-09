@@ -49,28 +49,44 @@ Tekton provides the following benefits to builders and users of CI/CD systems:
 
 Tekton consists of the following components:
 
-- **[Tekton Pipelines](https://github.com/tektoncd/pipeline/blob/main/docs/README.md)** is the foundation of Tekton. It
-  defines a set of Kubernetes [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
-  that act as building blocks from which you can assemble CI/CD pipelines.
+- **[Tekton Pipelines][pipelines]** is the foundation of Tekton. It defines a
+  set of Kubernetes [Custom Resources][k-resources] that act as building blocks
+  from which you can assemble CI/CD pipelines.
 
-- **[Tekton Triggers](https://github.com/tektoncd/triggers/blob/main/README.md)** allows you to instantiate pipelines based on events.
-  For example, you can trigger the instantiation and execution of a pipeline every time a PR is merged against a GitHub repository. You
-  can also build a user interface that launches specific Tekton triggers.
+- **[Tekton Triggers][triggers]** allows you to instantiate pipelines based on events.
+  For example, you can trigger the instantiation and execution of a pipeline
+  every time a PR is merged against a GitHub repository. You can also build a user
+  interface that launches specific Tekton triggers.
 
-- **[Tekton CLI](https://github.com/tektoncd/cli/blob/main/README.md)** provides a command-line interface called `tkn`, built on top
+- **[Tekton CLI][cli]** provides a command-line interface called `tkn`, built on top
   of the Kubernetes CLI, that allows you to interact with Tekton.
 
-- **[Tekton Dashboard](https://github.com/tektoncd/dashboard/blob/main/docs/README.md)** is a Web-based graphical interface for Tekton
-  Pipelines that displays information about the execution of your pipelines. It is currently a work-in-progress.
+- **[Tekton Dashboard][dashboard]** is a Web-based graphical interface for
+  Tekton Pipelines that displays information about the execution of your
+  pipelines. It is currently a work-in-progress.
 
-- **[Tekton Catalog](https://github.com/tektoncd/catalog/blob/v1beta1/README.md)** is a repository of high-quality, community-contributed
-  Tekton building blocks - `Tasks`, `Pipelines`, and so on - that are ready for use in your own pipelines.
+- **[Tekton Catalog][catalog]** is a repository of high-quality, community-contributed
+  Tekton building blocks - `Tasks`, `Pipelines`, and so on - that are ready for
+  use in your own pipelines.
 
-- **[Tekton Hub](https://github.com/tektoncd/hub/blob/main/README.md)** is a Web-based graphical interface for accessing the Tekton Catalog.
+- **[Tekton Hub][hub]** is a Web-based graphical interface for accessing the Tekton Catalog.
 
-- **[Tekton Operator](https://github.com/tektoncd/operator/blob/main/README.md)** is a Kubernetes [Operator pattern](https://operatorhub.io/what-is-an-operator)
-  that allows you to install, update, and remove Tekton projects on your Kubernetes cluster.
+- **[Tekton Operator][operator]** is a Kubernetes [Operator
+  pattern](https://operatorhub.io/what-is-an-operator) that allows you to
+  install, update, and remove Tekton projects on your Kubernetes cluster.
 
+- **[Tekton Chain][chains]** provides tools to generate, store, and sign
+  provenance for artifacts built with Tekton Pipelines.
+
+[pipelines]: https://github.com/tektoncd/pipeline/blob/main/docs/README.md
+[triggers]: https://github.com/tektoncd/triggers/blob/main/README.md
+[cli]: https://github.com/tektoncd/cli/blob/main/README.md
+[dashboard]: https://github.com/tektoncd/dashboard/blob/main/docs/README.md
+[catalog]: https://github.com/tektoncd/catalog/blob/v1beta1/README.md
+[hub]: https://github.com/tektoncd/hub/blob/main/README.md
+[operator]: https://github.com/tektoncd/operator/blob/main/README.md
+[chains]: https://github.com/tektoncd/chains/blob/main/README.md
+[k-resources]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 
 ## How do I work with Tekton?
 

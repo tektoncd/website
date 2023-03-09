@@ -1,0 +1,175 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "predicateType": "https://slsa.dev/provenance/v0.2",
+  "subject": null,
+  "predicate": {
+    "builder": {
+      "id": "https://tekton.dev/chains/v2"
+    },
+    "buildType": "tekton.dev/v1beta1/PipelineRun",
+    "invocation": {
+      "configSource": {},
+      "parameters": {
+        "image-reference": "10.101.124.48/tekton-test"
+      },
+      "environment": {
+        "labels": {
+          "tekton.dev/pipeline": "build-push"
+        }
+      }
+    },
+    "buildConfig": {
+      "tasks": [
+        {
+          "name": "dockerfile",
+          "ref": {
+            "name": "create-dockerfile",
+            "kind": "Task"
+          },
+          "startedOn": "2023-04-18T04:23:16Z",
+          "finishedOn": "2023-04-18T04:23:24Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "entryPoint": "cat <<EOF > Dockerfile\nFROM alpine:3.16\nRUN echo \"hello world\" > hello.log\nEOF\n",
+              "arguments": null,
+              "environment": {
+                "container": "add-dockerfile",
+                "image": "docker-pullable://bash@sha256:e0acf0b8fb59c01b6a2b66de360c86bcad5c3cd114db325155970e6bab9663a0"
+              },
+              "annotations": null
+            }
+          ],
+          "invocation": {
+            "configSource": {},
+            "parameters": {},
+            "environment": {
+              "annotations": {
+                "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-fd643aaebc",
+                "pipeline.tekton.dev/release": "086e76a"
+              },
+              "labels": {
+                "app.kubernetes.io/managed-by": "tekton-pipelines",
+                "tekton.dev/memberOf": "tasks",
+                "tekton.dev/pipeline": "build-push",
+                "tekton.dev/pipelineRun": "build-push-run-7gn4d",
+                "tekton.dev/pipelineTask": "dockerfile",
+                "tekton.dev/task": "create-dockerfile"
+              }
+            }
+          }
+        },
+        {
+          "name": "kaniko-build",
+          "after": [
+            "dockerfile"
+          ],
+          "ref": {
+            "name": "kaniko",
+            "kind": "Task"
+          },
+          "startedOn": "2023-04-18T04:23:24Z",
+          "finishedOn": "2023-04-18T04:23:32Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "entryPoint": "",
+              "arguments": [
+                "--dockerfile=./Dockerfile",
+                "--context=/workspace/source/./",
+                "--destination=10.101.124.48/tekton-test",
+                "--digest-file=/tekton/results/IMAGE_DIGEST"
+              ],
+              "environment": {
+                "container": "build-and-push",
+                "image": "docker-pullable://gcr.io/kaniko-project/executor@sha256:c6166717f7fe0b7da44908c986137ecfeab21f31ec3992f6e128fff8a94be8a5"
+              },
+              "annotations": null
+            },
+            {
+              "entryPoint": "set -e\nimage=\"10.101.124.48/tekton-test\"\necho -n \"${image}\" | tee \"/tekton/results/IMAGE_URL\"\n",
+              "arguments": null,
+              "environment": {
+                "container": "write-url",
+                "image": "docker-pullable://bash@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9"
+              },
+              "annotations": null
+            }
+          ],
+          "invocation": {
+            "configSource": {},
+            "parameters": {
+              "BUILDER_IMAGE": "gcr.io/kaniko-project/executor:v1.5.1@sha256:c6166717f7fe0b7da44908c986137ecfeab21f31ec3992f6e128fff8a94be8a5",
+              "CONTEXT": "./",
+              "DOCKERFILE": "./Dockerfile",
+              "EXTRA_ARGS": [],
+              "IMAGE": "10.101.124.48/tekton-test"
+            },
+            "environment": {
+              "annotations": {
+                "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-fd643aaebc",
+                "pipeline.tekton.dev/release": "086e76a",
+                "tekton.dev/categories": "Image Build",
+                "tekton.dev/displayName": "Build and upload container image using Kaniko",
+                "tekton.dev/pipelines.minVersion": "0.17.0",
+                "tekton.dev/platforms": "linux/amd64,linux/arm64,linux/ppc64le",
+                "tekton.dev/tags": "image-build"
+              },
+              "labels": {
+                "app.kubernetes.io/managed-by": "tekton-pipelines",
+                "app.kubernetes.io/version": "0.6",
+                "tekton.dev/memberOf": "tasks",
+                "tekton.dev/pipeline": "build-push",
+                "tekton.dev/pipelineRun": "build-push-run-7gn4d",
+                "tekton.dev/pipelineTask": "kaniko-build",
+                "tekton.dev/task": "kaniko"
+              }
+            }
+          },
+          "results": [
+            {
+              "name": "IMAGE_DIGEST",
+              "type": "string",
+              "value": "sha256:423d2382809c377fcf3a890316769852a6d298e760b34d784dc0222ec7630de3"
+            },
+            {
+              "name": "IMAGE_URL",
+              "type": "string",
+              "value": "10.101.124.48/tekton-test"
+            }
+          ]
+        }
+      ]
+    },
+    "metadata": {
+      "buildStartedOn": "2023-04-18T04:23:16Z",
+      "buildFinishedOn": "2023-04-18T04:23:32Z",
+      "completeness": {
+        "parameters": false,
+        "environment": false,
+        "materials": false
+      },
+      "reproducible": false
+    },
+    "materials": [
+      {
+        "uri": "docker-pullable://bash",
+        "digest": {
+          "sha256": "c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9"
+        }
+      },
+      {
+        "uri": "docker-pullable://bash",
+        "digest": {
+          "sha256": "e0acf0b8fb59c01b6a2b66de360c86bcad5c3cd114db325155970e6bab9663a0"
+        }
+      },
+      {
+        "uri": "docker-pullable://gcr.io/kaniko-project/executor",
+        "digest": {
+          "sha256": "c6166717f7fe0b7da44908c986137ecfeab21f31ec3992f6e128fff8a94be8a5"
+        }
+      }
+    ]
+  }
+}
