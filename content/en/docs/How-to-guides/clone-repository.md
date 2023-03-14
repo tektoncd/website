@@ -295,8 +295,8 @@ and the [examples folder][repo-examples] in the Pipelines git repository.
     kind: Task
     metadata:
       name: show-readme
-      description: Read and display README file.
     spec:
+      description: Read and display README file.
       workspaces:
       - name: source
       steps:
@@ -493,8 +493,8 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: show-readme
-  description: Read and display README file.
 spec:
+  description: Read and display README file.
   workspaces:
   - name: source
   steps:
