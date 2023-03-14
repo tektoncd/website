@@ -16,7 +16,7 @@
 {{- template "_internal/schema.html" . -}}
 {{- template "_internal/twitter_cards.html" . -}}
 {{ if eq (getenv "HUGO_ENV") "production" }}
-{{ template "_internal/google_analytics_async.html" . }}
+{{ template "_internal/google_analytics.html" . }}
 {{ end }}
 {{ partialCached "head-css.html" . "asdf" }}
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
