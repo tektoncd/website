@@ -1,6 +1,6 @@
 ---
 title: Meet with Tekton Community at cdCon + GitOpsCon 2023
-likTitle: Meet with Tekton Community at cdCon + GitOpsCon 2023
+linkTitle: Meet with Tekton Community at cdCon + GitOpsCon 2023
 date: 2023-04-14
 author: "CD Foundation"
 description: >
