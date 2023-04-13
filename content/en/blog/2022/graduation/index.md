@@ -1,6 +1,6 @@
 ---
 title: Tekton Graduation
-likTitle: Tekton Graduation
+linkTitle: Tekton Graduation
 date: 2022-10-26
 author: "Andrea Frittoli"
 description: >
