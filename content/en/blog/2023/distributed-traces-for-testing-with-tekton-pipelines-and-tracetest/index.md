@@ -9,7 +9,7 @@ description: >
 
 [Tekton](https://github.com/tektoncd/pipeline) is an open-source framework for creating efficient CI/CD systems. This empowers developers to seamlessly construct, test, and deploy applications across various cloud environments and on-premise setups.
 
-[Tracetest](https://github.com/kubeshop/tracetest), an open-source testing tool that uses OpenTelemetry traces for testing, offers a sophisticated test harness for distributed cloud-native apps. It empowers users to test their apps by harnessing data from distributed traces produced by OpenTelemetry. This enables creating test specs and assertions that validate whether an application aligns with the intended behavior, as defined by pre-established test parameters.
+[Tracetest](https://github.com/kubeshop/tracetest), an open-source testing tool that uses [OpenTelemetry](https://opentelemetry.io/) traces for testing, offers a sophisticated test harness for distributed cloud-native apps. It empowers users to test their apps by harnessing data from distributed traces produced by OpenTelemetry. This enables creating test specs and assertions that validate whether an application aligns with the intended behavior, as defined by pre-established test parameters.
 
 ## Why use distributed traces for testing?
 
@@ -244,7 +244,7 @@ spec:
 kubectl apply -f ./install-and-run-tracetest.yaml
 ```
 
-Make sure to use the Tracetest service as the endpoint for your `tracetest configure` command. This may vary depending on your installation.
+Make sure to use the Tracetest service as the endpoint for your [`tracetest configure` command](https://docs.tracetest.io/cli/reference/tracetest_configure/). This may vary depending on your installation.
 
 ```bash
 http://tracetest.tracetest.svc.cluster.local:11633/
