@@ -1,7 +1,7 @@
 ---
 title: Distributed Traces for Testing with Tekton Pipelines and Tracetest
 linkTitle: Distributed Traces for Testing with Tekton Pipelines and Tracetest
-date: 2023-09-15
+date: 2023-08-15
 author: "Adnan Rahic"
 description: >
   How to automate Tracetest test runs with Tekton
@@ -25,7 +25,7 @@ The following is high level sequence diagram on how Tekton and Tracetest interac
 
 ## 1. Install Tekton Pipelines, Triggers, and Dashboard
 
-Install Tekton Pipelines by following [these instructions for Pipelines](https://tekton.dev/docs/getting-started/tasks/#install-tekton-pipelines), and [there instructions for Triggers](https://tekton.dev/docs/getting-started/triggers/#install-tekton-triggers). Or, run the command below.
+Install Tekton Pipelines by following [these instructions for Pipelines](https://tekton.dev/docs/getting-started/tasks/#install-tekton-pipelines), [these instructions for Triggers](https://tekton.dev/docs/getting-started/triggers/#install-tekton-triggers), and [these instructions for Dashboard](https://tekton.dev/docs/dashboard/install/). Or, run the command below.
 
 ```bash
 kubectl apply --filename \
@@ -54,9 +54,8 @@ brew install kubeshop/tracetest/tracetest
 
 ```bash
 tracetest server install
-```
 
-```text title="Expected output"
+[Output]
 How do you want to run TraceTest? [type to search]:
   Using Docker Compose
 > Using Kubernetes
@@ -64,7 +63,8 @@ How do you want to run TraceTest? [type to search]:
 
 Select `Using Kubernetes`.
 
-```text title="Expected output"
+```text
+[Output]
 Do you have OpenTelemetry based tracing already set up, or would you like us to install a demo tracing environment and app? [type to search]:
   I have a tracing environment already. Just install Tracetest
 > Just learning tracing! Install Tracetest, OpenTelemetry Collector and the sample app.
@@ -76,9 +76,8 @@ Confirm that Tracetest is running:
 
 ```bash
 kubectl get all -n tracetest
-```
 
-```text title="Expected output"
+[Output]
 NAME                                  READY   STATUS    RESTARTS        AGE
 pod/otel-collector-7f4d87489f-vp6zn   1/1     Running   0               5m41s
 pod/tracetest-78b9c84c57-t4prx        1/1     Running   3 (4m15s ago)   5m29s
@@ -138,7 +137,7 @@ Save the test spec and publish the test.
 
 ![Assertion for database queries](./tracetest-assertions-3.png)
 
-The database spans that are returning in less than 500ms are labeled in green.
+The database spans that are returning in less than `500ms` are labeled in green.
 
 ![Assertions failing](./tracetest-assertions-4.png)
 
@@ -157,6 +156,8 @@ This contains both a YAML definition for the test run and a guide how to run the
 Save this into a file called `test-api.yaml`:
 
 ```yaml
+# test-api.yaml
+
 type: Test
 spec:
   id: L7wr5xeVR
@@ -189,6 +190,8 @@ Create another YAML file, name it `install-and-run-tracetest.yaml`.
 This contains the Tekton `Task` definition.
 
 ```yaml
+# install-and-run-tracetest.yaml
+
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
@@ -254,6 +257,8 @@ Finally, to run the test, create a `TaskRun`.
 Create a file called `install-and-run-tracetest-run.yaml`.
 
 ```yaml
+# install-and-run-tracetest-run.yaml
+
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
@@ -273,13 +278,12 @@ Here's how to check the logs:
 kubectl logs --selector=tekton.dev/taskRun=install-and-run-tracetest-run
 ```
 
-You can also trigger a Task with the Tekton CLI.
+You can also trigger a Task with the [Tekton CLI](https://tekton.dev/docs/cli/).
 
 ```bash
 tkn task start install-and-run-tracetest
-```
 
-```text title="Expected output"
+[Output]
 TaskRun started: install-and-run-tracetest-run-xmhfg
 ```
 
@@ -288,6 +292,7 @@ In order to track the TaskRun progress run:
 ```bash
 tkn taskrun logs install-and-run-tracetest-run-gccjk -f -n default
 
+[Output]
 [install-and-run-tracetest] ✔ Pokeshop - List (http://tracetest.tracetest.svc.cluster.local:11633/test/RUkKQ_aVR/run/3/test) - trace id: 0549641531d3221ded696f2fd3b20ce6
 [install-and-run-tracetest] 	✔ Database queries less than 500 ms
 [install-and-run-tracetest]
@@ -297,9 +302,8 @@ To preview which tasks failed or succeeded, use this command:
 
 ```bash
 tkn taskrun list
-```
 
-```text title="Expected output"
+[Output]
 NAME                                  STARTED          DURATION   STATUS
 install-and-run-tracetest-run         3 minutes ago    23s        Succeeded
 install-and-run-tracetest-run-nmptn   7 minutes ago    33s        Failed
@@ -314,7 +318,9 @@ By using Tektons's [triggers](https://tekton.dev/docs/getting-started/triggers/)
 
 ### Create a TriggerTemplate and TriggerBinding
 
-```yaml title="install-and-run-tracetest-trigger-binding.yaml"
+```yaml
+# install-and-run-tracetest-trigger-binding.yaml
+
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
@@ -330,7 +336,9 @@ spec:
         name: install-and-run-tracetest
 ```
 
-```yaml title="install-and-run-tracetest-trigger-template.yaml"
+```yaml
+# install-and-run-tracetest-trigger-template.yaml
+
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerBinding
 metadata:
@@ -348,7 +356,9 @@ kubectl apply -f install-and-run-tracetest-trigger-template.yaml
 
 ### Create an EventListener
 
-```yaml title="install-and-run-tracetest-event-listener.yaml"
+```yaml
+# install-and-run-tracetest-event-listener.yaml
+
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
@@ -365,7 +375,9 @@ spec:
 
 The EventListener requires a service account to run. To create the service account for this example create a file named `tekton-robot-rbac.yaml` and add the following:
 
-```yaml title="tekton-robot-rbac.yaml"
+```yaml
+# tekton-robot-rbac.yaml
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -421,9 +433,8 @@ Checking the `taskruns` will confirm this.
 
 ```bash
 tkn taskrun list
-```
 
-```text title="Expected output"
+[Output]
 NAME                                  STARTED          DURATION   STATUS
 install-and-run-tracetest-run-69zrz   4 seconds ago    ---        Running(Pending)
 ```
@@ -432,9 +443,8 @@ Finally, check the logs:
 
 ```bash
 tkn taskrun logs -f install-and-run-tracetest-run-69zrz
-```
 
-```text title="Expected output"
+[Output]
 [install-and-run-tracetest] ✔ Pokeshop - List (http://tracetest.tracetest.svc.cluster.local:11633/test/RUkKQ_aVR/run/5/test)
 [install-and-run-tracetest] 	✔ Database queries less than 500 ms
 ```
