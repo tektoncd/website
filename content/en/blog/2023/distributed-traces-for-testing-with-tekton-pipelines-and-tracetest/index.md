@@ -7,9 +7,9 @@ description: >
   How to automate Tracetest test runs with Tekton
 ---
 
-[Tekton](https://github.com/tektoncd/pipeline) is an open-source framework for creating efficient CI/CD systems. This empowers developers to seamlessly construct, test, and deploy applications across various cloud environments and on-premise setups.
+[Tekton](https://tekton.dev/) is an [open-source framework](https://github.com/tektoncd/pipeline) for creating efficient CI/CD systems. This empowers developers to seamlessly construct, test, and deploy applications across various cloud environments and on-premise setups.
 
-[Tracetest](https://github.com/kubeshop/tracetest), an open-source testing tool that uses [OpenTelemetry](https://opentelemetry.io/) traces for testing, offers a sophisticated test harness for distributed cloud-native apps. It empowers users to test their apps by harnessing data from distributed traces produced by OpenTelemetry. This enables creating test specs and assertions that validate whether an application aligns with the intended behavior, as defined by pre-established test parameters.
+[Tracetest](https://tracetest.io), an [open-source testing tool](https://github.com/kubeshop/tracetest) that uses [OpenTelemetry](https://opentelemetry.io/) traces for testing, offers a sophisticated test harness for distributed cloud-native apps. It empowers users to test their apps by harnessing data from distributed traces produced by OpenTelemetry. This enables creating test specs and assertions that validate whether an application aligns with the intended behavior, as defined by pre-established test parameters.
 
 ## Why use distributed traces for testing?
 
@@ -19,13 +19,11 @@ The rationale behind integrating Tracetest with Tekton is compelling. Tracetest 
 
 ## Infrastructure Overview
 
-The following is high level sequence diagram on how Tekton and Tracetest interact with the different pieces of the system.
+The following is a high level sequence diagram on how Tekton and Tracetest interact with the different pieces of the system.
 
 ![tekton and tracetest architecture](./tracetest-tekton-architecture-1.png)
 
 ## 1. Install Tekton Pipelines, Triggers, and Dashboard
-
-Install Tekton Pipelines by following [these instructions for Pipelines](https://tekton.dev/docs/getting-started/tasks/#install-tekton-pipelines), [these instructions for Triggers](https://tekton.dev/docs/getting-started/triggers/#install-tekton-triggers), and [these instructions for Dashboard](https://tekton.dev/docs/dashboard/install/). Or, run the command below.
 
 ```bash
 kubectl apply --filename \
@@ -45,10 +43,21 @@ https://storage.googleapis.com/tekton-releases/dashboard/latest/release.yaml
 
 Install Tracetest CLI by following [these instructions](https://docs.tracetest.io/getting-started/installation) for your OS.
 
-```bash
-# MacOS example
+{{< tabs >}}
+
+{{< tab header="MacOS" lang="bash" >}}
 brew install kubeshop/tracetest/tracetest
-```
+{{< /tab >}}
+
+{{< tab header="Linux" lang="bash" >}}
+curl -L https://raw.githubusercontent.com/kubeshop/tracetest/main/install-cli.sh | bash
+{{< /tab >}}
+
+{{< tab header="Windows" lang="bash" >}}
+choco source add --name=kubeshop_repo --source=https://chocolatey.kubeshop.io/chocolatey ; choco install tracetest
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## 3. Install Tracetest in Your Kubernetes Cluster
 
