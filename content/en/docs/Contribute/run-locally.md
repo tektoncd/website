@@ -45,7 +45,7 @@ docker-compose rm
 ### Prerequisites
 
 * [python3](https://www.python.org/downloads/) 
-* [hugo (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases)
+* [hugo (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases/tag/v0.107.0)
 * [pip](https://pip.pypa.io/en/stable/installing/)
 * [git 1.8.5 or later](https://github.com/git/git/releases)
 * [npm v6.14.5](https://nodejs.org/en/)
