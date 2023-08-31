@@ -4,7 +4,9 @@ node_modules/
 
 # Generated content
 resources/_gen/
-public/
+public/**
+## Allow redirect file.
+!public/_redirects
 assets/js/version-switcher.js
 assets/js/release-switcher.js
 
