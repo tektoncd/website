@@ -147,7 +147,7 @@ both the "Hello World!" and "Goodbye!" Tasks.
     The output shows both Tasks completed successfully:
 
     <pre>
-    [hello : hello] Hello World!
+    [hello : echo] Hello World!
 
     [goodbye : goodbye] Goodbye Tekton!
     </pre>
