@@ -26,10 +26,19 @@ archive: https://github.com/tektoncd/operator/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+  - name: release-v0.68.x
+    displayName: v0.68.x
+    # Dict of folders to sync
+    folders:
+      docs:
+        index: README.md
+        include: ['*.md']
+        exclude:
+          - TektonOperator.md
   - name: release-v0.67.x
     # The name to display on tekton.dev.
     # helper.py will use this value in the version switcher and other places.
-    displayName: v0.67.0
+    displayName: v0.67.x
     # Dict of folders to sync
     folders:
       docs:
