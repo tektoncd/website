@@ -26,6 +26,16 @@ archive: https://github.com/tektoncd/pipeline/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+- name: release-v0.53.x
+  displayName: v0.53.x-LTS
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+      exclude:
+        - api-spec.md
+        - tutorial.md
 - name: release-v0.50.x
   displayName: v0.50.x-LTS
   # Dict of folders to sync
@@ -56,16 +66,6 @@ tags:
       exclude:
         - api-spec.md
         - tutorial.md
-- name: release-v0.41.x
-  displayName: v0.41.x-LTS
-  # Dict of folders to sync
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-      exclude:
-      - api-spec.md
-      - tutorial.md
 - name: main
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
