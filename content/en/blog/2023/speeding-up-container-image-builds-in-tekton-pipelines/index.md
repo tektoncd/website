@@ -1,7 +1,7 @@
 ---
 title: Speeding Up Container Image Builds in Tekton Pipelines
 linkTitle: Speeding Up Container Image Builds in Tekton Pipelines
-date: 2023-10-16
+date: 2023-11-2
 author: "Giovanni Galloro, Google"
 description: >
   Various caching approaches to speed container builds in Tekton
@@ -43,16 +43,16 @@ In the following sections, you will see some examples of how to use caching to s
 
 To run through the examples you will need a Kubernetes cluster with [Tekton Pipelines installed](https://tekton.dev/docs/installation/pipelines/), a git-based Source Code Management (SCM), and a container registry with permissions to push artifacts. I used a GKE cluster on Google Cloud, a GitHub repository, and Artifact Registry, but steps are reproducible on any standard Kubernetes platform, git based SCM, and container registry with null or minimal modifications.
 
-Example code and assets are available in this repo: [https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds)
+Example code and assets are available in the: [tekton-speed-builds](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds) folder of the [Tekton CD Website repo](https://github.com/tektoncd/website)
 
-To follow along you need to fork this repo in your personal GitHub account or migrate/copy it to your git-based SCM if different.
+To follow along you need to clone the [Tekton CD Website repo](https://github.com/tektoncd/website) locally and then copy and activate the [tekton-speed-builds](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds) folder as a new repo in your personal GitHub account or other git-based SCM if different.
 
 
 ### Experiment the default behavior
 
 After you have your copy of the example repository clone it locally and look at its content:
 
-* The [sample-app](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/sample-app) folder contains source code, Maven project files, and a Dockerfile for an example Spring Boot Java app. Look at the [Dockerfile](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/sample-app/Dockerfile): it’s multi-staged using the `maven` base image for packaging your code and the `eclipse-temurin:19-jdk-alpine` one to run your application:
+* The [sample-app](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/sample-app) folder contains source code, Maven project files, and a Dockerfile for an example Spring Boot Java app. Look at the [Dockerfile](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/sample-app/Dockerfile): it’s multi-staged using the `maven` base image for packaging your code and the `eclipse-temurin:19-jdk-alpine` one to run your application:
 
 ```
 FROM maven as build
@@ -69,12 +69,12 @@ CMD ["java", "-jar", "app.jar"]
 ```
 
 
-* The [tekton-assets](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/tekton-assets) folders contain resource manifests for the Tekton assets used in this article:
-    * [pipeline.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/tekton-assets/pipeline.yaml) defines a pipeline running 2 Tasks:
-        * [git-clone.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/tekton-assets/git-clone.yaml) clones the example repo to the source Tekton workspace 
-        * [image-build.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/tekton-assets/image-build.yaml) runs Kaniko to build a container image from the source code cloned in the workspace and push it to the target container registry
-    * [source-pvc.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/tekton-assets/source-pvc.yaml) is the manifest for the source-pvc persistent volume claim that will be used as persistent storage for the source Tekton workspace. The storage class is intentionally not defined to make it portable so it will use whatever is the default on your cluster, you can modify the manifest to use your preferred storage class.
-* The [kaniko-basecache](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/kaniko-basecache), [kaniko-cache](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/kaniko-cache), and [m2cache](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/m2cache) folders contain example resources useful to implement the various caching options.
+* The [tekton-assets](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/tekton-assets) folders contain resource manifests for the Tekton assets used in this article:
+    * [pipeline.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/tekton-assets/pipeline.yaml) defines a pipeline running 2 Tasks:
+        * [git-clone.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/tekton-assets/git-clone.yaml) clones the example repo to the source Tekton workspace 
+        * [image-build.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/tekton-assets/image-build.yaml) runs Kaniko to build a container image from the source code cloned in the workspace and push it to the target container registry
+    * [source-pvc.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/tekton-assets/source-pvc.yaml) is the manifest for the source-pvc persistent volume claim that will be used as persistent storage for the source Tekton workspace. The storage class is intentionally not defined to make it portable so it will use whatever is the default on your cluster, you can modify the manifest to use your preferred storage class.
+* The [kaniko-basecache](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/kaniko-basecache), [kaniko-cache](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/kaniko-cache), and [m2cache](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/m2cache) folders contain example resources useful to implement the various caching options.
 
 Let’s create the needed Tekton resources and run our pipeline. From your locally cloned repository, apply the resources in the tekton-assets folder to your cluster:
 
@@ -140,7 +140,7 @@ pipeline-clone-and-build-run-68hjg-git-clone     4 minutes ago    11s        Suc
 
 Since your build will always run in a new container, if you change just a line in your source code your build will always need to download the base images and the Maven dependencies and can’t leverage any cache, let’s try that.
 
-Change the text in line 25 of the [index.html](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/sample-app/src/main/resources/templates/index.html) file in [sample-app/src/main/resources/templates](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/sample-app/src/main/resources/templates) to “Hello, Slow Builder!”
+Change the text in line 25 of the [index.html](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/sample-app/src/main/resources/templates/index.html) file in [sample-app/src/main/resources/templates](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/sample-app/src/main/resources/templates) to “Hello, Slow Builder!”
 
 Commit your change and push it to your remote repository:
 
@@ -193,7 +193,7 @@ To use Kaniko cache you must add the `--cache=true` flag to Kaniko in our image-
 ```
 
 
-To do that you can apply the modified [image-build-cache.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/kaniko-cache/image-build-cache.yaml) in the [kaniko-cache](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/kaniko-cache) folder to update the image-build Task:
+To do that you can apply the modified [image-build-cache.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/kaniko-cache/image-build-cache.yaml) in the [kaniko-cache](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/kaniko-cache) folder to update the image-build Task:
 
 
 ```
@@ -320,7 +320,7 @@ Let’s add a volume mount mapping the `/cache` path to a PVC named `basechache-
 ```
 
 
-To do that you can apply the modified [image-build-basecache.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/kaniko-basecache/image-build-basecache.yaml) in the [kaniko-basecache](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/kaniko-basecachespeed-builds/tree/main/kaniko-cache) folder to update the image-build Task:
+To do that you can apply the modified [image-build-basecache.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/kaniko-basecache/image-build-basecache.yaml) in the [kaniko-basecache](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/kaniko-basecachespeed-builds/tree/main/kaniko-cache) folder to update the image-build Task:
 
 
 ```
@@ -380,7 +380,7 @@ Another option to speed up builds is to cache dependencies locally. In our examp
 
 In this example, we will add another persistent volume to the build-image task and map it to the /root/.m2 folder to persist the Maven cache between builds.
 
-Let’s apply the modified [image-build-m2cache.yaml](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/m2cache/image-build-m2cache.yaml) in the [m2cache](https://github.com/tektoncd/pipeline/tree/main/docs/tekton-speed-builds/m2cache) folder to update the image-build Task:
+Let’s apply the modified [image-build-m2cache.yaml](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/m2cache/image-build-m2cache.yaml) in the [m2cache](https://github.com/tektoncd/website/tree/main/content/en/blog/2023/speeding-up-container-image-builds-in-tekton-pipelines/tekton-speed-builds/m2cache) folder to update the image-build Task:
 
 
 ```
@@ -428,3 +428,6 @@ You saw multiple options to leverage different types of caching to speed up imag
 * How to host your local dependencies cache on a persistent volume 
 
 Now, you are ready to speed up your build in Tekton !
+
+### Note
+This blog was originally posted in the [Continuous Delivery Foundation Blog](https://cd.foundation/blog/2023/10/12/speed-up-container-image-builds-tekton-pipelines/)
