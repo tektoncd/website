@@ -316,8 +316,8 @@ class TestSync(unittest.TestCase):
             "/docs/test/test.txt)")
         ]
 
-        for case, expected in zip(cases, expected_results):
-            actual = transform_links_doc(
+        for case, _ in zip(cases, expected_results):
+            transform_links_doc(
                 text=case, base_path=base_path, local_files=local_files,
                 rewrite_path='/docs/test', rewrite_url='http://test.com/tree/docs/test'
             )

@@ -28,7 +28,6 @@ import os
 import os.path
 import re
 import sys
-from urllib.error import URLError
 from urllib.parse import urlparse, urljoin, urlunparse
 
 from bs4 import BeautifulSoup
@@ -291,7 +290,6 @@ def transform_link(link, base_path, local_files, rewrite_path, rewrite_url):
     if is_fragment(parsed):
         # A fragment only link points to an .md file
         return urlunparse(parsed._replace(fragment=parsed.fragment.lower()))
-    path = os.path.normpath(parsed.path)
 
     # The list if local_file includes paths based on the root of the git
     # repo, so we need join base_path and normalize to fq_path to find the
@@ -381,7 +379,7 @@ def get_files_in_path(path, file_type):
     file_list = []
 
     # walk through every file in directory and its sub directories
-    for root, dirs, files in os.walk(path):
+    for root, _, files in os.walk(path):
         for file in files:
             # append the file name to the list if is it the correct type
             if file.endswith(file_type):
