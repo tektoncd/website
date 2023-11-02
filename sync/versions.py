@@ -61,7 +61,7 @@ def command(cmd_fn, config_folder, project, version):
     configs = load_config(config_folder)
     config = select_config(configs, project)
     if not config:
-        raise Exception(f'Cound not find a config for {project} in {config_files}')
+        raise Exception(f'Cound not find a config for {project} in {configs}')
     try:
         cmd_fn(config, version)
         sync.save_config(configs)
