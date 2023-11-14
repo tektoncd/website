@@ -1,7 +1,7 @@
 ---
 title: Speeding Up Container Image Builds in Tekton Pipelines
 linkTitle: Speeding Up Container Image Builds in Tekton Pipelines
-date: 2023-11-2
+date: 2023-11-02
 author: "Giovanni Galloro, Google"
 description: >
   Various caching approaches to speed container builds in Tekton
