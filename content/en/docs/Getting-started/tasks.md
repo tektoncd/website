@@ -125,7 +125,7 @@ running in its own container.
     
 
 
-1.  Apply the changes your cluster:
+1.  Apply the changes to your cluster:
 
     ```bash
     kubectl apply --filename hello-world.yaml
