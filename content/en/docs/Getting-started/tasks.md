@@ -24,7 +24,7 @@ This tutorial shows you how to
 
 ## Create a Kubernetes cluster
 
-Create a cluster
+Create a cluster:
 
 ```bash
 minikube start --kubernetes-version v1.25.14
@@ -125,13 +125,13 @@ running in its own container.
     
 
 
-1.  Apply the changes your cluster:
+1.  Apply the changes to your cluster:
 
     ```bash
     kubectl apply --filename hello-world.yaml
     ```
 
-      The output confirms that the Task was completed successfully.
+      The output confirms that the Task was completed successfully:
 
       ```
       task.tekton.dev/hello created
@@ -162,7 +162,7 @@ running in its own container.
     kubectl get taskrun hello-task-run
     ```
 
-    The output of this command shows the status of the Task
+    The output of this command shows the status of the Task:
 
      
     ```
