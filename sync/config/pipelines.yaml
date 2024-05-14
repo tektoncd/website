@@ -65,26 +65,6 @@ tags:
       exclude:
         - api-spec.md
         - tutorial.md
-- name: release-v0.47.x
-  displayName: v0.47.x-LTS
-  # Dict of folders to sync
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-      exclude:
-        - api-spec.md
-        - tutorial.md
-- name: release-v0.44.x
-  displayName: v0.44.x-LTS
-  # Dict of folders to sync
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-      exclude:
-        - api-spec.md
-        - tutorial.md
 - name: main
   # The name to display on tekton.dev.
   # sync.py will use this value in the version switcher and other places.
