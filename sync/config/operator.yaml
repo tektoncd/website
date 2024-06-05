@@ -17,6 +17,9 @@ archive: https://github.com/tektoncd/operator/tags
 # To add a new version, append to the list as below
 # - name: vX.Y.Z
 #   displayName: vX.Y.Z
+#   # supportEnds is not used anywhere.
+#   # supportEnds can be used to remove(manually) outdated versions from docs
+#   supportEnds: YYYY-MM-DD 
 #   folders:
 #     docs:
 #       target: ''             # optional, default value ''
@@ -26,8 +29,19 @@ archive: https://github.com/tektoncd/operator/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+  - name: release-v0.71.x
+    displayName: v0.71.x-LTS
+    supportEnds: "2025-06-06" # YYYY-MM-DD
+    # Dict of folders to sync
+    folders:
+      docs:
+        index: README.md
+        include: ['*.md']
+        exclude:
+          - TektonOperator.md
   - name: release-v0.70.x
-    displayName: v0.70.x
+    displayName: v0.70.x-LTS
+    supportEnds: "2025-02-21" # YYYY-MM-DD
     # Dict of folders to sync
     folders:
       docs:
@@ -36,7 +50,8 @@ tags:
         exclude:
           - TektonOperator.md
   - name: release-v0.69.x
-    displayName: v0.69.x
+    displayName: v0.69.x-LTS
+    supportEnds: "2024-12-28" # YYYY-MM-DD
     # Dict of folders to sync
     folders:
       docs:
@@ -45,18 +60,8 @@ tags:
         exclude:
           - TektonOperator.md
   - name: release-v0.68.x
-    displayName: v0.68.x
-    # Dict of folders to sync
-    folders:
-      docs:
-        index: README.md
-        include: ['*.md']
-        exclude:
-          - TektonOperator.md
-  - name: release-v0.67.x
-    # The name to display on tekton.dev.
-    # helper.py will use this value in the version switcher and other places.
-    displayName: v0.67.x
+    displayName: v0.68.x-LTS
+    supportEnds: "2024-09-22" # YYYY-MM-DD
     # Dict of folders to sync
     folders:
       docs:
