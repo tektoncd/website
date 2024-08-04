@@ -131,7 +131,7 @@ running in its own container.
     kubectl apply --filename hello-world.yaml
     ```
 
-      The output confirms that the Task was completed successfully:
+      The output confirms that the Task was created successfully:
 
       ```
       task.tekton.dev/hello created
