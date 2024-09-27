@@ -16,10 +16,9 @@
     "url": "https://github.com/tektoncd/website/issues"
   },
   "homepage": "https://tekton.dev/",
-  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "10.4.0",
     "postcss": "^8.3.7",
-    "postcss-cli": "^9.0.2"
+    "postcss-cli": "^9.1.0"
   }
 }
