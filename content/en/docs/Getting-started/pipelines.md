@@ -141,7 +141,7 @@ both the "Hello World!" and "Goodbye!" Tasks.
 1.  To see the logs of the `PipelineRun`, use the following command:
 
     ```bash
-    tkn pipelinerun logs hello-goodbye-run -f -n default
+    tkn pipelinerun logs hello-goodbye-run -f -n tekton-pipelines
     ```
 
     The output shows both Tasks completed successfully:
