@@ -263,7 +263,7 @@ PipelineRun built and pushed.
    {{% readfile file="samples/provenance.json" code="true" lang="json" %}}
 
 1. To verify that the metadata hasn't been tampered with, check the signature
-   with `cosing`:
+   with `cosign`:
 
    ```bash
    cosign verify-blob-attestation --insecure-ignore-tlog \
