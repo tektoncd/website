@@ -29,6 +29,16 @@ archive: https://github.com/tektoncd/operator/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+  - name: release-v0.75.x
+    displayName: v0.75.x-LTS
+    supportEnds: "2026-02-18" # YYYY-MM-DD
+    # Dict of folders to sync
+    folders:
+      docs:
+        index: README.md
+        include: ['*.md']
+        exclude:
+          - TektonOperator.md
   - name: release-v0.74.x
     displayName: v0.74.x-LTS
     supportEnds: "2025-11-22" # YYYY-MM-DD
@@ -52,26 +62,6 @@ tags:
   - name: release-v0.71.x
     displayName: v0.71.x-LTS
     supportEnds: "2025-06-06" # YYYY-MM-DD
-    # Dict of folders to sync
-    folders:
-      docs:
-        index: README.md
-        include: ['*.md']
-        exclude:
-          - TektonOperator.md
-  - name: release-v0.70.x
-    displayName: v0.70.x-LTS
-    supportEnds: "2025-02-21" # YYYY-MM-DD
-    # Dict of folders to sync
-    folders:
-      docs:
-        index: README.md
-        include: ['*.md']
-        exclude:
-          - TektonOperator.md
-  - name: release-v0.69.x
-    displayName: v0.69.x-LTS
-    supportEnds: "2024-12-28" # YYYY-MM-DD
     # Dict of folders to sync
     folders:
       docs:
