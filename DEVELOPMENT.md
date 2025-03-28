@@ -47,10 +47,8 @@ docker-compose rm
 * [hugo v0.107.0 (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases/v0.107.0)
 * [pip](https://pip.pypa.io/en/stable/installing/)
 * [git 1.8.5 or later](https://github.com/git/git/releases)
-* [npm v6.14.5](https://nodejs.org/en/)
-* [node v14.3.0](https://nodejs.org/en/)
-* [netlify cli](https://cli.netlify.com/getting-started)
-* [netlify account](https://app.netlify.com/)
+* [npm v10.9.2](https://nodejs.org/en/)
+* [node v22.14.0](https://nodejs.org/en/)
 
 ### Setup
 
@@ -72,7 +70,6 @@ docker-compose rm
    python3 -m venv .venv
    source .venv/bin/activate    
    pip3 install -r requirements.txt
-
    ```
 
 1. Run the sync script
@@ -84,7 +81,7 @@ docker-compose rm
 1. Serve the website locally
 
    ```bash
-   netlify dev
+   npm start
    ```
 
 1. Verify that the website is working

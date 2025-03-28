@@ -4,7 +4,7 @@
   "description": "Tekton documentation",
   "main": "none.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "netlify dev"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://tekton.dev/",
   "devDependencies": {
-    "autoprefixer": "10.4.0",
+    "autoprefixer": "^10.4.0",
+    "netlify-cli": "^19.1.4",
     "postcss": "^8.3.7",
     "postcss-cli": "^9.1.0"
   }
