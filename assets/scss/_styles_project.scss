@@ -1,24 +1,23 @@
-
 /*
     Styling for privacy notice watermark in privacy-notice.html
 */
 #privacy-notice {
-    background-color: rgba(84, 73, 75, 0.9); 
-    position: fixed; 
-    bottom: 0%; 
-    right: 0%; 
-    width: 500px; 
+    background-color: rgba(84, 73, 75, 0.9);
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    width: 500px;
     min-height: 10rem;
-    box-shadow: -8px -8px 8px 0 rgba(0, 0, 0, 0.3), 2px -6px 20px 0 rgba(0, 0, 0, 0.2); 
+    box-shadow: -8px -8px 8px 0 rgba(0, 0, 0, 0.3), 2px -6px 20px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
 /* Styling for version-switcher dropdown */
 
 .dropdown-menu {
-   border: 2px solid $primary;
-   max-height: 50vh;
-   overflow-y: auto;
+    border: 2px solid $primary;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 /* 
@@ -42,93 +41,141 @@
 /* Top nav bar background */
 
 .td-navbar-cover {
-    &.navbar-bg-onscroll { background: $dark !important }
+    &.navbar-bg-onscroll {
+        background: $dark !important
+    }
 }
 
 /* Remove default styles from community page lists */
 
 .linkbox {
-   ul { list-style-type: none }
+    ul {
+        list-style-type: none
+    }
 }
 
 /* Styles for RSS link */
 .td-rss-button {
-   background-color: $primary !important;
+    background-color: $primary !important;
 
-   &:hover { 
-      color: #fff !important;
-      background-color: darken($primary, 10%) !important;
-   }
+    &:hover {
+        color: #fff !important;
+        background-color: darken($primary, 10%) !important;
+    }
 }
 
 /* Vertical scrolling for large code samples */
 
 pre {
-   max-height: 25em;
-   overflow-y: auto;
+    max-height: 25em;
+    overflow-y: auto;
 }
 
 /* Click-to-copy button styles */
 
 .highlight {
 
-   position: relative;
-   
-   .click-to-copy {
-       display: block;
-       text-align: right;
-       height: 1ex;
-   }
+    position: relative;
 
-   pre {
+    .click-to-copy {
+        display: block;
+        text-align: right;
+        height: 1ex;
+    }
 
-       button {
-           position: absolute;
-           color: $light;
-           border-radius: 3px;
-           border-width: 0;
-           background-color: inherit;
-           box-shadow: 1px 1px $light;
-           right: 18px !important;
-           top: 6px;
-       }
+    pre {
 
-       button:hover {
-           color: $dark;
-           background-color: $light;
-       }
+        button {
+            position: absolute;
+            color: $light;
+            border-radius: 3px;
+            border-width: 0;
+            background-color: inherit;
+            box-shadow: 1px 1px $light;
+            right: 18px !important;
+            top: 6px;
+        }
 
-       button:active {
-           color: $dark;
-           background-color: $light;
-           transform: translateY(2px);
-      }
+        button:hover {
+            color: $dark;
+            background-color: $light;
+        }
 
-      .c2c-tooltip {
-         background: $dark;
-         color: white;
-         padding: 2px 4px;
-         border-radius: 3px;
-         display: block;
-         visibility: hidden;
-         opacity: 0;
-         transition: visibility 0s, opacity 0.7s linear;
-      }
+        button:active {
+            color: $dark;
+            background-color: $light;
+            transform: translateY(2px);
+        }
 
-      .c2c-tooltip[show-tooltip] {
-         visibility: visible;
-         opacity: 1;
-      }
-   }
+        .c2c-tooltip {
+            background: $dark;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+            display: block;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.7s linear;
+        }
+
+        .c2c-tooltip[show-tooltip] {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
 }
 
 /* Hide releases disclaimer by default, dinamically show it with js */
 
-#release-switcher { visibility: hidden }
-#nightly-release-li { visibility: hidden }
-#lts-release-li { visibility: hidden }
+#release-switcher {
+    visibility: hidden
+}
+
+#nightly-release-li {
+    visibility: hidden
+}
+
+#lts-release-li {
+    visibility: hidden
+}
 
 /* Consistent borders around code blocks */
 
-pre { border: 1px solid $light;}
+pre {
+    border: 1px solid $light;
+}
 
+
+/* Styling for the banner */
+.banner {
+    color: #fff;
+    background: linear-gradient(90deg, #b1479a 0%, #6a2c88 100%);
+
+    .banner-main {
+        max-width: calc(min(1200px - 8em, 80vw));
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+        padding-bottom: calc(max(0.1em, 0.1rem));
+        padding-top: calc(max(5em, 5rem));
+    }
+
+    @media only screen and (max-width: $mobile-width) {
+        .banner-main {
+            padding-top: calc(max(1em, 1rem));
+        }
+    }
+
+    h4 {
+        font-size: 1.35rem;
+        margin-top: 0;
+        margin-bottom: .5rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
