@@ -1,6 +1,6 @@
 ---
 title: Migration to Github Container Registry
-likTitle: Migration to Github Container Registry
+linkTitle: Migration to Github Container Registry
 date: 2025-04-03
 author: "Stanislav Jakuschevskij, IBM"
 description: >
