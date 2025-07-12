@@ -62,6 +62,18 @@ params:
         further improve</a>.
   links:
     developer:
+      - name: Slack
+        url: https://join.slack.com/t/tektoncd/shared_invite/zt-1z8ctzsyv-wLXWwA2Rl3AOhcNGqpWRUw
+        icon: fab fa-slack
+        desc: Slack Channel for Tekton Project
+      - name: Twitter
+        url: https://x.com/tektoncd
+        icon: fab fa-twitter
+        desc: Follow us on Twitter
+      - name: Linkedin
+        url: https://www.linkedin.com/products/cdeliveryfdn-tekton
+        icon: fab fa-linkedin
+        desc: Follow us on Linkedin
       - name: GitHub
         url: https://github.com/tektoncd
         icon: fab fa-github
