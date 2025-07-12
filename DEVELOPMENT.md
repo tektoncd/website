@@ -43,12 +43,14 @@ docker-compose rm
 
 ### Prerequisites
 
-* [python3](https://www.python.org/downloads/) 
-* [hugo v0.107.0 (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases/v0.107.0)
-* [pip](https://pip.pypa.io/en/stable/installing/)
-* [git 1.8.5 or later](https://github.com/git/git/releases)
-* [npm v10.9.2](https://nodejs.org/en/)
-* [node v22.14.0](https://nodejs.org/en/)
+Please use the **exact versions** specified here otherwise `npm start` will fail.
+
+- [python3](https://www.python.org/downloads/)
+- [hugo v0.107.0 (EXTENDED VERSION)](https://github.com/gohugoio/hugo/releases/v0.107.0)
+- [pip](https://pip.pypa.io/en/stable/installing/)
+- [git 1.8.5 or later](https://github.com/git/git/releases)
+- [npm v10.9.2](https://nodejs.org/en/)
+- [node v22.14.0](https://nodejs.org/en/)
 
 ### Setup
 
