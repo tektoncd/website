@@ -27,7 +27,7 @@ This tutorial shows you how to
 Create a cluster:
 
 ```bash
-minikube start --kubernetes-version v1.30.2
+minikube start --kubernetes-version v1.33.1
 ```
 
 The process takes a few seconds, you see an output similar to the following,
@@ -35,23 +35,19 @@ depending on the [minikube driver](https://minikube.sigs.k8s.io/docs/drivers/)
 that you are using:
 
 ```
-😄  minikube v1.34.0 on Darwin 15.1.1 (arm64)
-✨  Automatically selected the docker driver
-📌  Using Docker Desktop driver with root privileges
+😄  minikube v1.36.0 on Darwin 15.5 (arm64)
+✨  Using the qemu2 driver based on user configuration
+🌐  Automatically selected the builtin network
 👍  Starting "minikube" primary control-plane node in "minikube" cluster
-🚜  Pulling base image v0.0.45 ...
-💾  Downloading Kubernetes v1.30.2 preload ...
-    > preloaded-images-k8s-v18-v1...:  319.86 MiB / 319.86 MiB  100.00% 25.70 M
-    > gcr.io/k8s-minikube/kicbase...:  441.45 MiB / 441.45 MiB  100.00% 19.30 M
-        🔥  Creating docker container (CPUs=2, Memory=4000MB) ...
-🐳  Preparing Kubernetes v1.30.2 on Docker 27.2.0 ...
+🔥  Creating qemu2 VM (CPUs=2, Memory=6000MB, Disk=20000MB) ...
+📦  Preparing Kubernetes v1.33.1 on containerd 1.7.23 ...
     ▪ Generating certificates and keys ...
     ▪ Booting up control plane ...
     ▪ Configuring RBAC rules ...
 🔗  Configuring bridge CNI (Container Networking Interface) ...
 🔎  Verifying Kubernetes components...
     ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Enabled addons: storage-provisioner, default-storageclass
+🌟  Enabled addons: default-storageclass, storage-provisioner
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
@@ -64,9 +60,8 @@ kubectl cluster-info
 The output confirms that Kubernetes is running:
 
 ```
-Kubernetes control plane is running at https://127.0.0.1:39509
-CoreDNS is running at
-https://127.0.0.1:39509/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Kubernetes control plane is running at https://localhost:64858
+CoreDNS is running at https://localhost:64858/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
@@ -90,14 +85,13 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
     `1/1` under the `READY` column, you are ready to continue. For example:
 
     ```
-    NAME                                           READY   STATUS              RESTARTS   AGE
-    tekton-pipelines-controller-6d989cc968-j57cs   0/1     Pending             0          3s
-    tekton-pipelines-webhook-69744499d9-t58s5      0/1     ContainerCreating   0          3s
-    tekton-pipelines-controller-6d989cc968-j57cs   0/1     ContainerCreating   0          3s
-    tekton-pipelines-controller-6d989cc968-j57cs   0/1     Running             0          5s
-    tekton-pipelines-webhook-69744499d9-t58s5      0/1     Running             0          6s
-    tekton-pipelines-controller-6d989cc968-j57cs   1/1     Running             0          10s
-    tekton-pipelines-webhook-69744499d9-t58s5      1/1     Running             0          20s
+    NAME                                          READY   STATUS    RESTARTS   AGE
+    tekton-events-controller-786b59d5cd-jt7d9     0/1     Running   0          2s
+    tekton-pipelines-controller-59b6cdbbc-2kw2w   0/1     Running   0          2s
+    tekton-pipelines-webhook-74b5cdfcc4-g4qj2     0/1     Running   0          2s
+    tekton-pipelines-controller-59b6cdbbc-2kw2w   1/1     Running   0          11s
+    tekton-events-controller-786b59d5cd-jt7d9     1/1     Running   0          11s
+    tekton-pipelines-webhook-74b5cdfcc4-g4qj2     1/1     Running   0          11s
     ```
 
     Hit *Ctrl + C* to stop monitoring.
@@ -113,7 +107,7 @@ running in its own container.
     `hello-world.yaml` with the following content:
 
     ```yaml
-    apiVersion: tekton.dev/v1beta1
+    apiVersion: tekton.dev/v1
     kind: Task
     metadata:
       name: hello
@@ -125,9 +119,6 @@ running in its own container.
             #!/bin/sh
             echo "Hello World"
     ```
-
-    
-
 
 1.  Apply the changes to your cluster:
 
@@ -145,7 +136,7 @@ running in its own container.
     file named `hello-world-run.yaml` with the following content:
 
     ```yaml
-    apiVersion: tekton.dev/v1beta1
+    apiVersion: tekton.dev/v1
     kind: TaskRun
     metadata:
       name: hello-task-run
@@ -170,8 +161,8 @@ running in its own container.
 
      
     ```
-     NAME                    SUCCEEDED    REASON       STARTTIME   COMPLETIONTIME
-     hello-task-run          True         Succeeded    22h         22h
+    NAME             SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    hello-task-run   True        Succeeded   28s         3s
     ```
 
     The value `True` under `SUCCEEDED` confirms that TaskRun completed with no errors.
@@ -203,9 +194,7 @@ minikube delete
 The output confirms that the cluster was deleted:
 
 ```
-🔥  Deleting "minikube" in docker ...
-🔥  Deleting container "minikube" ...
-🔥  Removing /home/user/.minikube/machines/minikube ...
+🔥  Deleting "minikube" in qemu2 ...
 💀  Removed all traces of the "minikube" cluster.
 ```
 
