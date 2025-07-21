@@ -32,7 +32,7 @@ Task:
     content:
 
     ```yaml
-    apiVersion: tekton.dev/v1beta1
+    apiVersion: tekton.dev/v1
     kind: Task
     metadata:
       name: goodbye
@@ -72,7 +72,7 @@ both the "Hello World!" and "Goodbye!" Tasks.
     content:
 
     ```yaml
-    apiVersion: tekton.dev/v1beta1
+    apiVersion: tekton.dev/v1
     kind: Pipeline
     metadata:
       name: hello-goodbye
@@ -109,7 +109,7 @@ both the "Hello World!" and "Goodbye!" Tasks.
     `hello-goodbye-pipeline-run.yaml` with the following:
 
     ```yaml
-    apiVersion: tekton.dev/v1beta1
+    apiVersion: tekton.dev/v1
     kind: PipelineRun
     metadata:
       name: hello-goodbye-run
@@ -166,9 +166,7 @@ minikube delete
 The output confirms that the cluster was deleted:
 
 <pre>
-🔥  Deleting "minikube" in docker ...
-🔥  Deleting container "minikube" ...
-🔥  Removing /home/user/.minikube/machines/minikube ...
+🔥  Deleting "minikube" in qemu2 ...
 💀  Removed all traces of the "minikube" cluster.
 </pre>
 

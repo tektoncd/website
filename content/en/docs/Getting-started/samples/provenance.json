@@ -1,114 +1,61 @@
 {
   "_type": "https://in-toto.io/Statement/v0.1",
   "predicateType": "https://slsa.dev/provenance/v0.2",
-  "subject": null,
   "predicate": {
-    "builder": {
-      "id": "https://tekton.dev/chains/v2"
-    },
-    "buildType": "tekton.dev/v1beta1/PipelineRun",
-    "invocation": {
-      "configSource": {},
-      "parameters": {
-        "image-reference": "10.101.124.48/tekton-test"
-      },
-      "environment": {
-        "labels": {
-          "tekton.dev/pipeline": "build-push"
-        }
-      }
-    },
     "buildConfig": {
       "tasks": [
         {
-          "name": "dockerfile",
-          "ref": {
-            "name": "create-dockerfile",
-            "kind": "Task"
-          },
-          "startedOn": "2023-04-18T04:23:16Z",
-          "finishedOn": "2023-04-18T04:23:24Z",
-          "status": "Succeeded",
-          "steps": [
-            {
-              "entryPoint": "cat <<EOF > Dockerfile\nFROM alpine:3.16\nRUN echo \"hello world\" > hello.log\nEOF\n",
-              "arguments": null,
-              "environment": {
-                "container": "add-dockerfile",
-                "image": "docker-pullable://bash@sha256:e0acf0b8fb59c01b6a2b66de360c86bcad5c3cd114db325155970e6bab9663a0"
-              },
-              "annotations": null
-            }
-          ],
+          "finishedOn": "2025-07-21T22:19:09Z",
           "invocation": {
             "configSource": {},
-            "parameters": {},
             "environment": {
               "annotations": {
-                "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-fd643aaebc",
-                "pipeline.tekton.dev/release": "086e76a"
+                "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-d220f05d1d",
+                "pipeline.tekton.dev/release": "18736c3"
               },
               "labels": {
                 "app.kubernetes.io/managed-by": "tekton-pipelines",
                 "tekton.dev/memberOf": "tasks",
                 "tekton.dev/pipeline": "build-push",
-                "tekton.dev/pipelineRun": "build-push-run-7gn4d",
+                "tekton.dev/pipelineRun": "build-push-run-qpfnf",
+                "tekton.dev/pipelineRunUID": "32553c89-e8a8-4c28-81fd-2425433064c8",
                 "tekton.dev/pipelineTask": "dockerfile",
                 "tekton.dev/task": "create-dockerfile"
               }
-            }
-          }
-        },
-        {
-          "name": "kaniko-build",
-          "after": [
-            "dockerfile"
-          ],
-          "ref": {
-            "name": "kaniko",
-            "kind": "Task"
+            },
+            "parameters": {}
           },
-          "startedOn": "2023-04-18T04:23:24Z",
-          "finishedOn": "2023-04-18T04:23:32Z",
+          "name": "dockerfile",
+          "ref": {
+            "kind": "Task",
+            "name": "create-dockerfile"
+          },
+          "serviceAccountName": "default",
+          "startedOn": "2025-07-21T22:19:02Z",
           "status": "Succeeded",
           "steps": [
             {
-              "entryPoint": "",
-              "arguments": [
-                "--dockerfile=./Dockerfile",
-                "--context=/workspace/source/./",
-                "--destination=10.101.124.48/tekton-test",
-                "--digest-file=/tekton/results/IMAGE_DIGEST"
-              ],
-              "environment": {
-                "container": "build-and-push",
-                "image": "docker-pullable://gcr.io/kaniko-project/executor@sha256:c6166717f7fe0b7da44908c986137ecfeab21f31ec3992f6e128fff8a94be8a5"
-              },
-              "annotations": null
-            },
-            {
-              "entryPoint": "set -e\nimage=\"10.101.124.48/tekton-test\"\necho -n \"${image}\" | tee \"/tekton/results/IMAGE_URL\"\n",
+              "annotations": null,
               "arguments": null,
+              "entryPoint": "cat <<EOF > /workspace/source/Dockerfile\nFROM alpine:3.22\nRUN echo \"hello world\" > hello.log\nEOF\n",
               "environment": {
-                "container": "write-url",
-                "image": "docker-pullable://bash@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9"
-              },
-              "annotations": null
+                "container": "add-dockerfile",
+                "image": "oci://docker.io/library/bash@sha256:6a3e1c2ddbdee552cd69ad8244eee84ad6cc00049c338f700ef5ef247be16f7b"
+              }
             }
+          ]
+        },
+        {
+          "after": [
+            "dockerfile"
           ],
+          "finishedOn": "2025-07-21T22:19:24Z",
           "invocation": {
             "configSource": {},
-            "parameters": {
-              "BUILDER_IMAGE": "gcr.io/kaniko-project/executor:v1.5.1@sha256:c6166717f7fe0b7da44908c986137ecfeab21f31ec3992f6e128fff8a94be8a5",
-              "CONTEXT": "./",
-              "DOCKERFILE": "./Dockerfile",
-              "EXTRA_ARGS": [],
-              "IMAGE": "10.101.124.48/tekton-test"
-            },
             "environment": {
               "annotations": {
-                "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-fd643aaebc",
-                "pipeline.tekton.dev/release": "086e76a",
+                "pipeline.tekton.dev/affinity-assistant": "affinity-assistant-d220f05d1d",
+                "pipeline.tekton.dev/release": "18736c3",
                 "tekton.dev/categories": "Image Build",
                 "tekton.dev/displayName": "Build and upload container image using Kaniko",
                 "tekton.dev/pipelines.minVersion": "0.17.0",
@@ -120,56 +67,106 @@
                 "app.kubernetes.io/version": "0.6",
                 "tekton.dev/memberOf": "tasks",
                 "tekton.dev/pipeline": "build-push",
-                "tekton.dev/pipelineRun": "build-push-run-7gn4d",
+                "tekton.dev/pipelineRun": "build-push-run-qpfnf",
+                "tekton.dev/pipelineRunUID": "32553c89-e8a8-4c28-81fd-2425433064c8",
                 "tekton.dev/pipelineTask": "kaniko-build",
                 "tekton.dev/task": "kaniko"
               }
+            },
+            "parameters": {
+              "BUILDER_IMAGE": "gcr.io/kaniko-project/executor:v1.24.0@sha256:4e7a52dd1f14872430652bb3b027405b8dfd17c4538751c620ac005741ef9698",
+              "CONTEXT": "./",
+              "DOCKERFILE": "./Dockerfile",
+              "EXTRA_ARGS": [],
+              "IMAGE": "10.99.166.178/tekton-test"
             }
+          },
+          "name": "kaniko-build",
+          "ref": {
+            "kind": "Task",
+            "name": "kaniko"
           },
           "results": [
             {
               "name": "IMAGE_DIGEST",
               "type": "string",
-              "value": "sha256:423d2382809c377fcf3a890316769852a6d298e760b34d784dc0222ec7630de3"
+              "value": "sha256:3254d61ef67ceb4dd7906b14bb070c00fa039d70ccebb116f08d4f22127f1cf7"
             },
             {
               "name": "IMAGE_URL",
               "type": "string",
-              "value": "10.101.124.48/tekton-test"
+              "value": "10.99.166.178/tekton-test"
+            }
+          ],
+          "serviceAccountName": "default",
+          "startedOn": "2025-07-21T22:19:09Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "annotations": null,
+              "arguments": [
+                "--dockerfile=./Dockerfile",
+                "--context=/workspace/source/./",
+                "--destination=10.99.166.178/tekton-test",
+                "--digest-file=/tekton/results/IMAGE_DIGEST"
+              ],
+              "entryPoint": "",
+              "environment": {
+                "container": "build-and-push",
+                "image": "oci://gcr.io/kaniko-project/executor@sha256:4e7a52dd1f14872430652bb3b027405b8dfd17c4538751c620ac005741ef9698"
+              }
+            },
+            {
+              "annotations": null,
+              "arguments": null,
+              "entryPoint": "set -e\nimage=\"10.99.166.178/tekton-test\"\necho -n \"${image}\" | tee \"/tekton/results/IMAGE_URL\"\n",
+              "environment": {
+                "container": "write-url",
+                "image": "oci://docker.io/library/bash@sha256:6a3e1c2ddbdee552cd69ad8244eee84ad6cc00049c338f700ef5ef247be16f7b"
+              }
             }
           ]
         }
       ]
     },
-    "metadata": {
-      "buildStartedOn": "2023-04-18T04:23:16Z",
-      "buildFinishedOn": "2023-04-18T04:23:32Z",
-      "completeness": {
-        "parameters": false,
-        "environment": false,
-        "materials": false
+    "buildType": "tekton.dev/v1beta1/PipelineRun",
+    "builder": {
+      "id": "https://tekton.dev/chains/v2"
+    },
+    "invocation": {
+      "configSource": {},
+      "environment": {
+        "labels": {
+          "tekton.dev/pipeline": "build-push"
+        }
       },
-      "reproducible": false
+      "parameters": {
+        "image-reference": "10.99.166.178/tekton-test"
+      }
     },
     "materials": [
       {
-        "uri": "docker-pullable://bash",
         "digest": {
-          "sha256": "c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9"
-        }
+          "sha256": "6a3e1c2ddbdee552cd69ad8244eee84ad6cc00049c338f700ef5ef247be16f7b"
+        },
+        "uri": "oci://docker.io/library/bash"
       },
       {
-        "uri": "docker-pullable://bash",
         "digest": {
-          "sha256": "e0acf0b8fb59c01b6a2b66de360c86bcad5c3cd114db325155970e6bab9663a0"
-        }
-      },
-      {
-        "uri": "docker-pullable://gcr.io/kaniko-project/executor",
-        "digest": {
-          "sha256": "c6166717f7fe0b7da44908c986137ecfeab21f31ec3992f6e128fff8a94be8a5"
-        }
+          "sha256": "4e7a52dd1f14872430652bb3b027405b8dfd17c4538751c620ac005741ef9698"
+        },
+        "uri": "oci://gcr.io/kaniko-project/executor"
       }
-    ]
+    ],
+    "metadata": {
+      "buildFinishedOn": "2025-07-21T22:19:24Z",
+      "buildStartedOn": "2025-07-21T22:19:02Z",
+      "completeness": {
+        "environment": false,
+        "materials": false,
+        "parameters": false
+      },
+      "reproducible": false
+    }
   }
 }

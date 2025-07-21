@@ -70,12 +70,13 @@ when the EventListener detects an event.
     are ready to continue. For example:
 
     ```
-    NAME                                                 READY   STATUS    RESTARTS        AGE
-    tekton-pipelines-controller-68b8d87687-8mzvt         1/1     Running   2 (4d13h ago)   4d19h
-    tekton-pipelines-webhook-6fb6dd6d75-7jfz6            1/1     Running   2 (104s ago)    4d19h
-    tekton-triggers-controller-74b654c6bc-24ds7          1/1     Running   2 (104s ago)    4d19h
-    tekton-triggers-core-interceptors-79f4dbb969-sk2dk   1/1     Running   3 (104s ago)    4d19h
-    tekton-triggers-webhook-56885c9875-nx499             1/1     Running   2 (104s ago)    4d19h
+    NAME                                                READY   STATUS    RESTARTS   AGE
+    tekton-events-controller-786b59d5cd-jt7d9           1/1     Running   0          5m43s
+    tekton-pipelines-controller-59b6cdbbc-2kw2w         1/1     Running   0          5m43s
+    tekton-pipelines-webhook-74b5cdfcc4-g4qj2           1/1     Running   0          5m43s
+    tekton-triggers-controller-784d896c7f-s5c7s         1/1     Running   0          85s
+    tekton-triggers-core-interceptors-54d9f764b-g5vbh   1/1     Running   0          84s
+    tekton-triggers-webhook-666c844478-4cqcv            1/1     Running   0          85s
     ```
 
     Hit *Ctrl + C* to stop monitoring.
@@ -96,7 +97,7 @@ A TriggerTemplate defines what happens when an event is detected.
       - name: username
         default: "Kubernetes"
       resourcetemplates:
-      - apiVersion: tekton.dev/v1beta1
+      - apiVersion: tekton.dev/v1
         kind: PipelineRun
         metadata:
           generateName: hello-goodbye-run-
@@ -263,10 +264,10 @@ happens:
     ```
     < HTTP/1.1 202 Accepted
     < Content-Type: application/json
-    < Date: Fri, 30 Sep 2022 00:11:19 GMT
+    < Date: Mon, 21 Jul 2025 22:03:34 GMT
     < Content-Length: 164
     <
-    {"eventListener":"hello-listener","namespace":"default","eventListenerUID":"35dd0858-3692-4bb5-8c4f-1bf6d705bb73","eventID":"1a0a1120-7833-4078-9f30-0e3688f27dde"}
+    {"eventListener":"hello-listener","namespace":"default","eventListenerUID":"c2905e72-8036-4f6a-b26e-f390e8615b76","eventID":"8747199c-b96e-488c-9c44-d43b368b877b"}
     * Connection #0 to host localhost left intact
     ```
 
@@ -281,8 +282,8 @@ happens:
 
     ```
     NAME                      SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-    hello-goodbye-run         True        Succeeded   24m         24m
-    hello-goodbye-run-8hckl   True        Succeeded   81s         72s
+    hello-goodbye-run         True        Succeeded   6m24s       6m2s
+    hello-goodbye-run-r4qg4   True        Succeeded   44s         34s
     ```
 
     You see two PipelineRuns, the first one created in the previous guide,
@@ -293,7 +294,7 @@ happens:
     PiepelineRun name in the following command to see the logs:
 
     ```bash
-    tkn pipelinerun logs <my-pipeline-run> -f
+    tkn pipelinerun logs --last -f
     ```
 
     And you get the expected output:
@@ -321,10 +322,8 @@ happens:
     The output confirms that the cluster was deleted:
 
     ```
-    🔥  Deleting "minikube" in docker ...
-    🔥  Deleting container "minikube" ...
-    🔥  Removing /home/user/.minikube/machines/minikube ...
-    💀  Removed all traces of the "minikube" cluster.
+   🔥  Deleting "minikube" in qemu2 ...
+   💀  Removed all traces of the "minikube" cluster.
     ```
 
 ## Further reading 
