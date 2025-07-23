@@ -17,7 +17,7 @@ Technically it's a Kubernetes Custom Resource Definition (CRD) controller that a
 
 The following diagram from the Tekton Chains [tutorial](https://github.com/tektoncd/chains/blob/main/docs/tutorials/getting-started-tutorial.md) shows the Tekton Chains workflow
 
-![Tekton Chains workflow diagram showing the process from pipeline execution to provenance generation and signing](image1.png "Tekton Chains workflow diagram")
+![Tekton Chains workflow diagram showing the process from pipeline execution to provenance generation and signing](./image1.png "Tekton Chains workflow diagram")
 
 Src: https://tekton.dev/docs/chains/getting-started-tutorial/
 
@@ -38,12 +38,12 @@ Confidential computing protects your workload and data from unauthorised entitie
 
 Confidential computing protects the data in use, completing the data security triad — securing data at rest, in-transit, and in-use. Only the data owner has access to the data. 
 
-![Diagram illustrating the three states of data protection: data at rest, data in transit, and data in use, with confidential computing protecting data in use](image2.png)
+![Diagram illustrating the three states of data protection: data at rest, data in transit, and data in use, with confidential computing protecting data in use](./image2.png)
 
 This key functionality gives you the additional confidence to run your sensitive workloads in untrusted infrastructure (e.g. third-party data-centers, public cloud) and reap the benefits of scale and cost-efficiency.
 
 <div align="center">
-  <img src="image3.png">
+  <img src="./image3.png">
 </div>
 
 A Trusted Execution Environment (TEE) is at the heart of a confidential computing solution. TEEs are secure and isolated environments provided by confidential computing (CC) enabled hardware that prevents unauthorised access or modification of applications and data while in use. You’ll also hear the terms “enclaves” or “secure enclaves”. “TEEs” and “enclaves” are used interchangeably.
@@ -59,7 +59,7 @@ In the Kubernetes world, there are two broad ways for you to use confidential co
 
 **Confidential Container**: The Kubernetes pod is running inside a confidential environment. This approach is more granular, where confidentiality is available to the workload of your choice.
 
-![Comparison diagram showing confidential cluster approach versus confidential container approach in Kubernetes environments](image4.png)
+![Comparison diagram showing confidential cluster approach versus confidential container approach in Kubernetes environments](./image4.png)
 
 Both confidential Kubernetes clusters and containers aim to enhance data security and privacy of Kubernetes workloads by leveraging hardware-based encryption and attestations for trust.
 
@@ -79,7 +79,7 @@ The CNCF Confidential Containers (CoCo) project is leading the effort to standar
 
 Following is a high level architecture of a typical CoCo deployment in Kubernetes.
 
-![High-level architecture diagram of Confidential Containers (CoCo) deployment in Kubernetes, showing TEE, CVM, enclave software stack, and attestation components](image5.png)
+![High-level architecture diagram of Confidential Containers (CoCo) deployment in Kubernetes, showing TEE, CVM, enclave software stack, and attestation components](./image5.png)
 
 As shown in the diagram, CoCo uses Linux Confidential Virtual Machine (CVM) executing inside a TEE as the foundation. Using CVM as the foundation enables lift-and-shift of existing container workloads.
 
@@ -366,11 +366,11 @@ tmpfs                    64.0M         0     64.0M   0% /proc/timer_list
 The following screenshot shows the CVM running the container workload - `podvm-tekton-chains-controller-....` using an `"r6a"` instance type which is an AMD SNP confidential compute instance.
 
 <div align="center">
-  <img src="image6.png">
+  <img src="./image6.png">
 </div>
 
 <div align="center">
-  <img src="image7.png">
+  <img src="./image7.png">
 </div>
 
 ### References
