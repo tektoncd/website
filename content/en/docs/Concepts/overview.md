@@ -82,7 +82,7 @@ Tekton consists of the following components:
 [triggers]: https://github.com/tektoncd/triggers/blob/main/README.md
 [cli]: https://github.com/tektoncd/cli/blob/main/README.md
 [dashboard]: https://github.com/tektoncd/dashboard/blob/main/docs/README.md
-[catalog]: https://github.com/tektoncd/catalog/blob/v1beta1/README.md
+[catalog]: https://github.com/tektoncd/catalog/blob/main/README.md
 [hub]: https://github.com/tektoncd/hub/blob/main/README.md
 [operator]: https://github.com/tektoncd/operator/blob/main/README.md
 [chains]: https://github.com/tektoncd/chains/blob/main/README.md
