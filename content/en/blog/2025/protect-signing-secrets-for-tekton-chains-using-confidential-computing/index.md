@@ -38,7 +38,7 @@ Confidential computing protects your workload and data from unauthorised entitie
 
 Confidential computing protects the data in use, completing the data security triad — securing data at rest, in-transit, and in-use. Only the data owner has access to the data. 
 
-![Diagram illustrating the three states of data protection: data at rest, data in transit, and data in use, with confidential computing protecting data in use](./image2.png)
+![Diagram illustrating the three states of data protection - data at rest, data in transit, and data in use, with confidential computing protecting data in use](./image2.png)
 
 This key functionality gives you the additional confidence to run your sensitive workloads in untrusted infrastructure (e.g. third-party data-centers, public cloud) and reap the benefits of scale and cost-efficiency.
 
