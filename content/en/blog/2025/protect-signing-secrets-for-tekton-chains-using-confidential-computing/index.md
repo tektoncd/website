@@ -17,7 +17,7 @@ Technically it's a Kubernetes Custom Resource Definition (CRD) controller that a
 
 The following diagram from the Tekton Chains [tutorial](https://github.com/tektoncd/chains/blob/main/docs/tutorials/getting-started-tutorial.md) shows the Tekton Chains workflow
 
-![Tekton Chains workflow diagram showing the process from pipeline execution to provenance generation and signing](./image1.png "Tekton Chains workflow diagram")
+![Tekton Chains workflow diagram showing the process from pipeline execution to provenance generation and signing](./image1.png)
 
 Src: https://tekton.dev/docs/chains/getting-started-tutorial/
 
