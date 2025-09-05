@@ -1,4 +1,6 @@
 # Ignore node and python module directores when running in a container
 
 node_modules
+sync/.cache
+.netlify
 .venv

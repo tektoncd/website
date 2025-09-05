@@ -93,6 +93,10 @@ Please use the **exact versions** specified here otherwise `npm start` will fail
    documentation and those changes will immediately show up in the browser after
    you save.
 
+To debug issues only present in the production build, you can run the Netlify production build locally:
+
+`URL=http://localhost:8888 npx netlify serve`
+
 The `sync.py` script clones the required repositories to a local cache folder, by default `sync/.cache`.
 You can modify content and create commits in your local cache to test changes to the original docs.
 
