@@ -48,6 +48,14 @@ You could run:
 sed -e 's,gcr.io/tekton-releases,ghcr.io/tektoncd,g' 
 ```
 
+### Images relocated
+
+During the migration some images has been moved to a sub folder new location and must be also renamed during the override
+
+- Operator job Pruner `/tektoncd/dogfooding/tkn` becomes `/tektoncd/plumbing/tkn`
+
+Other images path remains the same.
+
 ## End of Life Releases
 
 We started enforcing the download of Tekton images from `ghcr.io`.
