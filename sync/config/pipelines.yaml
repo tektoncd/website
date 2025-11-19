@@ -7,8 +7,8 @@ component: Pipelines
 repository: https://github.com/tektoncd/pipeline
 archive: https://github.com/tektoncd/pipeline/tags
 tags:
-- name: release-v1.4.x
-  displayName: v1.4.x
+- name: release-v1.6.x
+  displayName: v1.6.x-LTS
   folders:
     docs:
       index: README.md
@@ -36,15 +36,6 @@ tags:
         - tutorial.md
 - name: release-v0.68.x
   displayName: v0.68.x-LTS
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-      exclude:
-        - api-spec.md
-        - tutorial.md
-- name: release-v0.65.x
-  displayName: v0.65.x-LTS
   folders:
     docs:
       index: README.md
