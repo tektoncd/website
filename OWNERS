@@ -1,19 +1,19 @@
 # The OWNERS file is used by prow to automatically merge approved PRs.
 
 approvers:
-  - bobcatfish
-  - dlorenc
   - vdemeester
-  - kimsterv
   - abayer
-  - lucperkins
   - afrittoli
   - skaegi
   - AlanGreene
-  - jjasghar
-  - popcor255
-  - geriom
   - dibyom
   - twoGiants
 # Alumni ❤️
+# bobcatfish
+# dlorenc
+# geriom
+# jjasghar
+# kimsterv
+# lucperkins
+# popcor255
 # sbwsg
