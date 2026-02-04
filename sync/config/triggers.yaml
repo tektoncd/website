@@ -26,41 +26,30 @@ archive: https://github.com/tektoncd/triggers/tags
 #       header: <dict>         # optional, no header added if not set
 #         See https://www.docsy.dev/docs/adding-content/navigation/#section-menu
 tags:
+- name: release-v0.34.x
+  displayName: v0.34.x-LTS
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
+- name: release-v0.33.x
+  displayName: v0.33.x-LTS
+  # Dict of folders to sync
+  folders:
+    docs:
+      index: README.md
+      include: ['*.md']
+    docs/getting-started:
+      target: getting-started
+      include:
+      - create-ingress.yaml
 - name: release-v0.32.x
   displayName: v0.32.x-LTS
-  # Dict of folders to sync
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-    docs/getting-started:
-      target: getting-started
-      include:
-      - create-ingress.yaml
-- name: release-v0.31.x
-  displayName: v0.31.x-LTS
-  # Dict of folders to sync
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-    docs/getting-started:
-      target: getting-started
-      include:
-      - create-ingress.yaml
-- name: release-v0.30.x
-  displayName: v0.30.x-LTS
-  # Dict of folders to sync
-  folders:
-    docs:
-      index: README.md
-      include: ['*.md']
-    docs/getting-started:
-      target: getting-started
-      include:
-      - create-ingress.yaml
-- name: release-v0.29.x
-  displayName: v0.29.x-LTS
   # Dict of folders to sync
   folders:
     docs:
