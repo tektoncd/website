@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2020 The Tekton Authors
+# Copyright 2020-2026 The Tekton Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ class TestSync(unittest.TestCase):
         # Create a branch
         self.branchname = "test_branch"
         gitrepo.create_head(self.branchname)
-        self.gitrepo = gitrepo.clone(self._tempdir2)
+        self.gitrepo = gitrepo.clone(self._tempdir2.name)
 
     def tearDown(self):
         self._tempdir.cleanup()
