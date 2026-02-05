@@ -1,0 +1,20 @@
+# Each YAML file under sync/ configures how sync/sync.py synchronizes
+# contents of various versions from its source of truth (usually a GitHub
+# repository of a Tekton component, such as tektoncd/pipelines) to
+# content/ (for the lastest version) and vault/ (for earlier versions).
+component: Pruner
+repository: https://github.com/tektoncd/pruner
+archive: https://github.com/tektoncd/pruner/tags
+tags:
+- name: main
+  displayName: main
+  folders:
+    ".":
+      index: README.md
+      include:
+        - README.md
+        - pruner_functional_abstract.png
+    docs:
+      include: ['*.md']
+    docs/tutorials:
+      include: ['*.md']
