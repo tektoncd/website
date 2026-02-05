@@ -55,7 +55,7 @@ class TestSync(unittest.TestCase):
         # Create a branch
         self.branchname = "test_branch"
         gitrepo.create_head(self.branchname)
-        self.gitrepo = gitrepo.clone(self._tempdir2)
+        self.gitrepo = gitrepo.clone(self._tempdir2.name)
 
     def tearDown(self):
         self._tempdir.cleanup()
