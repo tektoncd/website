@@ -105,7 +105,10 @@ menu:
       weight: 10 
     - name: "Results"
       url: "/docs/results/"
-      weight: 11 
+      weight: 11
+    - name: "Pruner"
+      url: "/docs/pruner/"
+      weight: 12
     - name: "Contribute"
       url: "/docs/contribute/"
       weight: 100 
