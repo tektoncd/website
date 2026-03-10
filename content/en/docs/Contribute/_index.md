@@ -1,16 +1,28 @@
 <!--
 ---
-title: "Contribute to Documentation"
-linkTitle: "Contribute to Documentation"
+title: "Contribute"
+linkTitle: "Contribute"
 weight: 0
 description: > 
-  Contribution guidelines
+  How to contribute to Tekton - code and documentation
 ---
 -->
 
-If you would like to contribute to Tekton documentation, we’re happy to have your help!
-Anyone can contribute, whether you’re new to the project or you’ve been around a long time,
-and whether you self-identify as a developer, an end user, or someone who just can’t stand
+There are many ways to contribute to Tekton! Whether you want to write code, improve
+documentation, or help in other ways, we're happy to have you.
+
+-   **[Contribute Code](./code-contributions/)** - Fix bugs, add features, and improve
+    Tekton projects.
+-   **[Contribute Documentation](#contribute-documentation)** - Improve docs, fix typos, and
+    write tutorials.
+-   **[Community](/community/)** - Join the conversation, attend working groups, and connect
+    with other contributors.
+
+## Contribute documentation {#contribute-documentation}
+
+If you would like to contribute to Tekton documentation, we're happy to have your help!
+Anyone can contribute, whether you're new to the project or you've been around a long time,
+and whether you self-identify as a developer, an end user, or someone who just can't stand
 seeing typos.
 
 ## Contribution types
@@ -28,7 +40,7 @@ Here's how we handle different types of documentation work:
 
 ## Contribution process
 
-**Example:** “I want to update the Smurfcaptor tutorial for Tekton.”
+**Example:** "I want to update the Smurfcaptor tutorial for Tekton."
 
 If you're making a quick fix, such as a typo, or adding a few words of clarification, simply
 submit a pull request against the relevant [Tekton repository](https://github.com/tektoncd).
@@ -52,7 +64,7 @@ of this guide to learn how to produce clear, concise, and informative documentat
 
 ## Requesting a documentation improvement
 
-**Example:** "You should document Tekton integration with Smurfcaptor.”
+**Example:** "You should document Tekton integration with Smurfcaptor."
 
 If you found a problem with Tekton documentation but can't fix it yourself, you can request a
 documentation improvement by creating an issue against the relevant [Tekton repository](https://github.com/tektoncd)
