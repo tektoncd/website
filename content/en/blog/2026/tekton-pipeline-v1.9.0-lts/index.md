@@ -5,6 +5,9 @@ date: 2026-02-02
 author: "Vincent Demeester, Red Hat"
 description: >
   Announcing Tekton Pipeline v1.9.0 LTS with a summary of all the improvements since v1.0.0.
+tags:
+  - release
+  - pipelines
 ---
 
 We're excited to announce the release of Tekton Pipelines v1.9.0, our latest Long-Term Support (LTS) release! Since the milestone [v1.0.0 release](https://github.com/tektoncd/pipeline/releases/tag/v1.0.0) in May 2025, the project has continued to evolve with significant new features, performance improvements, and stability enhancements. This post summarizes the journey from v1.0.0 to v1.9.0, organized by LTS milestones.

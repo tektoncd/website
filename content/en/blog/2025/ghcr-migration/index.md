@@ -5,6 +5,9 @@ date: 2025-04-03
 author: "Stanislav Jakuschevskij, IBM"
 description: >
     How to migrate your images from gcr.io to ghcr.io and why we migrated
+tags:
+  - release
+  - infrastructure
 ---
 
 ## Why and How
