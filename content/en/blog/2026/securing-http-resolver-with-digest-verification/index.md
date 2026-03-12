@@ -5,6 +5,9 @@ date: 2026-02-04
 author: "Zaki Shaikh, Red Hat"
 description: >
   Introducing digest validation support for the HTTP resolver to secure your PipelineRuns by verifying remote Tekton resources.
+tags:
+  - security
+  - pipelines
 ---
 
 ## Overview

@@ -5,6 +5,9 @@ date: 2023-08-15
 author: "Adnan Rahic"
 description: >
   How to automate Tracetest test runs with Tekton
+tags:
+  - tutorial
+  - pipelines
 ---
 
 [Tekton](https://tekton.dev/) is an [open-source framework](https://github.com/tektoncd/pipeline) for creating efficient CI/CD systems. This empowers developers to seamlessly construct, test, and deploy applications across various cloud environments and on-premise setups.

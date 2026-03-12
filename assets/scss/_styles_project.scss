@@ -146,6 +146,46 @@ pre {
 }
 
 
+/* Blog cards on homepage */
+.card.shadow-sm {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 8px;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .card-title a {
+        text-decoration: none;
+
+        &:hover {
+            color: $primary !important;
+        }
+    }
+
+    .badge-light {
+        background-color: #e9ecef;
+        font-weight: normal;
+        font-size: 0.75rem;
+    }
+}
+
+/* Blog tag badges */
+.blog-tags .badge {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: normal;
+    padding: 0.35em 0.65em;
+}
+
+.badge-outline-primary {
+    color: $primary;
+    background-color: transparent;
+    border: 1px solid $primary;
+}
+
 /* Styling for the banner */
 .banner {
     color: #fff;

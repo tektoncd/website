@@ -5,6 +5,9 @@ date: 2023-04-14
 author: "CD Foundation"
 description: >
   List of talks given by Tekton community members at cdCon + GitOpsCon 2023
+tags:
+  - community
+  - events
 ---
 {{< imgproc banner Fit 700x500 >}}{{< /imgproc >}}
 
