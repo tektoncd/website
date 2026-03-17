@@ -5,6 +5,8 @@ date: 2022-10-26
 author: "Andrea Frittoli"
 description: >
   From founding project to graduated, a brief history of Tekton
+tags:
+  - community
 ---
 
 We're very happy to announce that Tekton has reached graduated status within the

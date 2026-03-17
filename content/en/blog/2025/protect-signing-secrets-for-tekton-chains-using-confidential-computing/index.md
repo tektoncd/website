@@ -5,6 +5,9 @@ date: 2025-04-23
 author: "Puneet Punamiya and Pradipta Banerjee, Red Hat"
 description: >
   Integrating Tekton pipelines and chains with confidential computing
+tags:
+  - security
+  - chains
 ---
 
 

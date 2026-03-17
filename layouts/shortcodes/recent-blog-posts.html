@@ -1,0 +1,63 @@
+{{/* Recent Blog Posts shortcode for the homepage */}}
+{{ $pages := where site.RegularPages "Section" "blog" }}
+{{ $recent := first 3 $pages }}
+{{ if $recent }}
+<a id="td-block-blog" class="td-offset-anchor"></a>
+<section class="row td-box td-box--white td-box--gradient td-box--height-auto">
+  <div class="container">
+    <div class="row justify-content-center mb-4 pt-4">
+      <div class="col-lg-8 text-center">
+        <h2 class="mb-2">Latest from the Blog</h2>
+        <p class="text-muted">News, tutorials, and deep dives from the Tekton community</p>
+      </div>
+    </div>
+    <div class="row">
+      {{ range $recent }}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body d-flex flex-column">
+            <div class="mb-2">
+              <small class="text-muted">
+                <i class="fas fa-calendar-alt mr-1"></i>
+                {{ .Date.Format "January 2, 2006" }}
+              </small>
+              {{ with .Params.tags }}
+              {{ range first 2 . }}
+              <span class="badge badge-outline-primary ml-1">{{ . }}</span>
+              {{ end }}
+              {{ end }}
+            </div>
+            <h5 class="card-title">
+              <a href="{{ .RelPermalink }}" class="text-dark">
+                {{ .Params.linkTitle | default .Title }}
+              </a>
+            </h5>
+            <p class="card-text text-muted flex-grow-1">
+              {{ with .Description }}
+                {{ . | truncate 150 }}
+              {{ else }}
+                {{ .Summary | truncate 150 }}
+              {{ end }}
+            </p>
+            <div class="mt-2">
+              <small class="text-muted">
+                {{ with .Params.author }}
+                  <i class="fas fa-user mr-1"></i>{{ . }}
+                {{ end }}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    <div class="row justify-content-center mt-2 pb-4">
+      <div class="col text-center">
+        <a href="/blog/" class="btn btn-outline-primary btn-lg">
+          View all posts <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

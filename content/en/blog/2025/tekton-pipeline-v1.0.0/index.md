@@ -5,6 +5,9 @@ date: 2025-05-23
 author: "Vincent Demeester, Red Hat"
 description: >
   Tekton Pipeline component v1.0.0 release announcement.
+tags:
+  - release
+  - pipelines
 ---
 
 We're thrilled to announce the official 1.0 release of the Tekton Pipelines component ([`tektoncd/pipeline`](https://github.com/tektoncd/pipeline) repository) ! While this marks a significant milestone for the project, it's important to note that the stability you've come to rely on with the v1 API has been a reality for over two years. This release solidifies that foundation while paving the way for even more exciting changes in the Tekton ecosystem.

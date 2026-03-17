@@ -5,6 +5,9 @@ date: 2026-02-05
 author: "Shubham Bhardwaj, Red Hat"
 description: >
   Automate the cleanup of completed PipelineRuns and TaskRuns with Tekton Pruner
+tags:
+  - deep-dive
+  - pruner
 ---
 
 [Tekton Pruner](https://tekton.dev/docs/pruner/) automatically cleans up completed PipelineRuns and TaskRuns based on retention policies you define.

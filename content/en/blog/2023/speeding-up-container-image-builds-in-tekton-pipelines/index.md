@@ -5,6 +5,9 @@ date: 2023-11-02
 author: "Giovanni Galloro, Google"
 description: >
   Various caching approaches to speed container builds in Tekton
+tags:
+  - tutorial
+  - pipelines
 ---
 
 
