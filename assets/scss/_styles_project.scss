@@ -147,7 +147,7 @@ pre {
 
 
 /* Blog cards on homepage */
-.card.shadow-sm {
+.blog-card.card.shadow-sm {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     border-radius: 8px;
 
@@ -180,6 +180,7 @@ pre {
     padding: 0.35em 0.65em;
 }
 
+/* Badge variant used by homepage blog cards */
 .badge-outline-primary {
     color: $primary;
     background-color: transparent;
