@@ -75,8 +75,12 @@ Tekton consists of the following components:
   pattern](https://operatorhub.io/what-is-an-operator) that allows you to
   install, update, and remove Tekton projects on your Kubernetes cluster.
 
-- **[Tekton Chain][chains]** provides tools to generate, store, and sign
+- **[Tekton Chains][chains]** provides tools to generate, store, and sign
   provenance for artifacts built with Tekton Pipelines.
+
+- **[Pipelines-as-Code][pac]** brings a Git-native CI/CD workflow to Tekton,
+  allowing you to define your pipelines in a `.tekton/` directory alongside
+  your source code. It integrates with GitHub, GitLab, Bitbucket, and Forgejo.
 
 [pipelines]: https://github.com/tektoncd/pipeline/blob/main/docs/README.md
 [triggers]: https://github.com/tektoncd/triggers/blob/main/README.md
@@ -86,6 +90,7 @@ Tekton consists of the following components:
 [hub]: https://github.com/tektoncd/hub/blob/main/README.md
 [operator]: https://github.com/tektoncd/operator/blob/main/README.md
 [chains]: https://github.com/tektoncd/chains/blob/main/README.md
+[pac]: https://pipelinesascode.com
 [k-resources]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 
 ## How do I work with Tekton?
