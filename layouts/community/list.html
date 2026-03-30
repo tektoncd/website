@@ -1,20 +1,17 @@
 {{ define "main" }}
 
-<a class="td-offset-anchor"></a>
-<section class="row td-box td-box--1 position-relative td-box--danger td-box--gradient td-box--height-auto">
-    <div class="container text-center td-arrow-down">
-        <span class="h4 mb-0">
-            <h1>Welcome to the Tekton Community!</h1>
-            <p>Our mission is to be the industry-standard, cloud-native CI/CD
-            platform components and ecosystem.</p>
-        </span>
-    </div>
-</section>
+<div style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <h1>Welcome to the Tekton Community!</h1>
+    <p style="font-size: 1.125rem; opacity: 0.8;">Our mission is to be the industry-standard, cloud-native CI/CD
+    platform components and ecosystem.</p>
+  </div>
 
-{{ partial "community-links.html" . }}
+  {{ partial "community-links.html" . }}
 
-<div class="td-content">
+  <div class="content" style="margin-top: 2rem;">
     {{ .Content }}
+  </div>
 </div>
 
 {{ end }}

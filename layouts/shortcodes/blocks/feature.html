@@ -1,0 +1,8 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $title := .Get "title" | default "" }}
+{{ $icon := .Get "icon" | default "" }}
+<div style="flex: 1 1 300px; max-width: 360px; text-align: center;">
+  {{ with $icon }}<i class="{{ . }}" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>{{ end }}
+  {{ with $title }}<h3>{{ . }}</h3>{{ end }}
+  <p>{{ .Inner | markdownify }}</p>
+</div>

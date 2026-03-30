@@ -1,4 +1,4 @@
-FROM klakegg/hugo:0.107.0-ext-ubuntu as website
+FROM hugomods/hugo:exts-0.134.0 as website
 RUN apt-get -y update && apt-get -y install git build-essential python3-venv python3-pip
 COPY . /src
 RUN git config --global --add safe.directory /src

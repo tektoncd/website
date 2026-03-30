@@ -1,0 +1,9 @@
+{{- $file := .Get "file" | default (.Get 0) -}}
+{{- $code := .Get "code" | default false -}}
+{{- $lang := .Get "lang" | default "" -}}
+{{- $content := readFile $file -}}
+{{- if $code -}}
+{{ highlight $content $lang "" }}
+{{- else -}}
+{{ $content | markdownify }}
+{{- end -}}

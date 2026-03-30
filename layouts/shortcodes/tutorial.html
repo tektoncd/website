@@ -1,9 +1,6 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Note</h4>
-    <p>See also the <b>{{ .Get "name" | safeHTML }}</b> interactive tutorial.</p>
-    <a href={{ .Get "katacoda-lnk" }} target="_blank" rel="noopener" type="button">
-        <div class="btn btn-success" type="button">Launch Interactive Tutorial</div>
-    </a>
-    {{ partial "tutorial-modal.html" }}
+<div style="padding: 1rem; border: 1px solid #4caf50; border-radius: 4px; background: #f1f8e9; margin: 1rem 0;">
+    <h4 style="margin-top: 0;">Note</h4>
+    <p>See also the <strong>{{ .Get "name" | safeHTML }}</strong> interactive tutorial.</p>
+    <a href="{{ .Get "katacoda-lnk" }}" target="_blank" rel="noopener" style="display: inline-block; padding: 0.5rem 1rem; background: #4caf50; color: #fff; border-radius: 4px; text-decoration: none;">Launch Interactive Tutorial</a>
 </div>

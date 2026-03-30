@@ -1,0 +1,19 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $title := .Get "title" | default "Note" }}
+{{ $color := .Get "color" | default "primary" }}
+{{ $borderColor := "#00109F" }}
+{{ $bgColor := "#f0f4ff" }}
+{{ if eq $color "warning" }}
+  {{ $borderColor = "#e6a700" }}
+  {{ $bgColor = "#fff8e1" }}
+{{ else if eq $color "danger" }}
+  {{ $borderColor = "#d32f2f" }}
+  {{ $bgColor = "#ffeef0" }}
+{{ else if eq $color "success" }}
+  {{ $borderColor = "#2e7d32" }}
+  {{ $bgColor = "#e8f5e9" }}
+{{ end }}
+<div style="padding: 1rem 1.5rem; border-left: 4px solid {{ $borderColor }}; background: {{ $bgColor }}; border-radius: 0 0.25rem 0.25rem 0; margin: 1rem 0;">
+  <strong>{{ $title }}</strong>
+  <div>{{ .Inner | markdownify }}</div>
+</div>
