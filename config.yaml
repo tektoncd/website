@@ -88,16 +88,20 @@ params:
 
 menu:
   main:
-    - name: Documentation
+    - identifier: Documentation
+      name: Documentation
       pageRef: /docs
       weight: 1
-    - name: Blog
+    - identifier: Blog
+      name: Blog
       pageRef: /blog
       weight: 2
-    - name: Community
+    - identifier: Community
+      name: Community
       pageRef: /community
       weight: 3
-    - name: GitHub
+    - identifier: GitHub
+      name: GitHub
       url: https://github.com/tektoncd
       weight: 4
       params:
