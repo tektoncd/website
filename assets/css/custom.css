@@ -68,6 +68,40 @@ nav a img {
   }
 }
 
+/* Trusted By / Adopters strip */
+.adopters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.adopter {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  background: #f9fafb;
+  white-space: nowrap;
+  transition: border-color 0.2s, background 0.2s;
+}
+.adopter:hover {
+  border-color: #a5b4fc;
+  background: #eef2ff;
+}
+:root.dark .adopter {
+  background: #1e293b;
+  border-color: #334155;
+  color: #d1d5db;
+}
+:root.dark .adopter:hover {
+  border-color: #6366f1;
+  background: #1e1b4b;
+}
+
 /* CNCF horizontal banner at bottom */
 .cncf-banner {
   margin-top: 4rem;

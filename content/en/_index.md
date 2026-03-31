@@ -39,6 +39,25 @@ layout: hextra-home
   {{< card link="/docs/pipelines/" title="Typed Resources" icon="code" subtitle="Typed resources enable easy swapping of implementations — e.g. Kaniko vs Buildkit for image builds." >}}
 {{< /cards >}}
 
+<div style="text-align:center; margin: 3.5rem 0 1.5rem;">
+  <h2 style="font-size:1.75rem; font-weight:800;">Trusted By</h2>
+  <p style="opacity:0.6; font-size:0.95rem; margin-bottom:1.5rem;">Industry leaders building with Tekton in production</p>
+</div>
+
+<div class="adopters-grid">
+  <span class="adopter">Red Hat</span>
+  <span class="adopter">IBM</span>
+  <span class="adopter">Google</span>
+  <span class="adopter">Alibaba</span>
+  <span class="adopter">Marriott Vacations</span>
+  <span class="adopter">Nubank</span>
+  <span class="adopter">OneStock</span>
+  <span class="adopter">AllianzDirect</span>
+  <span class="adopter">Kadaster</span>
+  <span class="adopter">Giant Swarm</span>
+  <span class="adopter">Alauda</span>
+</div>
+
 <div style="text-align:center; margin: 3rem 0 1.5rem;">
   <h2 style="font-size:1.75rem; font-weight:800;">Get Started</h2>
 </div>
