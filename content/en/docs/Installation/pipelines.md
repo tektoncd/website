@@ -11,7 +11,7 @@ description: >
 {{< readfile "/docs/Pipelines/install.md" >}}
 
 ---
-{{< card  >}}
+{{< docsy-card  >}}
 Source for this document [available on GitHub](https://github.com/tektoncd/pipeline/blob/main/docs/install.md).
-{{< /card >}}
+{{< /docsy-card >}}
 

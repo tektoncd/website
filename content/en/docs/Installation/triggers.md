@@ -11,7 +11,7 @@ description: >
 {{% readfile "/docs/Triggers/install.md" %}}
 
 ---
-{{< card  >}}
+{{< docsy-card  >}}
 Source for this document [available on GitHub](https://github.com/tektoncd/triggers/blob/main/docs/install.md).
-{{< /card >}}
+{{< /docsy-card >}}
 

@@ -11,7 +11,7 @@ description: >
 {{% readfile "/docs/Pipelines/additional-configs.md" %}}
 
 ---
-{{< card  >}}
+{{< docsy-card  >}}
 Source for this document [available on GitHub](https://github.com/tektoncd/pipeline/blob/main/docs/additional-configs.md).
-{{< /card >}}
+{{< /docsy-card >}}
 

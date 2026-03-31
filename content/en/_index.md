@@ -1,66 +1,74 @@
 ---
-title: "Tekton"
-linkTitle: "Tekton.dev Homepage"
-
+title: Tekton
+layout: hextra-home
 ---
 
-{{< blocks/cover title="Cloud Native CI/CD" subtitle="" image_anchor="smart" color="orange" height="med">}}
-<div class="mx-auto">
-	<a class="btn btn-lg btn-dark mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Documentation <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-	</a>
-	<a class="btn btn-lg btn-light mr-3 mb-4" href="https://github.com/tektoncd">
-		GitHub <i class="fab fa-github ml-2 "></i>
-	</a>
+{{< hextra/hero-badge link="https://cd.foundation/" >}}
+  <span>Graduated CDF Project</span>
+  {{< icon name="arrow-circle-right" attributes="height=14" >}}
+{{< /hextra/hero-badge >}}
+
+<div class="hx-mt-6 hx-mb-6">
+{{< hextra/hero-headline >}}
+  Cloud Native CI/CD
+{{< /hextra/hero-headline >}}
 </div>
-{{< /blocks/cover >}}
 
-{{% blocks/showcase color="link" %}}
+<div class="hx-mb-12">
+{{< hextra/hero-subtitle >}}
+  Tekton is a powerful and flexible open-source framework&nbsp;<br class="sm:hx-block hx-hidden" />for creating CI/CD systems on Kubernetes.
+{{< /hextra/hero-subtitle >}}
+</div>
 
-{{< blocks/section color="danger" >}}
-{{% blocks/feature icon="fas fa-globe-asia" title="Standardization" %}}
-Tekton standardizes CI/CD tooling and processes across vendors, languages,
-and deployment environments. It works well with Jenkins, Jenkins X, Skaffold,
-Knative, and many other popular CI/CD tools.
-{{% /blocks/feature %}}
+<div class="hx-mb-6">
+{{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
+{{< hextra/hero-button text="Documentation" link="/docs/" style="alt" >}}
+</div>
 
+<div class="hx-mt-6"></div>
 
-{{% blocks/feature icon="fas fa-medal" title="Built-in best practices" %}}
-Tekton lets you create CI/CD systems quickly,
-giving you scalable, serverless, cloud native execution out of the box.
-{{% /blocks/feature %}}
+{{< hextra/feature-grid >}}
+  {{< hextra/feature-card
+    title="Standardization"
+    subtitle="Standardizes CI/CD tooling and processes across vendors, languages, and deployment environments. Works with Jenkins, Jenkins X, Skaffold, Knative, and more."
+    style="background: radial-gradient(ellipse at 50% 80%,rgba(0,16,159,0.12),hsla(0,0%,100%,0));"
+  >}}
+  {{< hextra/feature-card
+    title="Built-in Best Practices"
+    subtitle="Scalable, serverless, cloud native CI/CD execution out of the box. Build, test, and deploy without managing infrastructure."
+    style="background: radial-gradient(ellipse at 50% 80%,rgba(185,128,208,0.12),hsla(0,0%,100%,0));"
+  >}}
+  {{< hextra/feature-card
+    title="Maximum Flexibility"
+    subtitle="Abstracts the underlying implementation so you choose the build, test, and deploy workflow based on your team's requirements."
+    style="background: radial-gradient(ellipse at 50% 80%,rgba(0,16,159,0.08),hsla(0,0%,100%,0));"
+  >}}
+{{< /hextra/feature-grid >}}
 
+<div class="hx-mt-16">
 
-{{% blocks/feature icon="fas fa-feather" title="Maximum flexibility" %}}
-Tekton abstracts the underlying implementation so that you can choose the build,
-test, and deploy workflow based on your team's requirements.
-{{% /blocks/feature %}}
+## Explore Tekton
 
+{{< cards >}}
+  {{< card link="/docs/installation/" title="Install Tekton" icon="download" subtitle="Get Tekton running on your Kubernetes cluster" >}}
+  {{< card link="/docs/getting-started/" title="Try Tekton" icon="play" subtitle="Walk through your first Task and Pipeline" >}}
+  {{< card link="/docs/concepts/overview/" title="Concepts" icon="book-open" subtitle="Understand how Tasks, Pipelines, and Runs work" >}}
+  {{< card link="/docs/pipelines/" title="Tasks & Pipelines" icon="code" subtitle="Build CI/CD workflows with the core building blocks" >}}
+  {{< card link="/docs/chains/" title="Supply Chain Security" icon="shield-check" subtitle="Artifact signatures and attestations" >}}
+  {{< card link="/community/" title="Community" icon="user-group" subtitle="Join the Tekton community and contribute" >}}
+{{< /cards >}}
 
-{{< /blocks/section >}}
+</div>
 
-<!--
-{{< blocks/partners color="danger" >}}
--->
+<div class="hx-mt-16">
 
-{{< blocks/partners-alternate color="dark" >}}
+## Part of the Continuous Delivery Foundation
 
-{{< blocks/section color="white" >}}
-{{% blocks/feature icon="fas fa-code" title="Install Tekton" %}}
-[Get Tekton here](/docs/installation/)
-{{% /blocks/feature %}}
+Tekton is a Graduated [Continuous Delivery Foundation](https://cd.foundation/) project and follows [the OpenSSF best practices](https://github.com/cdfoundation/toc/blob/main/proposals/tekton/graduation.md#c6-openssf-best-practices-badge-).
 
+{{< cards >}}
+  {{< card link="https://cd.foundation/" title="CD Foundation" image="/partner-logos/cdf.png" subtitle="Vendor-neutral home for CI/CD projects" >}}
+  {{< card link="https://github.com/tektoncd/friends" title="Tekton Friends" image="/partner-logos/tekton-friends.png" subtitle="Individuals and organizations contributing to Tekton" >}}
+{{< /cards >}}
 
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome" %}}
-[Join the Tekton Community](/community/)
-{{% /blocks/feature %}}
-
-
-{{% blocks/feature icon="fas fa-chalkboard" title="Try Tekton" %}}
-[Get started with Tekton](/docs/getting-started/)
-{{% /blocks/feature %}}
-
-
-{{< /blocks/section >}}
-
-{{% blocks/manifesto color="dark" %}}
+</div>
