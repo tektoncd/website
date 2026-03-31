@@ -1,12 +1,10 @@
-<!--
 ---
-title: "Getting Started Supply Chain Security"
-linkTitle: "Getting Started Supply Chain Security"
-weight: 4
+title: "Supply Chain Security"
+linkTitle: "Supply Chain Security"
+weight: 5
 description: >
   Create and sign artifact provenance with Tekton Chains
 ---
--->
 
 This guide shows you how to:
 

@@ -1,12 +1,10 @@
-<!--
 ---
 title: "Install and set up Tekton Triggers"
 linkTitle: "Tekton Triggers"
-weight: 2
+weight: 3
 description: >
   Install Tekton Triggers on your cluster
 ---
--->
 
 {{% readfile "/docs/Triggers/install.md" %}}
 

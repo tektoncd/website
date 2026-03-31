@@ -29,18 +29,28 @@ layout: hextra-home
   <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" style="width:1000px; max-width:none; height:auto;" />
 </div>
 
-<div>
+<div style="text-align:center; margin-bottom:1.5rem;">
+  <h2 style="font-size:1.75rem; font-weight:800;">Why Tekton?</h2>
+</div>
 
 {{< cards >}}
-  {{< card link="/docs/installation/" title="Install Tekton" icon="download" subtitle="Get Tekton running on your Kubernetes cluster" >}}
-  {{< card link="/docs/getting-started/" title="Try Tekton" icon="play" subtitle="Walk through your first Task and Pipeline" >}}
-  {{< card link="/docs/concepts/overview/" title="Concepts" icon="book-open" subtitle="Understand how Tasks, Pipelines, and Runs work" >}}
-  {{< card link="/docs/pipelines/" title="Tasks & Pipelines" icon="code" subtitle="Build CI/CD workflows with the core building blocks" >}}
-  {{< card link="/docs/chains/" title="Supply Chain Security" icon="shield-check" subtitle="Artifact signatures and attestations" >}}
-  {{< card link="/community/" title="Community" icon="user-group" subtitle="Join the Tekton community and contribute" >}}
+  {{< card link="/docs/concepts/overview/" title="Cloud Native" icon="cloud" subtitle="Runs on Kubernetes, uses containers as building blocks, and treats clusters as first-class resources." >}}
+  {{< card link="/docs/pipelines/" title="Decoupled" icon="switch-horizontal" subtitle="One Pipeline can deploy to any Kubernetes cluster. Tasks run in isolation and resources swap easily between runs." >}}
+  {{< card link="/docs/pipelines/" title="Typed Resources" icon="code" subtitle="Typed resources enable easy swapping of implementations — e.g. Kaniko vs Buildkit for image builds." >}}
 {{< /cards >}}
 
+<div style="text-align:center; margin: 3rem 0 1.5rem;">
+  <h2 style="font-size:1.75rem; font-weight:800;">Get Started</h2>
 </div>
+
+{{< cards >}}
+  {{< card link="/docs/installation/" title="Install Tekton" icon="download" subtitle="Get Tekton running on your Kubernetes cluster in minutes." >}}
+  {{< card link="/docs/getting-started/pipelines/" title="Build a Pipeline" icon="archive" subtitle="Chain Tasks together into a complete CI/CD workflow." >}}
+  {{< card link="/docs/getting-started/pipelines-as-code/" title="Pipelines as Code" icon="document-text" subtitle="Git-native CI/CD — define pipelines alongside your source code." >}}
+  {{< card link="/docs/chains/" title="Supply Chain Security" icon="shield-check" subtitle="Sign and attest artifacts automatically with Tekton Chains." >}}
+  {{< card link="/docs/getting-started/tasks/" title="Create Your First Task" icon="play" subtitle="Hands-on tutorial: build and run a Task step by step." >}}
+  {{< card link="/community/" title="Join the Community" icon="user-group" subtitle="Connect with contributors, join Slack, and help shape Tekton." >}}
+{{< /cards >}}
 
 <div class="cncf-banner">
   <a href="https://www.cncf.io/blog/2026/03/24/tekton-becomes-a-cncf-incubating-project/" class="cncf-banner-inner">
