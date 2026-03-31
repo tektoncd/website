@@ -3,8 +3,8 @@ title: Tekton
 layout: hextra-home
 ---
 
-{{< hextra/hero-badge link="https://cd.foundation/" >}}
-  <span>Graduated CDF Project</span>
+{{< hextra/hero-badge link="https://www.cncf.io/" >}}
+  <span>CNCF Incubating Project</span>
   {{< icon name="arrow-circle-right" attributes="height=14" >}}
 {{< /hextra/hero-badge >}}
 
@@ -62,12 +62,12 @@ layout: hextra-home
 
 <div class="hx-mt-16">
 
-## Part of the Continuous Delivery Foundation
+## Part of the CNCF
 
-Tekton is a Graduated [Continuous Delivery Foundation](https://cd.foundation/) project and follows [the OpenSSF best practices](https://github.com/cdfoundation/toc/blob/main/proposals/tekton/graduation.md#c6-openssf-best-practices-badge-).
+Tekton is an incubating project at the [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) and follows [the OpenSSF best practices](https://www.bestpractices.dev/en/projects/6543).
 
 {{< cards >}}
-  {{< card link="https://cd.foundation/" title="CD Foundation" image="/partner-logos/cdf.png" subtitle="Vendor-neutral home for CI/CD projects" >}}
+  {{< card link="https://www.cncf.io/" title="CNCF" image="/partner-logos/cncf.png" subtitle="Cloud Native Computing Foundation" >}}
   {{< card link="https://github.com/tektoncd/friends" title="Tekton Friends" image="/partner-logos/tekton-friends.png" subtitle="Individuals and organizations contributing to Tekton" >}}
 {{< /cards >}}
 
