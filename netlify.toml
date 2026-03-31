@@ -20,10 +20,12 @@
   framework = "hugo"
   targetPort = 1313
 
-[[plugins]]
-package = "netlify-plugin-checklinks"
-
-  [plugins.inputs]
-  todoPatterns = ["load", "fragment"]
-  checkExternal = false
-  followSourceMaps = true
+# Disabled: netlify-plugin-checklinks is incompatible with Hextra's
+# hx: CSS namespace prefix (parsed as duplicate XML attribute).
+# TODO: re-enable once checklinks supports Hextra-style output.
+# [[plugins]]
+# package = "netlify-plugin-checklinks"
+#   [plugins.inputs]
+#   todoPatterns = ["load", "fragment"]
+#   checkExternal = false
+#   followSourceMaps = true
