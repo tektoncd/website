@@ -25,29 +25,7 @@ layout: hextra-home
 {{< hextra/hero-button text="Documentation" link="/docs/" style="alt" >}}
 </div>
 
-<div class="hx-mt-6"></div>
-
-{{< hextra/feature-grid >}}
-  {{< hextra/feature-card
-    title="Standardization"
-    subtitle="Standardizes CI/CD tooling and processes across vendors, languages, and deployment environments. Works with Jenkins, Jenkins X, Skaffold, Knative, and more."
-    style="background: radial-gradient(ellipse at 50% 80%,rgba(0,16,159,0.12),hsla(0,0%,100%,0));"
-  >}}
-  {{< hextra/feature-card
-    title="Built-in Best Practices"
-    subtitle="Scalable, serverless, cloud native CI/CD execution out of the box. Build, test, and deploy without managing infrastructure."
-    style="background: radial-gradient(ellipse at 50% 80%,rgba(185,128,208,0.12),hsla(0,0%,100%,0));"
-  >}}
-  {{< hextra/feature-card
-    title="Maximum Flexibility"
-    subtitle="Abstracts the underlying implementation so you choose the build, test, and deploy workflow based on your team's requirements."
-    style="background: radial-gradient(ellipse at 50% 80%,rgba(0,16,159,0.08),hsla(0,0%,100%,0));"
-  >}}
-{{< /hextra/feature-grid >}}
-
-<div class="hx-mt-16">
-
-## Explore Tekton
+<div class="hx-mt-12">
 
 {{< cards >}}
   {{< card link="/docs/installation/" title="Install Tekton" icon="download" subtitle="Get Tekton running on your Kubernetes cluster" >}}
