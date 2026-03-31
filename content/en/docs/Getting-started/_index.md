@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Getting Started"
 linkTitle: "Getting Started"
@@ -6,7 +5,6 @@ weight: 1
 description: >
   Get started with Tekton
 ---
--->
 
 Welcome to Tekton. Tekton is an open-source cloud native CICD (Continuous
 Integration and Continuous Delivery/Deployment) solution. Check the [Concepts
