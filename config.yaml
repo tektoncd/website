@@ -46,14 +46,14 @@ params:
   github_repo: https://github.com/tektoncd/website
 
   navbar:
-    displayTitle: true
+    displayTitle: false
     displayLogo: true
     logo:
-      dark: images/logo-dark.svg
-      light: images/logo.svg
+      path: images/tekton-horizontal-color.png
+      dark: images/tekton-horizontal-color.png
       link: /
-      width: 28
-      height: 28
+      width: 140
+      height: 36
 
   search:
     enable: true
@@ -70,7 +70,7 @@ params:
 
   theme:
     default: system
-    displayToggle: true
+    displayToggle: false
 
   page:
     width: wide
@@ -106,3 +106,7 @@ menu:
       weight: 4
       params:
         icon: github
+    - identifier: theme-toggle
+      weight: 5
+      params:
+        type: theme-toggle

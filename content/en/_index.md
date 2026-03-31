@@ -3,30 +3,30 @@ title: Tekton
 layout: hextra-home
 ---
 
-{{< hextra/hero-badge link="https://www.cncf.io/" >}}
+{{< hextra/hero-badge link="https://www.cncf.io/blog/2026/03/24/tekton-becomes-a-cncf-incubating-project/" >}}
   <span>CNCF Incubating Project</span>
   {{< icon name="arrow-circle-right" attributes="height=14" >}}
 {{< /hextra/hero-badge >}}
 
-<div class="hx-mt-6 hx-mb-6">
+<div class="hx-mt-6 hx-mb-6" style="text-align:center;">
 {{< hextra/hero-headline >}}
   Cloud Native CI/CD
 {{< /hextra/hero-headline >}}
 </div>
 
-<div class="hx-mb-8">
+<div class="hx-mb-8" style="text-align:center;">
 {{< hextra/hero-subtitle >}}
   Tekton is a powerful and flexible open-source framework&nbsp;<br class="sm:hx-block hx-hidden" />for creating CI/CD systems on Kubernetes.
 {{< /hextra/hero-subtitle >}}
 </div>
 
-<div class="hx-mb-6" style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
+<div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; align-items:center; margin:3rem auto; width:100%; text-align:center;">
 {{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
 {{< hextra/hero-button text="Documentation" link="/docs/" style="alt" >}}
 </div>
 
-<div class="workflow-diagram hx-mt-12 hx-mb-12">
-  <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" />
+<div style="display:flex; justify-content:center; margin:3rem auto 4rem;">
+  <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" style="width:1000px; max-width:none; height:auto;" />
 </div>
 
 <div>
@@ -43,7 +43,7 @@ layout: hextra-home
 </div>
 
 <div class="cncf-banner">
-  <a href="https://www.cncf.io/" class="cncf-banner-inner">
+  <a href="https://www.cncf.io/blog/2026/03/24/tekton-becomes-a-cncf-incubating-project/" class="cncf-banner-inner">
     <img src="/partner-logos/cncf.png" alt="CNCF" class="cncf-logo" />
     <span>Tekton is an incubating project at the <strong>Cloud Native Computing Foundation</strong></span>
   </a>

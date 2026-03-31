@@ -12,10 +12,16 @@
   --primary-lightness: 31%;
 }
 
-/* Navbar logo sizing */
-.nav-logo-image {
-  height: 1.75rem !important;
+/* Center all hero content on home page */
+main#content > .hx\:flex {
+  align-items: center !important;
+}
+
+/* Navbar horizontal logo */
+nav a img {
+  height: 2.25rem !important;
   width: auto !important;
+  object-fit: contain;
 }
 
 .content {
@@ -38,10 +44,12 @@
 .workflow-diagram {
   display: flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .workflow-diagram img {
-  width: 100%;
-  max-width: 680px;
+  width: 200%;
   height: auto;
 }
 
