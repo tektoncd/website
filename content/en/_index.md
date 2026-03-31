@@ -3,12 +3,10 @@ title: Tekton
 layout: hextra-home
 ---
 
-<div class="tekton-hero">
-  <div class="tekton-hero-text">
-    {{< hextra/hero-badge link="https://www.cncf.io/" >}}
-      <span>CNCF Incubating Project</span>
-      {{< icon name="arrow-circle-right" attributes="height=14" >}}
-    {{< /hextra/hero-badge >}}
+{{< hextra/hero-badge link="https://www.cncf.io/" >}}
+  <span>CNCF Incubating Project</span>
+  {{< icon name="arrow-circle-right" attributes="height=14" >}}
+{{< /hextra/hero-badge >}}
 
 <div class="hx-mt-6 hx-mb-6">
 {{< hextra/hero-headline >}}
@@ -22,15 +20,12 @@ layout: hextra-home
 {{< /hextra/hero-subtitle >}}
 </div>
 
-<div class="hx-mb-6 hero-buttons">
+<div class="hx-mb-6" style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
 {{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
 {{< hextra/hero-button text="Documentation" link="/docs/" style="alt" >}}
 </div>
-  </div>
-  <div class="tekton-hero-logo">
-    <img src="/images/tekton-horizontal-color.png" alt="Tekton" />
-  </div>
-</div>
+
+<div class="hx-mt-6"></div>
 
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
@@ -54,38 +49,14 @@ layout: hextra-home
 
 ## Explore Tekton
 
-<div class="explore-grid">
-  <a href="/docs/installation/" class="explore-card">
-    <span class="explore-icon">{{< icon name="download" >}}</span>
-    <strong>Install Tekton</strong>
-    <span>Get Tekton running on your Kubernetes cluster</span>
-  </a>
-  <a href="/docs/getting-started/" class="explore-card">
-    <span class="explore-icon">{{< icon name="play" >}}</span>
-    <strong>Try Tekton</strong>
-    <span>Walk through your first Task and Pipeline</span>
-  </a>
-  <a href="/docs/concepts/overview/" class="explore-card">
-    <span class="explore-icon">{{< icon name="book-open" >}}</span>
-    <strong>Concepts</strong>
-    <span>Understand how Tasks, Pipelines, and Runs work</span>
-  </a>
-  <a href="/docs/pipelines/" class="explore-card">
-    <span class="explore-icon">{{< icon name="code" >}}</span>
-    <strong>Tasks &amp; Pipelines</strong>
-    <span>Build CI/CD workflows with the core building blocks</span>
-  </a>
-  <a href="/docs/chains/" class="explore-card">
-    <span class="explore-icon">{{< icon name="shield-check" >}}</span>
-    <strong>Supply Chain Security</strong>
-    <span>Artifact signatures and attestations</span>
-  </a>
-  <a href="/community/" class="explore-card">
-    <span class="explore-icon">{{< icon name="user-group" >}}</span>
-    <strong>Community</strong>
-    <span>Join the Tekton community and contribute</span>
-  </a>
-</div>
+{{< cards >}}
+  {{< card link="/docs/installation/" title="Install Tekton" icon="download" subtitle="Get Tekton running on your Kubernetes cluster" >}}
+  {{< card link="/docs/getting-started/" title="Try Tekton" icon="play" subtitle="Walk through your first Task and Pipeline" >}}
+  {{< card link="/docs/concepts/overview/" title="Concepts" icon="book-open" subtitle="Understand how Tasks, Pipelines, and Runs work" >}}
+  {{< card link="/docs/pipelines/" title="Tasks & Pipelines" icon="code" subtitle="Build CI/CD workflows with the core building blocks" >}}
+  {{< card link="/docs/chains/" title="Supply Chain Security" icon="shield-check" subtitle="Artifact signatures and attestations" >}}
+  {{< card link="/community/" title="Community" icon="user-group" subtitle="Join the Tekton community and contribute" >}}
+{{< /cards >}}
 
 </div>
 

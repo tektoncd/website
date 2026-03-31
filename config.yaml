@@ -50,8 +50,10 @@ params:
     displayLogo: true
     logo:
       dark: images/logo-dark.svg
-      light: images/logo-light.svg
+      light: images/logo.svg
       link: /
+      width: 28
+      height: 28
 
   search:
     enable: true
