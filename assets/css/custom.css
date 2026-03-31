@@ -34,6 +34,17 @@
   text-decoration: underline;
 }
 
+/* Workflow diagram on landing page */
+.workflow-diagram {
+  display: flex;
+  justify-content: center;
+}
+.workflow-diagram img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+}
+
 /* Explore Tekton: force 3 columns for card grid */
 .hextra-cards {
   grid-template-columns: repeat(3, 1fr) !important;

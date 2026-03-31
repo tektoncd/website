@@ -25,7 +25,11 @@ layout: hextra-home
 {{< hextra/hero-button text="Documentation" link="/docs/" style="alt" >}}
 </div>
 
-<div class="hx-mt-12">
+<div class="workflow-diagram hx-mt-12 hx-mb-12">
+  <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" />
+</div>
+
+<div>
 
 {{< cards >}}
   {{< card link="/docs/installation/" title="Install Tekton" icon="download" subtitle="Get Tekton running on your Kubernetes cluster" >}}
