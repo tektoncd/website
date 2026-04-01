@@ -29,15 +29,43 @@ layout: hextra-home
   <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" style="width:1000px; max-width:none; height:auto;" />
 </div>
 
-<div style="text-align:center; margin-bottom:1.5rem;">
-  <h2 style="font-size:1.75rem; font-weight:800;">Why Tekton?</h2>
+<div style="text-align:center; margin-bottom:2rem;">
+  <h2 style="font-size:2rem; font-weight:800;">Why Tekton?</h2>
+  <p style="opacity:0.55; font-size:1rem; margin-top:0.25rem;">Built for Kubernetes from day one</p>
 </div>
 
-{{< cards >}}
-  {{< card link="/docs/concepts/overview/" title="Cloud Native" icon="cloud" subtitle="Runs on Kubernetes, uses containers as building blocks, and treats clusters as first-class resources." >}}
-  {{< card link="/docs/pipelines/" title="Decoupled" icon="switch-horizontal" subtitle="One Pipeline can deploy to any Kubernetes cluster. Tasks run in isolation and resources swap easily between runs." >}}
-  {{< card link="/docs/pipelines/" title="Typed Resources" icon="code" subtitle="Typed resources enable easy swapping of implementations — e.g. Kaniko vs Buildkit for image builds." >}}
-{{< /cards >}}
+<div class="why-tekton-grid">
+  <a href="/docs/concepts/overview/" class="why-tekton-card">
+    <div class="why-tekton-accent" style="background:#1d4ed8;"></div>
+    <div class="why-tekton-title">
+      <div class="why-tekton-icon" style="background:#eff6ff; color:#1d4ed8;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3>Cloud Native</h3>
+    </div>
+    <p>Runs on Kubernetes, uses containers as building blocks, and treats clusters as first-class resources.</p>
+  </a>
+  <a href="/docs/pipelines/" class="why-tekton-card">
+    <div class="why-tekton-accent" style="background:#0d9488;"></div>
+    <div class="why-tekton-title">
+      <div class="why-tekton-icon" style="background:#f0fdfa; color:#0d9488;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/><polyline points="12 8 16 12 12 16"/></svg>
+      </div>
+      <h3>Decoupled</h3>
+    </div>
+    <p>One Pipeline can deploy to any Kubernetes cluster. Tasks run in isolation and resources swap easily between runs.</p>
+  </a>
+  <a href="/docs/pipelines/" class="why-tekton-card">
+    <div class="why-tekton-accent" style="background:#7c3aed;"></div>
+    <div class="why-tekton-title">
+      <div class="why-tekton-icon" style="background:#f5f3ff; color:#7c3aed;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3>Typed Resources</h3>
+    </div>
+    <p>Typed resources enable easy swapping of implementations — e.g. Kaniko vs Buildkit for image builds.</p>
+  </a>
+</div>
 
 <div style="text-align:center; margin: 3.5rem 0 1.5rem;">
   <h2 style="font-size:1.75rem; font-weight:800;">Trusted By</h2>
