@@ -12,6 +12,24 @@
   --primary-lightness: 31%;
 }
 
+/* ---------- Global dark-mode link & code readability ---------- */
+:root.dark a {
+  color: #93b4ff;
+}
+:root.dark a:hover {
+  color: #bdd0ff;
+}
+:root.dark code:not(pre code) {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+:root.dark pre {
+  background: #0f172a !important;
+}
+:root.dark pre code {
+  color: #e2e8f0;
+}
+
 /* Center all hero content on home page */
 main#content > .hx\:flex {
   align-items: center !important;
@@ -53,7 +71,7 @@ nav a img {
   height: auto;
 }
 
-/* Explore Tekton: force 3 columns for card grid */
+/* Force 3 columns for card grids */
 .hextra-cards {
   grid-template-columns: repeat(3, 1fr) !important;
 }
@@ -68,7 +86,7 @@ nav a img {
   }
 }
 
-/* Why Tekton? cards */
+/* ---------- Why Tekton? cards ---------- */
 .why-tekton-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -118,11 +136,12 @@ nav a img {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0;
+  color: #1e293b;
 }
 .why-tekton-card p {
   font-size: 0.92rem;
   line-height: 1.6;
-  opacity: 0.7;
+  color: #6b7280;
   margin: 0;
 }
 :root.dark .why-tekton-card {
@@ -133,6 +152,12 @@ nav a img {
   border-color: #6366f1;
   box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
+:root.dark .why-tekton-card h3 {
+  color: #f1f5f9;
+}
+:root.dark .why-tekton-card p {
+  color: #94a3b8;
+}
 :root.dark .why-tekton-icon {
   background: rgba(255,255,255,0.08) !important;
 }
@@ -142,7 +167,7 @@ nav a img {
   }
 }
 
-/* Trusted By / Adopters strip */
+/* ---------- Trusted By / Adopters strip ---------- */
 .adopters-grid {
   display: flex;
   flex-wrap: wrap;
@@ -169,14 +194,14 @@ nav a img {
 :root.dark .adopter {
   background: #1e293b;
   border-color: #334155;
-  color: #d1d5db;
+  color: #cbd5e1;
 }
 :root.dark .adopter:hover {
-  border-color: #6366f1;
+  border-color: #818cf8;
   background: #1e1b4b;
 }
 
-/* CNCF horizontal banner at bottom */
+/* ---------- CNCF horizontal banner at bottom ---------- */
 .cncf-banner {
   margin-top: 4rem;
   padding: 0;
@@ -193,6 +218,10 @@ nav a img {
   text-decoration: none !important;
   font-size: 0.95rem;
   transition: opacity 0.2s;
+}
+:root.dark .cncf-banner-inner {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
 }
 .cncf-banner-inner:hover {
   opacity: 0.92;
@@ -212,6 +241,18 @@ nav a img {
     gap: 0.75rem;
     padding: 1rem;
   }
+}
+
+/* ---------- Hextra built-in card overrides for dark mode ---------- */
+:root.dark .hextra-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+:root.dark .hextra-card:hover {
+  border-color: #6366f1 !important;
+}
+:root.dark .hextra-card svg {
+  color: #93b4ff;
 }
 
 /* Vertical scrolling for large code samples */
