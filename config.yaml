@@ -67,7 +67,7 @@ params:
     displayPoweredBy: false
 
   theme:
-    default: light
+    default: system
     displayToggle: false
 
   page:
