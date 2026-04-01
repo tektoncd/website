@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Formatting conventions"
 linkTitle: "Formatting conventions"
@@ -6,7 +5,6 @@ weight: 2
 description: >
   Formatting conventions for Tekton documentation
 ---
--->
 
 Tekton documentation uses Markdown to format the content. See the
 [CommonMark tutorial](https://commonmark.org/help/) to learn the basics.

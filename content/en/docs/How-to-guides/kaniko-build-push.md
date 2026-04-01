@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Build and push an image with Tekton"
 linkTitle: "Build and push an image with Tekton"
@@ -7,7 +6,6 @@ description: >
   Create a Pipeline to fetch the source code, build, and push an image with
   Kaniko and Tekton.
 ---
--->
 
 {{% pageinfo %}}
 {{% readfile "/vendor/disclaimer.md" %}}

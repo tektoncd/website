@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Concept model"
 linkTitle: "Concept model"
@@ -7,7 +6,6 @@ description: >
 
   Basic Tekton components and data model
 ---
--->
 
 ## Steps, Tasks, and Pipelines
 

@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Tips and tricks for good writing"
 linkTitle: "Tips and tricks for good writing"
@@ -6,7 +5,6 @@ weight: 5
 description:
   Tips and tricks to write high quality documentation
 ---
--->
 
 “I hate writing!” is a line heard all too often. Documenting a feature can be an intimidating task. 
 

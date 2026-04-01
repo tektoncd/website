@@ -10,10 +10,6 @@ defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 disableKinds:
   - taxonomy
-pygmentsCodeFences: true
-pygmentsUseClasses: false
-pygmentsUseClassic: false
-pygmentsStyle: manni
 enableEmoji: true
 ignoreFiles:
   - vendor/.*
@@ -26,6 +22,8 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    noClasses: false
 imaging:
   resampleFilter: CatmullRom
   quality: 75
@@ -69,7 +67,7 @@ params:
     displayPoweredBy: false
 
   theme:
-    default: system
+    default: light
     displayToggle: false
 
   page:
