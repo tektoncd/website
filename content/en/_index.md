@@ -20,13 +20,14 @@ layout: hextra-home
 {{< /hextra/hero-subtitle >}}
 </div>
 
-<div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; align-items:center; margin:3rem auto; width:100%; text-align:center;">
+<div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; align-items:center; margin:2rem auto 0; width:100%; text-align:center;">
 {{< hextra/hero-button text="Get Started" link="/docs/getting-started/" >}}
 {{< hextra/hero-button text="Documentation" link="/docs/" style="alt" >}}
 </div>
 
-<div style="display:flex; justify-content:center; margin:3rem auto 4rem;">
-  <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" style="width:1000px; max-width:none; height:auto;" />
+<div class="workflow-wrapper">
+  <img src="/images/workflow.svg" alt="Tekton CI/CD workflow: Clone → Unit Tests → Build → Deploy" class="workflow-img" />
+  <div class="workflow-fade"></div>
 </div>
 
 <div style="text-align:center; margin-bottom:2rem;">

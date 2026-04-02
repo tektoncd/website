@@ -109,16 +109,30 @@ nav a img {
 }
 
 /* Workflow diagram on landing page */
-.workflow-diagram {
+.workflow-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  margin: 1.5rem auto 3rem;
 }
-.workflow-diagram img {
-  width: 200%;
+.workflow-img {
+  width: 1000px;
+  max-width: none;
   height: auto;
+  border-radius: 1rem;
+}
+.workflow-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--bg-color, #fff));
+  border-radius: 0 0 1rem 1rem;
+  pointer-events: none;
+}
+:root.dark .workflow-fade {
+  background: linear-gradient(to bottom, transparent, #111);
 }
 
 /* Force 3 columns for card grids */
