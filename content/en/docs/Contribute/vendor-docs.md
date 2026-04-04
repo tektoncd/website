@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Platform-specific documentation"
 linkTitle: "Platform-specific documentation"
@@ -7,7 +6,6 @@ description: >
   Content guidelines for documents describing how to use Tekton with a
   particular cloud service
 ---
--->
 
 {{% pageinfo %}}
 **Important**: Documentation contributions to this website must be licensed

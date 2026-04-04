@@ -51,8 +51,8 @@ jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 FM_BOUNDARY = re.compile(r"^(?:<!--\n)?-{3,}\s*$(?:\n-->)?", re.MULTILINE)
 YAML_SEPARATOR = "---\n"
-FM_WRAPPER_OPEN = "<!--\n"
-FM_WRAPPER_CLOSE = "-->\n"
+FM_WRAPPER_OPEN = ""
+FM_WRAPPER_CLOSE = ""
 
 FOLDER_INDEX = '_index.md'
 IMAGE_EXTS = ['.svg', '.png', '.jpg']

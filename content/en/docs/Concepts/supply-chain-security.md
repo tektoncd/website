@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Supply Chain Security"
 linkTitle: "Supply Chain Security"
@@ -6,7 +5,6 @@ weight: 3
 description: >
   Overview of Supply Chain Security 
 ---
--->
 
 Given the increasing complexity of the CI/CD space, with projects that often
 have dozens or even hundreds of dependencies, the supply chain has become a

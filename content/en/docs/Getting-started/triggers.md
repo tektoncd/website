@@ -1,12 +1,10 @@
-<!--
 ---
 title: "Getting Started with Triggers"
-linkTitle: "Getting Started with Triggers"
-weight: 3
+linkTitle: "Triggers"
+weight: 4
 description: >
   Create and run your first Tekton Trigger.
 ---
--->
 
 This tutorial shows you how to
 

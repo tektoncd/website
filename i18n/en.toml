@@ -1,4 +1,15 @@
+# Navigation menu items
+[Documentation]
+other = "Documentation"
 
+[Blog]
+other = "Blog"
+
+[Community]
+other = "Community"
+
+[GitHub]
+other = "GitHub"
 
 # UI strings. Buttons and similar.
 

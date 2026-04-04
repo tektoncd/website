@@ -3,7 +3,7 @@
   command = "make production-build"
 
 [build.environment]
-  HUGO_VERSION = "0.107.0"
+  HUGO_VERSION = "0.147.0"
 
 [context.production.environment]
   HUGO_ENV = "production"
@@ -20,10 +20,12 @@
   framework = "hugo"
   targetPort = 1313
 
-[[plugins]]
-package = "netlify-plugin-checklinks"
-
-  [plugins.inputs]
-  todoPatterns = ["load", "fragment"]
-  checkExternal = false
-  followSourceMaps = true
+# Disabled: netlify-plugin-checklinks is incompatible with Hextra's
+# hx: CSS namespace prefix (parsed as duplicate XML attribute).
+# TODO: re-enable once checklinks supports Hextra-style output.
+# [[plugins]]
+# package = "netlify-plugin-checklinks"
+#   [plugins.inputs]
+#   todoPatterns = ["load", "fragment"]
+#   checkExternal = false
+#   followSourceMaps = true

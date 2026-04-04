@@ -1,12 +1,10 @@
-<!--
 ---
 title: "Getting Started with Pipelines"
 linkTitle: "Getting Started with Pipelines"
-weight: 2
+weight: 1
 description: >
   Create and run your first Tekton Pipeline
 ---
--->
 
 This tutorial shows you how to:
 

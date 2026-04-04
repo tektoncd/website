@@ -2,9 +2,6 @@
 title: "Welcome to Tekton"
 linkTitle: "Documentation"
 weight: 1
-menu:
-  main:
-    weight: 1
 ---
 
 Tekton is a cloud-native solution for building CI/CD systems. It consists of

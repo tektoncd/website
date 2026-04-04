@@ -17,9 +17,6 @@
   },
   "homepage": "https://tekton.dev/",
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "netlify-cli": "^19.1.4",
-    "postcss": "^8.3.7",
-    "postcss-cli": "^9.1.0"
+    "netlify-cli": "^19.1.4"
   }
 }

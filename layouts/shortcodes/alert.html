@@ -1,0 +1,7 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $title := .Get "title" | default "Note" }}
+{{ $color := .Get "color" | default "primary" }}
+<div class="hextra-alert hextra-alert--{{ $color }}">
+  <strong>{{ $title }}</strong>
+  <div>{{ .Inner | markdownify }}</div>
+</div>

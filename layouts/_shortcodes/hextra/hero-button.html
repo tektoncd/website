@@ -1,0 +1,24 @@
+{{- $link := .Get "link" -}}
+{{- $text := .Get "text" -}}
+{{- $style := .Get "style" | default "primary" -}}
+
+{{- $external := hasPrefix $link "http" -}}
+{{- $href := cond (hasPrefix $link "/") ($link | relURL) $link -}}
+
+{{ if eq $style "alt" }}
+<a
+  href="{{ $href }}"
+  class="not-prose hextra-hero-btn-alt"
+  {{ if $external }}target="_blank" rel="noreferrer"{{ end -}}
+>
+  {{- $text -}}
+</a>
+{{ else }}
+<a
+  href="{{ $href }}"
+  class="not-prose hextra-hero-btn-primary"
+  {{ if $external }}target="_blank" rel="noreferrer"{{ end -}}
+>
+  {{- $text -}}
+</a>
+{{ end }}

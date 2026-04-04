@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Content guidelines"
 linkTitle: "Content guidelines"
@@ -6,7 +5,6 @@ weight: 1
 description: >
   Content guidelines for Tekton documentation
 ---
--->
 
 Follow these guidelines when planning and writing Tekton documentation. 
 

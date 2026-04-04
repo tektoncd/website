@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Local Kubernetes cluster"
 linkTitle: "Local cluster"
@@ -6,7 +5,6 @@ weight: 1
 description: >
   Set up a Kubernetes cluster on your computer to test Tekton.
 ---
--->
 
 There are several tools to run a local Kubernetes cluster on your computer. The
 Tekton documentation often includes instructions for either **minikube** or

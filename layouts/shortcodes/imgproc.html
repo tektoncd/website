@@ -1,0 +1,11 @@
+{{- $name := .Get 0 -}}
+{{- $command := .Get 1 | default "Fit" -}}
+{{- $options := .Get 2 | default "700x500" -}}
+{{- $img := .Page.Resources.GetMatch (printf "**%s*" $name) -}}
+{{- if $img -}}
+  {{- $processed := $img.Fit $options -}}
+  <figure>
+    <img src="{{ $processed.RelPermalink }}" width="{{ $processed.Width }}" height="{{ $processed.Height }}" alt="{{ $name }}">
+    {{- with .Inner }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
+  </figure>
+{{- end -}}

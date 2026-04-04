@@ -1,12 +1,10 @@
-<!--
 ---
 title: "Contribute"
 linkTitle: "Contribute"
-weight: 0
+weight: 100
 description: > 
   How to contribute to Tekton - code and documentation
 ---
--->
 
 There are many ways to contribute to Tekton! Whether you want to write code, improve
 documentation, or help in other ways, we're happy to have you.

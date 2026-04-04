@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Create a blog post"
 linkTitle: "Create a blog post"
@@ -6,7 +5,6 @@ weight: 6
 description: >
   Contributions to the Tekton blog are welcome!
 ---
--->
 
 If you have an interesting, fun, or practical idea that you want to share with the
 world, you can write a blog post about it!

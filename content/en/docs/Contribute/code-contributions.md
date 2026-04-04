@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Contribute Code"
 linkTitle: "Contribute Code"
@@ -6,7 +5,6 @@ weight: 1
 description: >
   How to contribute code to Tekton projects
 ---
--->
 
 If you would like to contribute code to Tekton, we'd love your help!
 Tekton is an open source project and we welcome contributions from everyone.

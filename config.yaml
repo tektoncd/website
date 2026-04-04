@@ -2,8 +2,7 @@ baseURL: /
 title: Tekton
 enableRobotsTXT: true
 theme:
-  - github.com/google/docsy
-  - github.com/google/docsy/dependencies
+  - github.com/imfing/hextra
 enableGitInfo: true
 contentDir: content/en
 defaultContentLanguage: en
@@ -11,11 +10,6 @@ defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 disableKinds:
   - taxonomy
-  - taxonomyTerm
-pygmentsCodeFences: true
-pygmentsUseClasses: false
-pygmentsUseClassic: false
-pygmentsStyle: manni
 enableEmoji: true
 ignoreFiles:
   - vendor/.*
@@ -28,6 +22,8 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    noClasses: false
 imaging:
   resampleFilter: CatmullRom
   quality: 75
@@ -38,28 +34,45 @@ services:
 languages:
   en:
     title: Tekton
-    description: Cloud Native CI/CD
     languageName: English
     weight: 1
+    params:
+      description: Cloud Native CI/CD
+
 params:
-  version_menu: Releases
+  description: Cloud Native CI/CD
   github_repo: https://github.com/tektoncd/website
-  gcs_engine_id: 013756393218025596041:6eajntqsa6c
-  ui:
-    sidebar_menu_compact: false
-    sidebar_menu_foldable: true
-    breadcrumb_disable: true
-    sidebar_search_disable: false
-    navbar_logo: true
-    footer_about_disable: false
-    feedback:
-      enable: true
-      yes:
-        Thanks! <a href="https://github.com/tektoncd/website/issues/new">Tell us
-        how we can further improve</a>.
-      no: Sorry about that. <a
-        href="https://github.com/tektoncd/website/issues/new">Tell us how we can
-        further improve</a>.
+
+  navbar:
+    displayTitle: false
+    displayLogo: true
+    logo:
+      path: images/tekton-horizontal-color.png
+      dark: images/tekton-horizontal-color.png
+      link: /
+      width: 140
+      height: 36
+
+  search:
+    enable: true
+    type: flexsearch
+    flexsearch:
+      index: content
+
+  editURL:
+    enable: true
+    base: https://github.com/tektoncd/website/edit/main/content
+
+  footer:
+    displayPoweredBy: false
+
+  theme:
+    default: system
+    displayToggle: false
+
+  page:
+    width: wide
+
   links:
     developer:
       - name: Slack
@@ -70,45 +83,32 @@ params:
         url: https://github.com/tektoncd
         icon: fab fa-github
         desc: GitHub organization for the Tekton project
-sectionPagesMenu: "docs"
+
 menu:
-  docs:
-    - name: "Getting Started"
-      url: "/docs/getting-started/"
+  main:
+    - identifier: Documentation
+      name: Documentation
+      pageRef: /docs
       weight: 1
-    - name: "Installation"
-      url: "/docs/installation/"
+    - identifier: Blog
+      name: Blog
+      pageRef: /blog
       weight: 2
-    - name: "Concepts"
-      url: "/docs/concepts/"
+    - identifier: Community
+      name: Community
+      pageRef: /community
       weight: 3
-    - name: "How-to Guides"
-      url: "/docs/how-to-guides/"
+    - identifier: GitHub
+      name: GitHub
+      url: https://github.com/tektoncd
       weight: 4
-    - name: "Tasks and Pipelines"
-      url: "/docs/pipelines/"
+      params:
+        icon: github
+    - identifier: search
       weight: 5
-    - name: "Triggers and EventListeners"
-      url: "/docs/triggers/"
+      params:
+        type: search
+    - identifier: theme-toggle
       weight: 6
-    - name: "Command-Line Interface"
-      url: "/docs/cli/"
-      weight: 7
-    - name: "Supply Chain Security"
-      url: "/docs/chains/"
-      weight: 8
-    - name: "Operator"
-      url: "/docs/operator/"
-      weight: 9
-    - name: "Dashboard"
-      url: "/docs/dashboard/"
-      weight: 10 
-    - name: "Results"
-      url: "/docs/results/"
-      weight: 11
-    - name: "Pruner"
-      url: "/docs/pruner/"
-      weight: 12
-    - name: "Contribute"
-      url: "/docs/contribute/"
-      weight: 100 
+      params:
+        type: theme-toggle

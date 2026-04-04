@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Clone a git repository with Tekton"
 linkTitle: "Clone a git repository with Tekton"
@@ -6,7 +5,6 @@ weight: 1
 description: >
   How to clone source code from git with Tekton Pipelines.
 ---
--->
 
 This guide shows you how to:
 

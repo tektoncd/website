@@ -1,0 +1,421 @@
+/*
+ * Tekton brand theming for Hextra
+ * Brand guide: https://github.com/cdfoundation/artwork/blob/main/tekton/tekton_brand_guide.pdf
+ *
+ * Primary:   #00109F (navy, hue ~234deg)
+ * Secondary: #B980D0 (purple)
+ */
+
+:root {
+  --primary-hue: 234deg;
+  --primary-saturation: 100%;
+  --primary-lightness: 31%;
+}
+
+/* ---------- Global dark-mode link & code readability ---------- */
+:root.dark a {
+  color: #93b4ff;
+}
+:root.dark a:hover {
+  color: #bdd0ff;
+}
+:root.dark code:not(pre code) {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+:root.dark pre:not(.chroma) {
+  background: #0f172a !important;
+}
+:root.dark pre:not(.chroma) code {
+  color: #e2e8f0;
+}
+
+/* ---------- Hero buttons ---------- */
+.hextra-hero-btn-primary,
+.hextra-hero-btn-alt {
+  display: inline-block;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  text-align: center;
+  text-decoration: none !important;
+  font-size: 1rem;
+  transition: all 0.2s ease-in;
+}
+.hextra-hero-btn-primary {
+  background: #00109F;
+  color: #fff !important;
+  border: 2px solid #00109F;
+}
+.hextra-hero-btn-primary:hover {
+  background: #1a2fbf;
+  border-color: #1a2fbf;
+}
+:root.dark .hextra-hero-btn-primary {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #fff !important;
+}
+:root.dark .hextra-hero-btn-primary:hover {
+  background: #818cf8;
+  border-color: #818cf8;
+}
+.hextra-hero-btn-alt {
+  background: transparent;
+  color: #00109F !important;
+  border: 2px solid #cbd5e1;
+}
+.hextra-hero-btn-alt:hover {
+  border-color: #00109F;
+  background: #f0f4ff;
+}
+:root.dark .hextra-hero-btn-alt {
+  color: #e2e8f0 !important;
+  border-color: #475569;
+}
+:root.dark .hextra-hero-btn-alt:hover {
+  border-color: #818cf8;
+  background: rgba(99,102,241,0.1);
+  color: #a5b4fc !important;
+}
+
+/* Center all hero content on home page */
+main#content > .hx\:flex {
+  align-items: center !important;
+}
+
+/* Navbar horizontal logo */
+nav a img {
+  height: 2.25rem !important;
+  width: auto !important;
+  object-fit: contain;
+}
+
+.content {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+/* Announcement banner (KubeCon, releases, etc.) */
+.hextra-banner {
+  background: linear-gradient(90deg, #b1479a 0%, #6a2c88 100%);
+  color: #fff;
+}
+.hextra-banner a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Workflow diagram on landing page */
+.workflow-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto 3rem;
+}
+.workflow-img {
+  width: 1000px;
+  max-width: none;
+  height: auto;
+  border-radius: 1rem;
+}
+.workflow-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--bg-color, #fff));
+  border-radius: 0 0 1rem 1rem;
+  pointer-events: none;
+}
+:root.dark .workflow-fade {
+  background: linear-gradient(to bottom, transparent, #111);
+}
+
+/* Force 3 columns for card grids */
+.hextra-cards {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+@media (max-width: 900px) {
+  .hextra-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 540px) {
+  .hextra-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---------- Why Tekton? cards ---------- */
+.why-tekton-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto 3rem;
+}
+.why-tekton-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem 1.75rem;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  overflow: hidden;
+}
+.why-tekton-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  border-color: #c7d2fe;
+}
+.why-tekton-accent {
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  width: 2rem;
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+}
+.why-tekton-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+.why-tekton-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.why-tekton-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1e293b;
+}
+.why-tekton-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #6b7280;
+  margin: 0;
+}
+:root.dark .why-tekton-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+:root.dark .why-tekton-card:hover {
+  border-color: #6366f1;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+:root.dark .why-tekton-card h3 {
+  color: #f1f5f9;
+}
+:root.dark .why-tekton-card p {
+  color: #94a3b8;
+}
+:root.dark .why-tekton-icon {
+  background: rgba(255,255,255,0.08) !important;
+}
+@media (max-width: 768px) {
+  .why-tekton-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Trusted By / Adopters strip ---------- */
+.adopters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.adopter {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  background: #f9fafb;
+  white-space: nowrap;
+  transition: border-color 0.2s, background 0.2s;
+}
+.adopter:hover {
+  border-color: #a5b4fc;
+  background: #eef2ff;
+}
+:root.dark .adopter {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+:root.dark .adopter:hover {
+  border-color: #818cf8;
+  background: #1e1b4b;
+}
+.adopter-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+}
+.adopter-logo img {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+}
+.adopter-wide img {
+  height: 20px;
+  max-width: 120px;
+}
+:root.dark .adopter-logo img {
+  filter: brightness(0) invert(1) opacity(0.85);
+}
+:root.dark .adopter-logo:hover img {
+  filter: brightness(0) invert(1) opacity(1);
+}
+
+/* ---------- CNCF horizontal banner at bottom ---------- */
+.cncf-banner {
+  margin-top: 4rem;
+  padding: 0;
+}
+.cncf-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.25rem 2rem;
+  border-radius: 0.75rem;
+  background: rgba(248,250,252,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226,232,240,0.6);
+  color: #475569;
+  text-decoration: none !important;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cncf-banner-inner:hover {
+  border-color: #a5b4fc;
+  background: #f1f5f9;
+}
+.cncf-logo {
+  height: 36px;
+  width: auto;
+  flex-shrink: 0;
+}
+.cncf-banner-inner strong {
+  color: #1e293b;
+}
+:root.dark .cncf-banner-inner {
+  background: rgba(30,41,59,0.6);
+  border-color: rgba(51,65,85,0.5);
+  color: #94a3b8;
+}
+:root.dark .cncf-banner-inner:hover {
+  border-color: #6366f1;
+  background: #1e1b4b;
+}
+:root.dark .cncf-banner-inner strong {
+  color: #e2e8f0;
+}
+:root.dark .cncf-logo {
+  filter: brightness(0) invert(1) opacity(0.85);
+}
+@media (max-width: 540px) {
+  .cncf-banner-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+}
+
+/* ---------- Hextra built-in card overrides for dark mode ---------- */
+:root.dark .hextra-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+:root.dark .hextra-card:hover {
+  border-color: #6366f1 !important;
+}
+:root.dark .hextra-card svg {
+  color: #93b4ff;
+}
+
+/* ---------- Pageinfo & Alert shortcodes ---------- */
+.hextra-pageinfo {
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--primary-color, #00109F);
+  background: #f0f4ff;
+  border-radius: 0 0.25rem 0.25rem 0;
+  margin: 1rem 0;
+  color: #1e293b;
+}
+:root.dark .hextra-pageinfo {
+  background: #1e293b;
+  border-left-color: #6366f1;
+  color: #e2e8f0;
+}
+:root.dark .hextra-pageinfo a {
+  color: #93b4ff;
+}
+
+.hextra-alert {
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #00109F;
+  background: #f0f4ff;
+  border-radius: 0 0.25rem 0.25rem 0;
+  margin: 1rem 0;
+  color: #1e293b;
+}
+.hextra-alert--warning {
+  border-left-color: #e6a700;
+  background: #fff8e1;
+}
+.hextra-alert--danger {
+  border-left-color: #d32f2f;
+  background: #ffeef0;
+}
+.hextra-alert--success {
+  border-left-color: #2e7d32;
+  background: #e8f5e9;
+}
+:root.dark .hextra-alert {
+  background: #1e293b;
+  border-left-color: #6366f1;
+  color: #e2e8f0;
+}
+:root.dark .hextra-alert--warning {
+  background: #2a2000;
+  border-left-color: #facc15;
+}
+:root.dark .hextra-alert--danger {
+  background: #2a0a0e;
+  border-left-color: #f87171;
+}
+:root.dark .hextra-alert--success {
+  background: #0a2a10;
+  border-left-color: #4ade80;
+}
+:root.dark .hextra-alert a {
+  color: #93b4ff;
+}
+
+/* Vertical scrolling for large code samples */
+pre {
+  max-height: 25em;
+  overflow-y: auto;
+}

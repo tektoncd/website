@@ -1,4 +1,3 @@
-<!--
 ---
 title: "Run the site locally"
 linkTitle: "Run the site locally"
@@ -6,7 +5,6 @@ weight: 4
 description: > 
    Run the Tekton documentation site locally
 ---
--->
 
 ## Running in a Docker container
 
