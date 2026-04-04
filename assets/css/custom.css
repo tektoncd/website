@@ -264,6 +264,27 @@ nav a img {
   border-color: #818cf8;
   background: #1e1b4b;
 }
+.adopter-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+}
+.adopter-logo img {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+}
+.adopter-wide img {
+  height: 20px;
+  max-width: 120px;
+}
+:root.dark .adopter-logo img {
+  filter: brightness(0) invert(1) opacity(0.85);
+}
+:root.dark .adopter-logo:hover img {
+  filter: brightness(0) invert(1) opacity(1);
+}
 
 /* ---------- CNCF horizontal banner at bottom ---------- */
 .cncf-banner {
@@ -277,26 +298,41 @@ nav a img {
   gap: 1.25rem;
   padding: 1.25rem 2rem;
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, #263d5c 0%, #1a2940 100%);
-  color: #e2e8f0;
+  background: rgba(248,250,252,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226,232,240,0.6);
+  color: #475569;
   text-decoration: none !important;
   font-size: 0.95rem;
-  transition: opacity 0.2s;
-}
-:root.dark .cncf-banner-inner {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid #334155;
+  transition: border-color 0.2s, background 0.2s;
 }
 .cncf-banner-inner:hover {
-  opacity: 0.92;
+  border-color: #a5b4fc;
+  background: #f1f5f9;
 }
 .cncf-logo {
-  height: 40px;
+  height: 36px;
   width: auto;
   flex-shrink: 0;
 }
 .cncf-banner-inner strong {
-  color: #fff;
+  color: #1e293b;
+}
+:root.dark .cncf-banner-inner {
+  background: rgba(30,41,59,0.6);
+  border-color: rgba(51,65,85,0.5);
+  color: #94a3b8;
+}
+:root.dark .cncf-banner-inner:hover {
+  border-color: #6366f1;
+  background: #1e1b4b;
+}
+:root.dark .cncf-banner-inner strong {
+  color: #e2e8f0;
+}
+:root.dark .cncf-logo {
+  filter: brightness(0) invert(1) opacity(0.85);
 }
 @media (max-width: 540px) {
   .cncf-banner-inner {

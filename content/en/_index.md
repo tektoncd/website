@@ -74,17 +74,17 @@ layout: hextra-home
 </div>
 
 <div class="adopters-grid">
-  <span class="adopter">Red Hat</span>
-  <span class="adopter">IBM</span>
-  <span class="adopter">Google</span>
-  <span class="adopter">Alibaba</span>
-  <span class="adopter">Marriott Vacations</span>
-  <span class="adopter">Nubank</span>
-  <span class="adopter">OneStock</span>
-  <span class="adopter">AllianzDirect</span>
-  <span class="adopter">Kadaster</span>
-  <span class="adopter">Giant Swarm</span>
-  <span class="adopter">Alauda</span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/redhat.svg" alt="Red Hat" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/ibm.svg" alt="IBM" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/google.svg" alt="Google" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/alibaba.svg" alt="Alibaba" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/Marriott_Vacations.svg" alt="Marriott Vacations" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/Nubank_logo_2021.svg" alt="Nubank" /></span>
+  <span class="adopter adopter-logo adopter-wide"><img src="/images/adopters/onestock.svg" alt="OneStock" /></span>
+  <span class="adopter adopter-logo adopter-wide"><img src="/images/adopters/Allianz_Direct.svg" alt="AllianzDirect" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/kadaster.svg" alt="Kadaster" /></span>
+  <span class="adopter adopter-logo"><img src="/images/adopters/giantswarmio.svg" alt="Giant Swarm" /></span>
+  <span class="adopter adopter-logo adopter-wide"><img src="/images/adopters/alauda.svg" alt="Alauda" /></span>
 </div>
 
 <div style="text-align:center; margin: 3rem 0 1.5rem;">
