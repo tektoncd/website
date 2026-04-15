@@ -88,27 +88,30 @@ menu:
     - name: "Tasks and Pipelines"
       url: "/docs/pipelines/"
       weight: 5
+    - name: "Pipelines-as-Code"
+      url: "/docs/pipelines-as-code/"
+      weight: 6
     - name: "Triggers and EventListeners"
       url: "/docs/triggers/"
-      weight: 6
+      weight: 7
     - name: "Command-Line Interface"
       url: "/docs/cli/"
-      weight: 7
+      weight: 8
     - name: "Supply Chain Security"
       url: "/docs/chains/"
-      weight: 8
+      weight: 9
     - name: "Operator"
       url: "/docs/operator/"
-      weight: 9
+      weight: 10
     - name: "Dashboard"
       url: "/docs/dashboard/"
-      weight: 10 
+      weight: 11
     - name: "Results"
       url: "/docs/results/"
-      weight: 11
+      weight: 12
     - name: "Pruner"
       url: "/docs/pruner/"
-      weight: 12
+      weight: 13
     - name: "Contribute"
       url: "/docs/contribute/"
       weight: 100 
