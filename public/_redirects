@@ -1,2 +1,6 @@
 # Chains predicate docs.
 /predicate/chains/* https://github.com/tektoncd/chains/tree/main/docs/predicate/:splat
+
+# Chains buildType URIs used in SLSA provenance predicates.
+/chains/v2/slsa https://github.com/tektoncd/chains/blob/main/docs/predicate/slsa/v2.md
+/chains/v2/slsa-tekton https://github.com/tektoncd/chains/blob/main/docs/predicate/slsa/v2.md
