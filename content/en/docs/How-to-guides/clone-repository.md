@@ -49,7 +49,7 @@ code from a git repository.
 ### Create the Pipeline
 
 One practical aspect of Tekton Tasks and Pipelines is that they are reusable.
-There's a [community hub][tekton-hub] with a curated list of Pipelines and Tasks
+There's [artifacthub](https://artifacthub.io/packages/search?repo=tekton-catalog-tasks) with a curated list of Pipelines and Tasks
 that you can include in your own CI/CD workflow. You are going to reuse one of
 those Tasks in this guide.
 
