@@ -54,7 +54,7 @@ kind: PipelineRun
 metadata:
   name: my-pipelinerun
   annotations:
-    tekton.dev/pvc-cleanup: "true"
+    tekton.dev/auto-cleanup-pvc: "true"
 spec:
   workspaces:
     - name: shared-data
