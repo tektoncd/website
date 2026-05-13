@@ -3,7 +3,7 @@ services:
       image: tekton/website
       build:
          context: .
-      ports: 
+      ports:
          - '8888:8888'
       volumes:
          - /src/content/en/docs/Chains/
