@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2020 The Tekton Authors
+# Copyright 2020-2026 The Tekton Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,17 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import click
 import copy
 import logging
 import os
-import sync
 import sys
 
+import click
+
+import sync
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_CONFIG_FOLDER = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'config')
 
+class ConfigNotFoundError(Exception):
+    pass
 
 class VersionNotFoundError(Exception):
     pass
@@ -61,12 +66,12 @@ def command(cmd_fn, config_folder, project, version):
     configs = load_config(config_folder)
     config = select_config(configs, project)
     if not config:
-        raise Exception(f'Cound not find a config for {project} in {configs}')
+        raise ConfigNotFoundError(f'Cound not find a config for {project} in {configs}')
     try:
         cmd_fn(config, version)
         sync.save_config(configs)
     except VersionNotFoundError as e:
-        logging.error(f'Could not update config for {project}: {e}')
+        logger.error(f'Could not update config for {project}: {e}')
         sys.exit(1)
 
 
@@ -90,7 +95,7 @@ def add_version(config, version):
 
 def rm_version(config, version):
     for idx, tag in enumerate(config['content']['tags']):
-        logging.info(f'{idx}, {tag}')
+        logger.info(f'{idx}, {tag}')
         if version == tag['name']:
             del config['content']['tags'][idx]
             return config

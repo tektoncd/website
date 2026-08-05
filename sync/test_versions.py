@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2020 The Tekton Authors
+# Copyright 2020-2026 The Tekton Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,10 +19,9 @@ import os
 import tempfile
 import unittest
 
+import versions
 from click.testing import CliRunner
 from ruamel.yaml import YAML
-
-import versions
 
 test_config_string = """
 # This is a test config
