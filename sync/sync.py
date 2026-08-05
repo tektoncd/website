@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2020-2023 The Tekton Authors
+# Copyright 2020-2026 The Tekton Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,21 +22,21 @@ import copy
 import fnmatch
 import json
 import logging
-import markdown
-from multiprocessing import Pool
 import os
 import os.path
 import re
 import sys
-from urllib.parse import urlparse, urljoin, urlunparse
+from multiprocessing import Pool
+from urllib.parse import urljoin, urlparse, urlunparse
 
-from bs4 import BeautifulSoup
 import click
 import git
-from jinja2 import Environment
-from jinja2 import FileSystemLoader
+import markdown
+from bs4 import BeautifulSoup
+from jinja2 import Environment, FileSystemLoader
 from ruamel.yaml import YAML
 
+logger = logging.getLogger(__name__)
 
 CONTENT_DIR = './content/en/docs'
 VAULT_DIR = './content/en/vault'
@@ -83,13 +83,19 @@ def doc_config(doc, folder_config, weight=None):
     return target_filename, target_folder, header_dict
 
 
-def docs_from_tree(tree, include=['*'], exclude=[]):
+def docs_from_tree(tree, include=None, exclude=None):
     """ Get matching docs (git blobs) from a git tree
 
     Filter all blobs directly under a tree based on include and
     exclude lists. Filters are specified as list of unix style
     filename pattern:
     (https://docs.python.org/3/library/fnmatch.html) """
+
+    if include is None:
+        include = ['*']
+    if exclude is None:
+        exclude = []
+
     return filter(lambda b:
             any(fnmatch.fnmatch(b.name, i) for i in include) and
             not any(fnmatch.fnmatch(b.name, e) for e in exclude), tree.blobs)
@@ -115,7 +121,7 @@ def transform_docs(git_repo, tag, folders, site_folder, base_path, base_url):
         try:
             tag = next(x for x in git_repo.remote().refs if x.remote_head == tag)
         except StopIteration:
-            logging.error(f'No tag or branch {tag} found in {git_repo}')
+            logger.error(f'No tag or branch {tag} found in {git_repo}')
             sys.exit(1)
 
     # List all relevant blobs based on the folder config
@@ -195,7 +201,7 @@ def transform_doc(doc, source_folder, target, target_folder, header,
         return target
     # Pass-through for other mime types
     with open(target, 'bw+') as target_doc:
-        logging.info(f'Pass-through {doc.mime_type} file {doc.path}')
+        logger.info(f'Pass-through {doc.mime_type} file {doc.path}')
         target_doc.write(doc.data_stream.read())
     return target
 
@@ -217,8 +223,7 @@ def read_front_matter(text):
         except ValueError:
             # Not enough values to unpack, boundary was matched once
             return text, None
-        if content.startswith('\n'):
-            content = content[1:]
+        content = content.removeprefix('\n')
         return content, YAML().load(fm)
     else:
         return text, None
@@ -346,11 +351,11 @@ def download_resources_to_project(yaml_list, clones):
         repository = entry['repository']
         local_clone = clones.get(repository)
         if not local_clone:
-            logging.error(f'No git clone found for {repository} in {clones}')
+            logger.error(f'No git clone found for {repository} in {clones}')
             sys.exit(1)
 
         for index, tag in enumerate(entry['tags']):
-            logging.info(f'Syncing {component}@{tag["name"]}')
+            logger.info(f'Syncing {component}@{tag["name"]}')
             link_base_url = f'{repository}/tree/{tag["name"]}/'
             if index == 0:
                 # first links belongs on the home page
@@ -370,8 +375,8 @@ def download_resources_to_project(yaml_list, clones):
                 site_folder=site_dir,
                 base_path=base_path,
                 base_url=link_base_url)
-            logging.debug(f'Finished syncing {component}@{tag["name"]}: ')
-            logging.debug(f'{results}')
+            logger.debug(f'Finished syncing {component}@{tag["name"]}: ')
+            logger.debug(f'{results}')
 
 
 def get_files_in_path(path, file_type):
@@ -441,7 +446,7 @@ def create_resource(dest_prefix, file, versions):
     elif file.endswith(".md"):
         resource = resource_template.render(component_versions=versions)
     else:
-        logging.warning(f'Cannot create resource for {file}. Only .js and .md supported')
+        logger.warning(f'Cannot create resource for {file}. Only .js and .md supported')
         return
 
     with open(f'{dest_prefix}/{file}', 'w') as f:

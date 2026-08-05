@@ -23,14 +23,24 @@ from unittest import mock
 from urllib.parse import urlparse
 
 import git
+
 import sync
-
 from sync import (
-    doc_config, docs_from_tree, get_links, is_absolute_url,
-    is_fragment, get_tags, load_config, save_config,
-    get_files_in_path, transform_link, transform_links_doc,
-    transform_doc, transform_docs, read_front_matter)
-
+    doc_config,
+    docs_from_tree,
+    get_files_in_path,
+    get_links,
+    get_tags,
+    is_absolute_url,
+    is_fragment,
+    load_config,
+    read_front_matter,
+    save_config,
+    transform_doc,
+    transform_docs,
+    transform_link,
+    transform_links_doc,
+)
 
 BASE_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
@@ -67,24 +77,24 @@ class TestSync(unittest.TestCase):
         return tail or ntpath.basename(head)
 
     def read_and_delete_file(self, name):
-        file = open(name, "r")
-        text = file.read()
-        file.close()
+        with open(name, "r") as file:
+            text = file.read()
         os.remove(name)
         return text
 
     # Tests
     def test_doc_config(self):
-        folder_config = dict(index='foo.md')
+        folder_config = {'index': 'foo.md'}
 
         expected = ('content.md', '', None)
         actual = doc_config(self.doc, folder_config)
         self.assertEqual(actual, expected)
 
     def test_doc_config_header(self):
-        folder_config = dict(
-            index='foo.md',
-            header={'title': 'test'})
+        folder_config = {
+            'index': 'foo.md',
+            'header': {'title': 'test'}
+        }
 
         header = folder_config['header']
         header['weight'] = 10
@@ -93,10 +103,11 @@ class TestSync(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_doc_config_index_target(self):
-        folder_config = dict(
-            index='content.md',
-            header={'title': 'test'},
-            target='foobar')
+        folder_config = {
+            'index': 'content.md',
+            'header': {'title': 'test'},
+            'target': 'foobar'
+        }
 
         header = folder_config['header']
         header['weight'] = 10
@@ -340,7 +351,7 @@ class TestSync(unittest.TestCase):
             self.assertEqual(actual, exp)
 
     def test_transform_doc(self):
-        header = dict(test1='abc', test2=1, test3=True)
+        header = {'test1': 'abc', 'test2': 1, 'test3': True}
         with tempfile.TemporaryDirectory() as site_dir:
             expected_result = os.path.join(site_dir, 'target', 'target.md')
             expected_content = (
