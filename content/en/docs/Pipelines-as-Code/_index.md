@@ -15,4 +15,4 @@ triggered by events such as pull requests and pushes.
 Pipelines-as-Code supports GitHub, GitLab, Bitbucket, and other Git providers.
 
 Full documentation is available at
-[pipelinesascode.com/docs](https://pipelinesascode.com/docs/).
+[pipelinesascode.com](https://pipelinesascode.com).
