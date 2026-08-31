@@ -15,7 +15,7 @@ This post covers the highlights of both v1.14.0 and v1.15.0, since v1.14.0 was a
 
 ## What Makes This an LTS Release?
 
-LTS releases receive security and critical bug fixes for an extended period. If you prefer stability over bleeding-edge features, LTS releases are your upgrade targets. The previous LTS was [v1.12.0]({{< relref "/blog/2026/tekton-pipeline-v1.12.0" >}}); users on v1.12.0 can upgrade directly to v1.15.0 with no breaking changes.
+LTS releases receive security and critical bug fixes for an extended period. If you prefer stability over bleeding-edge features, LTS releases are your upgrade targets. The previous LTS was [v1.12.0]({{< relref "/blog/2026/tekton-pipeline-v1.12.0/index.md" >}}); users on v1.12.0 can upgrade directly to v1.15.0 with no breaking changes.
 
 Read more about [LTS releases and our support policy](https://github.com/tektoncd/community/blob/main/releases.md#support-policy).
 
@@ -75,7 +75,7 @@ Several fixes make remote resolution significantly more robust:
 | From | To | Key Considerations |
 |------|----|--------------------|
 | v1.12.0 LTS | v1.15.0 LTS | Smooth upgrade; new features are opt-in via ConfigMap |
-| v1.9.0 LTS | v1.15.0 LTS | Review [v1.12.0 LTS blog]({{< relref "/blog/2026/tekton-pipeline-v1.12.0" >}}) for notifications controller changes |
+| v1.9.0 LTS | v1.15.0 LTS | Review [v1.12.0 LTS blog]({{< relref "/blog/2026/tekton-pipeline-v1.12.0/index.md" >}}) for notifications controller changes |
 
 ## Get Started
 
