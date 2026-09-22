@@ -12,7 +12,7 @@ We're excited to announce the release of Tekton Pipelines v1.9.0, our latest Lon
 ## Installation
 
 ```shell
-kubectl apply -f https://infra.tekton.dev/releases/pipeline/previous/v1.9.0/release.yaml
+kubectl apply -f https://infra.tekton.dev/tekton-releases/pipeline/previous/v1.9.0/release.yaml
 ```
 
 ## v1.0.0 → v1.3.0 LTS (May - August 2025)

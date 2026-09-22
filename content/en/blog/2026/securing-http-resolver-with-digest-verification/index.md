@@ -202,7 +202,7 @@ Digest verification for the HTTP resolver is a significant step toward securing 
 
 We encourage all users who fetch Tasks and Pipelines from HTTP URLs to adopt digest verification as part of their security best practices. The feature is designed to be easy to use while providing strong security guarantees through constant-time comparison and support for industry-standard hashing algorithms.
 
-For more information about the HTTP resolver and its configuration options, refer to the [HTTP Resolver documentation](https://tekton.dev/docs/pipelines/resolution/http-resolver/).
+For more information about the HTTP resolver and its configuration options, refer to the [HTTP Resolver documentation](https://tekton.dev/docs/pipelines/http-resolver/).
 
 ---
 

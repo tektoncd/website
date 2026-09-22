@@ -111,7 +111,7 @@ For the purpose of this blog, we'll be using CoCo in AWS leveraging the Kata con
 
 Instructions to set up CoCo on AWS - https://confidentialcontainers.org/docs/examples/aws-simple.
 
-KBS setup details are described in the following [blog](https://confidentialcontainers.org/blog/2024/06/10/deploy-trustee-in-kubernetes/).
+KBS setup details are described in the following [blog](https://confidentialcontainers.org/blog/2026/08/19/deploy-trustee-in-kubernetes/).
 
 For other environments refer to the CoCo documentation - https://confidentialcontainers.org/docs/getting-started
 
