@@ -50,7 +50,7 @@ docker-compose rm
 * [git 1.8.5 or later](https://github.com/git/git/releases)
 * [npm v6.14.5](https://nodejs.org/en/)
 * [node v14.3.0](https://nodejs.org/en/)
-* [netlify cli](https://cli.netlify.com/getting-started)
+* [netlify cli](https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/)
 * [netlify account](https://app.netlify.com/)
 
 ### Setup

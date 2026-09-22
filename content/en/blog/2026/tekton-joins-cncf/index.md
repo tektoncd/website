@@ -60,7 +60,7 @@ We'll share updates on any changes to infrastructure, governance, or processes
 as they happen.
 
 In the meantime, we continue to ship — with recent releases like [Tekton
-Pipelines v1.10.0](https://tekton.dev/blog/2026/02/12/tekton-pipelines-v1.10.0/)
+Pipelines v1.10.0](https://tekton.dev/blog/2026/02/27/tekton-pipelines-v1.10.0-observability-evolved/)
 and [Pipelines-as-Code joining the Tekton
 organization](https://tekton.dev/blog/2026/03/19/pipelines-as-code-joins-the-tekton-organization/),
 the project has never been more active.
