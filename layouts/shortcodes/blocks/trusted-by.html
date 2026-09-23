@@ -1,0 +1,22 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<section class="landing-trusted">
+  <h2>Trusted by leading organizations worldwide</h2>
+  <div class="landing-trusted__logos">
+    {{ $logos := slice
+      (dict "file" "google.svg" "name" "Google")
+      (dict "file" "ibm.svg" "name" "IBM")
+      (dict "file" "redhat.svg" "name" "Red Hat")
+      (dict "file" "alibaba.svg" "name" "Alibaba")
+      (dict "file" "Nubank_logo_2021.svg" "name" "Nubank")
+      (dict "file" "alauda.svg" "name" "Alauda")
+      (dict "file" "giantswarmio.svg" "name" "Giant Swarm")
+      (dict "file" "Allianz_Direct.svg" "name" "Allianz Direct")
+      (dict "file" "Marriott_Vacations.svg" "name" "Marriott Vacations Worldwide")
+      (dict "file" "kadaster.svg" "name" "Kadaster")
+      (dict "file" "onestock.svg" "name" "OneStock")
+    }}
+    {{ range $logos }}
+      <img src="{{ printf "images/adopters/%s" .file | relURL }}" alt="{{ .name }}">
+    {{ end }}
+  </div>
+</section>
