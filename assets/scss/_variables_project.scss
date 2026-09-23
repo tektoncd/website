@@ -10,9 +10,25 @@ Add styles or override variables from the theme here.
 
 $primary: #00109F;
 $secondary: #B980D0;
-$td-fonts-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $td-enable-google-fonts: false;
+$td-fonts-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+// Docsy reassigns $td-fonts-serif without !default, so pin Bootstrap's
+// body stack here. All pages and partials inherit from body.
+$font-family-sans-serif: $td-fonts-serif;
+$font-family-base: $td-fonts-serif;
+$font-size-base: 1rem;
+
+// Type scale from tekton-website-refresh (custom.css). Use these instead of
+// one-off sizes so landing, blog, docs, and chrome stay aligned.
+$font-size-xs: .75rem;     // captions, eyebrows, footer
+$font-size-sm: .875rem;    // dates, meta, nav, secondary
+$font-size-md: 1.125rem;   // leads, card titles
+$font-size-lg: 1.5rem;     // section headings
+$font-size-xl: 1.75rem;    // mobile page titles
+$font-size-2xl: 3rem;      // page titles
+$font-size-lead: 1.25rem;  // prominent introductory copy
+
 $light: #929292 !default;
 $dark: #333 !default;
 $mobile-width: 767px;
-
+$navbar-collapse-width: 991px;
