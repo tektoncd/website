@@ -17,6 +17,8 @@
 
 {{ $c2cJS := resources.Get "js/click-to-copy.js" | minify |  fingerprint }}
 <script defer src="{{ $c2cJS.RelPermalink }}" integrity="{{ $c2cJS.Data.Integrity }}"></script>
+{{ $pageRailJS := resources.Get "js/page-rail.js" | minify | fingerprint }}
+<script defer src="{{ $pageRailJS.RelPermalink }}" integrity="{{ $pageRailJS.Data.Integrity }}"></script>
 
 {{ if .Page.Store.Get "hasMermaid" }}
 <script src="https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"
