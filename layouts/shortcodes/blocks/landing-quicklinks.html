@@ -1,0 +1,21 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<section class="landing-quicklinks" aria-labelledby="landing-quicklinks-heading">
+  <h2 id="landing-quicklinks-heading" class="landing-quicklinks__heading">Quick Links</h2>
+  <div class="landing-quicklinks__grid">
+    <a class="landing-quicklinks__card" href="{{ relref . "/docs/installation" }}">
+      <h3 class="landing-quicklinks__title">Install Tekton</h3>
+      <p class="landing-quicklinks__desc">Get up and running with Tekton Pipelines on your Kubernetes cluster.</p>
+      <span class="landing-quicklinks__link">Installation guide →</span>
+    </a>
+    <a class="landing-quicklinks__card" href="{{ relref . "/community" }}">
+      <h3 class="landing-quicklinks__title">Contributions Welcome</h3>
+      <p class="landing-quicklinks__desc">Tekton is an open community and we welcome contributions of all kinds.</p>
+      <span class="landing-quicklinks__link">Join the community →</span>
+    </a>
+    <a class="landing-quicklinks__card" href="{{ relref . "/docs/getting-started" }}">
+      <h3 class="landing-quicklinks__title">Getting Started</h3>
+      <p class="landing-quicklinks__desc">Follow the tutorial to learn the basics and run your first pipeline.</p>
+      <span class="landing-quicklinks__link">Start the tutorial →</span>
+    </a>
+  </div>
+</section>
