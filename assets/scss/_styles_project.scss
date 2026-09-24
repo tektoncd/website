@@ -42,8 +42,9 @@ body {
     }
 }
 
-/* Static landing-page foundation (issue #742). Later issues insert their
-   sections between the hero and trusted-by sections below. */
+/* Static landing-page foundation (issue #742). Why Tekton and Quick Links
+   (issue #743) sit between the hero and trusted-by sections. Later issues
+   continue inserting remaining landing-page sections here. */
 .td-home {
     // clip avoids a scroll containment that breaks position:sticky
     overflow-x: clip;
@@ -51,6 +52,17 @@ body {
     .td-outer,
     .td-main {
         padding: 0;
+    }
+
+    // Beat Docsy `.td-default main section { padding-top/bottom: 4rem/5rem }`.
+    .td-default main section {
+        &.landing-why-tekton {
+            padding: 2.5rem 1.5rem;
+        }
+
+        &.landing-quicklinks {
+            padding: 0 1.5rem;
+        }
     }
 
     // td-outer has no horizontal padding on the landing page, so the footer
@@ -230,6 +242,181 @@ body {
         margin: 0 .75rem;
         font-size: $font-size-md;
         line-height: 1;
+    }
+}
+
+.landing-why-tekton {
+    padding: 2.5rem 1.5rem;
+    color: #0f172a;
+    font-family: $td-fonts-serif;
+
+    &__heading {
+        margin: 0 0 2rem;
+        color: #0f172a;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, $landing-card-width));
+        justify-content: center;
+        gap: $landing-card-gap;
+        margin: 0 auto;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        color: inherit;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        transition: box-shadow .2s ease, border-color .2s ease;
+
+        &:hover {
+            border-color: #c7d2fe;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .07);
+        }
+    }
+
+    &__icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: .75rem;
+        border: 1px solid;
+        border-radius: .75rem;
+
+        &--blue { background: #eff6ff; border-color: #dbeafe; }
+        &--teal { background: #f0fdfa; border-color: #ccfbf1; }
+        &--purple { background: #f5f3ff; border-color: #ede9fe; }
+        &--amber { background: #fffbeb; border-color: #fef3c7; }
+        &--rose { background: #fff1f2; border-color: #fecdd3; }
+    }
+
+    &__title {
+        margin: 0 0 .375rem;
+        color: #0f172a;
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    &__desc {
+        flex: 1 1 auto;
+        margin: 0;
+        color: #6b7280;
+        font-size: .875rem;
+        line-height: 1.6;
+    }
+}
+
+.landing-quicklinks {
+    padding: 0 1.5rem;
+    font-family: $td-fonts-serif;
+
+    &__heading {
+        margin: 0 0 2rem;
+        color: #0f172a;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+    }
+    
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, $landing-card-width));
+        grid-template-rows: auto 1fr auto;
+        justify-content: center;
+        column-gap: $landing-card-gap;
+        row-gap: .5rem;
+        margin: 2rem auto 4rem;
+    }
+
+    &__card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 3;
+        align-items: start;
+        padding: 1.5rem;
+        color: inherit;
+        text-align: center;
+        text-decoration: none;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: .75rem;
+        transition: box-shadow .2s ease, border-color .2s ease;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+            text-decoration: none;
+            border-color: #c7d2fe;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .07);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        color: #0f172a;
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    &__desc {
+        margin: 0;
+        color: #6b7280;
+        font-size: .9rem;
+        line-height: 1.5;
+    }
+
+    &__link {
+        color: $primary;
+        font-size: .85rem;
+        font-weight: 500;
+    }
+}
+
+@supports not (grid-template-rows: subgrid) {
+    .landing-quicklinks {
+        &__grid {
+            grid-template-rows: none;
+            row-gap: $landing-card-gap;
+        }
+
+        &__card {
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
+            height: 100%;
+        }
+
+        &__title {
+            margin-bottom: .5rem;
+        }
+
+        &__desc {
+            flex: 1 1 auto;
+            margin-bottom: .75rem;
+        }
+
+        &__link {
+            margin-top: auto;
+        }
     }
 }
 
@@ -434,6 +621,12 @@ body {
 }
 
 
+@media only screen and (max-width: 1024px) {
+    .landing-why-tekton__grid {
+        grid-template-columns: repeat(3, minmax(0, $landing-card-width));
+    }
+}
+
 @media only screen and (max-width: $mobile-width) {
     .landing-hero {
         padding: 2.75rem 1rem 3.5rem;
@@ -473,7 +666,66 @@ body {
         }
     }
 
+    .td-home .td-default main section {
+        &.landing-why-tekton {
+            padding: 2rem 1rem;
+        }
+
+        &.landing-quicklinks {
+            padding: 0 1rem;
+        }
+    }
+
+    .landing-why-tekton {
+        &__heading {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        &__grid {
+            grid-template-columns: repeat(2, minmax(0, $landing-card-width));
+        }
+    }
+
+    .landing-quicklinks {
+        &__grid {
+            grid-template-columns: minmax(0, $landing-card-width);
+            grid-template-rows: none;
+            gap: $landing-card-gap;
+            margin: 1.5rem auto 2.5rem;
+        }
+
+        &__card {
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
+        }
+
+        &__title {
+            margin-bottom: .5rem;
+        }
+
+        &__desc {
+            margin-bottom: .75rem;
+        }
+    }
+
+    .landing-trusted {
+        padding: 2.75rem 1rem 3.5rem;
+
+        &__logos {
+            gap: 1.25rem 1.5rem;
+
+            img {
+                width: 5.75rem;
+                height: 2rem;
+            }
+        }
+    }
+
     .td-home .td-main .landing-cncf {
+        padding: 0 1rem 2rem;
+
         &__card {
             flex-direction: column;
             gap: 1rem;
@@ -486,27 +738,18 @@ body {
             }
         }
     }
+}
 
-    .latest-posts {
-        padding: 2.75rem 1rem;
-
+@media only screen and (max-width: 480px) {
+    .landing-why-tekton {
         &__grid {
-            grid-template-columns: minmax(0, 1fr);
+            grid-template-columns: minmax(0, $landing-card-width);
+        }
+
+        &__card {
+            padding: 1rem;
         }
     }
-
-    .page-hero {
-        padding: 2.5rem 1rem;
-
-        &__title {
-            font-size: $font-size-xl;
-        }
-
-        &__subtitle {
-            font-size: $font-size-base;
-        }
-    }
-
 }
 
 /* Top nav bar background */
