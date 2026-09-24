@@ -1,0 +1,15 @@
+{{/* Reusable page hero for section landings (blog, etc.). */}}
+<section class="page-hero"{{ with .title }} aria-labelledby="page-hero-title"{{ end }}>
+  <div class="page-hero__inner">
+    {{ with .eyebrow }}
+    <p class="page-hero__eyebrow">{{ . }}</p>
+    {{ end }}
+    <h1{{ with .title }} id="page-hero-title"{{ end }} class="page-hero__title">{{ .title }}</h1>
+    {{ with .subtitle }}
+    <p class="page-hero__subtitle">{{ . }}</p>
+    {{ end }}
+    {{ with .link }}
+    <a href="{{ .url }}" class="page-hero__link"{{ if .external }} target="_blank" rel="noreferrer"{{ end }}>{{ .text }}</a>
+    {{ end }}
+  </div>
+</section>
