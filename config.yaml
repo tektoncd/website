@@ -28,6 +28,10 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
 imaging:
   resampleFilter: CatmullRom
   quality: 75
