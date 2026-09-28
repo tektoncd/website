@@ -1,0 +1,21 @@
+{{ $count := .Get "count" | default "3" }}
+{{ $posts := where site.RegularPages "Section" "blog" | first (int $count) }}
+{{ if $posts }}
+<section class="latest-posts" aria-labelledby="latest-posts-heading">
+  <h2 id="latest-posts-heading" class="latest-posts__heading">Latest from the Blog</h2>
+  <div class="latest-posts__grid">
+    {{ range $posts }}
+    <a href="{{ .RelPermalink }}" class="latest-post-card">
+      <time class="latest-post-card__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      <h3 class="latest-post-card__title">{{ .Title }}</h3>
+      {{ with .Params.description }}
+      <p class="latest-post-card__desc">{{ . | truncate 120 }}</p>
+      {{ else }}
+      <p class="latest-post-card__desc">{{ .Summary | plainify | truncate 120 }}</p>
+      {{ end }}
+      <span class="latest-post-card__link">Read more &rarr;</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
