@@ -1,0 +1,22 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<section class="landing-hero">
+  <img class="landing-hero__mark" src="{{ "images/tekton-icon-color.png" | relURL }}" alt="Tekton">
+  <h1>Kubernetes Native CI/CD</h1>
+  <p class="landing-hero__intro">Tekton is a powerful and flexible open-source framework for creating CI/CD systems,<br class="d-none d-md-block"> allowing developers to build, test, and deploy across cloud providers and on-premise systems.</p>
+  <div class="landing-hero__actions">
+    <a class="landing-button landing-button--primary" href="{{ relref .Page "/docs/getting-started" }}">Get Started</a>
+    <a class="landing-button landing-button--secondary" href="{{ relref .Page "/community" }}">Join the Community</a>
+  </div>
+  <div class="landing-pipeline" role="img" aria-label="Tekton pipeline: Source, Build, Test, Deploy">
+    <span class="landing-pipeline__label">Pipeline</span>
+    <div class="landing-pipeline__flow">
+      <div class="landing-pipeline__task landing-pipeline__task--source"><i class="fab fa-github" aria-hidden="true"></i><span>Source</span></div>
+      <span class="landing-pipeline__arrow" aria-hidden="true">→</span>
+      <div class="landing-pipeline__task landing-pipeline__task--build"><i class="fas fa-server" aria-hidden="true"></i><span>Build</span></div>
+      <span class="landing-pipeline__arrow" aria-hidden="true">→</span>
+      <div class="landing-pipeline__task landing-pipeline__task--test"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Test</span></div>
+      <span class="landing-pipeline__arrow" aria-hidden="true">→</span>
+      <div class="landing-pipeline__task landing-pipeline__task--deploy"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i><span>Deploy</span></div>
+    </div>
+  </div>
+</section>
