@@ -1,42 +1,49 @@
-{{ $cover := .HasShortcode "blocks/cover" }}
-<nav class="js-navbar-scroll navbar navbar-expand navbar-dark bg-dark {{ if $cover}} td-navbar-cover {{ end }}flex-column flex-md-row td-navbar">
-        <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
-		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span>
-	</a>
-	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
-		<ul class="navbar-nav mt-2 mt-lg-0">
-			{{ $p := . }}
-			<li class="nav-item dropdown d-none d-lg-block">
-			{{ if strings.Contains .Page.RelPermalink "vault/" -}}
-				{{ partial "navbar-version-selector-vault.html" . }}
-			{{ else if strings.Contains .Page.RelPermalink "docs/" -}}
-				{{ partial "navbar-version-selector-docs.html" . }}
- 			{{ end -}}
-			</li>
-			{{ range .Site.Menus.main }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
-				{{ with .Page }}
-				{{ $active = or $active ( $.IsDescendant .)  }}
-				{{ end }}
-				{{ $url := urls.Parse .URL }}
-				{{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
-				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
-			</li>
-			{{ end }}
-			{{ if  (gt (len .Site.Home.Translations) 0) }}
-			<li class="nav-item dropdown d-none d-lg-block">
-				{{ partial "navbar-lang-selector.html" . }}
-			</li>
-			{{ end }}
-			{{ if ne .Page.Title "Search" }}
-			<li class="nav-item d-lg-none">
-				<a class="nav-link" href="/search"><span>Search</span></a>
-			</li>
-			{{ end }}
-		</ul>
-	</div>
-	{{ if ne .Page.Title "Search" }}
-	<div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div>
-	{{ end }}
+<nav class="tekton-navbar navbar navbar-expand-lg" aria-label="Main navigation">
+  <div class="tekton-navbar__inner">
+    <a class="tekton-navbar__brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Tekton home">
+      <img src="{{ "images/tekton-horizontal-color.png" | relURL }}" alt="Tekton">
+    </a>
+
+    <button class="tekton-navbar__toggle navbar-toggler" type="button" data-toggle="collapse" data-target="#tekton-navbar-content" aria-controls="tekton-navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="tekton-navbar-content">
+      {{ if ne .Page.Title "Search" }}
+        <div class="tekton-navbar__search">
+          {{ partial "search-input.html" . }}
+          <kbd class="tekton-navbar__search-shortcut" aria-hidden="true">Ctrl K</kbd>
+        </div>
+      {{ end }}
+
+      <ul class="tekton-navbar__links navbar-nav">
+        {{ $page := . }}
+        {{ range .Site.Menus.main }}
+          {{ $active := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
+          {{ with .Page }}{{ $active = or $active ($page.IsDescendant .) }}{{ end }}
+          {{ $url := urls.Parse .URL }}
+          {{ $baseURL := urls.Parse $.Site.BaseURL }}
+          <li class="nav-item">
+            <a class="nav-link{{ if $active }} active{{ end }}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"{{ if and $url.Host (ne $url.Host $baseURL.Host) }} target="_blank" rel="noreferrer"{{ end }}>{{ .Name }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+
+    <div class="tekton-navbar__utilities">
+      {{ if strings.Contains .Page.RelPermalink "vault/" }}
+        <div class="tekton-navbar__version">{{ partial "navbar-version-selector-vault.html" . }}</div>
+      {{ else if strings.Contains .Page.RelPermalink "docs/" }}
+        <div class="tekton-navbar__version">{{ partial "navbar-version-selector-docs.html" . }}</div>
+      {{ end }}
+
+      <a class="tekton-navbar__icon" href="https://github.com/tektoncd" target="_blank" rel="noreferrer" aria-label="Tekton on GitHub">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      <iframe class="tekton-navbar__star" src="https://ghbtns.com/github-btn.html?user=tektoncd&repo=pipeline&type=star&count=true" title="Star tektoncd/pipeline on GitHub" scrolling="0" frameborder="0"></iframe>
+      <a class="tekton-navbar__icon" href="https://join.slack.com/t/tektoncd/shared_invite/zt-1z8ctzsyv-wLXWwA2Rl3AOhcNGqpWRUw" target="_blank" rel="noreferrer" aria-label="Join the Tekton Slack workspace">
+        <i class="fab fa-slack" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
 </nav>

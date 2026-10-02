@@ -1,6 +1,10 @@
 /*
     Styling for privacy notice watermark in privacy-notice.html
 */
+body {
+    font-family: $font-family-base;
+}
+
 #privacy-notice {
     background-color: rgba(84, 73, 75, 0.9);
     position: fixed;
@@ -36,6 +40,479 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
+}
+
+/* Static landing-page foundation (issue #742). Later issues insert their
+   sections between the hero and trusted-by sections below. */
+.td-home {
+    // clip avoids a scroll containment that breaks position:sticky
+    overflow-x: clip;
+
+    .td-outer,
+    .td-main {
+        padding: 0;
+    }
+
+    // td-outer has no horizontal padding on the landing page, so the footer
+    // must not use the negative margins needed by the Docs layout.
+    .tekton-footer {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+// Docsy uses height:100vh + fixed .td-navbar. Sticky needs the document as
+// the scrollport, so prefer min-height.
+.td-outer {
+    height: auto;
+    min-height: 100vh;
+}
+
+// Drop Docsy’s fixed-navbar content offsets; sticky header stays in flow.
+.td-main main {
+    padding-top: 1.5rem;
+}
+
+.td-sidebar {
+    @media only screen and (min-width: #{$mobile-width + 1}) {
+        padding-top: 1rem;
+    }
+}
+
+.td-home .td-main .landing-hero {
+    padding: 1.5rem 1.5rem 3rem;
+    color: #172033;
+    text-align: center;
+
+    &__mark {
+        display: block;
+        width: 6rem;
+        height: 6rem;
+        margin: 0 auto 1.25rem;
+        object-fit: contain;
+    }
+
+    h1 {
+        margin: 0;
+        color: #172033;
+        font-size: $font-size-2xl;
+        font-weight: 700;
+        letter-spacing: -.045em;
+        line-height: 1.08;
+    }
+
+    &__intro {
+        max-width: 56rem;
+        margin: 1rem auto 0;
+        color: $light;
+        font-size: $font-size-lg;
+        font-weight: 500;
+        line-height: 1.2;
+
+        strong {
+            color: $dark;
+            font-weight: inherit;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: .75rem;
+        margin: 2rem auto;
+    }
+}
+
+.landing-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+    padding: .75rem 1.75rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-size: $font-size-base;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba(0, 16, 159, .25);
+        outline-offset: 3px;
+    }
+
+    &--primary {
+        color: #fff;
+        background: $primary;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+            background: #1729bc;
+        }
+    }
+
+    &--secondary {
+        color: $primary;
+        background: #fff;
+        border-color: #cbd5e1;
+
+        &:hover,
+        &:focus {
+            color: $primary;
+            border-color: $primary;
+            background: #f4f6ff;
+        }
+    }
+}
+
+.landing-pipeline {
+    width: 100%;
+    max-width: 28rem;
+    margin: 0 auto 3rem;
+    padding: 1.25rem 1.5rem 1rem;
+    text-align: left;
+    background: #fbfcff;
+    border: 1px solid #dce4ef;
+    border-radius: 1rem;
+
+    &__label {
+        display: block;
+        margin-bottom: .75rem;
+        color: $primary;
+        font-size: $font-size-xs;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+    }
+
+    &__flow {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    &__task {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 4.5rem;
+        gap: .375rem;
+        padding: .625rem .75rem;
+        border: 1.5px solid;
+        border-radius: .625rem;
+        font-size: $font-size-xs;
+        font-weight: 600;
+        transition: transform .2s ease, box-shadow .2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+        }
+
+        i {
+            font-size: $font-size-md;
+        }
+
+        &--source { color: #2563eb; background: #eff6ff; border-color: #bfdbfe; }
+        &--build { color: #b45309; background: #fffbeb; border-color: #fde68a; }
+        &--test { color: #047857; background: #ecfdf5; border-color: #a7f3d0; }
+        &--deploy { color: #6d28d9; background: #f5f3ff; border-color: #ddd6fe; }
+    }
+
+    &__arrow {
+        flex: 0 0 auto;
+        color: #94a3b8;
+        margin: 0 .75rem;
+        font-size: $font-size-md;
+        line-height: 1;
+    }
+}
+
+.landing-trusted {
+    max-width: 81.25rem;
+    margin: 0 auto;
+    padding: 3.75rem 1.5rem 5.5rem;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+
+    h2 {
+        margin: 0 0 2rem;
+        color: #6b7280;
+        font-size: $font-size-sm;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+    }
+
+    &__logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem 2.75rem;
+
+        img {
+            width: 7.75rem;
+            height: 2.5rem;
+            object-fit: contain;
+        }
+    }
+}
+
+.td-home .td-main .landing-cncf {
+    // Keep the CNCF card visually associated with the footer. The reference
+    padding: 0 1.5rem 2rem;
+
+    &__card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        width: 100%;
+        max-width: 67.5rem;
+        min-height: 6.75rem;
+        margin: 0 auto;
+        padding: 1.25rem 2rem;
+        color: #536174;
+        background: #fbfcff;
+        border: 1px solid #dce4ef;
+        border-radius: 1.125rem;
+        font-size: $font-size-md;
+        text-decoration: none;
+        transition: background-color .2s ease, border-color .2s ease;
+
+        &:hover,
+        &:focus {
+            color: #172033;
+            background: #f1f5f9;
+            border-color: #a5b4fc;
+            text-decoration: none;
+        }
+
+        img {
+            width: 16rem;
+            max-height: 3.25rem;
+            object-fit: contain;
+        }
+
+        strong {
+            color: #172033;
+        }
+    }
+}
+
+.latest-posts {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 60rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 3.75rem 1.5rem;
+    color: #172033;
+    font-size: $font-size-base;
+    line-height: 1.6;
+
+    &__heading {
+        margin: 0 0 1.5rem;
+        color: #172033;
+        font-size: $font-size-lg;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax($landing-card-width, 1fr));
+        gap: $landing-card-gap;
+    }
+}
+
+.latest-post-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.5rem;
+    color: inherit !important;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: .75rem;
+    text-decoration: none !important;
+    transition: box-shadow .2s, border-color .2s;
+
+    &:hover,
+    &:focus {
+        border-color: lighten($primary, 45%);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .07);
+        text-decoration: none !important;
+    }
+
+    &__date {
+        margin-bottom: .5rem;
+        color: #6b7280;
+        font-size: $font-size-sm;
+        font-weight: 500;
+    }
+
+    &__title {
+        margin: 0 0 .5rem;
+        color: #172033;
+        font-size: $font-size-md;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    &__desc {
+        flex: 1;
+        margin: 0;
+        color: #6b7280;
+        font-size: $font-size-base;
+        line-height: 1.6;
+    }
+
+    &__link {
+        margin-top: .75rem;
+        color: $primary;
+        font-size: $font-size-sm;
+        font-weight: 500;
+    }
+}
+
+.page-hero {
+    padding: 4rem 1.5rem;
+    color: #fff;
+    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+    text-align: center;
+
+    &__inner {
+        max-width: 43.75rem;
+        margin: 0 auto;
+    }
+
+    &__eyebrow {
+        margin: 0 0 .5rem;
+        color: rgba(255, 255, 255, .85);
+        font-size: $font-size-xs;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+        &__title {
+            margin: 0 0 .75rem;
+            color: #fff;
+            font-size: $font-size-2xl;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            line-height: 1.2;
+        }
+
+    &__subtitle {
+        margin: 0;
+        color: rgba(255, 255, 255, .85);
+        font-size: $font-size-md;
+        line-height: 1.6;
+    }
+
+    &__link {
+        display: inline-block;
+        margin-top: 1.25rem;
+        color: rgba(255, 255, 255, .85);
+        font-size: $font-size-sm;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+}
+
+
+@media only screen and (max-width: $mobile-width) {
+    .landing-hero {
+        padding: 2.75rem 1rem 3.5rem;
+
+        &__mark {
+            width: 5.5rem;
+            height: 5.5rem;
+        }
+
+        &__actions {
+            margin-top: 2rem;
+        }
+    }
+
+    .landing-button {
+        width: 100%;
+        max-width: 19rem;
+        min-height: 3.5rem;
+        font-size: $font-size-base;
+    }
+
+    .landing-pipeline {
+        &__task {
+            width: calc((100% - 4.5rem) / 4);
+            min-width: 0;
+            padding: .25rem;
+            font-size: $font-size-xs;
+
+            i {
+                font-size: $font-size-sm;
+            }
+        }
+
+        &__arrow {
+            margin: 0 .125rem;
+            font-size: $font-size-md;
+        }
+    }
+
+    .td-home .td-main .landing-cncf {
+        &__card {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
+            font-size: $font-size-base;
+            text-align: center;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .latest-posts {
+        padding: 2.75rem 1rem;
+
+        &__grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    .page-hero {
+        padding: 2.5rem 1rem;
+
+        &__title {
+            font-size: $font-size-xl;
+        }
+
+        &__subtitle {
+            font-size: $font-size-base;
+        }
+    }
+
 }
 
 /* Top nav bar background */
@@ -167,7 +644,7 @@ pre {
     }
 
     h4 {
-        font-size: 1.35rem;
+        font-size: $font-size-md;
         margin-top: 0;
         margin-bottom: .5rem;
         font-weight: 500;
@@ -179,3 +656,339 @@ pre {
         text-decoration: underline;
     }
 }
+
+// Sticky on body > header (Docsy layout sibling of .td-outer). Sticky on the
+// nested nav alone cannot stick because <header> is only as tall as the nav.
+body > header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.tekton-navbar {
+    position: relative;
+    width: 100%;
+    min-height: 4rem;
+    padding: 0;
+    overflow-x: clip;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 90rem;
+        min-width: 0;
+        min-height: 4rem;
+        margin: 0 auto;
+        padding: .75rem 1.5rem;
+    }
+
+    &__brand {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        margin-right: 1.5rem;
+
+        img {
+            display: block;
+            width: 8.75rem;
+            height: 2.25rem;
+            object-fit: contain;
+        }
+    }
+
+    &__toggle {
+        margin-left: auto;
+        padding: .5rem;
+        border: 1px solid #cbd5e1;
+        border-radius: .375rem;
+
+        .navbar-toggler-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23334155' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        &[aria-expanded="true"] .navbar-toggler-icon {
+            position: relative;
+            background-image: none;
+
+            &::before {
+                position: absolute;
+                inset: -.5rem 0 0;
+                color: #111827;
+                content: "×";
+                font-size: 2rem;
+                font-weight: 300;
+                line-height: 1;
+            }
+        }
+    }
+
+    .navbar-collapse {
+        align-items: center;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    &__links {
+        align-items: center;
+        order: 0;
+        gap: .25rem;
+
+        .nav-link {
+            padding: .5rem .625rem;
+            color: #475569;
+            font-size: $font-size-sm;
+            font-weight: 500;
+            line-height: 1.5;
+            white-space: nowrap;
+
+            &:hover,
+            &:focus,
+            &.active {
+                color: $primary;
+            }
+
+            &:focus-visible {
+                outline: 2px solid #3b82f6;
+                outline-offset: 2px;
+                border-radius: .25rem;
+            }
+        }
+    }
+
+    &__utilities {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: .625rem;
+        margin-left: .625rem;
+    }
+
+    &__search {
+        position: relative;
+        order: 1;
+        width: 16rem;
+        margin-left: auto;
+
+        .td-search {
+            width: 100%;
+        }
+
+        .td-search-input {
+            height: 2.25rem;
+            padding: .5rem 4.75rem .5rem .75rem;
+            text-indent: 0;
+            font-size: $font-size-sm;
+            color: #475569;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: .625rem;
+            box-shadow: none;
+
+            &:focus {
+                background: #fff;
+                border-color: #94a3b8;
+                box-shadow: 0 0 0 .2rem rgba(0, 16, 159, .12);
+            }
+        }
+
+        .td-search__icon {
+            display: none;
+        }
+
+        &-shortcut {
+            position: absolute;
+            top: 50%;
+            right: .5rem;
+            padding: .2rem .4rem;
+            color: #64748b;
+            background: #fff;
+            border: 1px solid #d8dee8;
+            border-radius: .3rem;
+            box-shadow: 0 1px 1px rgba(15, 23, 42, .04);
+            font-family: inherit;
+            font-size: $font-size-xs;
+            font-weight: 500;
+            letter-spacing: .03em;
+            line-height: 1;
+            pointer-events: none;
+            text-transform: uppercase;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__version .nav-link {
+        padding: .5rem .625rem;
+        color: #475569;
+        font-size: $font-size-sm;
+    }
+
+    &__icon,
+    &__star {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #111827;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: $primary;
+            text-decoration: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: .25rem;
+        }
+    }
+
+    &__icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: $font-size-lg;
+    }
+
+    &__star {
+        display: block;
+        width: 6.25rem;
+        height: 1.25rem;
+        padding: 0;
+        border: 0;
+    }
+}
+
+.tekton-footer {
+    margin: 0 -15px;
+    padding: 1.5rem 1rem 1rem;
+    color: #6b7280;
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+
+    &__links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        margin-bottom: .75rem;
+
+        a {
+            color: #6b7280;
+            font-size: $font-size-sm;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: $primary;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__cncf,
+    &__legal {
+        margin: 0;
+        font-size: $font-size-xs;
+        line-height: 1.5;
+    }
+
+    &__legal {
+        max-width: 72rem;
+        margin: .5rem auto 0;
+        font-size: $font-size-xs;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            color: $primary;
+        }
+    }
+}
+
+@media only screen and (max-width: $navbar-collapse-width) {
+    .tekton-navbar {
+        &__inner {
+            flex-wrap: wrap;
+            padding-right: .75rem;
+            padding-left: .75rem;
+        }
+
+        .navbar-collapse {
+            flex-basis: 100%;
+            order: 3;
+
+            &.show {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        &__links {
+            flex-direction: column;
+            align-items: stretch;
+            order: 1;
+            padding: .75rem 0;
+            gap: 0;
+
+            .nav-link {
+                position: relative;
+                padding: .5rem;
+                font-size: $font-size-sm;
+                text-align: left;
+            }
+
+            .nav-item:not(:last-child) .nav-link {
+                &::after {
+                    position: absolute;
+                    right: .5rem;
+                    color: #64748b;
+                    content: "›";
+                    font-size: $font-size-lg;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+            }
+        }
+
+        &__utilities {
+            order: 1;
+            margin-left: auto;
+
+            .tekton-navbar__star,
+            .tekton-navbar__version {
+                display: none;
+            }
+        }
+
+        &__search {
+            order: 0;
+            width: 100%;
+            margin: .75rem 0 0;
+        }
+
+        &__toggle {
+            order: 2;
+            margin-left: .5rem;
+            padding: .5rem;
+            border: 0;
+            border-radius: 0;
+        }
+    }
+}
+
+@import "page-rail";
+@import "page-breadcrumb";
+@import "blog";
