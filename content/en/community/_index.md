@@ -2,7 +2,7 @@
 title: Community
 menu:
   main:
-    weight: 30
+    weight: 50
 ---
 
 Find more information on the [Tekton Community
