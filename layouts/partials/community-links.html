@@ -1,118 +1,152 @@
-<section class="row td-box td-box--4 td-box--gradient td-box--height-auto linkbox">
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <h2>Get involved</h2>
-        <p>Read our contribution standards:</p>
-        <ul>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/code-of-conduct.md">
-              Code of conduct</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/design-principles.md">
-              Design principles</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/standards.md#commit-messages">
-              Commits standards</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/standards.md#code">
-              Code standards</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/user-profiles.md">
-              User profiles</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/releases.md">
-              Release cycles</a>
-          </li>
-        </ul>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <h2>Reach out</h2>
-        <p>Join our community spaces:</p>
-        <ul>
-          <li><i class="fab fa-slack fa-fw"></i>
-	    <a href="https://join.slack.com/t/tektoncd/shared_invite/zt-1z8ctzsyv-wLXWwA2Rl3AOhcNGqpWRUw">
-              Join the Tekton Slack!</a>
-          </li>
-          <li><i class="fab fa-twitter fa-fw"></i>
-            <a href="https://twitter.com/tektoncd">
-              Follow us on Twitter</a>
-          </li>
+{{/* Section 1: Hero */}}
+{{ partial "page-hero.html" (dict "title" "Tekton Community" "subtitle" "Join us in building the industry-standard, cloud-native CI/CD platform." "link" (dict "url" "https://github.com/tektoncd/community/blob/main/code-of-conduct.md" "text" "CNCF Code of Conduct" "external" true)) }}
 
-          <li><i class="fa fa-inbox fa-fw"></i>
-            <a href="https://groups.google.com/forum/#!forum/tekton-dev">
-              Tekton developers mailing list</a>
-          </li>
-          <li><i class="fa fa-inbox fa-fw"></i>
-            <a href="https://groups.google.com/forum/#!forum/tekton-users">
-              Tekton users mailing list</a>
-          </li>
-          <li><i class="fa fa-calendar fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/working-groups.md">
-              Working groups and meetings</a>
-          </li>
-          <li><i class="fab fa-google-drive fa-fw"></i>
-            <a href="https://drive.google.com/drive/u/0/folders/0AFOvPxM9MpebUk9PVA">
-              The Tekton Developer's shared Drive</a>
-          </li>
-        </ul>
+{{/* Section 2: Get Started */}}
+<div class="community-section community-section--alt">
+  <div class="community-section__inner">
+    <h2 class="community-section__heading">Get started in our community!</h2>
+    <div class="community-pills">
+      <a href="https://join.slack.com/t/tektoncd/shared_invite/zt-1z8ctzsyv-wLXWwA2Rl3AOhcNGqpWRUw" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">💬</span> Chat on Slack
+      </a>
+      <a href="https://github.com/tektoncd/pipeline/contribute" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">🐛</span> Good First Issues
+      </a>
+      <a href="https://groups.google.com/forum/#!forum/tekton-dev" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">📧</span> Developers Mailing List
+      </a>
+      <a href="https://groups.google.com/forum/#!forum/tekton-users" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">📧</span> Users Mailing List
+      </a>
+      <a href="https://twitter.com/tektoncd" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">🐦</span> Twitter / X
+      </a>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <h2>Contribution process</h2>
-        <p>Check out our processes:</p>
+  </div>
+</div>
+
+{{/* Section 3: Community Initiatives */}}
+<div class="community-section">
+  <div class="community-section__inner">
+    <span class="community-section__label">Community Initiatives</span>
+    <h2 class="community-section__heading">Stay connected with the project</h2>
+    <div class="community-grid community-grid--2">
+      <div class="community-card">
+        <div class="community-card__header">
+          <div class="community-card__icon community-card__icon--orange" aria-hidden="true">📅</div>
+          <h3>Community Meetings</h3>
+        </div>
+        <p>Join our regular meetings — everyone is welcome to listen, ask questions, and contribute.</p>
+        <a href="https://calendar.google.com/calendar/embed?src=tektoncd@gmail.com" class="community-card__cta" target="_blank" rel="noreferrer">
+          View schedule →
+        </a>
+      </div>
+      <div class="community-card">
+        <div class="community-card__header">
+          <div class="community-card__icon community-card__icon--blue" aria-hidden="true">👥</div>
+          <h3>Working Groups</h3>
+        </div>
+        <p>Focused teams drive specific areas of the project. Find one that matches your interests.</p>
+        <a href="https://github.com/tektoncd/community/blob/main/working-groups.md" class="community-card__cta" target="_blank" rel="noreferrer">
+          Join a group →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/* Section 4: Contributing */}}
+<div class="community-section community-section--alt">
+  <div class="community-section__inner">
+    <h2 class="community-section__heading">Contributing</h2>
+    <div class="community-grid community-grid--3">
+      <div class="community-card">
+        <div class="community-card__header">
+          <div class="community-card__icon community-card__icon--teal" aria-hidden="true">📝</div>
+          <h3>Code &amp; Docs</h3>
+        </div>
+        <p>Read our contribution standards and start contributing to Tekton.</p>
         <ul>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/process/README.md#finding-something-to-work-on">
-              Find something to work on</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/process/README.md#proposing-features">
-              Propose new features</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/process/contributor-ladder.md">
-              Contributor ladder</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/process/README.md#reviews">
-              Pull requests reviews</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/process/projects.md">
-              Propose new projects</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/org/README.md">
-              GitHub Org management</a>
-          </li>
-          <li><i class="fab fa-github fa-fw"></i>
-            <a href="https://github.com/tektoncd/community/blob/main/org/README.md">
-              Contributor's Licence Agreement</a>
-          </li>
+          <li><a href="{{ relURL "docs/contribute/" }}">Contribution Guide</a></li>
+          <li><a href="https://github.com/tektoncd/community/blob/main/standards.md#code" target="_blank" rel="noreferrer">Code Standards</a></li>
+          <li><a href="https://github.com/tektoncd/community/blob/main/standards.md#commit-messages" target="_blank" rel="noreferrer">Commit Standards</a></li>
         </ul>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <h2>Contribute to documentation</h2>
-        <p>Help improve the Tekton documentation:</p>
+      </div>
+      <div class="community-card">
+        <div class="community-card__header">
+          <div class="community-card__icon community-card__icon--purple" aria-hidden="true">⚙️</div>
+          <h3>Pull Requests</h3>
+        </div>
+        <p>Understand how to propose, review, and ship contributions.</p>
         <ul>
-          <li><i class="fas fa-book fa-fw"></i>
-            <a href="/docs/contribute/#contribute-documentation">
-              Documentation contribution guide</a>
-          </li>
-          <li><i class="fas fa-blog fa-fw"></i>
-            <a href="/docs/contribute/blog-guidelines/">
-              Blog post guidelines</a>
-          </li>
+          <li><a href="https://github.com/tektoncd/community/blob/main/process/README.md#reviews" target="_blank" rel="noreferrer">PR Reviews</a></li>
+          <li><a href="https://github.com/tektoncd/community/blob/main/process/README.md#proposing-features" target="_blank" rel="noreferrer">Feature Proposals</a></li>
+          <li><a href="https://github.com/tektoncd/community/tree/main/teps" target="_blank" rel="noreferrer">TEPs (Enhancement Proposals)</a></li>
         </ul>
+      </div>
+      <div class="community-card">
+        <div class="community-card__header">
+          <div class="community-card__icon community-card__icon--amber" aria-hidden="true">🪜</div>
+          <h3>Contributor Ladder</h3>
+        </div>
+        <p>Grow from first-time contributor to project lead. Every step is documented.</p>
+        <ul>
+          <li><a href="https://github.com/tektoncd/community/blob/main/process/contributor-ladder.md" target="_blank" rel="noreferrer">Contributor Ladder</a></li>
+          <li><a href="https://github.com/tektoncd/community/blob/main/process/README.md#finding-something-to-work-on" target="_blank" rel="noreferrer">Find Work</a></li>
+          <li><a href="https://github.com/tektoncd/community/blob/main/releases.md" target="_blank" rel="noreferrer">Release Cycles</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <h2>Learn about Tekton users</h2>
-        <p>Open source projects, cloud vendors, and end users are building
-        amazing things with Tekton. Check out the
-        <a href="https://github.com/tektoncd/community/blob/main/adopters.md">
-          list of Tekton Adopters</a> to learn more.</p>
+  </div>
+</div>
+
+{{/* Section 5: Governance */}}
+<div class="community-section">
+  <div class="community-section__inner">
+    <h2 class="community-section__heading">Governance</h2>
+    <div class="community-pills">
+      <a href="https://github.com/tektoncd/community/blob/main/governance.md" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">🏛️</span> Governance Model
+      </a>
+      <a href="https://github.com/tektoncd/community/tree/main/teps" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">📋</span> TEPs
+      </a>
+      <a href="https://github.com/tektoncd/community/blob/main/roadmap.md" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">🗺️</span> Roadmap
+      </a>
+      <a href="https://github.com/tektoncd/community/blob/main/design-principles.md" class="community-pill" target="_blank" rel="noreferrer">
+        <span class="community-pill__icon" aria-hidden="true">📐</span> Design Principles
+      </a>
     </div>
-</section>
+  </div>
+</div>
+
+{{/* Section 6: Adopters */}}
+<div class="community-section community-section--alt community-adopters">
+  <div class="community-section__inner">
+    <h2 class="community-section__heading community-adopters__heading">Trusted by</h2>
+    <div class="community-adopters__logos">
+      {{ $logos := slice
+        (dict "file" "google.svg" "name" "Google")
+        (dict "file" "ibm.svg" "name" "IBM")
+        (dict "file" "redhat.svg" "name" "Red Hat")
+        (dict "file" "alibaba.svg" "name" "Alibaba")
+        (dict "file" "Nubank_logo_2021.svg" "name" "Nubank")
+        (dict "file" "alauda.svg" "name" "Alauda")
+        (dict "file" "giantswarmio.svg" "name" "Giant Swarm")
+        (dict "file" "Allianz_Direct.svg" "name" "Allianz Direct")
+        (dict "file" "Marriott_Vacations.svg" "name" "Marriott Vacations")
+        (dict "file" "kadaster.svg" "name" "Kadaster")
+        (dict "file" "onestock.svg" "name" "OneStock")
+      }}
+      {{ range $logos }}
+      <img src="{{ printf "images/adopters/%s" .file | relURL }}" alt="{{ .name }}" class="community-adopters__logo" loading="lazy">
+      {{ end }}
+    </div>
+    <div class="community-adopters__link">
+      <a href="https://github.com/tektoncd/community/blob/main/adopters.md" class="community-card__cta" target="_blank" rel="noreferrer">
+        View all adopters →
+      </a>
+    </div>
+  </div>
+</div>
