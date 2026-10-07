@@ -54,7 +54,7 @@
 							 {{- $link := cond (isset .Params "manuallink") .Params.manualLink .RelPermalink -}}
 							<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child{{ if $active }} active-path{{ end }}" id="{{ $mid }}-li">
 							 <input type="checkbox" id="{{ $mid }}-check"{{ if $active}} checked{{ end }}/>
-							 <label for="{{ $mid }}-check"><a class="align-left pl-0 {{ if $active}} active{{ end }} td-sidebar-link td-sidebar-link__page" id="{{ $mid }}" href="{{ $link }}"{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}><span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}"> {{ .LinkTitle }}</span></a></label>
+							 <label for="{{ $mid }}-check"><a class="align-left pl-0 {{ if $active}} active{{ end }} td-sidebar-link td-sidebar-link__page" id="{{ $mid }}" href="{{ $link }}"{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}><span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}"> {{ if .LinkTitle }}{{ .LinkTitle }}{{ else if .Title }}{{ .Title }}{{ else }}{{ .File.BaseFileName }}{{ end }}</span></a></label>
 							</li>
             </li>
            {{- end -}}
