@@ -1,0 +1,43 @@
+{{ define "main" }}
+
+{{ partial "page-hero.html" (dict "title" "Blog" "subtitle" "News, releases, and technical deep-dives from the Tekton project.") }}
+
+<div class="blog-page">
+  {{ $paginator := .Paginate (where .Site.RegularPages "Section" "blog") 9 }}
+  {{ if $paginator.Pages }}
+  <div class="latest-posts__grid">
+    {{ range $paginator.Pages }}
+    <a href="{{ .RelPermalink }}" class="latest-post-card">
+      <time class="latest-post-card__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      <h2 class="latest-post-card__title">{{ .Title }}</h2>
+      {{ with .Params.description }}
+      <p class="latest-post-card__desc">{{ . | truncate 150 }}</p>
+      {{ else }}
+      <p class="latest-post-card__desc">{{ .Summary | plainify | truncate 150 }}</p>
+      {{ end }}
+      <span class="latest-post-card__link">Read more &rarr;</span>
+    </a>
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="blog-pagination" aria-label="Blog pagination">
+    {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}" class="blog-pagination__link">&larr; Newer</a>
+    {{ else }}
+    <span class="blog-pagination__link blog-pagination__link--disabled">&larr; Newer</span>
+    {{ end }}
+    <span class="blog-pagination__info">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}" class="blog-pagination__link">Older &rarr;</a>
+    {{ else }}
+    <span class="blog-pagination__link blog-pagination__link--disabled">Older &rarr;</span>
+    {{ end }}
+  </nav>
+  {{ end }}
+  {{ end }}
+
+  {{ partial "page-meta-links.html" . }}
+</div>
+
+{{ end }}
