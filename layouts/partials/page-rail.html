@@ -9,8 +9,21 @@
 {{ end }}
   <div class="page-rail__actions">
 {{ $gh_repo := ($.Param "github_repo") }}
+{{ $gh_subdir := ($.Param "github_subdir") }}
+{{ $gh_project_repo := ($.Param "github_project_repo") }}
 {{ if and $gh_repo .Path }}
     {{ $editURL := printf "%s/edit/main/content/%s/%s" $gh_repo .Site.Language.Lang .Path }}
+    {{ if $gh_project_repo }}
+      {{ with .File }}
+        {{ $filename := .LogicalName }}
+        {{ if eq $filename "_index.md" }}{{ $filename = "README.md" }}{{ end }}
+        {{ $editURL = printf "%s/edit/main/docs/%s" $gh_project_repo $filename }}
+      {{ end }}
+    {{ else if and $gh_subdir .Site.Language.Lang }}
+      {{ $editURL = printf "%s/edit/main/%s/content/%s/%s" $gh_repo $gh_subdir .Site.Language.Lang .Path }}
+    {{ else if $gh_subdir }}
+      {{ $editURL = printf "%s/edit/main/%s/content/%s" $gh_repo $gh_subdir .Path }}
+    {{ end }}
     <a class="page-rail__edit" href="{{ $editURL }}" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-github" aria-hidden="true"></i>
       Edit this page

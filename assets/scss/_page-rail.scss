@@ -147,3 +147,51 @@ html:has(.page-rail) {
         padding: 0 1rem;
     }
 }
+
+// Docs keep the section tree on the left and use the same breadcrumb + rail
+// as blog posts. The rail layout should fill the content column.
+.td-docs {
+    .docs-main {
+        min-width: 0;
+    }
+
+    .page-rail-layout {
+        max-width: none;
+        margin: 0;
+        justify-content: start;
+        padding: 0 0 2rem;
+    }
+
+    .td-content {
+        > h1,
+        > h2,
+        > h3,
+        > h4,
+        > h5,
+        > h6,
+        > p,
+        > ul,
+        > ol,
+        > pre,
+        > .highlight,
+        > .lead,
+        > blockquote,
+        > dl dd,
+        > .alert,
+        .footnotes {
+            max-width: none;
+        }
+    }
+}
+
+@media only screen and (max-width: $mobile-width) {
+    .td-docs .page-rail-layout {
+        padding: 0;
+    }
+}
+
+@media print {
+    .page-rail {
+        display: none;
+    }
+}
