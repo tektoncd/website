@@ -80,6 +80,9 @@ menu:
     - name: "Docs"
       url: "/docs/"
       weight: 10
+    - name: "Components"
+      url: "/components/"
+      weight: 20
     - name: "Community"
       url: "/community/"
       weight: 30

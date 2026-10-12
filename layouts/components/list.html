@@ -1,0 +1,89 @@
+{{ define "main" }}
+{{ partial "page-hero.html" (dict
+  "eyebrow" "Tekton ecosystem"
+  "title" "Modular CI/CD for Kubernetes"
+  "subtitle" "Pick the components you need. Each one works standalone or together as a full platform."
+) }}
+
+{{ $page := . }}
+{{ $components := slice
+  (dict "title" "Pipelines" "type" "Core" "icon" "fa-project-diagram" "color" "blue" "url" "/docs/pipelines/" "description" "The engine. Define Tasks, Steps, and Pipelines as Kubernetes custom resources. Each Step runs in its own container.")
+  (dict "title" "Triggers" "type" "Automation" "icon" "fa-bolt" "color" "amber" "url" "/docs/triggers/" "description" "Event-driven automation. EventListeners watch for webhooks, TriggerBindings extract data, and TriggerTemplates create PipelineRuns.")
+  (dict "title" "Chains" "type" "Security" "icon" "fa-shield-alt" "color" "rose" "url" "/docs/chains/" "description" "Supply chain security. Automatically signs TaskRun and PipelineRun results, and generates SLSA provenance attestations.")
+  (dict "title" "Pipelines-as-Code" "type" "Automation" "icon" "fa-code-branch" "color" "teal" "url" "/docs/pipelines-as-code/" "description" "Git-native CI/CD. Define pipelines in your repository, trigger from pull requests, and see status checks without external configuration.")
+  (dict "title" "CLI (tkn)" "type" "Operations" "icon" "fa-terminal" "color" "purple" "url" "/docs/cli/" "description" "Command-line interface for managing Tekton resources. Start PipelineRuns, view logs, and debug failures from your terminal.")
+  (dict "title" "Dashboard" "type" "Operations" "icon" "fa-columns" "color" "teal" "url" "/docs/dashboard/" "description" "Web-based UI for monitoring PipelineRuns, TaskRuns, and resources. View logs, inspect YAML, and manage CI/CD workflows visually.")
+  (dict "title" "Hub / Catalog" "type" "Operations" "icon" "fa-book-open" "color" "amber" "url" "/docs/catalog/" "description" "Marketplace of reusable Tasks and Pipelines. Find community-contributed build steps for Git, Docker, Kubernetes, and more.")
+  (dict "title" "Operator" "type" "Operations" "icon" "fa-cog" "color" "purple" "url" "/docs/operator/" "description" "Kubernetes operator for lifecycle management. Install, upgrade, and configure Tekton components declaratively through TektonConfig resources.")
+  (dict "title" "Results" "type" "Operations" "icon" "fa-database" "color" "blue" "url" "/docs/results/" "description" "Long-term storage API for pipeline run data. Query historical runs, aggregate metrics, and retain records beyond Kubernetes etcd.")
+  (dict "title" "Pruner" "type" "Operations" "icon" "fa-times-circle" "color" "rose" "url" "/docs/pruner/" "description" "Automated resource cleanup. Schedule pruning of old PipelineRuns and TaskRuns to keep your cluster tidy and etcd healthy.")
+}}
+
+<section id="content" class="components-page" aria-labelledby="components-heading">
+  <h2 id="components-heading" class="sr-only">Tekton components</h2>
+  <div class="components-page__grid">
+    {{ range $components }}
+    <a class="components-card" href="{{ relref $page .url }}">
+      <span class="components-card__icon components-card__icon--{{ .color }}" aria-hidden="true"><i class="fas {{ .icon }}"></i></span>
+      <h3 class="components-card__title">{{ .title }}</h3>
+      <span class="components-card__type components-card__type--{{ .type | urlize }}">{{ .type }}</span>
+      <p class="components-card__desc">{{ .description }}</p>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<section class="components-map" aria-label="How Components Fit Together">
+  <h2>How Components Fit Together</h2>
+  <p>Every component is optional. Start with Pipelines and add what you need.</p>
+  <div class="components-map__diagram" role="img" aria-label="Pipelines is the core component. Triggers and Pipelines-as-Code provide automation, Chains handles security, and CLI, Dashboard, Catalog, Operator, Results, and Pruner are complementary operations tools.">
+    <svg viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="300" y="20" width="200" height="60" rx="12" class="components-map__node components-map__node--core" />
+      <text x="400" y="55" text-anchor="middle" class="components-map__node-text components-map__node-text--bold">Pipelines</text>
+      <text x="400" y="16" text-anchor="middle" class="components-map__label">CORE</text>
+
+      <text x="200" y="120" text-anchor="middle" class="components-map__label">AUTOMATION</text>
+      <rect x="80" y="130" width="120" height="44" rx="8" class="components-map__node components-map__node--automation" />
+      <text x="140" y="157" text-anchor="middle" class="components-map__node-text">Triggers</text>
+      <rect x="220" y="130" width="160" height="44" rx="8" class="components-map__node components-map__node--automation" />
+      <text x="300" y="157" text-anchor="middle" class="components-map__node-text">Pipelines-as-Code</text>
+
+      <text x="580" y="120" text-anchor="middle" class="components-map__label">SECURITY</text>
+      <rect x="520" y="130" width="120" height="44" rx="8" class="components-map__node components-map__node--security" />
+      <text x="580" y="157" text-anchor="middle" class="components-map__node-text">Chains</text>
+
+      <text x="400" y="220" text-anchor="middle" class="components-map__label">OPERATIONS</text>
+      <g class="components-map__node components-map__node--operations">
+        <rect x="40" y="230" width="100" height="40" rx="8" />
+        <rect x="160" y="230" width="110" height="40" rx="8" />
+        <rect x="290" y="230" width="100" height="40" rx="8" />
+        <rect x="410" y="230" width="100" height="40" rx="8" />
+        <rect x="530" y="230" width="100" height="40" rx="8" />
+        <rect x="650" y="230" width="100" height="40" rx="8" />
+      </g>
+      <g class="components-map__node-text">
+        <text x="90" y="255" text-anchor="middle">CLI</text>
+        <text x="215" y="255" text-anchor="middle">Dashboard</text>
+        <text x="340" y="255" text-anchor="middle">Catalog</text>
+        <text x="460" y="255" text-anchor="middle">Operator</text>
+        <text x="580" y="255" text-anchor="middle">Results</text>
+        <text x="700" y="255" text-anchor="middle">Pruner</text>
+      </g>
+
+      <line x1="350" y1="80" x2="200" y2="130" class="components-map__line" />
+      <line x1="400" y1="80" x2="300" y2="130" class="components-map__line" />
+      <line x1="450" y1="80" x2="580" y2="130" class="components-map__line" />
+      <line x1="400" y1="80" x2="400" y2="130" class="components-map__line components-map__line--complementary" />
+      <line x1="340" y1="80" x2="90" y2="230" class="components-map__line components-map__line--complementary" />
+      <line x1="360" y1="80" x2="215" y2="230" class="components-map__line components-map__line--complementary" />
+      <line x1="400" y1="80" x2="340" y2="230" class="components-map__line components-map__line--complementary" />
+      <line x1="440" y1="80" x2="460" y2="230" class="components-map__line components-map__line--complementary" />
+      <line x1="460" y1="80" x2="580" y2="230" class="components-map__line components-map__line--complementary" />
+      <line x1="480" y1="80" x2="700" y2="230" class="components-map__line components-map__line--complementary" />
+
+      <text x="400" y="305" text-anchor="middle" class="components-map__caption">Solid lines = direct integration · Dashed lines = complementary tooling</text>
+    </svg>
+  </div>
+  <a class="landing-button landing-button--primary" href="{{ relref . "/docs/getting-started/" }}">Get Started with Tekton</a>
+</section>
+{{ end }}
