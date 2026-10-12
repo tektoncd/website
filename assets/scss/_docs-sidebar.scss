@@ -1,0 +1,152 @@
+// Docs left nav, aligned with the Hextra sidebar on the refresh site.
+// Light-mode only: gray links, a right chevron, and a tinted active pill.
+
+$docs-sidebar-text: #6b7280;
+$docs-sidebar-text-hover: #111827;
+$docs-sidebar-hover: #f3f4f6;
+$docs-sidebar-active-bg: #d4d8ff;
+$docs-sidebar-active-text: #00109f;
+$docs-sidebar-line: #e5e7eb;
+
+.td-docs {
+    .docs-sidebar {
+        margin: 0;
+        padding: 1rem;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .ul-1 {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+        }
+
+        .td-sidebar-nav__section,
+        .with-child,
+        .without-child,
+        .ul-1 > li {
+            padding: 0;
+            font-weight: 400;
+        }
+
+        a,
+        .td-sidebar-link__page,
+        .td-sidebar-link__section {
+            display: block;
+            padding: .375rem .5rem;
+            border-radius: .125rem;
+            color: $docs-sidebar-text;
+            font-size: $font-size-sm;
+            font-weight: 400;
+            line-height: 1.25rem;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            background: $docs-sidebar-hover;
+            color: $docs-sidebar-text-hover;
+        }
+
+        a.active {
+            background: $docs-sidebar-active-bg;
+            color: $docs-sidebar-active-text;
+            font-weight: 600;
+        }
+
+        .with-child > label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            border-radius: .125rem;
+            cursor: pointer;
+
+            > a {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            &:has(> a.active) {
+                background: $docs-sidebar-active-bg;
+
+                > a.active {
+                    background: transparent;
+                }
+            }
+        }
+
+        .docs-sidebar__chevron {
+            flex: 0 0 18px;
+            width: 18px;
+            height: 18px;
+            margin-right: .15rem;
+            color: $docs-sidebar-text;
+            transition: transform .2s ease;
+        }
+
+        .with-child > input:checked ~ label .docs-sidebar__chevron,
+        .with-child > label:has(a.active) .docs-sidebar__chevron {
+            color: $docs-sidebar-active-text;
+        }
+
+        .with-child > input:checked ~ label .docs-sidebar__chevron {
+            transform: rotate(90deg);
+        }
+
+        // Drop the Docsy caret; the chevron above replaces it.
+        .ul-1 .with-child > label:before {
+            content: none;
+        }
+    }
+
+    nav.foldable-nav input:checked ~ ul.foldable {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        margin: .25rem 0 .25rem .75rem;
+        padding: 0 0 0 .75rem;
+        border-left: 1px solid $docs-sidebar-line;
+    }
+}
+
+@media only screen and (min-width: #{$mobile-width + 1}) {
+    .td-docs {
+        .td-main > .row > .td-sidebar {
+            flex: 0 0 16rem;
+            width: 16rem;
+            max-width: 16rem;
+            padding: 0;
+            background: transparent;
+            border-right: 0;
+        }
+
+        .td-sidebar__search {
+            display: none !important;
+        }
+
+        .td-sidebar__inner {
+            top: 1rem;
+            height: calc(100vh - 2rem);
+        }
+
+        .docs-sidebar {
+            max-height: none;
+            overflow-y: auto;
+        }
+
+        .td-sidebar-nav__section .ul-1 ul {
+            padding-left: .75rem;
+        }
+
+        .docs-main {
+            flex: 1 1 auto;
+            width: auto;
+            max-width: none;
+        }
+    }
+}

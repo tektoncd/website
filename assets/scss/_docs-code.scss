@@ -1,0 +1,114 @@
+// Rounded code editor used by the documentation refresh, in the light theme.
+
+.td-docs .td-content .highlight {
+    margin: 1.5rem 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    .click-to-copy {
+        height: 0;
+        text-align: right;
+    }
+
+    pre {
+        margin: 0 0 1rem;
+        padding: 1rem;
+        overflow: auto;
+        color: #222;
+        background-color: #f0f3f3;
+        border: 0;
+        border-radius: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 20px;
+        tab-size: 4;
+        max-height: 25em;
+
+        > code {
+            background: transparent !important;
+            color: inherit;
+            padding: 0;
+            font-size: inherit;
+            font-family: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            top: 8px;
+            right: 8px !important;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            color: #4b5563;
+            background: rgba(0, 16, 159, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 6px;
+            box-shadow: none;
+            font-size: 13px;
+            line-height: 1;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                color: #111827;
+                background: #fff;
+                border-color: rgba(0, 0, 0, 0.12);
+            }
+
+            &:active {
+                color: #111827;
+                background: #f8fafc;
+                transform: none;
+            }
+        }
+
+        .c2c-tooltip {
+            padding: 4px 8px;
+            color: #f8f8f2;
+            background: #111827;
+            border-radius: 6px;
+            font-family: $font-family-base;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+    }
+}
+
+// Fences with no language, and raw <pre> output samples, skip Chroma.
+.td-docs .td-content pre:not(.chroma):not(.mermaid) {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    overflow: auto;
+    color: #222;
+    background-color: #f0f3f3;
+    border: 0;
+    border-radius: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    tab-size: 4;
+    max-height: 25em;
+    white-space: pre;
+
+    > code {
+        background: transparent !important;
+        color: inherit;
+        padding: 0;
+        border: 0;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        white-space: pre;
+    }
+}

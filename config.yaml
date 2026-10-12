@@ -28,6 +28,10 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
 imaging:
   resampleFilter: CatmullRom
   quality: 75
@@ -72,6 +76,19 @@ params:
         desc: GitHub organization for the Tekton project
 sectionPagesMenu: "docs"
 menu:
+  footer:
+    - name: "Docs"
+      url: "/docs/"
+      weight: 10
+    - name: "Community"
+      url: "/community/"
+      weight: 30
+    - name: "GitHub"
+      url: "https://github.com/tektoncd"
+      weight: 40
+    - name: "Blog"
+      url: "/blog/"
+      weight: 50
   docs:
     - name: "Getting Started"
       url: "/docs/getting-started/"
