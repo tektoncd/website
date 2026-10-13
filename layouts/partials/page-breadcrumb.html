@@ -1,0 +1,19 @@
+{{ $crumbs := slice }}
+{{ $p := .Parent }}
+{{ range seq 8 }}
+  {{ if or (not $p) $p.IsHome }}
+    {{ break }}
+  {{ end }}
+  {{ $crumbs = $crumbs | append $p }}
+  {{ $p = $p.Parent }}
+{{ end }}
+<nav class="page-breadcrumb" aria-label="breadcrumb">
+  <ol>
+    {{- $n := len $crumbs -}}
+    {{- range seq $n -}}
+    {{- $c := index $crumbs (sub $n .) -}}
+    <li><a href="{{ $c.RelPermalink }}">{{ $c.LinkTitle }}</a></li>
+    {{- end -}}
+    <li aria-current="page">{{ .LinkTitle }}</li>
+  </ol>
+</nav>

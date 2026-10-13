@@ -42,8 +42,9 @@ body {
     }
 }
 
-/* Static landing-page foundation (issue #742). Later issues insert their
-   sections between the hero and trusted-by sections below. */
+/* Static landing-page foundation (issue #742). Why Tekton and Quick Links
+   (issue #743) sit between the hero and trusted-by sections. Later issues
+   continue inserting remaining landing-page sections here. */
 .td-home {
     // clip avoids a scroll containment that breaks position:sticky
     overflow-x: clip;
@@ -51,6 +52,17 @@ body {
     .td-outer,
     .td-main {
         padding: 0;
+    }
+
+    // Beat Docsy `.td-default main section { padding-top/bottom: 4rem/5rem }`.
+    .td-default main section {
+        &.landing-why-tekton {
+            padding: 2.5rem 1.5rem;
+        }
+
+        &.landing-quicklinks {
+            padding: 0 1.5rem;
+        }
     }
 
     // td-outer has no horizontal padding on the landing page, so the footer
@@ -220,6 +232,10 @@ body {
             box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
         }
 
+        i {
+            font-size: $font-size-md;
+        }
+
         &--source { color: #2563eb; background: #eff6ff; border-color: #bfdbfe; }
         &--build { color: #b45309; background: #fffbeb; border-color: #fde68a; }
         &--test { color: #047857; background: #ecfdf5; border-color: #a7f3d0; }
@@ -232,6 +248,181 @@ body {
         margin: 0 .75rem;
         font-size: $font-size-md;
         line-height: 1;
+    }
+}
+
+.landing-why-tekton {
+    padding: 2.5rem 1.5rem;
+    color: #0f172a;
+    font-family: $td-fonts-serif;
+
+    &__heading {
+        margin: 0 0 2rem;
+        color: #0f172a;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, $landing-card-width));
+        justify-content: center;
+        gap: $landing-card-gap;
+        margin: 0 auto;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        color: inherit;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        transition: box-shadow .2s ease, border-color .2s ease;
+
+        &:hover {
+            border-color: #c7d2fe;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .07);
+        }
+    }
+
+    &__icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: .75rem;
+        border: 1px solid;
+        border-radius: .75rem;
+
+        &--blue { background: #eff6ff; border-color: #dbeafe; }
+        &--teal { background: #f0fdfa; border-color: #ccfbf1; }
+        &--purple { background: #f5f3ff; border-color: #ede9fe; }
+        &--amber { background: #fffbeb; border-color: #fef3c7; }
+        &--rose { background: #fff1f2; border-color: #fecdd3; }
+    }
+
+    &__title {
+        margin: 0 0 .375rem;
+        color: #0f172a;
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    &__desc {
+        flex: 1 1 auto;
+        margin: 0;
+        color: #6b7280;
+        font-size: .875rem;
+        line-height: 1.6;
+    }
+}
+
+.landing-quicklinks {
+    padding: 0 1.5rem;
+    font-family: $td-fonts-serif;
+
+    &__heading {
+        margin: 0 0 2rem;
+        color: #0f172a;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+    }
+    
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, $landing-card-width));
+        grid-template-rows: auto 1fr auto;
+        justify-content: center;
+        column-gap: $landing-card-gap;
+        row-gap: .5rem;
+        margin: 2rem auto 4rem;
+    }
+
+    &__card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 3;
+        align-items: start;
+        padding: 1.5rem;
+        color: inherit;
+        text-align: center;
+        text-decoration: none;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: .75rem;
+        transition: box-shadow .2s ease, border-color .2s ease;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+            text-decoration: none;
+            border-color: #c7d2fe;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .07);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        color: #0f172a;
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    &__desc {
+        margin: 0;
+        color: #6b7280;
+        font-size: .9rem;
+        line-height: 1.5;
+    }
+
+    &__link {
+        color: $primary;
+        font-size: .85rem;
+        font-weight: 500;
+    }
+}
+
+@supports not (grid-template-rows: subgrid) {
+    .landing-quicklinks {
+        &__grid {
+            grid-template-rows: none;
+            row-gap: $landing-card-gap;
+        }
+
+        &__card {
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
+            height: 100%;
+        }
+
+        &__title {
+            margin-bottom: .5rem;
+        }
+
+        &__desc {
+            flex: 1 1 auto;
+            margin-bottom: .75rem;
+        }
+
+        &__link {
+            margin-top: auto;
+        }
     }
 }
 
@@ -312,12 +503,171 @@ body {
     }
 }
 
+.latest-posts {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 60rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 3.75rem 1.5rem;
+    color: #172033;
+    font-size: $font-size-base;
+    line-height: 1.6;
+
+    &__heading {
+        margin: 0 0 1.5rem;
+        color: #172033;
+        font-size: $font-size-lg;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax($landing-card-width, 1fr));
+        gap: $landing-card-gap;
+    }
+}
+
+.latest-post-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.5rem;
+    color: inherit !important;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: .75rem;
+    text-decoration: none !important;
+    transition: box-shadow .2s, border-color .2s;
+
+    &:hover,
+    &:focus {
+        border-color: lighten($primary, 45%);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .07);
+        text-decoration: none !important;
+    }
+
+    &__date {
+        margin-bottom: .5rem;
+        color: #6b7280;
+        font-size: $font-size-sm;
+        font-weight: 500;
+    }
+
+    &__title {
+        margin: 0 0 .5rem;
+        color: #172033;
+        font-size: $font-size-md;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    &__desc {
+        flex: 1;
+        margin: 0;
+        color: #6b7280;
+        font-size: $font-size-base;
+        line-height: 1.6;
+    }
+
+    &__link {
+        margin-top: .75rem;
+        color: $primary;
+        font-size: $font-size-sm;
+        font-weight: 500;
+    }
+}
+
+.page-hero {
+    padding: 4rem 1.5rem;
+    color: #fff;
+    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+    text-align: center;
+
+    &__inner {
+        max-width: 43.75rem;
+        margin: 0 auto;
+    }
+
+    &__eyebrow {
+        margin: 0 0 .5rem;
+        color: rgba(255, 255, 255, .85);
+        font-size: $font-size-xs;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+        &__title {
+            margin: 0 0 .75rem;
+            color: #fff;
+            font-size: $font-size-2xl;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            line-height: 1.2;
+        }
+
+    &__subtitle {
+        margin: 0;
+        color: rgba(255, 255, 255, .85);
+        font-size: $font-size-md;
+        line-height: 1.6;
+    }
+
+    &__link {
+        display: inline-block;
+        margin-top: 1.25rem;
+        color: rgba(255, 255, 255, .85);
+        font-size: $font-size-sm;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .landing-why-tekton__grid {
+        grid-template-columns: repeat(3, minmax(0, $landing-card-width));
+    }
+}
+
 @media only screen and (max-width: $mobile-width) {
+    .landing-hero {
+        padding: 2.75rem 1rem 3.5rem;
+
+        &__mark {
+            width: 5.5rem;
+            height: 5.5rem;
+        }
+
+        &__actions {
+            margin-top: 2rem;
+        }
+    }
+
+    .landing-button {
+        width: 100%;
+        max-width: 19rem;
+        min-height: 3.5rem;
+        font-size: $font-size-base;
+    }
+
     .landing-pipeline {
         &__task {
             width: calc((100% - 4.5rem) / 4);
             min-width: 0;
             padding: .25rem;
+            font-size: $font-size-xs;
+
+            i {
+                font-size: $font-size-sm;
+            }
         }
 
         &__arrow {
@@ -326,14 +676,88 @@ body {
         }
     }
 
+    .td-home .td-default main section {
+        &.landing-why-tekton {
+            padding: 2rem 1rem;
+        }
+
+        &.landing-quicklinks {
+            padding: 0 1rem;
+        }
+    }
+
+    .landing-why-tekton {
+        &__heading {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        &__grid {
+            grid-template-columns: repeat(2, minmax(0, $landing-card-width));
+        }
+    }
+
+    .landing-quicklinks {
+        &__grid {
+            grid-template-columns: minmax(0, $landing-card-width);
+            grid-template-rows: none;
+            gap: $landing-card-gap;
+            margin: 1.5rem auto 2.5rem;
+        }
+
+        &__card {
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
+        }
+
+        &__title {
+            margin-bottom: .5rem;
+        }
+
+        &__desc {
+            margin-bottom: .75rem;
+        }
+    }
+
+    .landing-trusted {
+        padding: 2.75rem 1rem 3.5rem;
+
+        &__logos {
+            gap: 1.25rem 1.5rem;
+
+            img {
+                width: 5.75rem;
+                height: 2rem;
+            }
+        }
+    }
+
     .td-home .td-main .landing-cncf {
+        padding: 0 1rem 2rem;
+
         &__card {
             flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
+            font-size: $font-size-base;
             text-align: center;
 
             img {
                 max-width: 100%;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .landing-why-tekton {
+        &__grid {
+            grid-template-columns: minmax(0, $landing-card-width);
+        }
+
+        &__card {
+            padding: 1rem;
         }
     }
 }
@@ -493,6 +917,7 @@ body > header {
     width: 100%;
     min-height: 4rem;
     padding: 0;
+    overflow-x: clip;
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
     box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
@@ -500,8 +925,10 @@ body > header {
     &__inner {
         display: flex;
         align-items: center;
+        box-sizing: border-box;
         width: 100%;
         max-width: 90rem;
+        min-width: 0;
         min-height: 4rem;
         margin: 0 auto;
         padding: .75rem 1.5rem;
@@ -552,6 +979,7 @@ body > header {
     .navbar-collapse {
         align-items: center;
         flex: 1 1 auto;
+        min-width: 0;
     }
 
     &__links {
@@ -583,6 +1011,7 @@ body > header {
 
     &__utilities {
         display: flex;
+        flex: 0 0 auto;
         align-items: center;
         gap: .625rem;
         margin-left: .625rem;
@@ -670,7 +1099,7 @@ body > header {
     &__icon {
         width: 2.25rem;
         height: 2.25rem;
-        font-size: 1.5rem;
+        font-size: $font-size-lg;
     }
 
 }
@@ -764,6 +1193,27 @@ body > header {
             flex-direction: column;
             align-items: stretch;
             order: 1;
+            padding: .75rem 0;
+            gap: 0;
+
+            .nav-link {
+                position: relative;
+                padding: .5rem;
+                font-size: $font-size-sm;
+                text-align: left;
+            }
+
+            .nav-item:not(:last-child) .nav-link {
+                &::after {
+                    position: absolute;
+                    right: .5rem;
+                    color: #64748b;
+                    content: "›";
+                    font-size: $font-size-lg;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+            }
         }
 
         &__utilities {
@@ -790,3 +1240,7 @@ body > header {
         }
     }
 }
+
+@import "page-rail";
+@import "page-breadcrumb";
+@import "blog";
