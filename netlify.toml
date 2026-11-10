@@ -2,6 +2,12 @@
   publish = "public"
   command = "make production-build"
 
+[[redirects]]
+  from = "/landing"
+  to = "/"
+  status = 301
+  force = true
+
 [build.environment]
   HUGO_VERSION = "0.107.0"
 
